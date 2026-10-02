@@ -1,0 +1,1660 @@
+import * as React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CountryStateSelect } from "../components/CountryStateSelect";
+import { GoogleSignInButton } from "../components/GoogleSignInButton";
+import { useAuth } from "../context/AuthContext";
+import { api } from "../lib/api";
+
+var zn = {
+  width: `100%`,
+  padding: `11px 14px`,
+  borderRadius: 12,
+  border: `1.5px solid #D4EDDA`,
+  background: `#F8FAF5`,
+  color: `#1B3A4B`,
+  fontSize: 13.5,
+  fontFamily: `'DM Sans', sans-serif`,
+  outline: `none`,
+};
+
+function UsernameField({
+  value: e,
+  onChange: t,
+  onAvailabilityChange: n,
+  inputStyle: r = zn,
+  label: i = `Choose Your Username`,
+  helpText:
+    a = `3-20 characters: lowercase letters, numbers, and underscores. This can't be changed once set.`,
+  disabled: o = !1,
+}) {
+  let [s, c] = (0, React.useState)(`idle`),
+    l = (0, React.useRef)(null),
+    u = (0, React.useRef)(0);
+  (0, React.useEffect)(() => {
+    if (o) return;
+    if ((clearTimeout(l.current), !e)) {
+      (c(`idle`), n?.(null));
+      return;
+    }
+    if (e.length < 3) {
+      (c(`invalid`), n?.(!1));
+      return;
+    }
+    c(`checking`);
+    let t = ++u.current;
+    return (
+      (l.current = setTimeout(async () => {
+        try {
+          let r = await api.get(
+            `/auth/check-username/${encodeURIComponent(e)}`,
+          );
+          if (u.current !== t) return;
+          r.available
+            ? (c(`available`), n?.(!0))
+            : (c(r.reason === `invalid_format` ? `invalid` : `taken`), n?.(!1));
+        } catch {
+          if (u.current !== t) return;
+          (c(`idle`), n?.(null));
+        }
+      }, 400)),
+      () => clearTimeout(l.current)
+    );
+  }, [e, o]);
+  let d = (e) => {
+    t(
+      e.target.value
+        .toLowerCase()
+        .replace(/[^a-z0-9_]/g, ``)
+        .slice(0, 20),
+    );
+  };
+  if (o && e)
+    return (
+      <div>
+        {i && (
+          <label
+            style={{
+              display: `block`,
+              fontSize: 10.5,
+              fontWeight: 700,
+              color: `#3D6B55`,
+              letterSpacing: `0.08em`,
+              textTransform: `uppercase`,
+              marginBottom: 6,
+            }}
+          >
+            Your Username
+          </label>
+        )}
+        <div
+          style={{
+            display: `inline-flex`,
+            alignItems: `center`,
+            gap: 8,
+            background: `#F0FAF4`,
+            border: `1.5px solid #D4EDDA`,
+            borderRadius: 20,
+            padding: `8px 16px`,
+            fontFamily: `monospace`,
+            fontSize: 13,
+            color: `#2D6A4F`,
+            fontWeight: 700,
+          }}
+        >
+          @{e}
+        </div>
+        <p style={{ fontSize: 11, color: `#9DC4B0`, marginTop: 6 }}>
+          This is permanent and can't be changed.
+        </p>
+      </div>
+    );
+  let f =
+    s === `taken` || s === `invalid`
+      ? `#C0392B`
+      : s === `available`
+        ? `#2D6A4F`
+        : null;
+  return (
+    <div>
+      {i && (
+        <label
+          style={{
+            display: `block`,
+            fontSize: 10.5,
+            fontWeight: 700,
+            color: `#3D6B55`,
+            letterSpacing: `0.08em`,
+            textTransform: `uppercase`,
+            marginBottom: 6,
+          }}
+        >
+          {i}
+        </label>
+      )}
+      <input
+        type="text"
+        value={e}
+        onChange={d}
+        placeholder="e.g. jane_doe23"
+        autoCapitalize="none"
+        autoCorrect="off"
+        style={f ? { ...r, border: `1.5px solid ${f}` } : r}
+      />
+      {s === `checking` && (
+        <p style={{ fontSize: 11.5, color: `#9DC4B0`, marginTop: 5 }}>
+          Checking availability…
+        </p>
+      )}
+      {s === `available` && (
+        <p
+          style={{
+            fontSize: 11.5,
+            color: `#2D6A4F`,
+            fontWeight: 600,
+            marginTop: 5,
+          }}
+        >
+          ✓ Username available
+        </p>
+      )}
+      {s === `taken` && (
+        <p
+          style={{
+            fontSize: 11.5,
+            color: `#C0392B`,
+            fontWeight: 600,
+            marginTop: 5,
+          }}
+        >
+          This username has already been taken.
+        </p>
+      )}
+      {s === `invalid` && (
+        <p
+          style={{
+            fontSize: 11.5,
+            color: `#C0392B`,
+            fontWeight: 600,
+            marginTop: 5,
+          }}
+        >
+          {e.length > 0 && e.length < 3
+            ? `Username must be at least 3 characters.`
+            : `Only lowercase letters, numbers, and underscores allowed.`}
+        </p>
+      )}
+      {s === `idle` && a && (
+        <p style={{ fontSize: 11, color: `#9DC4B0`, marginTop: 5 }}>{a}</p>
+      )}
+    </div>
+  );
+}
+
+var Vn = {
+  width: `100%`,
+  fontSize: 12,
+  padding: `9px 12px`,
+  borderRadius: 14,
+  background: `rgba(255,255,255,0.65)`,
+  border: `1.5px solid #D4EDDA`,
+  color: `#1B3A4B`,
+  fontFamily: `'DM Sans', sans-serif`,
+  outline: `none`,
+};
+
+var Hn = {
+  display: `block`,
+  fontFamily: `'DM Sans', sans-serif`,
+  fontSize: 9.5,
+  fontWeight: 700,
+  color: `#3D6B55`,
+  letterSpacing: `0.1em`,
+  textTransform: `uppercase`,
+  marginBottom: 5,
+};
+
+var Un = [
+  { code: `+93`, country: `Afghanistan`, flag: `🇦🇫` },
+  { code: `+355`, country: `Albania`, flag: `🇦🇱` },
+  { code: `+213`, country: `Algeria`, flag: `🇩🇿` },
+  { code: `+54`, country: `Argentina`, flag: `🇦🇷` },
+  { code: `+61`, country: `Australia`, flag: `🇦🇺` },
+  { code: `+43`, country: `Austria`, flag: `🇦🇹` },
+  { code: `+973`, country: `Bahrain`, flag: `🇧🇭` },
+  { code: `+880`, country: `Bangladesh`, flag: `🇧🇩` },
+  { code: `+32`, country: `Belgium`, flag: `🇧🇪` },
+  { code: `+55`, country: `Brazil`, flag: `🇧🇷` },
+  { code: `+1`, country: `Canada`, flag: `🇨🇦` },
+  { code: `+86`, country: `China`, flag: `🇨🇳` },
+  { code: `+45`, country: `Denmark`, flag: `🇩🇰` },
+  { code: `+20`, country: `Egypt`, flag: `🇪🇬` },
+  { code: `+358`, country: `Finland`, flag: `🇫🇮` },
+  { code: `+33`, country: `France`, flag: `🇫🇷` },
+  { code: `+49`, country: `Germany`, flag: `🇩🇪` },
+  { code: `+91`, country: `India`, flag: `🇮🇳` },
+  { code: `+62`, country: `Indonesia`, flag: `🇮🇩` },
+  { code: `+964`, country: `Iraq`, flag: `🇮🇶` },
+  { code: `+353`, country: `Ireland`, flag: `🇮🇪` },
+  { code: `+39`, country: `Italy`, flag: `🇮🇹` },
+  { code: `+81`, country: `Japan`, flag: `🇯🇵` },
+  { code: `+962`, country: `Jordan`, flag: `🇯🇴` },
+  { code: `+965`, country: `Kuwait`, flag: `🇰🇼` },
+  { code: `+961`, country: `Lebanon`, flag: `🇱🇧` },
+  { code: `+60`, country: `Malaysia`, flag: `🇲🇾` },
+  { code: `+212`, country: `Morocco`, flag: `🇲🇦` },
+  { code: `+31`, country: `Netherlands`, flag: `🇳🇱` },
+  { code: `+64`, country: `New Zealand`, flag: `🇳🇿` },
+  { code: `+234`, country: `Nigeria`, flag: `🇳🇬` },
+  { code: `+47`, country: `Norway`, flag: `🇳🇴` },
+  { code: `+968`, country: `Oman`, flag: `🇴🇲` },
+  { code: `+92`, country: `Pakistan`, flag: `🇵🇰` },
+  { code: `+63`, country: `Philippines`, flag: `🇵🇭` },
+  { code: `+48`, country: `Poland`, flag: `🇵🇱` },
+  { code: `+351`, country: `Portugal`, flag: `🇵🇹` },
+  { code: `+974`, country: `Qatar`, flag: `🇶🇦` },
+  { code: `+7`, country: `Russia`, flag: `🇷🇺` },
+  { code: `+966`, country: `Saudi Arabia`, flag: `🇸🇦` },
+  { code: `+65`, country: `Singapore`, flag: `🇸🇬` },
+  { code: `+27`, country: `South Africa`, flag: `🇿🇦` },
+  { code: `+82`, country: `South Korea`, flag: `🇰🇷` },
+  { code: `+34`, country: `Spain`, flag: `🇪🇸` },
+  { code: `+94`, country: `Sri Lanka`, flag: `🇱🇰` },
+  { code: `+46`, country: `Sweden`, flag: `🇸🇪` },
+  { code: `+41`, country: `Switzerland`, flag: `🇨🇭` },
+  { code: `+963`, country: `Syria`, flag: `🇸🇾` },
+  { code: `+66`, country: `Thailand`, flag: `🇹🇭` },
+  { code: `+90`, country: `Turkey`, flag: `🇹🇷` },
+  { code: `+971`, country: `UAE`, flag: `🇦🇪` },
+  { code: `+44`, country: `UK`, flag: `🇬🇧` },
+  { code: `+1`, country: `US`, flag: `🇺🇸` },
+  { code: `+967`, country: `Yemen`, flag: `🇾🇪` },
+];
+
+function SignupPasswordToggle({ shown: e, onClick: t }) {
+  return (
+    <button
+      type="button"
+      onClick={t}
+      tabIndex={-1}
+      aria-label={e ? `Hide password` : `Show password`}
+      style={{
+        position: `absolute`,
+        right: 12,
+        top: `50%`,
+        transform: `translateY(-50%)`,
+        background: `none`,
+        border: `none`,
+        padding: 4,
+        cursor: `pointer`,
+        color: `#74C69D`,
+        display: `flex`,
+        alignItems: `center`,
+      }}
+    >
+      {e ? (
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-8-11-8a21.8 21.8 0 015.06-6.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a21.8 21.8 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24" />
+          <line x1="1" y1="1" x2="23" y2="23" />
+        </svg>
+      ) : (
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
+function SignupPage() {
+  let [e, t] = (0, React.useState)(1),
+    [n, r] = (0, React.useState)(``),
+    [i, a] = (0, React.useState)(``),
+    [o, s] = (0, React.useState)(``),
+    [c, l] = (0, React.useState)(``),
+    [u, d] = (0, React.useState)(!1),
+    [f, p] = (0, React.useState)(!1),
+    [m, h] = (0, React.useState)(``),
+    [g, _] = (0, React.useState)(``),
+    [y, b] = (0, React.useState)(``),
+    [x, S] = (0, React.useState)(``),
+    [C, w] = (0, React.useState)(null),
+    [T, E] = (0, React.useState)(``),
+    [ee, D] = (0, React.useState)(``),
+    [O, k] = (0, React.useState)(`+91`),
+    [A, te] = (0, React.useState)(``),
+    [ne, re] = (0, React.useState)(``),
+    [ie, j] = (0, React.useState)(!1),
+    [M, ae] = (0, React.useState)(!1),
+    [oe, se] = (0, React.useState)(!1),
+    ce = (0, React.useRef)(null),
+    [N, P] = (0, React.useState)(!1),
+    [F, le] = (0, React.useState)(!1),
+    [ue, de] = (0, React.useState)(!1),
+    [fe, pe] = (0, React.useState)(!1),
+    me = (0, React.useRef)(null),
+    he = (0, React.useRef)(null),
+    ge = (0, React.useRef)(null),
+    _e = (0, React.useRef)(null),
+    [ve, ye] = (0, React.useState)(``),
+    [I, be] = (0, React.useState)(!1),
+    { signup: xe } = useAuth(),
+    Se = useNavigate();
+  return (
+    (0, React.useEffect)(() => {
+      function e(e) {
+        (ce.current && !ce.current.contains(e.target) && se(!1),
+          me.current && !me.current.contains(e.target) && P(!1),
+          he.current && !he.current.contains(e.target) && le(!1),
+          ge.current && !ge.current.contains(e.target) && de(!1),
+          _e.current && !_e.current.contains(e.target) && pe(!1));
+      }
+      return (
+        document.addEventListener(`mousedown`, e),
+        () => document.removeEventListener(`mousedown`, e)
+      );
+    }, []),
+    (
+      <div style={{ height: `100vh`, display: `flex`, overflow: `hidden` }}>
+        <style>
+          {
+            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: rgba(255,255,255,0.65);\n          border: 1.5px solid #D4EDDA;\n          color: #1B3A4B;\n          font-size: 13px;\n          font-family: 'DM Sans', sans-serif;\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: #9DC4B0; }\n        .signup-input:focus {\n          border-color: #40916C;\n          box-shadow: 0 0 0 3px rgba(64,145,108,0.12);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 10px;\n          font-weight: 700;\n          color: #3D6B55;\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.3);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,58,75,0.4); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid #40916C;\n          background: transparent;\n          color: #2D6A4F;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: rgba(64,145,108,0.08); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, #1B3A4B, #2D6A4F);\n          color: #fff;\n          box-shadow: 0 4px 14px rgba(27,58,75,0.35);\n        }\n        .step-dot.inactive {\n          background: #D4EDDA;\n          color: #74C69D;\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: #F8FAF5; }\n        .terms-scroll::-webkit-scrollbar-thumb { background: #74C69D; border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
+          }
+        </style>
+        <div
+          className="left-panel"
+          style={{
+            width: `50%`,
+            position: `relative`,
+            display: `flex`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            overflow: `hidden`,
+            background: `linear-gradient(135deg, #1B3A4B 0%, #0d2418 100%)`,
+            flexDirection: `column`,
+            padding: `40px`,
+          }}
+        >
+          <img
+            src="/src/assets/hero.png"
+            alt="Couple"
+            style={{
+              position: `absolute`,
+              inset: 0,
+              width: `100%`,
+              height: `100%`,
+              objectFit: `cover`,
+              opacity: 0.35,
+            }}
+          />
+          <div
+            style={{
+              position: `absolute`,
+              inset: 0,
+              background: `linear-gradient(135deg, rgba(45,106,79,0.5) 0%, transparent 50%, rgba(27,58,75,0.4) 100%)`,
+            }}
+          />
+          <div
+            style={{
+              position: `relative`,
+              zIndex: 1,
+              textAlign: `center`,
+              padding: `0 32px`,
+              maxWidth: 380,
+            }}
+          >
+            <div style={{ marginBottom: 40 }}>
+              <Link
+                to="/"
+                style={{
+                  display: `inline-flex`,
+                  alignItems: `center`,
+                  gap: 8,
+                  textDecoration: `none`,
+                }}
+              >
+                <span
+                  className="green-text"
+                  style={{
+                    fontFamily: `'Playfair Display', serif`,
+                    fontSize: 48,
+                    fontWeight: 700,
+                    letterSpacing: `-0.02em`,
+                  }}
+                >
+                  Nikha2
+                </span>
+                <span
+                  style={{
+                    fontFamily: `'DM Sans', sans-serif`,
+                    fontSize: 12,
+                    padding: `4px 12px`,
+                    borderRadius: 20,
+                    color: `#40916C`,
+                    border: `1.5px solid #74C69D`,
+                  }}
+                >
+                  ™
+                </span>
+              </Link>
+            </div>
+            <h2
+              style={{
+                fontFamily: `'Playfair Display', serif`,
+                fontSize: 28,
+                fontWeight: 700,
+                color: `#fff`,
+                marginBottom: 12,
+                letterSpacing: `-0.02em`,
+              }}
+            >
+              The Second Chance
+            </h2>
+            <p
+              style={{
+                fontFamily: `'DM Sans', sans-serif`,
+                fontSize: 14,
+                color: `#B7E4C7`,
+                marginBottom: 28,
+                letterSpacing: `0.05em`,
+                textTransform: `uppercase`,
+                fontWeight: 600,
+              }}
+            >
+              Global Matchmaking Platform
+            </p>
+            <p
+              style={{
+                fontFamily: `'DM Sans', sans-serif`,
+                fontSize: 15,
+                color: `rgba(255,255,255,0.75)`,
+                lineHeight: 1.8,
+              }}
+            >
+              Join thousands of single parents who trusted Nikha2 with their
+              most important search.
+            </p>
+          </div>
+        </div>
+        <div
+          className="right-panel"
+          style={{
+            width: `50%`,
+            display: `flex`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            padding: `0 24px`,
+            background: `#F8FAF5`,
+            overflowY: `auto`,
+          }}
+        >
+          <div style={{ width: `100%`, maxWidth: 380, padding: `24px 0` }}>
+            <div
+              style={{
+                background: `rgba(255,255,255,0.75)`,
+                backdropFilter: `blur(20px)`,
+                border: `1px solid rgba(64,145,108,0.18)`,
+                borderRadius: 24,
+                padding: `24px 22px 28px`,
+                boxShadow: `0 12px 48px rgba(27,58,75,0.1)`,
+              }}
+            >
+              <div
+                style={{
+                  display: `flex`,
+                  alignItems: `center`,
+                  justifyContent: `center`,
+                  gap: 10,
+                  marginBottom: 20,
+                }}
+              >
+                <div className={`step-dot ${e === 1 ? `active` : `inactive`}`}>
+                  1
+                </div>
+                <div
+                  style={{
+                    flex: 1,
+                    height: 3,
+                    borderRadius: 4,
+                    background:
+                      e === 2
+                        ? `linear-gradient(90deg, #1B3A4B, #2D6A4F)`
+                        : `#D4EDDA`,
+                    transition: `background 0.3s`,
+                  }}
+                />
+                <div className={`step-dot ${e === 2 ? `active` : `inactive`}`}>
+                  2
+                </div>
+              </div>
+              <div style={{ marginBottom: 18 }}>
+                <h2
+                  style={{
+                    fontFamily: `'Playfair Display', serif`,
+                    fontSize: 18,
+                    fontWeight: 700,
+                    color: `#1B3A4B`,
+                  }}
+                >
+                  {e === 1 ? `Create Your Account` : `Complete Your Profile`}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: `'DM Sans', sans-serif`,
+                    fontSize: 11,
+                    color: `#74C69D`,
+                    marginTop: 3,
+                  }}
+                >
+                  {e === 1
+                    ? `Step 1 of 2: Login Details`
+                    : `Step 2 of 2: Profile Information`}
+                </p>
+              </div>
+              {e === 1 && (
+                <div
+                  style={{
+                    display: `flex`,
+                    flexDirection: `column`,
+                    gap: 12,
+                  }}
+                >
+                  <div>
+                    <label className="signup-label">Full Name</label>
+                    <input
+                      type="text"
+                      required={!0}
+                      value={n}
+                      onChange={(e) => r(e.target.value)}
+                      placeholder="Enter your name"
+                      className="signup-input"
+                    />
+                  </div>
+                  <div>
+                    <label className="signup-label">Email</label>
+                    <input
+                      type="email"
+                      required={!0}
+                      value={i}
+                      onChange={(e) => a(e.target.value)}
+                      placeholder="you@example.com"
+                      className="signup-input"
+                    />
+                  </div>
+                  <div style={{ display: `flex`, gap: 8 }}>
+                    <div
+                      style={{ position: `relative`, flexShrink: 0 }}
+                      ref={ce}
+                    >
+                      <label className="signup-label" style={{ fontSize: 9.5 }}>
+                        Phone
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          (se(!oe), le(!1), de(!1), pe(!1));
+                        }}
+                        className="signup-input"
+                        style={{
+                          width: 100,
+                          fontSize: 12,
+                          padding: `9px 10px`,
+                          display: `flex`,
+                          alignItems: `center`,
+                          justifyContent: `space-between`,
+                          cursor: `pointer`,
+                          textAlign: `left`,
+                          color: `#1B3A4B`,
+                        }}
+                      >
+                        <span>
+                          {Un.find((e) => e.code === O)?.flag} {O}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: 10,
+                            color: `#74C69D`,
+                            transform: oe ? `rotate(180deg)` : `rotate(0deg)`,
+                            transition: `transform 0.2s`,
+                            flexShrink: 0,
+                          }}
+                        >
+                          ▼
+                        </span>
+                      </button>
+                      {oe && (
+                        <div
+                          style={{
+                            position: `absolute`,
+                            top: `110%`,
+                            left: 0,
+                            zIndex: 50,
+                            background: `#fff`,
+                            borderRadius: 14,
+                            border: `1.5px solid #D4EDDA`,
+                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            overflow: `hidden`,
+                            width: 200,
+                          }}
+                        >
+                          <div
+                            style={{
+                              maxHeight: 220,
+                              overflowY: `auto`,
+                              padding: `6px 8px`,
+                            }}
+                          >
+                            {Un.map(({ code: e, country: t, flag: n }) => (
+                              <button
+                                key={e}
+                                type="button"
+                                onClick={() => {
+                                  (k(e), se(!1));
+                                }}
+                                style={{
+                                  width: `100%`,
+                                  textAlign: `left`,
+                                  padding: `7px 10px`,
+                                  border: `none`,
+                                  background:
+                                    O === e ? `#F0FAF4` : `transparent`,
+                                  color: O === e ? `#2D6A4F` : `#1B3A4B`,
+                                  fontWeight: O === e ? 700 : 400,
+                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontSize: 12.5,
+                                  cursor: `pointer`,
+                                  borderRadius: 8,
+                                  transition: `background 0.15s`,
+                                  display: `flex`,
+                                  alignItems: `center`,
+                                  gap: 8,
+                                }}
+                                onMouseEnter={(e) =>
+                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                }
+                                onMouseLeave={(t) =>
+                                  (t.currentTarget.style.background =
+                                    O === e ? `#F0FAF4` : `transparent`)
+                                }
+                              >
+                                <span style={{ fontSize: 15 }}>{n}</span>
+                                <span>
+                                  {n} {t}
+                                  {" ("}
+                                  {e})
+                                </span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label className="signup-label" style={{ fontSize: 9.5 }}>
+                        {" "}
+                      </label>
+                      <input
+                        type="tel"
+                        value={ee}
+                        onChange={(e) => {
+                          D(e.target.value.replace(/\D/g, ``).slice(0, 10));
+                        }}
+                        placeholder="10-digit number"
+                        maxLength={10}
+                        className="signup-input"
+                        style={{ fontSize: 12, padding: `9px 12px` }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="signup-label">Password</label>
+                    <div style={{ position: `relative` }}>
+                      <input
+                        type={u ? `text` : `password`}
+                        required={!0}
+                        value={o}
+                        onChange={(e) => s(e.target.value)}
+                        placeholder="••••••••"
+                        className="signup-input"
+                        style={{ paddingRight: 38 }}
+                      />
+                      <SignupPasswordToggle
+                        shown={u}
+                        onClick={() => d((e) => !e)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="signup-label">Confirm Password</label>
+                    <div style={{ position: `relative` }}>
+                      <input
+                        type={f ? `text` : `password`}
+                        required={!0}
+                        value={c}
+                        onChange={(e) => l(e.target.value)}
+                        placeholder="••••••••"
+                        className="signup-input"
+                        style={{ paddingRight: 38 }}
+                      />
+                      <SignupPasswordToggle
+                        shown={f}
+                        onClick={() => p((e) => !e)}
+                      />
+                    </div>
+                  </div>
+                  {ve && (
+                    <p
+                      style={{
+                        fontFamily: `'DM Sans', sans-serif`,
+                        fontSize: 12,
+                        color: `#C0392B`,
+                        background: `rgba(192,57,43,0.08)`,
+                        padding: `8px 12px`,
+                        borderRadius: 10,
+                      }}
+                    >
+                      {ve}
+                    </p>
+                  )}
+                  <button
+                    onClick={(e) => {
+                      (e.preventDefault(),
+                        ye(``),
+                        n && i && o && c
+                          ? o === c
+                            ? t(2)
+                            : ye(`Passwords do not match`)
+                          : ye(`Please fill in all required fields`));
+                    }}
+                    className="btn-submit"
+                    style={{ marginTop: 4 }}
+                  >
+                    Next →
+                  </button>
+                  <div
+                    style={{
+                      display: `flex`,
+                      alignItems: `center`,
+                      gap: 10,
+                      margin: `2px 0`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        flex: 1,
+                        height: 1,
+                        background: `linear-gradient(to right, transparent, #D4EDDA)`,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: `'DM Sans', sans-serif`,
+                        fontSize: 10,
+                        color: `#9DC4B0`,
+                        textTransform: `uppercase`,
+                        letterSpacing: `0.15em`,
+                      }}
+                    >
+                      or
+                    </span>
+                    <div
+                      style={{
+                        flex: 1,
+                        height: 1,
+                        background: `linear-gradient(to left, transparent, #D4EDDA)`,
+                      }}
+                    />
+                  </div>
+                  <GoogleSignInButton redirectTo="/explore" onError={ye} />
+                </div>
+              )}
+              {e === 2 && (
+                <div
+                  style={{
+                    display: `flex`,
+                    flexDirection: `column`,
+                    gap: 11,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: `grid`,
+                      gridTemplateColumns: `1fr 1fr`,
+                      gap: 10,
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: `relative`,
+                        gridColumn: `1 / -1`,
+                      }}
+                      ref={me}
+                    >
+                      <label className="signup-label" style={{ fontSize: 9.5 }}>
+                        I am a
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          (P(!N), se(!1), le(!1), de(!1), pe(!1));
+                        }}
+                        className="signup-input"
+                        style={{
+                          fontSize: 12,
+                          padding: `9px 12px`,
+                          display: `flex`,
+                          alignItems: `center`,
+                          justifyContent: `space-between`,
+                          cursor: `pointer`,
+                          textAlign: `left`,
+                          color: m ? `#1B3A4B` : `#9DC4B0`,
+                        }}
+                      >
+                        <span>
+                          {{
+                            woman: `Female`,
+                            man: `Male`,
+                            other: `Other`,
+                            prefer_not_to_say: `Prefer not to say`,
+                          }[m] || `Select gender`}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: 10,
+                            color: `#74C69D`,
+                            transform: N ? `rotate(180deg)` : `rotate(0deg)`,
+                            transition: `transform 0.2s`,
+                            flexShrink: 0,
+                          }}
+                        >
+                          ▼
+                        </span>
+                      </button>
+                      {N && (
+                        <div
+                          style={{
+                            position: `absolute`,
+                            top: `110%`,
+                            left: 0,
+                            right: 0,
+                            zIndex: 50,
+                            background: `#fff`,
+                            borderRadius: 14,
+                            border: `1.5px solid #D4EDDA`,
+                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            overflow: `hidden`,
+                          }}
+                        >
+                          <div style={{ padding: `6px 8px` }}>
+                            {[
+                              { value: `woman`, label: `Female` },
+                              { value: `man`, label: `Male` },
+                              { value: `other`, label: `Other` },
+                              {
+                                value: `prefer_not_to_say`,
+                                label: `Prefer not to say`,
+                              },
+                            ].map(({ value: e, label: t }) => (
+                              <button
+                                key={e}
+                                type="button"
+                                onClick={() => {
+                                  (h(e), P(!1));
+                                }}
+                                style={{
+                                  width: `100%`,
+                                  textAlign: `left`,
+                                  padding: `7px 10px`,
+                                  border: `none`,
+                                  background:
+                                    m === e ? `#F0FAF4` : `transparent`,
+                                  color: m === e ? `#2D6A4F` : `#1B3A4B`,
+                                  fontWeight: m === e ? 700 : 400,
+                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontSize: 12.5,
+                                  cursor: `pointer`,
+                                  borderRadius: 8,
+                                  transition: `background 0.15s`,
+                                }}
+                                onMouseEnter={(e) =>
+                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                }
+                                onMouseLeave={(t) =>
+                                  (t.currentTarget.style.background =
+                                    m === e ? `#F0FAF4` : `transparent`)
+                                }
+                              >
+                                {t}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <UsernameField
+                    value={x}
+                    onChange={S}
+                    onAvailabilityChange={w}
+                    inputStyle={Vn}
+                    label="Choose Your Username"
+                  />
+                  <CountryStateSelect
+                    country={g}
+                    state={y}
+                    onCountryChange={_}
+                    onStateChange={b}
+                    inputStyle={Vn}
+                    labelStyle={Hn}
+                    countryLabel="Country/Nationality"
+                    stateLabel="Location (State/Region)"
+                    required={!0}
+                  />
+                  <div
+                    style={{
+                      display: `grid`,
+                      gridTemplateColumns: `1fr 1fr`,
+                      gap: 10,
+                    }}
+                  >
+                    <div style={{ position: `relative` }} ref={he}>
+                      <label className="signup-label" style={{ fontSize: 9.5 }}>
+                        Religion
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          (le(!F), P(!1), de(!1), pe(!1), se(!1));
+                        }}
+                        className="signup-input"
+                        style={{
+                          fontSize: 12,
+                          padding: `9px 12px`,
+                          display: `flex`,
+                          alignItems: `center`,
+                          justifyContent: `space-between`,
+                          cursor: `pointer`,
+                          textAlign: `left`,
+                          color: T ? `#1B3A4B` : `#9DC4B0`,
+                        }}
+                      >
+                        <span>{T || `Select religion`}</span>
+                        <span
+                          style={{
+                            fontSize: 10,
+                            color: `#74C69D`,
+                            transform: F ? `rotate(180deg)` : `rotate(0deg)`,
+                            transition: `transform 0.2s`,
+                            flexShrink: 0,
+                          }}
+                        >
+                          ▼
+                        </span>
+                      </button>
+                      {F && (
+                        <div
+                          style={{
+                            position: `absolute`,
+                            top: `110%`,
+                            left: 0,
+                            right: 0,
+                            zIndex: 50,
+                            background: `#fff`,
+                            borderRadius: 14,
+                            border: `1.5px solid #D4EDDA`,
+                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            overflow: `hidden`,
+                          }}
+                        >
+                          <div style={{ padding: `6px 8px` }}>
+                            {[
+                              { icon: ``, name: `Muslim` },
+                              { icon: ``, name: `Hindu` },
+                              { icon: ``, name: `Christian` },
+                              { icon: ``, name: `Sikh` },
+                              { icon: ``, name: `Buddhist` },
+                              { icon: ``, name: `Jain` },
+                              { icon: ``, name: `Jewish` },
+                              { icon: ``, name: `Other` },
+                              { icon: ``, name: `Prefer not to say` },
+                            ].map(({ icon: e, name: t }) => (
+                              <button
+                                key={t}
+                                type="button"
+                                onClick={() => {
+                                  (E(t), le(!1));
+                                }}
+                                style={{
+                                  width: `100%`,
+                                  textAlign: `left`,
+                                  padding: `7px 10px`,
+                                  border: `none`,
+                                  background:
+                                    T === t ? `#F0FAF4` : `transparent`,
+                                  color: T === t ? `#2D6A4F` : `#1B3A4B`,
+                                  fontWeight: T === t ? 700 : 400,
+                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontSize: 12.5,
+                                  cursor: `pointer`,
+                                  borderRadius: 8,
+                                  transition: `background 0.15s`,
+                                  display: `flex`,
+                                  alignItems: `center`,
+                                  gap: 8,
+                                }}
+                                onMouseEnter={(e) =>
+                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                }
+                                onMouseLeave={(e) =>
+                                  (e.currentTarget.style.background =
+                                    T === t ? `#F0FAF4` : `transparent`)
+                                }
+                              >
+                                <span style={{ fontSize: 15 }}>{e}</span>
+                                <span>{t}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div style={{ position: `relative` }} ref={ge}>
+                      <label className="signup-label" style={{ fontSize: 9.5 }}>
+                        Age Range
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          (de(!ue), P(!1), le(!1), pe(!1), se(!1));
+                        }}
+                        className="signup-input"
+                        style={{
+                          fontSize: 12,
+                          padding: `9px 12px`,
+                          display: `flex`,
+                          alignItems: `center`,
+                          justifyContent: `space-between`,
+                          cursor: `pointer`,
+                          textAlign: `left`,
+                          color: ne ? `#1B3A4B` : `#9DC4B0`,
+                        }}
+                      >
+                        <span>{ne || `Select age range`}</span>
+                        <span
+                          style={{
+                            fontSize: 10,
+                            color: `#74C69D`,
+                            transform: ue ? `rotate(180deg)` : `rotate(0deg)`,
+                            transition: `transform 0.2s`,
+                            flexShrink: 0,
+                          }}
+                        >
+                          ▼
+                        </span>
+                      </button>
+                      {ue && (
+                        <div
+                          style={{
+                            position: `absolute`,
+                            top: `110%`,
+                            left: 0,
+                            right: 0,
+                            zIndex: 50,
+                            background: `#fff`,
+                            borderRadius: 14,
+                            border: `1.5px solid #D4EDDA`,
+                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            overflow: `hidden`,
+                          }}
+                        >
+                          <div style={{ padding: `6px 8px` }}>
+                            {[
+                              { icon: ``, name: `18-25` },
+                              { icon: ``, name: `26-35` },
+                              { icon: ``, name: `36-45` },
+                              { icon: ``, name: `46-55` },
+                              { icon: ``, name: `56-65` },
+                              { icon: ``, name: `65+` },
+                            ].map(({ icon: e, name: t }) => (
+                              <button
+                                key={t}
+                                type="button"
+                                onClick={() => {
+                                  (re(t), de(!1));
+                                }}
+                                style={{
+                                  width: `100%`,
+                                  textAlign: `left`,
+                                  padding: `7px 10px`,
+                                  border: `none`,
+                                  background:
+                                    ne === t ? `#F0FAF4` : `transparent`,
+                                  color: ne === t ? `#2D6A4F` : `#1B3A4B`,
+                                  fontWeight: ne === t ? 700 : 400,
+                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontSize: 12.5,
+                                  cursor: `pointer`,
+                                  borderRadius: 8,
+                                  transition: `background 0.15s`,
+                                  display: `flex`,
+                                  alignItems: `center`,
+                                  gap: 8,
+                                }}
+                                onMouseEnter={(e) =>
+                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                }
+                                onMouseLeave={(e) =>
+                                  (e.currentTarget.style.background =
+                                    ne === t ? `#F0FAF4` : `transparent`)
+                                }
+                              >
+                                <span style={{ fontSize: 15 }}>{e}</span>
+                                <span>{t}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div style={{ position: `relative` }} ref={_e}>
+                    <label className="signup-label" style={{ fontSize: 9.5 }}>
+                      Have Kids?
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        (pe(!fe), P(!1), le(!1), de(!1), se(!1));
+                      }}
+                      className="signup-input"
+                      style={{
+                        fontSize: 12,
+                        padding: `9px 12px`,
+                        display: `flex`,
+                        alignItems: `center`,
+                        justifyContent: `space-between`,
+                        cursor: `pointer`,
+                        textAlign: `left`,
+                        color: A ? `#1B3A4B` : `#9DC4B0`,
+                      }}
+                    >
+                      <span>{A || `Select your option`}</span>
+                      <span
+                        style={{
+                          fontSize: 10,
+                          color: `#74C69D`,
+                          transform: fe ? `rotate(180deg)` : `rotate(0deg)`,
+                          transition: `transform 0.2s`,
+                          flexShrink: 0,
+                        }}
+                      >
+                        ▼
+                      </span>
+                    </button>
+                    {fe && (
+                      <div
+                        style={{
+                          position: `absolute`,
+                          top: `110%`,
+                          left: 0,
+                          right: 0,
+                          zIndex: 50,
+                          background: `#fff`,
+                          borderRadius: 14,
+                          border: `1.5px solid #D4EDDA`,
+                          boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                          overflow: `hidden`,
+                        }}
+                      >
+                        <div style={{ padding: `6px 8px` }}>
+                          {[
+                            { icon: ``, name: `Yes` },
+                            { icon: ``, name: `No` },
+                            { icon: ``, name: `Prefer not to say` },
+                          ].map(({ icon: e, name: t }) => (
+                            <button
+                              key={t}
+                              type="button"
+                              onClick={() => {
+                                (te(t), pe(!1));
+                              }}
+                              style={{
+                                width: `100%`,
+                                textAlign: `left`,
+                                padding: `7px 10px`,
+                                border: `none`,
+                                background: A === t ? `#F0FAF4` : `transparent`,
+                                color: A === t ? `#2D6A4F` : `#1B3A4B`,
+                                fontWeight: A === t ? 700 : 400,
+                                fontFamily: `'DM Sans', sans-serif`,
+                                fontSize: 12.5,
+                                cursor: `pointer`,
+                                borderRadius: 8,
+                                transition: `background 0.15s`,
+                                display: `flex`,
+                                alignItems: `center`,
+                                gap: 8,
+                              }}
+                              onMouseEnter={(e) =>
+                                (e.currentTarget.style.background = `#F0FAF4`)
+                              }
+                              onMouseLeave={(e) =>
+                                (e.currentTarget.style.background =
+                                  A === t ? `#F0FAF4` : `transparent`)
+                              }
+                            >
+                              <span style={{ fontSize: 15 }}>{e}</span>
+                              <span>{t}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      display: `flex`,
+                      alignItems: `flex-start`,
+                      gap: 8,
+                      marginTop: 3,
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      checked={ie}
+                      onChange={(e) => j(e.target.checked)}
+                      style={{
+                        width: 14,
+                        height: 14,
+                        marginTop: 2,
+                        accentColor: `#40916C`,
+                        cursor: `pointer`,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <label
+                      htmlFor="terms"
+                      style={{
+                        fontFamily: `'DM Sans', sans-serif`,
+                        fontSize: 11,
+                        color: `#3D6B55`,
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      I agree to the{" "}
+                      <button
+                        type="button"
+                        onClick={() => ae(!0)}
+                        style={{
+                          background: `none`,
+                          border: `none`,
+                          color: `#40916C`,
+                          cursor: `pointer`,
+                          fontFamily: `'DM Sans', sans-serif`,
+                          fontSize: 11,
+                          textDecoration: `underline`,
+                          padding: 0,
+                        }}
+                      >
+                        Terms and Conditions
+                      </button>
+                    </label>
+                  </div>
+                  {ve && (
+                    <p
+                      style={{
+                        fontFamily: `'DM Sans', sans-serif`,
+                        fontSize: 12,
+                        color: `#C0392B`,
+                        background: `rgba(192,57,43,0.08)`,
+                        padding: `8px 12px`,
+                        borderRadius: 10,
+                      }}
+                    >
+                      {ve}
+                    </p>
+                  )}
+                  <div style={{ display: `flex`, gap: 10, marginTop: 4 }}>
+                    <button
+                      type="button"
+                      onClick={() => t(1)}
+                      className="btn-back"
+                      style={{ padding: `11px 0`, fontSize: 13 }}
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={async (e) => {
+                        if ((e.preventDefault(), !ie)) {
+                          ye(
+                            `Please accept the Terms and Conditions to proceed`,
+                          );
+                          return;
+                        }
+                        if (!m || !g || !T || !ne || !A) {
+                          ye(`Please complete all fields`);
+                          return;
+                        }
+                        if (!x || C !== !0) {
+                          ye(
+                            C === !1
+                              ? `Please choose a different, available username.`
+                              : `Please choose a username.`,
+                          );
+                          return;
+                        }
+                        (ye(``), be(!0));
+                        try {
+                          (await xe({
+                            name: n,
+                            email: i,
+                            password: o,
+                            gender: m,
+                            username: x,
+                            nationality: g,
+                            location: y || void 0,
+                            religion: T,
+                            phoneNumber: ee,
+                            countryCode: O,
+                            hasKids: A,
+                            ageRange: ne,
+                            acceptTerms: ie,
+                          }),
+                            Se(`/explore`));
+                        } catch (e) {
+                          ye(
+                            e.message ||
+                              `Could not create your account. Please try again.`,
+                          );
+                        } finally {
+                          be(!1);
+                        }
+                      }}
+                      disabled={!ie || I}
+                      className="btn-submit"
+                      style={{
+                        flex: 1,
+                        width: `auto`,
+                        padding: `11px 0`,
+                        fontSize: 13,
+                        opacity: I ? 0.7 : 1,
+                      }}
+                    >
+                      {I ? `Creating Account…` : `Create Account`}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            <p
+              style={{
+                fontFamily: `'DM Sans', sans-serif`,
+                fontSize: 13,
+                color: `#74C69D`,
+                textAlign: `center`,
+                marginTop: 24,
+              }}
+            >
+              {e === 1 ? (
+                <>
+                  Already have an account?{" "}
+                  <Link
+                    to="/login"
+                    style={{
+                      color: `#2D6A4F`,
+                      fontWeight: 700,
+                      textDecoration: `none`,
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = `#40916C`)
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = `#2D6A4F`)
+                    }
+                  >
+                    Log in
+                  </Link>
+                </>
+              ) : (
+                <>
+                  By creating an account, you agree to our{" "}
+                  <button
+                    type="button"
+                    onClick={() => ae(!0)}
+                    style={{
+                      background: `none`,
+                      border: `none`,
+                      color: `#2D6A4F`,
+                      fontWeight: 700,
+                      cursor: `pointer`,
+                      fontFamily: `'DM Sans', sans-serif`,
+                      fontSize: 13,
+                      padding: 0,
+                    }}
+                  >
+                    Terms and Conditions
+                  </button>
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+        {M && (
+          <div
+            style={{
+              position: `fixed`,
+              inset: 0,
+              background: `rgba(27,58,75,0.55)`,
+              display: `flex`,
+              alignItems: `center`,
+              justifyContent: `center`,
+              zIndex: 50,
+              padding: 16,
+            }}
+          >
+            <div
+              className="terms-scroll"
+              style={{
+                background: `#fff`,
+                borderRadius: 24,
+                maxWidth: 620,
+                width: `100%`,
+                maxHeight: `82vh`,
+                overflowY: `auto`,
+                padding: `36px 32px`,
+                boxShadow: `0 24px 80px rgba(27,58,75,0.25)`,
+              }}
+            >
+              <div
+                style={{
+                  display: `flex`,
+                  alignItems: `center`,
+                  justifyContent: `space-between`,
+                  marginBottom: 24,
+                }}
+              >
+                <h2
+                  style={{
+                    fontFamily: `'Playfair Display', serif`,
+                    fontSize: 22,
+                    fontWeight: 700,
+                    color: `#1B3A4B`,
+                  }}
+                >
+                  Terms and Conditions
+                </h2>
+                <button
+                  onClick={() => ae(!1)}
+                  style={{
+                    background: `#F0FAF4`,
+                    border: `none`,
+                    width: 34,
+                    height: 34,
+                    borderRadius: `50%`,
+                    cursor: `pointer`,
+                    fontSize: 14,
+                    color: `#2D6A4F`,
+                    display: `flex`,
+                    alignItems: `center`,
+                    justifyContent: `center`,
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+              <div
+                style={{ display: `flex`, flexDirection: `column`, gap: 18 }}
+              >
+                {[
+                  [
+                    `1. Acceptance of Terms`,
+                    `By creating an account and using Nikha2's platform, you agree to comply with these Terms and Conditions. If you do not agree, please do not use our services.`,
+                  ],
+                  [
+                    `2. User Eligibility`,
+                    `You must be at least 18 years old to use Nikha2. You represent and warrant that all information provided is accurate, current, and complete.`,
+                  ],
+                  [
+                    `3. User Conduct`,
+                    `You agree not to use Nikha2 for any unlawful purposes, harassment, or harmful activities. You will respect the privacy and dignity of other users.`,
+                  ],
+                  [
+                    `4. Privacy and Data Protection`,
+                    `Your personal information will be protected in accordance with our Privacy Policy. We implement industry-standard security measures to safeguard your data. You have control over what information you share and who can see your profile.`,
+                  ],
+                  [
+                    `5. Profile Information`,
+                    `You are responsible for maintaining the confidentiality of your account credentials. Any profile information must be truthful and not misleading. We reserve the right to remove profiles that violate these terms.`,
+                  ],
+                  [
+                    `6. Communication`,
+                    `Nikha2 facilitates communication between users. We are not responsible for the content of user-generated messages. Users are responsible for their interactions and any outcomes arising from them.`,
+                  ],
+                  [
+                    `7. Membership and Payments`,
+                    `Membership features and pricing may vary. Payments are processed securely. Refund policies are subject to the terms specified at the time of purchase.`,
+                  ],
+                  [
+                    `8. Disclaimer of Warranties`,
+                    `Nikha2 is provided on an "as-is" basis. We make no warranties regarding the accuracy of user profiles or the compatibility between users.`,
+                  ],
+                  [
+                    `9. Limitation of Liability`,
+                    `To the fullest extent permitted by law, Nikha2 shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform.`,
+                  ],
+                  [
+                    `10. Modification of Terms`,
+                    `We reserve the right to modify these Terms and Conditions at any time. Continued use of the platform constitutes acceptance of updated terms.`,
+                  ],
+                  [
+                    `11. Termination`,
+                    `We reserve the right to terminate or suspend your account if you violate these terms or engage in harmful behavior.`,
+                  ],
+                  [
+                    `12. Governing Law`,
+                    `These Terms and Conditions are governed by the laws of India. Any disputes shall be resolved in accordance with Indian law.`,
+                  ],
+                ].map(([e, t]) => (
+                  <div key={e}>
+                    <h3
+                      style={{
+                        fontFamily: `'Playfair Display', serif`,
+                        fontSize: 14,
+                        fontWeight: 700,
+                        color: `#1B3A4B`,
+                        marginBottom: 6,
+                      }}
+                    >
+                      {e}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: `'DM Sans', sans-serif`,
+                        fontSize: 13,
+                        color: `#3D6B55`,
+                        lineHeight: 1.65,
+                      }}
+                    >
+                      {t}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: `flex`, gap: 12, marginTop: 28 }}>
+                <button
+                  onClick={() => ae(!1)}
+                  style={{
+                    flex: 1,
+                    padding: `13px 0`,
+                    borderRadius: 32,
+                    border: `2px solid #40916C`,
+                    background: `transparent`,
+                    color: `#2D6A4F`,
+                    fontFamily: `'DM Sans', sans-serif`,
+                    fontSize: 14,
+                    fontWeight: 700,
+                    cursor: `pointer`,
+                    transition: `all 0.2s`,
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = `rgba(64,145,108,0.07)`)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = `transparent`)
+                  }
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    (j(!0), ae(!1));
+                  }}
+                  style={{
+                    flex: 1,
+                    padding: `13px 0`,
+                    borderRadius: 32,
+                    border: `none`,
+                    background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+                    color: `#fff`,
+                    fontFamily: `'DM Sans', sans-serif`,
+                    fontSize: 14,
+                    fontWeight: 700,
+                    cursor: `pointer`,
+                    boxShadow: `0 6px 20px rgba(27,58,75,0.3)`,
+                    transition: `all 0.2s`,
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = `translateY(-2px)`)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = `none`)
+                  }
+                >
+                  I Agree
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  );
+}
+
+export { SignupPage, UsernameField };
