@@ -10,9 +10,9 @@ import {
   adminTdStyle,
   adminThStyle,
   adminTitleStyle,
-} from "./styles";
-import { ADMIN_THEME } from "./theme";
-import { api } from "../lib/api";
+} from "../styles";
+import { ADMIN_THEME } from "../theme";
+import { api } from "../../lib/api";
 
 var Ya = 20;
 

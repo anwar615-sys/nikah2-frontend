@@ -6,9 +6,10 @@ const MotionContext = createContext({ motionEnabled: false, setting: "auto", set
 function readSetting() {
   try {
     const s = localStorage.getItem(MOTION_KEY);
-    return s === "on" || s === "off" ? s : "auto";
+    // Animations are part of the brand: they start on unless the visitor turns them off with the switch.
+    return s === "on" || s === "off" || s === "auto" ? s : "on";
   } catch (e) {
-    return "auto";
+    return "on";
   }
 }
 const reducedQuery = () => (typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null);

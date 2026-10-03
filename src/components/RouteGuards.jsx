@@ -24,16 +24,6 @@ function RequireAuth({ children: e }) {
   );
 }
 
-function RequireAdmin({ children: e }) {
-  let { user: t, isAuthenticated: n, loading: r } = useAuth(),
-    i = useLocation();
-  return r ? null : !n || t?.role !== `admin` ? (
-    <Navigate to="/admin/login" state={{ from: i.pathname }} replace={!0} />
-  ) : (
-    e
-  );
-}
-
 function ScrollToTop() {
   return (
     (0, React.useEffect)(() => {
@@ -64,4 +54,4 @@ function ProfileCompletionGate() {
   );
 }
 
-export { ProfileCompletionGate, RequireAdmin, RequireAuth, ScrollToTop };
+export { ProfileCompletionGate, RequireAuth, ScrollToTop };

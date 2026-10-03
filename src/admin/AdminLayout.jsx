@@ -1,11 +1,11 @@
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
-import { AdminAuditLogPage } from "./AdminAuditLogPage";
-import { AdminBillingPage } from "./AdminBillingPage";
-import { AdminDashboard } from "./AdminDashboard";
-import { AdminReportsPage } from "./AdminReportsPage";
-import { AdminUserDetail } from "./AdminUserDetail";
-import { AdminUsersPage } from "./AdminUsersPage";
-import { AdminVerificationsPage } from "./AdminVerificationsPage";
+import { AdminAuditLogPage } from "./pages/AdminAuditLogPage";
+import { AdminBillingPage } from "./pages/AdminBillingPage";
+import { AdminDashboard } from "./pages/AdminDashboard";
+import { AdminReportsPage } from "./pages/AdminReportsPage";
+import { AdminUserDetail } from "./pages/AdminUserDetail";
+import { AdminUsersPage } from "./pages/AdminUsersPage";
+import { AdminVerificationsPage } from "./pages/AdminVerificationsPage";
 import { ADMIN_FONT_IMPORT } from "./styles";
 import { ADMIN_THEME } from "./theme";
 import { useAuth } from "../context/AuthContext";

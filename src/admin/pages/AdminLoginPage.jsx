@@ -1,11 +1,11 @@
 import { Navigate, useLocation } from "react-router-dom";
 import * as React from "react";
-import { ADMIN_FONT_IMPORT } from "./styles";
-import { ADMIN_THEME } from "./theme";
-import { GoogleButton } from "../components/GoogleButton";
-import { useAuth } from "../context/AuthContext";
-import { ApiError } from "../lib/api";
-import { ThemeToggle } from "../components/ThemeToggle";
+import { ADMIN_FONT_IMPORT } from "../styles";
+import { ADMIN_THEME } from "../theme";
+import { GoogleButton } from "../../components/GoogleButton";
+import { useAuth } from "../../context/AuthContext";
+import { ApiError } from "../../lib/api";
+import { ThemeToggle } from "../../components/ThemeToggle";
 
 var Ga = {
   INVALID_CREDENTIALS: `Incorrect admin password.`,

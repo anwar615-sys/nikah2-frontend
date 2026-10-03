@@ -3,9 +3,9 @@
 .nk-motion-toggle[aria-pressed="false"] { color: var(--muted); }
 
 /* Reveal: visible at rest; only elements that start below the fold get .pending */
-.nk-reveal.pending { opacity: 0; transform: translateY(28px); }
+.nk-reveal.pending { opacity: 0; transform: translateY(24px); }
 .nk-reveal.pending.blur { filter: blur(8px); }
-.nk-reveal.shown { transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1), filter .8s ease; }
+.nk-reveal.shown { transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1), filter .6s ease; }
 
 /* BlurText */
 .nk-blurtext .w { display: inline-block; white-space: pre; animation: nk-blur-in .9s cubic-bezier(.2,.7,.2,1) both; }

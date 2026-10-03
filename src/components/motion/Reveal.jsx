@@ -5,7 +5,7 @@ import "./motion.css";
 
 // Scroll reveal: 28px rise (+8px blur) over .8s. Content already on screen, or with motion off, is never hidden.
 // With `stagger`, each child reveals on its own with a .12s x (i % 3) delay.
-export function Reveal({ as: Tag = "div", delay = 0, blur = true, stagger = false, className = "", style, children, ...rest }) {
+export function Reveal({ as: Tag = "div", delay = 0, blur = false, stagger = false, className = "", style, children, ...rest }) {
   if (stagger) {
     return (
       <Tag className={className} style={style} {...rest}>

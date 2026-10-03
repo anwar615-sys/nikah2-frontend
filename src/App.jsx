@@ -1,11 +1,9 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AdminLayout } from "./admin/AdminLayout";
-import { AdminLoginPage } from "./admin/AdminLoginPage";
 import { CallOverlay } from "./calls/CallOverlay";
 import { CallProvider } from "./calls/CallProvider";
 import {
   ProfileCompletionGate,
-  RequireAdmin,
   RequireAuth,
   ScrollToTop,
 } from "./components/RouteGuards";
@@ -25,6 +23,9 @@ import { SafetyPage } from "./pages/SafetyPage";
 import { SignupPage } from "./pages/SignupPage";
 import { SuccessStoriesPage } from "./pages/SuccessStoriesPage";
 import { MessagingPage } from "./pages/messaging/MessagingPage";
+
+// The admin dashboard lives in src/admin and is loaded only when someone opens /admin.
+const AdminApp = lazy(() => import("./admin/AdminApp"));
 
 function App() {
   return (
@@ -71,13 +72,12 @@ function App() {
           <Route path="/terms" element={<LegalPage page="terms" />} />
           <Route path="/privacy" element={<LegalPage page="privacy" />} />
           <Route path="/cookies" element={<LegalPage page="cookies" />} />
-          <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route
             path="/admin/*"
             element={
-              <RequireAdmin>
-                <AdminLayout />
-              </RequireAdmin>
+              <Suspense fallback={null}>
+                <AdminApp />
+              </Suspense>
             }
           />
           <Route path="*" element={<NotFoundPage />} />

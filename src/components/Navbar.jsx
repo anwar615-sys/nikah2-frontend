@@ -73,7 +73,7 @@ function Navbar() {
           gap: 8,
           height: 68,
           background: scrolled
-            ? `color-mix(in srgb, var(--bg) 70%, transparent)`
+            ? `color-mix(in srgb, var(--bg) 88%, transparent)`
             : `color-mix(in srgb, var(--bg) 96%, transparent)`,
           backdropFilter: scrolled ? `blur(18px) saturate(1.5)` : `blur(20px)`,
           WebkitBackdropFilter: scrolled ? `blur(18px) saturate(1.5)` : `blur(20px)`,

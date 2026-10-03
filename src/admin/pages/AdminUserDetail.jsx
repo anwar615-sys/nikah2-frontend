@@ -8,9 +8,9 @@ import {
   adminPrimaryButton,
   adminSecondaryButton,
   adminTitleStyle,
-} from "./styles";
-import { ADMIN_THEME } from "./theme";
-import { api } from "../lib/api";
+} from "../styles";
+import { ADMIN_THEME } from "../theme";
+import { api } from "../../lib/api";
 
 var Ra = {
   display: `block`,

@@ -4,9 +4,9 @@ import {
   adminDangerButton,
   adminPrimaryButton,
   adminTitleStyle,
-} from "./styles";
-import { ADMIN_THEME } from "./theme";
-import { API_BASE, api, getTokens } from "../lib/api";
+} from "../styles";
+import { ADMIN_THEME } from "../theme";
+import { API_BASE, api, getTokens } from "../../lib/api";
 
 function AdminVerificationPhoto({ mediaId: e, alt: t, style: n }) {
   let [r, i] = (0, React.useState)(null),

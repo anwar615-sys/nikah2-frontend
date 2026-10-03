@@ -6,7 +6,8 @@ import { introValues, qualityStep, uvToHero } from "./heroMath";
 import "./hero.css";
 
 const PAUSE_KEY = "nikha2-hero-paused";
-const PLAYED_KEY = "nikha2-sunrise-played";
+// The sunrise plays once per page load (a full reload plays it again; client-side navigation does not).
+let sunrisePlayedThisLoad = false;
 const HERO_SRC = "/assets/hero.webp";
 
 // `name` is "localStorage" or "sessionStorage"; reading window[name] itself can throw when storage is blocked.
@@ -50,7 +51,7 @@ export function LivingHero({ headline, children, after, className = "", style, c
   const eng = useRef({
     running: false,
     ready: false,
-    intro: { t: 0, on: false, emitted: false, fromDay: false, played: store.get("sessionStorage", PLAYED_KEY) === "1" },
+    intro: { t: 0, on: false, emitted: false, fromDay: false, played: sunrisePlayedThisLoad },
     timers: [],
     imgAspect: 1376 / 768,
   });
@@ -93,7 +94,7 @@ export function LivingHero({ headline, children, after, className = "", style, c
     const e = eng.current;
     e.intro.emitted = true;
     e.intro.played = true;
-    store.set("sessionStorage", PLAYED_KEY, "1");
+    sunrisePlayedThisLoad = true;
     const hero = heroRef.current;
     const h = hRef.current;
     if (!hero || !h) return;
@@ -195,7 +196,7 @@ export function LivingHero({ headline, children, after, className = "", style, c
 
     const io =
       "IntersectionObserver" in window
-        ? new IntersectionObserver((es) => (visible = es[0].isIntersecting), { threshold: 0.01 })
+        ? new IntersectionObserver((es) => (visible = es[0].intersectionRatio >= 0.25), { threshold: [0, 0.25, 0.5] })
         : null;
     io?.observe(hero);
 
