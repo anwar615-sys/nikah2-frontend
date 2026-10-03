@@ -1,0 +1,56 @@
+/* Living hero. Tokens follow the theme structure: light on :root, dark for the system preference and an explicit choice. */
+:root {
+  --hero-veil: linear-gradient(180deg, rgba(243,248,244,.55) 0%, rgba(232,244,236,.35) 45%, rgba(243,246,241,.15) 100%);
+  --hero-h1: #0B3B2A; --hero-h2a: #06573B; --hero-h2b: #10B981; --hero-h2hi: #E9FFF4;
+  --hero-sub: #1D4A38; --hero-lead: #24493B; --hero-accent: #06573B; --hero-chip: rgba(255,255,255,.55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --hero-veil: linear-gradient(180deg, rgba(2,14,10,.62) 0%, rgba(4,26,20,.5) 50%, rgba(2,11,8,.72) 100%);
+    --hero-h1: #F4FFF9; --hero-h2a: #10B981; --hero-h2b: #6EF2BE; --hero-h2hi: #FFFFFF;
+    --hero-sub: #CFEFE0; --hero-lead: #B9D8CA; --hero-accent: #34F5A8; --hero-chip: rgba(4,26,20,.45);
+  }
+}
+:root[data-theme="dark"] {
+  --hero-veil: linear-gradient(180deg, rgba(2,14,10,.62) 0%, rgba(4,26,20,.5) 50%, rgba(2,11,8,.72) 100%);
+  --hero-h1: #F4FFF9; --hero-h2a: #10B981; --hero-h2b: #6EF2BE; --hero-h2hi: #FFFFFF;
+  --hero-sub: #CFEFE0; --hero-lead: #B9D8CA; --hero-accent: #34F5A8; --hero-chip: rgba(4,26,20,.45);
+}
+
+.nk-hero { position: relative; overflow: hidden; isolation: isolate; }
+.nk-hero-layer { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.nk-hero-still { object-fit: cover; object-position: center; z-index: 0; }
+.nk-hero-scene { z-index: 1; }
+.nk-hero-birds { z-index: 2; pointer-events: none; }
+.nk-hero-veil { z-index: 3; background: var(--hero-veil); transition: background .6s; will-change: opacity; }
+.nk-hero-content { position: relative; z-index: 4; }
+
+.nk-hero-h { margin: 0; font-family: var(--font-display); font-weight: 700; line-height: 1.12; letter-spacing: -.01em;
+  font-size: clamp(40px, 6.6vw, 84px);
+  /* room for descenders and italic overhang so the clipped gradient never cuts letters */
+  padding: .04em .12em .14em; }
+.nk-hero-h .l1, .nk-hero-h .l2 { display: block; padding-bottom: .06em; }
+.nk-hero-h .l1 { color: var(--hero-h1); text-shadow: 0 2px 30px rgba(0,0,0,.18); }
+.nk-hero-h .l2 {
+  background: linear-gradient(100deg, var(--hero-h2a) 0%, var(--hero-h2b) 30%, var(--hero-h2hi) 44%, var(--gold) 50%, var(--hero-h2b) 60%, var(--hero-h2a) 100%);
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  animation: nk-hero-sheen 7s ease-in-out infinite alternate; filter: drop-shadow(0 4px 24px rgba(16,185,129,.25)); }
+@keyframes nk-hero-sheen { 0% { background-position: 100% 0; } 100% { background-position: 0% 0; } }
+
+/* sunrise: letters fly out of the sun */
+.nk-hero-h .ch { display: inline-block; will-change: transform, opacity, filter; }
+.nk-hero-h .wd { display: inline-block; white-space: nowrap; }
+.nk-hero-h.emitting .l2 { background: none; color: var(--hero-h2b); -webkit-text-fill-color: currentColor; filter: none; animation: none; }
+.nk-hero.intro-wait .nk-hero-h .ch { opacity: 0; }
+.nk-hero .fade-late { transition: opacity 1s ease, transform 1s ease; }
+.nk-hero.intro-wait .fade-late { opacity: 0; transform: translateY(14px); pointer-events: none; }
+
+/* controls */
+.nk-hero-ctl { position: absolute; right: 16px; top: 16px; z-index: 6; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35);
+  background: rgba(4,26,20,.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: grid; place-items: center; cursor: pointer; padding: 0;
+  transition: box-shadow .3s, border-color .3s; }
+.nk-hero-ctl svg { width: 18px; height: 18px; fill: #EFFFF7; }
+.nk-hero-ctl:hover, .nk-hero-ctl:focus-visible { border-color: var(--emerald-500); box-shadow: 0 0 22px var(--glow); outline: none; }
+.nk-hero-ctl.replay { right: 66px; }
+
+:root[data-motion="off"] .nk-hero-h .l2 { animation: none; }

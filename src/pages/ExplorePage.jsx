@@ -182,14 +182,14 @@ function ExplorePage() {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
       }}
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .card-hover { transition: transform 0.22s, box-shadow 0.22s; cursor: pointer; }\n        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent); }\n\n        .btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none;\n          padding: 12px 0; border-radius: 28px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13.5px; font-weight: 700;\n          cursor: pointer; letter-spacing: 0.03em;\n          box-shadow: 0 4px 16px color-mix(in srgb, var(--shadow) 28%, transparent);\n          transition: all 0.22s; width: 100%;\n        }\n        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }\n        .btn-primary:disabled { background: var(--line); box-shadow: none; cursor: not-allowed; transform: none; opacity: 1; }\n\n        .btn-outline {\n          background: transparent;\n          border: 1.5px solid var(--emerald-500);\n          color: var(--emerald-700);\n          padding: 9px 0; border-radius: 28px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px; font-weight: 600;\n          cursor: pointer; width: 100%;\n          transition: all 0.2s; display: block; text-align: center;\n          text-decoration: none;\n        }\n        .btn-outline:hover { background: var(--deep); color: #fff; border-color: var(--fg); }\n\n        .filter-input {\n          background: var(--bg);\n          border: 1.5px solid var(--mint);\n          color: var(--fg);\n          border-radius: 12px;\n          padding: 10px 16px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px;\n          width: 100%;\n          outline: none;\n          transition: border-color 0.2s;\n          appearance: none;\n        }\n        .filter-input:focus { border-color: var(--emerald-500); background: var(--surface); }\n\n        .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }\n        .status-dot.online  { background: var(--online); box-shadow: 0 0 8px color-mix(in srgb, var(--online) 60%, transparent); }\n        .status-dot.offline { background: var(--mint); }\n\n        @keyframes pulse { 0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); } 50% { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 30%, transparent); } }\n        .pulse { animation: pulse 2s infinite; }\n\n        ::-webkit-scrollbar { width: 4px; }\n        ::-webkit-scrollbar-track { background: transparent; }\n        ::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }\n        ::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }\n      "
+          "\n        * { box-sizing: border-box; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .card-hover { transition: transform 0.22s, box-shadow 0.22s; cursor: pointer; }\n        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent); }\n\n        .btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none;\n          padding: 12px 0; border-radius: 28px;\n          font-family: var(--font-ui);\n          font-size: 13.5px; font-weight: 700;\n          cursor: pointer; letter-spacing: 0.03em;\n          box-shadow: 0 4px 16px color-mix(in srgb, var(--shadow) 28%, transparent);\n          transition: all 0.22s; width: 100%;\n        }\n        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }\n        .btn-primary:disabled { background: var(--line); box-shadow: none; cursor: not-allowed; transform: none; opacity: 1; }\n\n        .btn-outline {\n          background: transparent;\n          border: 1.5px solid var(--emerald-500);\n          color: var(--emerald-700);\n          padding: 9px 0; border-radius: 28px;\n          font-family: var(--font-ui);\n          font-size: 13px; font-weight: 600;\n          cursor: pointer; width: 100%;\n          transition: all 0.2s; display: block; text-align: center;\n          text-decoration: none;\n        }\n        .btn-outline:hover { background: var(--deep); color: #fff; border-color: var(--fg); }\n\n        .filter-input {\n          background: var(--bg);\n          border: 1.5px solid var(--mint);\n          color: var(--fg);\n          border-radius: 12px;\n          padding: 10px 16px;\n          font-family: var(--font-ui);\n          font-size: 13px;\n          width: 100%;\n          outline: none;\n          transition: border-color 0.2s;\n          appearance: none;\n        }\n        .filter-input:focus { border-color: var(--emerald-500); background: var(--surface); }\n\n        .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }\n        .status-dot.online  { background: var(--online); box-shadow: 0 0 8px color-mix(in srgb, var(--online) 60%, transparent); }\n        .status-dot.offline { background: var(--mint); }\n\n        @keyframes pulse { 0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); } 50% { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 30%, transparent); } }\n        .pulse { animation: pulse 2s infinite; }\n\n        ::-webkit-scrollbar { width: 4px; }\n        ::-webkit-scrollbar-track { background: transparent; }\n        ::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }\n        ::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }\n      "
         }
       </style>
       <Navbar />
@@ -207,7 +207,7 @@ function ExplorePage() {
           <div style={{ textAlign: `center`, marginBottom: 40 }}>
             <h1
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: `clamp(28px, 4vw, 46px)`,
                 fontWeight: 700,
                 color: `var(--fg)`,
@@ -216,7 +216,7 @@ function ExplorePage() {
               }}
             >
               {"Explore "}
-              <span className="green-text">Verified People</span>
+              <span className="nk-shiny">Verified People</span>
             </h1>
             <p
               style={{
@@ -231,7 +231,7 @@ function ExplorePage() {
             </p>
             <p
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: `clamp(20px, 2.6vw, 28px)`,
                 fontWeight: 700,
                 color: `var(--emerald-700)`,
@@ -282,7 +282,7 @@ function ExplorePage() {
                 🔍
               </span>
             </div>
-            <button
+            <button className="nk-btn nk-btn-primary"
               type="button"
               onClick={ne ? Ee : Te}
               disabled={ie}
@@ -302,7 +302,7 @@ function ExplorePage() {
                   ? `var(--surface-2)`
                   : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
                 color: ne ? `var(--emerald-700)` : `#fff`,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 13,
                 fontWeight: 700,
                 cursor: ie ? `not-allowed` : `pointer`,
@@ -341,7 +341,7 @@ function ExplorePage() {
                 Age Range
               </label>
               <div style={{ position: `relative` }} ref={he}>
-                <button
+                <button className="nk-btn"
                   type="button"
                   onClick={() => {
                     (se((e) => !e), N(!1), F(!1), ue(!1));
@@ -359,7 +359,7 @@ function ExplorePage() {
                     alignItems: `center`,
                     justifyContent: `space-between`,
                     gap: 10,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                   }}
                 >
@@ -402,7 +402,7 @@ function ExplorePage() {
                         let t = e,
                           n = s === e;
                         return (
-                          <button
+                          <button className="nk-btn nk-btn-soft"
                             key={t}
                             type="button"
                             onClick={() => {
@@ -416,7 +416,7 @@ function ExplorePage() {
                               background: n ? `var(--surface-2)` : `transparent`,
                               color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
-                              fontFamily: `'DM Sans', sans-serif`,
+                              fontFamily: `var(--font-ui)`,
                               fontSize: 12.5,
                               cursor: `pointer`,
                               borderRadius: 8,
@@ -455,7 +455,7 @@ function ExplorePage() {
                 Looking For
               </label>
               <div style={{ position: `relative` }} ref={ve}>
-                <button
+                <button className="nk-btn"
                   type="button"
                   onClick={() => {
                     (ue((e) => !e), se(!1), N(!1), F(!1));
@@ -473,7 +473,7 @@ function ExplorePage() {
                     alignItems: `center`,
                     justifyContent: `space-between`,
                     gap: 10,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                   }}
                 >
@@ -514,7 +514,7 @@ function ExplorePage() {
                       ].map(({ value: e, label: t }) => {
                         let n = h === e;
                         return (
-                          <button
+                          <button className="nk-btn nk-btn-soft"
                             key={t}
                             type="button"
                             onClick={() => be(e)}
@@ -526,7 +526,7 @@ function ExplorePage() {
                               background: n ? `var(--surface-2)` : `transparent`,
                               color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
-                              fontFamily: `'DM Sans', sans-serif`,
+                              fontFamily: `var(--font-ui)`,
                               fontSize: 12.5,
                               cursor: `pointer`,
                               borderRadius: 8,
@@ -565,7 +565,7 @@ function ExplorePage() {
                 Religion
               </label>
               <div style={{ position: `relative` }} ref={ge}>
-                <button
+                <button className="nk-btn"
                   type="button"
                   onClick={() => {
                     (N((e) => !e), fe(``), se(!1), ue(!1), F(!1));
@@ -583,7 +583,7 @@ function ExplorePage() {
                     alignItems: `center`,
                     justifyContent: `space-between`,
                     gap: 10,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                   }}
                 >
@@ -657,7 +657,7 @@ function ExplorePage() {
                         let t = e,
                           n = l === e;
                         return (
-                          <button
+                          <button className="nk-btn nk-btn-soft"
                             key={t}
                             type="button"
                             onClick={() => {
@@ -671,7 +671,7 @@ function ExplorePage() {
                               background: n ? `var(--surface-2)` : `transparent`,
                               color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
-                              fontFamily: `'DM Sans', sans-serif`,
+                              fontFamily: `var(--font-ui)`,
                               fontSize: 12.5,
                               cursor: `pointer`,
                               borderRadius: 8,
@@ -713,7 +713,7 @@ function ExplorePage() {
                 Country/Nationality
               </label>
               <div style={{ position: `relative` }} ref={_e}>
-                <button
+                <button className="nk-btn"
                   type="button"
                   onClick={() => {
                     (F((e) => !e), me(``), se(!1), N(!1), ue(!1));
@@ -731,7 +731,7 @@ function ExplorePage() {
                     alignItems: `center`,
                     justifyContent: `space-between`,
                     gap: 10,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                   }}
                 >
@@ -805,7 +805,7 @@ function ExplorePage() {
                         let t = e,
                           n = d === e;
                         return (
-                          <button
+                          <button className="nk-btn nk-btn-soft"
                             key={t}
                             type="button"
                             onClick={() => {
@@ -819,7 +819,7 @@ function ExplorePage() {
                               background: n ? `var(--surface-2)` : `transparent`,
                               color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
-                              fontFamily: `'DM Sans', sans-serif`,
+                              fontFamily: `var(--font-ui)`,
                               fontSize: 12.5,
                               cursor: `pointer`,
                               borderRadius: 8,
@@ -959,7 +959,7 @@ function ExplorePage() {
             <div style={{ fontSize: 44, marginBottom: 14 }}>🌿</div>
             <h3
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: 22,
                 fontWeight: 700,
                 color: `var(--fg)`,
@@ -1030,7 +1030,7 @@ function ExplorePage() {
                       border: `2px solid var(--surface)`,
                     }}
                   />
-                  <button
+                  <button className="nk-btn"
                     onClick={(t) => {
                       (t.stopPropagation(),
                         E({
@@ -1078,7 +1078,7 @@ function ExplorePage() {
                     >
                       <span
                         style={{
-                          fontFamily: `'Playfair Display', serif`,
+                          fontFamily: `var(--font-display)`,
                           fontWeight: 700,
                           fontSize: 14.5,
                           color: `var(--fg)`,
@@ -1181,7 +1181,7 @@ function ExplorePage() {
                       (t.stopPropagation(), Ce(e));
                     }}
                     disabled={C === e.id}
-                    className="btn-primary"
+                    className="nk-btn nk-btn-primary btn-primary"
                   >
                     {C === e.id ? `Starting…` : `💬 Chat Now`}
                   </button>
@@ -1227,7 +1227,7 @@ function ExplorePage() {
           </div>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(26px, 4vw, 40px)`,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -1236,7 +1236,7 @@ function ExplorePage() {
             }}
           >
             {"Ready to find your "}
-            <span className="green-text">match?</span>
+            <span className="nk-shiny">match?</span>
           </h2>
           <p
             style={{
@@ -1249,7 +1249,7 @@ function ExplorePage() {
             Create a verified profile and unlock unlimited chats with all these
             amazing people.
           </p>
-          <Link
+          <Link className="nk-btn nk-btn-primary"
             to="/signup"
             style={{
               display: `inline-block`,
@@ -1258,7 +1258,7 @@ function ExplorePage() {
               textDecoration: `none`,
               padding: `14px 44px`,
               borderRadius: 32,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 15,
               fontWeight: 700,
               letterSpacing: `0.04em`,
@@ -1302,7 +1302,7 @@ function ExplorePage() {
       >
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontWeight: 700,
             fontSize: 22,
             color: `#fff`,
@@ -1318,7 +1318,7 @@ function ExplorePage() {
             margin: `0 0 14px`,
             fontSize: 13,
             opacity: 0.5,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
           }}
         >
           © 2026 Nikha2 — The Second Chance. All rights reserved.
@@ -1336,7 +1336,7 @@ function ExplorePage() {
                 color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 transition: `opacity 0.2s`,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = `1`)}

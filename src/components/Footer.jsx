@@ -14,7 +14,7 @@ var Footer = () => (
         color: `var(--mint)`,
         fontSize: 12,
         letterSpacing: `0.18em`,
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         fontWeight: 600,
         textTransform: `uppercase`,
         textAlign: `center`,

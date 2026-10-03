@@ -79,7 +79,7 @@ function AdminUserTabs({ tab: e, setTab: t }) {
         [`edit`, `Edit Profile`],
         [`calls`, `Call History`],
       ].map(([n, r]) => (
-        <button
+        <button className="nk-btn"
           key={n}
           onClick={() => t(n)}
           style={{
@@ -91,7 +91,7 @@ function AdminUserTabs({ tab: e, setTab: t }) {
             fontSize: 12.5,
             fontWeight: 700,
             cursor: `pointer`,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
           }}
         >
           {r}
@@ -175,7 +175,7 @@ function AdminEditProfile({ user: e, onSaved: t }) {
           style={adminInputStyle}
         />
       </div>
-      <button disabled={i} onClick={o} style={adminPrimaryButton(i)}>
+      <button className="nk-btn" disabled={i} onClick={o} style={adminPrimaryButton(i)}>
         Save changes
       </button>
     </div>
@@ -339,7 +339,7 @@ function AdminUserDetail() {
   let x = n.suspendedUntil && new Date(n.suspendedUntil) > new Date();
   return (
     <div>
-      <button
+      <button className="nk-btn"
         onClick={() => t(-1)}
         style={{ ...adminSecondaryButton, marginBottom: 16 }}
       >
@@ -476,14 +476,14 @@ function AdminUserDetail() {
               >
                 {n.verificationStatus === `pending` && (
                   <>
-                    <button
+                    <button className="nk-btn"
                       disabled={o}
                       onClick={() => h(`approve`)}
                       style={adminPrimaryButton(o)}
                     >
                       Approve verification
                     </button>
-                    <button
+                    <button className="nk-btn"
                       disabled={o}
                       onClick={() => h(`reject`)}
                       style={adminDangerButton}
@@ -492,7 +492,7 @@ function AdminUserDetail() {
                     </button>
                   </>
                 )}
-                <button
+                <button className="nk-btn"
                   disabled={o}
                   onClick={g}
                   style={
@@ -501,7 +501,7 @@ function AdminUserDetail() {
                 >
                   {n.blockedGlobal ? `Unblock account` : `Block account`}
                 </button>
-                <button disabled={o} onClick={b} style={adminDangerButton}>
+                <button className="nk-btn" disabled={o} onClick={b} style={adminDangerButton}>
                   Delete account
                 </button>
               </div>
@@ -511,7 +511,7 @@ function AdminUserDetail() {
                 Temporary Suspension
               </div>
               {x ? (
-                <button disabled={o} onClick={y} style={adminSecondaryButton}>
+                <button className="nk-btn" disabled={o} onClick={y} style={adminSecondaryButton}>
                   Lift suspension
                 </button>
               ) : (
@@ -538,7 +538,7 @@ function AdminUserDetail() {
                       resize: `vertical`,
                     }}
                   />
-                  <button
+                  <button className="nk-btn"
                     disabled={o}
                     onClick={_}
                     style={adminPrimaryButton(o)}

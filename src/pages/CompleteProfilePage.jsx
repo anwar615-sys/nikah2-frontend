@@ -54,7 +54,7 @@ var xr = {
   background: `var(--bg)`,
   color: `var(--fg)`,
   fontSize: 13.5,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   outline: `none`,
 };
 
@@ -68,7 +68,7 @@ var Cr = (e) => ({
     ? `var(--mint)`
     : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
   color: `#fff`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   fontSize: 14,
   fontWeight: 700,
   cursor: e ? `not-allowed` : `pointer`,
@@ -106,7 +106,7 @@ function CompleteProfilePage() {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 96,
@@ -115,14 +115,14 @@ function CompleteProfilePage() {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .cp-input:focus, .cp-select:focus { border-color: var(--emerald-500) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent); }\n      "
+          "\n        .cp-input:focus, .cp-select:focus { border-color: var(--emerald-500) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent); }\n      "
         }
       </style>
       <Navbar />
       <div style={{ maxWidth: 560, margin: `0 auto`, padding: `0 24px` }}>
         <h1
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 28,
             fontWeight: 700,
             color: `var(--fg)`,
@@ -296,11 +296,11 @@ function CompleteProfilePage() {
               disabled={k}
             />
           </div>
-          <button type="submit" disabled={s} style={Cr(s)}>
+          <button className="nk-btn" type="submit" disabled={s} style={Cr(s)}>
             {s ? `Saving…` : `Continue`}
           </button>
         </form>
-        <button
+        <button className="nk-btn nk-btn-soft"
           type="button"
           onClick={n}
           style={{

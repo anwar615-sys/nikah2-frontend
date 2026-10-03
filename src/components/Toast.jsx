@@ -26,7 +26,7 @@ function Toast({ message: e, tone: t = `info`, onDismiss: n }) {
         color: r.text,
         padding: `12px 20px`,
         borderRadius: 16,
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         fontSize: 13,
         fontWeight: 600,
         boxShadow: `0 8px 24px color-mix(in srgb, var(--shadow) 15%, transparent)`,
@@ -38,7 +38,7 @@ function Toast({ message: e, tone: t = `info`, onDismiss: n }) {
       }}
     >
       <span>{e}</span>
-      <button
+      <button className="nk-btn nk-btn-soft"
         onClick={n}
         style={{
           border: `none`,

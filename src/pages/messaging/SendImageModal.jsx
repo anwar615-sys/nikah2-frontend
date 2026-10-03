@@ -16,7 +16,7 @@ function SendImageModal({
       <div className="img-modal" onClick={(e) => e.stopPropagation()}>
         <div className="img-modal-head">
           <span className="img-modal-title">Send Image</span>
-          <button className="modal-x" onClick={n}>
+          <button className="nk-btn modal-x" onClick={n}>
             ✕
           </button>
         </div>
@@ -25,13 +25,13 @@ function SendImageModal({
         </div>
         <div className="mode-toggle">
           <button
-            className={`mode-btn ${o === `regular` ? `active` : ``}`}
+            className={`nk-btn ${`mode-btn ${o === `regular` ? `active` : ``}` ?? ""}`}
             onClick={() => s(`regular`)}
           >
             🖼️ Regular
           </button>
           <button
-            className={`mode-btn ${o === `timed` ? `active` : ``}`}
+            className={`nk-btn ${`mode-btn ${o === `timed` ? `active` : ``}` ?? ""}`}
             onClick={() => {
               if (!i) {
                 a?.();
@@ -53,7 +53,7 @@ function SendImageModal({
               {[3, 5, 10].map((e) => (
                 <button
                   key={e}
-                  className={`dur-pill ${c === e ? `active` : ``}`}
+                  className={`nk-btn ${`dur-pill ${c === e ? `active` : ``}` ?? ""}`}
                   onClick={() => l(e)}
                 >
                   {e}s
@@ -61,7 +61,7 @@ function SendImageModal({
               ))}
             </div>
             <button
-              className={`ss-toggle ${u ? `active` : ``}`}
+              className={`nk-btn nk-btn-soft ${`ss-toggle ${u ? `active` : ``}` ?? ""}`}
               onClick={() => d((e) => !e)}
             >
               <span
@@ -79,11 +79,11 @@ function SendImageModal({
           </div>
         )}
         <div className="img-modal-btns">
-          <button className="img-cancel" onClick={n}>
+          <button className="nk-btn img-cancel" onClick={n}>
             Cancel
           </button>
           <button
-            className="img-send"
+            className="nk-btn img-send"
             disabled={r}
             onClick={() => t({ mode: o, duration: c, noScreenshot: u })}
           >

@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { FeatureCard } from "./FeaturesPage";
+import { Aurora, Marquee, Reveal, SpotlightCard } from "../components/motion";
 
 var _n = [
   {
@@ -146,7 +147,7 @@ function StoryCard({ story: e }) {
       <div style={{ padding: `20px 22px 24px` }}>
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 23,
             fontWeight: 700,
             color: `var(--fg)`,
@@ -157,7 +158,7 @@ function StoryCard({ story: e }) {
         </div>
         <div
           style={{
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             fontSize: 14,
             color: `var(--emerald-500)`,
             fontWeight: 600,
@@ -168,7 +169,7 @@ function StoryCard({ story: e }) {
         </div>
         <p
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 17,
             color: `var(--muted)`,
             fontStyle: `italic`,
@@ -183,9 +184,11 @@ function StoryCard({ story: e }) {
   );
 }
 
-function TestimonialCard({ testimonial: e }) {
+function TestimonialCard({ testimonial: e, ref, className = ``, style }) {
   return (
-    <div
+    <SpotlightCard
+      ref={ref}
+      className={className}
       style={{
         background: `color-mix(in srgb, var(--surface) 65%, transparent)`,
         border: `1px solid var(--line)`,
@@ -193,18 +196,8 @@ function TestimonialCard({ testimonial: e }) {
         padding: `28px 22px`,
         textAlign: `center`,
         backdropFilter: `blur(10px)`,
-        transition: `all 0.35s ease`,
         cursor: `default`,
-      }}
-      onMouseEnter={(e) => {
-        ((e.currentTarget.style.transform = `translateY(-6px)`),
-          (e.currentTarget.style.boxShadow = `0 20px 48px color-mix(in srgb, var(--emerald-700) 12%, transparent)`),
-          (e.currentTarget.style.borderColor = `var(--emerald-500)`));
-      }}
-      onMouseLeave={(e) => {
-        ((e.currentTarget.style.transform = `none`),
-          (e.currentTarget.style.boxShadow = `none`),
-          (e.currentTarget.style.borderColor = `var(--line)`));
+        ...style,
       }}
     >
       <div
@@ -227,7 +220,7 @@ function TestimonialCard({ testimonial: e }) {
       </div>
       <p
         style={{
-          fontFamily: `'Playfair Display', serif`,
+          fontFamily: `var(--font-display)`,
           fontSize: 15,
           color: `var(--fg)`,
           fontStyle: `italic`,
@@ -237,20 +230,18 @@ function TestimonialCard({ testimonial: e }) {
       >
         "{e.quote}"
       </p>
-    </div>
+    </SpotlightCard>
   );
 }
 
 function SuccessStoriesPage() {
   let e = (0, React.useRef)(null),
     t = useNavigate(),
-    n = (t) => {
-      e.current && e.current.scrollBy({ left: t * 400, behavior: `smooth` });
-    };
+    n = null;
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 68,
@@ -259,7 +250,7 @@ function SuccessStoriesPage() {
       <Navbar />
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: box-shadow 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n          text-decoration: none; display: inline-block;\n        }\n        .hero-btn-primary:hover { box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .story-scroll {\n          display: flex;\n          gap: 20px;\n          overflow-x: auto;\n          padding: 8px 8px 20px;\n          scroll-snap-type: x mandatory;\n        }\n        .story-scroll::-webkit-scrollbar { height: 4px; }\n        .story-scroll::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 10px; }\n        .story-scroll::-webkit-scrollbar-thumb { background: linear-gradient(90deg, var(--emerald-700), var(--emerald-500)); border-radius: 10px; }\n\n        .features-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 18px;\n        }\n\n        .testimonials-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));\n          gap: 20px;\n        }\n\n        @media (max-width: 768px) {\n          .features-grid    { grid-template-columns: repeat(2, 1fr); }\n          .testimonials-grid { grid-template-columns: repeat(2, 1fr); }\n        }\n        @media (max-width: 480px) {\n          .features-grid    { grid-template-columns: 1fr; }\n          .testimonials-grid { grid-template-columns: 1fr; }\n        }\n      "
+          "\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: var(--font-ui);\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: box-shadow 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n          text-decoration: none; display: inline-block;\n        }\n        .hero-btn-primary:hover { box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .story-scroll {\n          display: flex;\n          gap: 20px;\n          overflow-x: auto;\n          padding: 8px 8px 20px;\n          scroll-snap-type: x mandatory;\n        }\n        .story-scroll::-webkit-scrollbar { height: 4px; }\n        .story-scroll::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 10px; }\n        .story-scroll::-webkit-scrollbar-thumb { background: linear-gradient(90deg, var(--emerald-700), var(--emerald-500)); border-radius: 10px; }\n\n        .features-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 18px;\n        }\n\n        .testimonials-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));\n          gap: 20px;\n        }\n\n        @media (max-width: 768px) {\n          .features-grid    { grid-template-columns: repeat(2, 1fr); }\n          .testimonials-grid { grid-template-columns: repeat(2, 1fr); }\n        }\n        @media (max-width: 480px) {\n          .features-grid    { grid-template-columns: 1fr; }\n          .testimonials-grid { grid-template-columns: 1fr; }\n        }\n      "
         }
       </style>
       <section
@@ -270,35 +261,7 @@ function SuccessStoriesPage() {
           overflow: `hidden`,
         }}
       >
-        <div
-          style={{
-            position: `absolute`,
-            top: 40,
-            left: `8%`,
-            width: 280,
-            height: 280,
-            borderRadius: `50%`,
-            background: `color-mix(in srgb, var(--mint) 35%, transparent)`,
-            filter: `blur(60px)`,
-            animation: `float 6s ease-in-out infinite`,
-            pointerEvents: `none`,
-          }}
-        />
-        <div
-          style={{
-            position: `absolute`,
-            bottom: 20,
-            right: `6%`,
-            width: 320,
-            height: 320,
-            borderRadius: `50%`,
-            background: `color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
-            filter: `blur(70px)`,
-            animation: `float 6s ease-in-out infinite`,
-            animationDelay: `1s`,
-            pointerEvents: `none`,
-          }}
-        />
+        <Aurora intensity={0.5} />
         <div
           style={{
             position: `relative`,
@@ -309,7 +272,7 @@ function SuccessStoriesPage() {
         >
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 12,
               color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
@@ -322,7 +285,7 @@ function SuccessStoriesPage() {
           </p>
           <h1
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(28px, 5vw, 54px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
@@ -333,11 +296,11 @@ function SuccessStoriesPage() {
           >
             Real Stories. Real Connections.
             <br />
-            <span className="green-text">Real Love.</span>
+            <span className="nk-shiny">Real Love.</span>
           </h1>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 16,
               color: `var(--muted)`,
               lineHeight: 1.7,
@@ -348,7 +311,7 @@ function SuccessStoriesPage() {
             Thousands have found meaningful relationships on our platform. Here
             are some of their journeys.
           </p>
-          <Link to="/how-it-works" className="hero-btn-primary">
+          <Link to="/how-it-works" className="nk-btn nk-btn-primary hero-btn-primary">
             Get Started
           </Link>
         </div>
@@ -359,7 +322,7 @@ function SuccessStoriesPage() {
         <div style={{ textAlign: `center`, marginBottom: 40 }}>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 17,
               color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
@@ -373,7 +336,7 @@ function SuccessStoriesPage() {
           </p>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(30px, 4.5vw, 50px)`,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -381,83 +344,15 @@ function SuccessStoriesPage() {
             }}
           >
             {"Love "}
-            <span className="green-text">Stories</span>
+            <span className="nk-shiny">Stories</span>
             {" That Inspire"}
           </h2>
         </div>
-        <div style={{ position: `relative` }}>
-          <button
-            onClick={() => n(-1)}
-            style={{
-              position: `absolute`,
-              left: -20,
-              top: `50%`,
-              transform: `translateY(-50%)`,
-              zIndex: 10,
-              width: 44,
-              height: 44,
-              borderRadius: `50%`,
-              background: `var(--surface)`,
-              border: `1.5px solid var(--mint)`,
-              color: `var(--emerald-700)`,
-              fontSize: 16,
-              cursor: `pointer`,
-              display: `flex`,
-              alignItems: `center`,
-              justifyContent: `center`,
-              boxShadow: `0 4px 16px color-mix(in srgb, var(--emerald-700) 15%, transparent)`,
-              transition: `all 0.2s`,
-            }}
-            onMouseEnter={(e) => {
-              ((e.currentTarget.style.background = `var(--surface-2)`),
-                (e.currentTarget.style.borderColor = `var(--emerald-500)`));
-            }}
-            onMouseLeave={(e) => {
-              ((e.currentTarget.style.background = `var(--surface)`),
-                (e.currentTarget.style.borderColor = `var(--mint)`));
-            }}
-          >
-            ←
-          </button>
-          <button
-            onClick={() => n(1)}
-            style={{
-              position: `absolute`,
-              right: -20,
-              top: `50%`,
-              transform: `translateY(-50%)`,
-              zIndex: 10,
-              width: 44,
-              height: 44,
-              borderRadius: `50%`,
-              background: `var(--surface)`,
-              border: `1.5px solid var(--mint)`,
-              color: `var(--emerald-700)`,
-              fontSize: 16,
-              cursor: `pointer`,
-              display: `flex`,
-              alignItems: `center`,
-              justifyContent: `center`,
-              boxShadow: `0 4px 16px color-mix(in srgb, var(--emerald-700) 15%, transparent)`,
-              transition: `all 0.2s`,
-            }}
-            onMouseEnter={(e) => {
-              ((e.currentTarget.style.background = `var(--surface-2)`),
-                (e.currentTarget.style.borderColor = `var(--emerald-500)`));
-            }}
-            onMouseLeave={(e) => {
-              ((e.currentTarget.style.background = `var(--surface)`),
-                (e.currentTarget.style.borderColor = `var(--mint)`));
-            }}
-          >
-            →
-          </button>
-          <div ref={e} className="story-scroll">
-            {_n.map((e, t) => (
-              <StoryCard key={t} story={e} />
-            ))}
-          </div>
-        </div>
+        <Marquee speed={40} gap={20} style={{ padding: `8px 0 20px` }}>
+          {_n.map((e, t) => (
+            <StoryCard key={t} story={e} />
+          ))}
+        </Marquee>
       </section>
       <section
         style={{
@@ -470,7 +365,7 @@ function SuccessStoriesPage() {
           <div style={{ textAlign: `center`, marginBottom: 40 }}>
             <p
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 12,
                 color: `var(--emerald-700)`,
                 letterSpacing: `0.3em`,
@@ -483,7 +378,7 @@ function SuccessStoriesPage() {
             </p>
             <h2
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: `clamp(22px, 3vw, 34px)`,
                 fontWeight: 700,
                 color: `var(--fg)`,
@@ -491,11 +386,11 @@ function SuccessStoriesPage() {
               }}
             >
               {"What Makes "}
-              <span className="green-text">Connections</span>
+              <span className="nk-shiny">Connections</span>
               {" Real"}
             </h2>
           </div>
-          <div className="features-grid">
+          <Reveal stagger className="features-grid">
             {yn.map((e, t) => (
               <FeatureCard
                 key={t}
@@ -504,7 +399,7 @@ function SuccessStoriesPage() {
                 desc={e.desc}
               />
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
       <section
@@ -513,7 +408,7 @@ function SuccessStoriesPage() {
         <div style={{ textAlign: `center`, marginBottom: 40 }}>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 12,
               color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
@@ -526,7 +421,7 @@ function SuccessStoriesPage() {
           </p>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(22px, 3vw, 34px)`,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -534,15 +429,15 @@ function SuccessStoriesPage() {
             }}
           >
             {"What Our "}
-            <span className="green-text">Members</span>
+            <span className="nk-shiny">Members</span>
             {" Say"}
           </h2>
         </div>
-        <div className="testimonials-grid">
+        <Reveal stagger className="testimonials-grid">
           {vn.map((e, t) => (
             <TestimonialCard key={t} testimonial={e} />
           ))}
-        </div>
+        </Reveal>
       </section>
       <section
         style={{
@@ -565,7 +460,7 @@ function SuccessStoriesPage() {
           </div>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(26px, 4vw, 42px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
@@ -573,11 +468,11 @@ function SuccessStoriesPage() {
               marginBottom: 8,
             }}
           >
-            Your Story Could Be <span className="green-text">Next</span>
+            Your Story Could Be <span className="nk-shiny">Next</span>
           </h2>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 16,
               color: `var(--muted)`,
               marginBottom: 36,
@@ -594,10 +489,10 @@ function SuccessStoriesPage() {
               flexWrap: `wrap`,
             }}
           >
-            <Link to="/how-it-works" className="hero-btn-primary">
+            <Link to="/how-it-works" className="nk-btn nk-btn-primary hero-btn-primary">
               Get Started →
             </Link>
-            <button
+            <button className="nk-btn nk-btn-soft"
               onClick={() => t(`/explore`)}
               style={{
                 background: `color-mix(in srgb, var(--surface) 92%, transparent)`,
@@ -605,7 +500,7 @@ function SuccessStoriesPage() {
                 border: `2px solid var(--emerald-500)`,
                 padding: `13px 32px`,
                 borderRadius: 32,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 15,
                 fontWeight: 700,
                 cursor: `pointer`,
@@ -642,7 +537,7 @@ function SuccessStoriesPage() {
             color: `var(--mint)`,
             fontSize: 13,
             letterSpacing: `0.18em`,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             fontWeight: 600,
             textTransform: `uppercase`,
           }}
@@ -661,7 +556,7 @@ function SuccessStoriesPage() {
       >
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontWeight: 700,
             fontSize: 22,
             color: `#fff`,
@@ -677,7 +572,7 @@ function SuccessStoriesPage() {
             margin: `0 0 14px`,
             fontSize: 13,
             opacity: 0.5,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
           }}
         >
           © 2026 Nikha2 — The Second Chance. All rights reserved.
@@ -692,7 +587,7 @@ function SuccessStoriesPage() {
                 color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 transition: `opacity 0.2s`,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = `1`)}

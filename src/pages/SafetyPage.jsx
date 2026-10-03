@@ -1,4 +1,5 @@
 import { Navbar } from "../components/Navbar";
+import { BlurText, Reveal, SpotlightCard } from "../components/motion";
 
 var Ma = [
   {
@@ -37,14 +38,14 @@ function SafetyPage() {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
       }}
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
+          "\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
         }
       </style>
       <Navbar />
@@ -62,15 +63,15 @@ function SafetyPage() {
         <div style={{ maxWidth: 720, margin: `0 auto` }}>
           <h1
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(28px, 4vw, 44px)`,
               fontWeight: 700,
               color: `var(--fg)`,
               marginBottom: 12,
             }}
           >
-            {"Safety "}
-            <span className="green-text">Center</span>
+            <BlurText text="Safety " />
+            <BlurText text="Center" wordClassName="nk-shiny" startIndex={1} />
           </h1>
           <p style={{ fontSize: 15, color: `var(--muted)` }}>
             Nikha2 connects people who haven't met before. Here's how we — and
@@ -81,7 +82,8 @@ function SafetyPage() {
       <section
         style={{ padding: `48px 40px`, maxWidth: 1e3, margin: `0 auto` }}
       >
-        <div
+        <Reveal
+          stagger
           style={{
             display: `grid`,
             gridTemplateColumns: `repeat(auto-fit, minmax(260px, 1fr))`,
@@ -89,7 +91,7 @@ function SafetyPage() {
           }}
         >
           {Ma.map((e) => (
-            <div
+            <SpotlightCard
               key={e.title}
               style={{
                 background: `var(--surface)`,
@@ -102,7 +104,7 @@ function SafetyPage() {
               <div style={{ fontSize: 30, marginBottom: 10 }}>{e.icon}</div>
               <h3
                 style={{
-                  fontFamily: `'Playfair Display', serif`,
+                  fontFamily: `var(--font-display)`,
                   fontWeight: 700,
                   fontSize: 16,
                   color: `var(--fg)`,
@@ -120,9 +122,9 @@ function SafetyPage() {
               >
                 {e.desc}
               </p>
-            </div>
+            </SpotlightCard>
           ))}
-        </div>
+        </Reveal>
         <div
           style={{
             marginTop: 32,
@@ -150,7 +152,7 @@ function SafetyPage() {
       >
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontWeight: 700,
             fontSize: 22,
             color: `#fff`,

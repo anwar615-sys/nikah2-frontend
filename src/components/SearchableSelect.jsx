@@ -25,7 +25,7 @@ function SearchableSelect({
   let p = n.filter((e) => e.toLowerCase().includes(u.trim().toLowerCase()));
   return (
     <div style={{ position: `relative` }} ref={f}>
-      <button
+      <button className="nk-btn"
         type="button"
         disabled={a}
         onClick={() => {
@@ -99,7 +99,7 @@ function SearchableSelect({
             {p.map((n) => {
               let r = e === n;
               return (
-                <button
+                <button className="nk-btn nk-btn-soft"
                   key={n}
                   type="button"
                   onClick={() => {
@@ -113,7 +113,7 @@ function SearchableSelect({
                     background: r ? `var(--surface-2)` : `transparent`,
                     color: r ? `var(--emerald-700)` : `var(--fg)`,
                     fontWeight: r ? 700 : 400,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 12.5,
                     cursor: `pointer`,
                     borderRadius: 8,

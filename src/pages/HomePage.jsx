@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import { LivingHero } from "../components/hero/LivingHero";
+import { CountUp, Reveal, ShinyText } from "../components/motion";
 import { OnlineNowPanel } from "../components/OnlineNowPanel";
 import { SupportChatWidget } from "../components/SupportChatWidget";
 import { useInView } from "../hooks/useInView";
@@ -13,7 +15,6 @@ import {
   toPersonCard,
 } from "../lib/people";
 
-var Bt = `/assets/1-BhKNAtC1.png`;
 
 function HomePage() {
   let [e, t] = (0, React.useState)(`Woman`),
@@ -57,7 +58,7 @@ function HomePage() {
     (
       <div
         style={{
-          fontFamily: `'DM Sans', sans-serif`,
+          fontFamily: `var(--font-ui)`,
           background: `var(--bg)`,
           minHeight: `100vh`,
           paddingTop: 68,
@@ -66,10 +67,12 @@ function HomePage() {
         <Navbar />
         <style>
           {
-            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .hero-btn-outline {\n          background: color-mix(in srgb, var(--surface) 8%, transparent); color: var(--emerald-500);\n          border: 2px solid var(--emerald-500); padding: 13px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: color-mix(in srgb, var(--surface) 15%, transparent); transform: translateY(-2px); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n        @keyframes stripRiseIn {\n          from { opacity: 0; transform: translateY(40px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n\n        .seek-btn {\n          flex: 1; padding: 15px 0;\n          background: color-mix(in srgb, var(--surface) 8%, transparent);\n          color: rgba(255,255,255,0.75);\n          border: none; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 600;\n          cursor: pointer; transition: all 0.2s;\n        }\n        .seek-btn.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n        }\n        .seek-btn:first-child { border-radius: 10px 0 0 10px; }\n        .seek-btn:last-child  { border-radius: 0 10px 10px 0; }\n\n        .country-chip {\n          padding: 7px 16px; border-radius: 12px;\n          border: 1.5px solid var(--mint); background: var(--surface);\n          color: var(--emerald-700); font-family: 'DM Sans', sans-serif;\n          font-size: 12.5px; font-weight: 600; cursor: pointer;\n          transition: all 0.18s; white-space: nowrap;\n          width: 100%; text-align: left;\n        }\n        .country-chip:hover { background: var(--surface-2); border-color: var(--emerald-500); }\n        .country-chip.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff; border-color: transparent;\n          box-shadow: 0 3px 12px color-mix(in srgb, var(--emerald-700) 30%, transparent);\n        }\n\n        /* card hover */\n        .card-hover {\n          transition: transform 0.22s, box-shadow 0.22s;\n          cursor: pointer;\n        }\n        .card-hover:hover {\n          transform: translateY(-4px);\n          box-shadow: 0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent) !important;\n        }\n\n        /* member grid — fluid, no fixed columns */\n        .member-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 20px;\n          width: 100%;\n        }\n\n        /* scroll area — desktop only */\n        .members-scroll-area {\n          overflow-y: auto;\n          padding-right: 4px;\n        }\n        .members-scroll-area::-webkit-scrollbar { width: 4px; }\n        .members-scroll-area::-webkit-scrollbar-track { background: transparent; }\n        .members-scroll-area::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }\n        .members-scroll-area::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }\n\n        .filter-scroll { overflow-y: auto; }\n        .filter-scroll::-webkit-scrollbar { width: 3px; }\n        .filter-scroll::-webkit-scrollbar-track { background: transparent; }\n        .filter-scroll::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 3px; }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n        @keyframes orbFloat {\n          0%, 100% { transform: translateY(0) scale(1); }\n          50% { transform: translateY(-30px) scale(1.05); }\n        }\n        @keyframes fadeSlideUp {\n          from { opacity: 0; transform: translateY(32px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n        @keyframes avatarPop {\n          from { opacity: 0; transform: scale(0.7); }\n          to   { opacity: 1; transform: scale(1); }\n        }\n\n        .cta-hidden { opacity: 0; transform: translateY(32px); }\n        .cta-hidden-avatar { opacity: 0; transform: scale(0.7); }\n        .cta-visible-1 { animation: fadeSlideUp 0.6s 0.1s both ease-out; }\n        .cta-visible-2 { animation: fadeSlideUp 0.6s 0.2s both ease-out; }\n        .cta-visible-3 { animation: fadeSlideUp 0.6s 0.3s both ease-out; }\n        .cta-visible-4 { animation: fadeSlideUp 0.6s 0.4s both ease-out; }\n        .cta-visible-5 { animation: fadeSlideUp 0.6s 0.5s both ease-out; }\n        .cta-visible-6 { animation: fadeSlideUp 0.6s 0.6s both ease-out; }\n        .cta-avatar-0 { animation: avatarPop 0.5s 0.4s both ease-out; }\n        .cta-avatar-1 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-2 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-3 { animation: avatarPop 0.5s 0s both ease-out; }\n        .cta-avatar-4 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-5 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-6 { animation: avatarPop 0.5s 0.4s both ease-out; }\n\n        /* ── TABLET: 600–900px ── */\n        @media (max-width: 900px) {\n          .hero-section {\n            flex-direction: column !important;\n            height: auto !important;\n            min-height: calc(100vh - 68px) !important;\n          }\n          .hero-left {\n            flex: none !important;\n            width: 100% !important;\n            padding: 48px 32px 24px !important;\n            align-items: center !important;\n            text-align: center !important;\n          }\n          .hero-left .live-pill { align-self: center !important; }\n          .seek-toggle { max-width: 100% !important; }\n          .hero-buttons { justify-content: center !important; }\n\n          .features-strip-inner { flex-direction: column !important; gap: 0 !important; }\n          .features-strip-divider { display: none !important; }\n          .features-badges-row { justify-content: center !important; padding: 12px 0 !important; }\n\n          .members-layout { flex-direction: column !important; gap: 24px !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; }\n          .priority-chips { flex-direction: row !important; flex-wrap: wrap !important; gap: 8px !important; }\n          .country-chip { width: auto !important; }\n\n          /* grid: 2 cols on tablet */\n          .member-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; }\n          .cta-buttons button { width: 100% !important; max-width: 360px; }\n        }\n\n        /* ── MOBILE: ≤600px ── */\n        @media (max-width: 600px) {\n          .hero-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .hero-left { padding: 36px 20px 20px !important; gap: 12px !important; }\n          .hero-buttons { flex-direction: column !important; width: 100% !important; }\n          .hero-btn-primary, .hero-btn-outline { width: 100% !important; text-align: center !important; }\n          .seek-btn { font-size: 13px !important; padding: 12px 6px !important; }\n\n          .online-section { padding: 28px 16px !important; }\n          .online-header { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }\n\n          .members-layout { display: flex !important; flex-direction: column !important; gap: 24px !important; width: 100% !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; top: auto !important; }\n\n          /* grid: 1 full-width col on mobile — NO gaps, NO white space */\n          .member-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; padding-right: 0 !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-section > div:first-of-type { padding: 24px 20px 0 !important; }\n          .cta-headline { font-size: 36px !important; line-height: 1.1 !important; }\n          .cta-subtext { font-size: 14px !important; margin-bottom: 20px !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; margin-bottom: 16px !important; }\n          .cta-buttons button { width: 100% !important; max-width: 340px !important; padding: 14px 24px !important; }\n          .cta-stat-number { font-size: 22px !important; }\n          .tagline-bar { padding: 14px 20px !important; }\n          .tagline-bar span:first-child { font-size: 11px !important; letter-spacing: 0.08em !important; }\n          .features-strip { padding: 0 !important; }\n          .features-strip-inner { padding: 8px 0 !important; }\n          footer { padding: 28px 20px !important; }\n        }\n\n        /* ── VERY SMALL: ≤380px ── */\n        @media (max-width: 380px) {\n          .member-grid { grid-template-columns: 1fr !important; gap: 12px !important; }\n          .seek-btn { font-size: 12px !important; }\n          .cta-headline { font-size: 28px !important; }\n          .cta-stat-number { font-size: 18px !important; }\n          .cta-buttons button { padding: 12px 16px !important; font-size: 14px !important; }\n        }\n      "
+            "\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: var(--font-ui);\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .hero-btn-outline {\n          background: var(--hero-chip); color: var(--hero-accent);\n          border: 2px solid var(--hero-accent); padding: 13px 32px;\n          border-radius: 32px; font-family: var(--font-ui);\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: color-mix(in srgb, var(--surface) 15%, transparent); transform: translateY(-2px); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n        @keyframes stripRiseIn {\n          from { opacity: 0; transform: translateY(40px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n\n        .seek-btn {\n          flex: 1; padding: 15px 0;\n          background: color-mix(in srgb, var(--surface) 8%, transparent);\n          color: var(--hero-sub);\n          border: none; font-family: var(--font-ui);\n          font-size: 15px; font-weight: 600;\n          cursor: pointer; transition: all 0.2s;\n        }\n        .seek-btn.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n        }\n        .seek-btn:first-child { border-radius: 10px 0 0 10px; }\n        .seek-btn:last-child  { border-radius: 0 10px 10px 0; }\n\n        .country-chip {\n          padding: 7px 16px; border-radius: 12px;\n          border: 1.5px solid var(--mint); background: var(--surface);\n          color: var(--emerald-700); font-family: var(--font-ui);\n          font-size: 12.5px; font-weight: 600; cursor: pointer;\n          transition: all 0.18s; white-space: nowrap;\n          width: 100%; text-align: left;\n        }\n        .country-chip:hover { background: var(--surface-2); border-color: var(--emerald-500); }\n        .country-chip.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff; border-color: transparent;\n          box-shadow: 0 3px 12px color-mix(in srgb, var(--emerald-700) 30%, transparent);\n        }\n\n        /* card hover */\n        .card-hover {\n          transition: transform 0.22s, box-shadow 0.22s;\n          cursor: pointer;\n        }\n        .card-hover:hover {\n          transform: translateY(-4px);\n          box-shadow: 0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent) !important;\n        }\n\n        /* member grid — fluid, no fixed columns */\n        .member-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 20px;\n          width: 100%;\n        }\n\n        /* scroll area — desktop only */\n        .members-scroll-area {\n          overflow-y: auto;\n          padding-right: 4px;\n        }\n        .members-scroll-area::-webkit-scrollbar { width: 4px; }\n        .members-scroll-area::-webkit-scrollbar-track { background: transparent; }\n        .members-scroll-area::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }\n        .members-scroll-area::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }\n\n        .filter-scroll { overflow-y: auto; }\n        .filter-scroll::-webkit-scrollbar { width: 3px; }\n        .filter-scroll::-webkit-scrollbar-track { background: transparent; }\n        .filter-scroll::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 3px; }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n        @keyframes orbFloat {\n          0%, 100% { transform: translateY(0) scale(1); }\n          50% { transform: translateY(-30px) scale(1.05); }\n        }\n        @keyframes fadeSlideUp {\n          from { opacity: 0; transform: translateY(32px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n        @keyframes avatarPop {\n          from { opacity: 0; transform: scale(0.7); }\n          to   { opacity: 1; transform: scale(1); }\n        }\n\n        .cta-hidden { opacity: 0; transform: translateY(32px); }\n        .cta-hidden-avatar { opacity: 0; transform: scale(0.7); }\n        .cta-visible-1 { animation: fadeSlideUp 0.6s 0.1s both ease-out; }\n        .cta-visible-2 { animation: fadeSlideUp 0.6s 0.2s both ease-out; }\n        .cta-visible-3 { animation: fadeSlideUp 0.6s 0.3s both ease-out; }\n        .cta-visible-4 { animation: fadeSlideUp 0.6s 0.4s both ease-out; }\n        .cta-visible-5 { animation: fadeSlideUp 0.6s 0.5s both ease-out; }\n        .cta-visible-6 { animation: fadeSlideUp 0.6s 0.6s both ease-out; }\n        .cta-avatar-0 { animation: avatarPop 0.5s 0.4s both ease-out; }\n        .cta-avatar-1 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-2 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-3 { animation: avatarPop 0.5s 0s both ease-out; }\n        .cta-avatar-4 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-5 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-6 { animation: avatarPop 0.5s 0.4s both ease-out; }\n\n        /* ── TABLET: 600–900px ── */\n        @media (max-width: 900px) {\n          .hero-section {\n            flex-direction: column !important;\n            height: auto !important;\n            min-height: calc(100vh - 68px) !important;\n          }\n          .hero-left {\n            flex: none !important;\n            width: 100% !important;\n            padding: 48px 32px 24px !important;\n            align-items: center !important;\n            text-align: center !important;\n          }\n          .hero-left .live-pill { align-self: center !important; }\n          .seek-toggle { max-width: 100% !important; }\n          .hero-buttons { justify-content: center !important; }\n\n          .features-strip-inner { flex-direction: column !important; gap: 0 !important; }\n          .features-strip-divider { display: none !important; }\n          .features-badges-row { justify-content: center !important; padding: 12px 0 !important; }\n\n          .members-layout { flex-direction: column !important; gap: 24px !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; }\n          .priority-chips { flex-direction: row !important; flex-wrap: wrap !important; gap: 8px !important; }\n          .country-chip { width: auto !important; }\n\n          /* grid: 2 cols on tablet */\n          .member-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; }\n          .cta-buttons button { width: 100% !important; max-width: 360px; }\n        }\n\n        /* ── MOBILE: ≤600px ── */\n        @media (max-width: 600px) {\n          .hero-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .hero-left { padding: 36px 20px 20px !important; gap: 12px !important; }\n          .hero-buttons { flex-direction: column !important; width: 100% !important; }\n          .hero-btn-primary, .hero-btn-outline { width: 100% !important; text-align: center !important; }\n          .seek-btn { font-size: 13px !important; padding: 12px 6px !important; }\n\n          .online-section { padding: 28px 16px !important; }\n          .online-header { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }\n\n          .members-layout { display: flex !important; flex-direction: column !important; gap: 24px !important; width: 100% !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; top: auto !important; }\n\n          /* grid: 1 full-width col on mobile — NO gaps, NO white space */\n          .member-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; padding-right: 0 !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-section > div:first-of-type { padding: 24px 20px 0 !important; }\n          .cta-headline { font-size: 36px !important; line-height: 1.1 !important; }\n          .cta-subtext { font-size: 14px !important; margin-bottom: 20px !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; margin-bottom: 16px !important; }\n          .cta-buttons button { width: 100% !important; max-width: 340px !important; padding: 14px 24px !important; }\n          .cta-stat-number { font-size: 22px !important; }\n          .tagline-bar { padding: 14px 20px !important; }\n          .tagline-bar span:first-child { font-size: 11px !important; letter-spacing: 0.08em !important; }\n          .features-strip { padding: 0 !important; }\n          .features-strip-inner { padding: 8px 0 !important; }\n          footer { padding: 28px 20px !important; }\n        }\n\n        /* ── VERY SMALL: ≤380px ── */\n        @media (max-width: 380px) {\n          .member-grid { grid-template-columns: 1fr !important; gap: 12px !important; }\n          .seek-btn { font-size: 12px !important; }\n          .cta-headline { font-size: 28px !important; }\n          .cta-stat-number { font-size: 18px !important; }\n          .cta-buttons button { padding: 12px 16px !important; font-size: 14px !important; }\n        }\n      "
           }
         </style>
-        <section
+        <LivingHero
+          headline={[`Start Your`, `New Beginning`]}
+          alt="A couple looking out over a mountain lake at sunrise"
           className="hero-section"
           style={{
             position: `relative`,
@@ -82,74 +85,186 @@ function HomePage() {
             justifyContent: `center`,
             background: `var(--deep)`,
           }}
-        >
-          <img
-            src={Bt}
-            alt="Nikha2"
-            style={{
-              position: `absolute`,
-              inset: 0,
-              width: `100%`,
-              height: `100%`,
-              objectFit: `cover`,
-              objectPosition: `center center`,
-              zIndex: 0,
-            }}
-          />
-          <div
-            style={{
-              position: `absolute`,
-              inset: 0,
-              background: `linear-gradient(to bottom, color-mix(in srgb, var(--overlay) 55%, transparent) 0%, color-mix(in srgb, var(--overlay) 80%, transparent) 70%, color-mix(in srgb, var(--overlay) 97%, transparent) 100%)`,
-              zIndex: 1,
-            }}
-          />
-          <div
-            style={{
-              position: `absolute`,
-              inset: 0,
-              background: `radial-gradient(ellipse at center, transparent 40%, color-mix(in srgb, var(--overlay) 50%, transparent) 100%)`,
-              zIndex: 1,
-            }}
-          />
-          <div
-            className="hero-left"
-            style={{
-              position: `relative`,
-              zIndex: 2,
-              width: `100%`,
-              maxWidth: 700,
-              padding: `40px 40px 24px`,
-              display: `flex`,
-              flexDirection: `column`,
-              alignItems: `center`,
-              textAlign: `center`,
-              gap: 14,
-              flex: 1,
-              justifyContent: `center`,
-            }}
-          >
-            <h1
+          contentClassName="hero-left"
+          contentStyle={{
+            width: `100%`,
+            maxWidth: 760,
+            padding: `40px 40px 24px`,
+            display: `flex`,
+            flexDirection: `column`,
+            alignItems: `center`,
+            textAlign: `center`,
+            gap: 14,
+            flex: 1,
+            justifyContent: `center`,
+          }}
+          after={
+            <>
+            <div
+              className="features-strip"
               style={{
-                fontFamily: `'Playfair Display', serif`,
-                fontSize: `clamp(32px, 4.5vw, 60px)`,
-                fontWeight: 700,
-                color: `#fff`,
-                letterSpacing: `-0.025em`,
-                lineHeight: 1.18,
-                margin: 0,
+                position: `relative`,
+                zIndex: 3,
+                width: `100%`,
+                animation: `stripRiseIn 1.1s 0.5s both ease-out`,
+                flexShrink: 0,
               }}
             >
-              Start Your
-              <span className="green-text" style={{ display: `block` }}>
-                New Beginning
-              </span>
-            </h1>
+              <div
+                style={{
+                  width: `100%`,
+                  height: 1,
+                  background: `linear-gradient(to right, transparent, color-mix(in srgb, var(--emerald-500) 25%, transparent), transparent)`,
+                }}
+              />
+              <div
+                style={{
+                  background: `color-mix(in srgb, var(--overlay) 72%, transparent)`,
+                  backdropFilter: `blur(20px)`,
+                  WebkitBackdropFilter: `blur(20px)`,
+                  borderTop: `1px solid color-mix(in srgb, var(--emerald-500) 12%, transparent)`,
+                }}
+              >
+                <div
+                  className="features-strip-inner"
+                  style={{
+                    maxWidth: 1060,
+                    margin: `0 auto`,
+                    padding: `0 40px`,
+                    display: `flex`,
+                    alignItems: `center`,
+                    flexWrap: `wrap`,
+                  }}
+                >
+                  <div
+                    className="features-strip-divider"
+                    style={{
+                      display: `flex`,
+                      alignItems: `center`,
+                      gap: 12,
+                      padding: `12px 28px 12px 0`,
+                      borderRight: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
+                      marginRight: 28,
+                      flex: `0 0 auto`,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 26,
+                        filter: `drop-shadow(0 0 8px color-mix(in srgb, var(--emerald-500) 40%, transparent))`,
+                      }}
+                    >
+                      🌐
+                    </span>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: 12.5,
+                        lineHeight: 1.55,
+                        color: `rgba(255,255,255,0.5)`,
+                        maxWidth: 190,
+                      }}
+                    >
+                      <strong
+                        style={{
+                          color: `var(--emerald-500)`,
+                          fontFamily: `var(--font-ui)`,
+                          fontWeight: 700,
+                        }}
+                      >
+                        The very first global platform
+                      </strong>
+                      <br />
+                      for single moms & single dads
+                    </p>
+                  </div>
+                  <div
+                    className="features-badges-row"
+                    style={{
+                      display: `flex`,
+                      flex: 1,
+                      justifyContent: `space-around`,
+                      flexWrap: `wrap`,
+                    }}
+                  >
+                    {[
+                      {
+                        icon: `🛡️`,
+                        label: `Verified
+  Profiles`,
+                      },
+                      {
+                        icon: `💚`,
+                        label: `Compatible
+  Matches`,
+                      },
+                      {
+                        icon: `🔒`,
+                        label: `End-End
+  Encrypted`,
+                      },
+                      {
+                        icon: `🤝`,
+                        label: `Respect
+  & Support`,
+                      },
+                    ].map(({ icon: e, label: t }, n) => (
+                      <div
+                        key={n}
+                        style={{
+                          display: `flex`,
+                          flexDirection: `column`,
+                          alignItems: `center`,
+                          gap: 5,
+                          padding: `10px 18px`,
+                          cursor: `default`,
+                          transition: `transform 0.2s`,
+                        }}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.transform = `translateY(-3px)`)
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.transform = `none`)
+                        }
+                      >
+                        <span
+                          style={{
+                            fontSize: 20,
+                            filter: `drop-shadow(0 0 6px color-mix(in srgb, var(--emerald-500) 35%, transparent))`,
+                          }}
+                        >
+                          {e}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: 10,
+                            fontWeight: 700,
+                            fontFamily: `var(--font-ui)`,
+                            color: `rgba(255,255,255,0.55)`,
+                            textAlign: `center`,
+                            letterSpacing: `0.07em`,
+                            lineHeight: 1.35,
+                            textTransform: `uppercase`,
+                            whiteSpace: `pre-line`,
+                          }}
+                        >
+                          {t}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            </>
+          }
+        >
             <p
+              className="fade-late"
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 17,
-                color: `rgba(255,255,255,0.75)`,
+                color: `var(--hero-sub)`,
                 fontStyle: `italic`,
                 margin: 0,
               }}
@@ -157,10 +272,11 @@ function HomePage() {
               Give yourself a Second Chance
             </p>
             <p
+              className="fade-late"
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 14.5,
-                color: `rgba(255,255,255,0.55)`,
+                color: `var(--hero-lead)`,
                 lineHeight: 1.65,
                 margin: 0,
                 maxWidth: 420,
@@ -170,12 +286,12 @@ function HomePage() {
               dads and divorcee.
             </p>
             <div
-              className="live-pill"
+              className="live-pill fade-late"
               style={{
                 display: `inline-flex`,
                 alignItems: `center`,
                 gap: 8,
-                background: `color-mix(in srgb, var(--surface) 8%, transparent)`,
+                background: `var(--hero-chip)`,
                 border: `1px solid color-mix(in srgb, var(--emerald-500) 45%, transparent)`,
                 borderRadius: 24,
                 padding: `9px 22px`,
@@ -196,10 +312,10 @@ function HomePage() {
               />
               <span
                 style={{
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 13,
                   fontWeight: 700,
-                  color: `var(--emerald-500)`,
+                  color: `var(--hero-accent)`,
                 }}
               >
                 {d.length}
@@ -207,7 +323,7 @@ function HomePage() {
               </span>
             </div>
             <div
-              className="seek-toggle"
+              className="seek-toggle fade-late"
               style={{
                 display: `flex`,
                 border: `2px solid var(--emerald-500)`,
@@ -219,7 +335,7 @@ function HomePage() {
               }}
             >
               <button
-                className={`seek-btn${e === `Woman` ? ` active` : ``}`}
+                className={`nk-btn ${`seek-btn${e === `Woman` ? ` active` : ``}` ?? ""}`}
                 onClick={() => {
                   (t(`Woman`), u(`/explore?gender=woman`));
                 }}
@@ -228,7 +344,7 @@ function HomePage() {
               </button>
               <div style={{ width: 1, background: `var(--emerald-700)`, flexShrink: 0 }} />
               <button
-                className={`seek-btn${e === `Man` ? ` active` : ``}`}
+                className={`nk-btn ${`seek-btn${e === `Man` ? ` active` : ``}` ?? ""}`}
                 onClick={() => {
                   (t(`Man`), u(`/explore?gender=man`));
                 }}
@@ -237,7 +353,7 @@ function HomePage() {
               </button>
             </div>
             <div
-              className="hero-buttons"
+              className="hero-buttons fade-late"
               style={{
                 display: `flex`,
                 gap: 14,
@@ -246,7 +362,7 @@ function HomePage() {
               }}
             >
               <button
-                className="hero-btn-primary"
+                className="nk-btn nk-btn-primary hero-btn-primary"
                 onClick={() => {
                   let e = document.getElementById(`people-online`);
                   if (!e) return;
@@ -256,169 +372,13 @@ function HomePage() {
               >
                 🔍 Explore People Online
               </button>
-              <button className="hero-btn-outline" onClick={() => u(`/signup`)}>
+              <button className="nk-btn hero-btn-outline" onClick={() => u(`/signup`)}>
                 Log In / Sign Up
               </button>
             </div>
-          </div>
-          <div
-            className="features-strip"
-            style={{
-              position: `relative`,
-              zIndex: 3,
-              width: `100%`,
-              animation: `stripRiseIn 1.1s 0.5s both ease-out`,
-              flexShrink: 0,
-            }}
-          >
-            <div
-              style={{
-                width: `100%`,
-                height: 1,
-                background: `linear-gradient(to right, transparent, color-mix(in srgb, var(--emerald-500) 25%, transparent), transparent)`,
-              }}
-            />
-            <div
-              style={{
-                background: `color-mix(in srgb, var(--overlay) 72%, transparent)`,
-                backdropFilter: `blur(20px)`,
-                WebkitBackdropFilter: `blur(20px)`,
-                borderTop: `1px solid color-mix(in srgb, var(--emerald-500) 12%, transparent)`,
-              }}
-            >
-              <div
-                className="features-strip-inner"
-                style={{
-                  maxWidth: 1060,
-                  margin: `0 auto`,
-                  padding: `0 40px`,
-                  display: `flex`,
-                  alignItems: `center`,
-                  flexWrap: `wrap`,
-                }}
-              >
-                <div
-                  className="features-strip-divider"
-                  style={{
-                    display: `flex`,
-                    alignItems: `center`,
-                    gap: 12,
-                    padding: `12px 28px 12px 0`,
-                    borderRight: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
-                    marginRight: 28,
-                    flex: `0 0 auto`,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: 26,
-                      filter: `drop-shadow(0 0 8px color-mix(in srgb, var(--emerald-500) 40%, transparent))`,
-                    }}
-                  >
-                    🌐
-                  </span>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: 12.5,
-                      lineHeight: 1.55,
-                      color: `rgba(255,255,255,0.5)`,
-                      maxWidth: 190,
-                    }}
-                  >
-                    <strong
-                      style={{
-                        color: `var(--emerald-500)`,
-                        fontFamily: `'DM Sans', sans-serif`,
-                        fontWeight: 700,
-                      }}
-                    >
-                      The very first global platform
-                    </strong>
-                    <br />
-                    for single moms & single dads
-                  </p>
-                </div>
-                <div
-                  className="features-badges-row"
-                  style={{
-                    display: `flex`,
-                    flex: 1,
-                    justifyContent: `space-around`,
-                    flexWrap: `wrap`,
-                  }}
-                >
-                  {[
-                    {
-                      icon: `🛡️`,
-                      label: `Verified
-Profiles`,
-                    },
-                    {
-                      icon: `💚`,
-                      label: `Compatible
-Matches`,
-                    },
-                    {
-                      icon: `🔒`,
-                      label: `End-End
-Encrypted`,
-                    },
-                    {
-                      icon: `🤝`,
-                      label: `Respect
-& Support`,
-                    },
-                  ].map(({ icon: e, label: t }, n) => (
-                    <div
-                      key={n}
-                      style={{
-                        display: `flex`,
-                        flexDirection: `column`,
-                        alignItems: `center`,
-                        gap: 5,
-                        padding: `10px 18px`,
-                        cursor: `default`,
-                        transition: `transform 0.2s`,
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.transform = `translateY(-3px)`)
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.transform = `none`)
-                      }
-                    >
-                      <span
-                        style={{
-                          fontSize: 20,
-                          filter: `drop-shadow(0 0 6px color-mix(in srgb, var(--emerald-500) 35%, transparent))`,
-                        }}
-                      >
-                        {e}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: 10,
-                          fontWeight: 700,
-                          fontFamily: `'DM Sans', sans-serif`,
-                          color: `rgba(255,255,255,0.55)`,
-                          textAlign: `center`,
-                          letterSpacing: `0.07em`,
-                          lineHeight: 1.35,
-                          textTransform: `uppercase`,
-                          whiteSpace: `pre-line`,
-                        }}
-                      >
-                        {t}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section
+        </LivingHero>
+        <Reveal
+          as="section"
           id="people-online"
           className="online-section"
           style={{ padding: `52px 40px`, maxWidth: 1100, margin: `0 auto` }}
@@ -437,7 +397,7 @@ Encrypted`,
             <div>
               <h2
                 style={{
-                  fontFamily: `'Playfair Display', serif`,
+                  fontFamily: `var(--font-display)`,
                   fontSize: `clamp(22px, 3vw, 32px)`,
                   fontWeight: 700,
                   color: `var(--fg)`,
@@ -446,12 +406,12 @@ Encrypted`,
                 }}
               >
                 {"People "}
-                <span className="green-text">Online Now</span>
+                <ShinyText>Online Now</ShinyText>
               </h2>
               <p
                 style={{
                   color: `var(--emerald-500)`,
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 14,
                 }}
               >
@@ -483,7 +443,7 @@ Encrypted`,
               />
               <span
                 style={{
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 13,
                   fontWeight: 700,
                   color: `var(--emerald-700)`,
@@ -520,7 +480,7 @@ Encrypted`,
             >
               <div
                 style={{
-                  fontFamily: `'Playfair Display', serif`,
+                  fontFamily: `var(--font-display)`,
                   fontSize: 16,
                   fontWeight: 700,
                   color: `var(--fg)`,
@@ -532,7 +492,7 @@ Encrypted`,
                 🌍 Filter by Country
               </div>
               <button
-                className={`country-chip${n === `All` ? ` active` : ``}`}
+                className={`nk-btn ${`country-chip${n === `All` ? ` active` : ``}` ?? ""}`}
                 onClick={() => {
                   (r(`All`), s(!1));
                 }}
@@ -552,7 +512,7 @@ Encrypted`,
                 {FEATURED_COUNTRIES.map((e) => (
                   <button
                     key={e}
-                    className={`country-chip${n === e ? ` active` : ``}`}
+                    className={`nk-btn ${`country-chip${n === e ? ` active` : ``}` ?? ""}`}
                     onClick={() => {
                       (r(e), s(!1));
                     }}
@@ -584,7 +544,7 @@ Encrypted`,
                     border: `1.5px solid var(--mint)`,
                     background: `var(--bg)`,
                     color: `var(--fg)`,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                     outline: `none`,
                     transition: `border-color 0.2s`,
@@ -607,7 +567,7 @@ Encrypted`,
                     }}
                   >
                     {y.map((e) => (
-                      <button
+                      <button className="nk-btn"
                         key={e}
                         onClick={() => {
                           (r(e), s(!1), a(``));
@@ -629,7 +589,7 @@ Encrypted`,
                           padding: `14px`,
                           fontSize: 13,
                           color: `var(--emerald-500)`,
-                          fontFamily: `'DM Sans', sans-serif`,
+                          fontFamily: `var(--font-ui)`,
                         }}
                       >
                         No countries found
@@ -656,14 +616,14 @@ Encrypted`,
                       fontSize: 12,
                       color: `var(--emerald-700)`,
                       fontWeight: 600,
-                      fontFamily: `'DM Sans', sans-serif`,
+                      fontFamily: `var(--font-ui)`,
                       flex: 1,
                     }}
                   >
                     {"📍 "}
                     {n}
                   </span>
-                  <button
+                  <button className="nk-btn nk-btn-soft"
                     onClick={() => r(`All`)}
                     style={{
                       background: `none`,
@@ -688,7 +648,7 @@ Encrypted`,
                       textAlign: `center`,
                       padding: `60px 24px`,
                       color: `var(--emerald-500)`,
-                      fontFamily: `'DM Sans', sans-serif`,
+                      fontFamily: `var(--font-ui)`,
                       fontSize: 15,
                     }}
                   >
@@ -700,25 +660,25 @@ Encrypted`,
                       textAlign: `center`,
                       padding: `60px 24px`,
                       color: `var(--danger)`,
-                      fontFamily: `'DM Sans', sans-serif`,
+                      fontFamily: `var(--font-ui)`,
                       fontSize: 15,
                     }}
                   >
                     {h}
                   </div>
                 ) : b.length > 0 ? (
-                  <div className="member-grid">
+                  <Reveal stagger className="member-grid">
                     {b.map((e) => (
                       <OnlineNowPanel key={e.id} member={e} />
                     ))}
-                  </div>
+                  </Reveal>
                 ) : (
                   <div
                     style={{
                       textAlign: `center`,
                       padding: `60px 24px`,
                       color: `var(--emerald-500)`,
-                      fontFamily: `'DM Sans', sans-serif`,
+                      fontFamily: `var(--font-ui)`,
                       fontSize: 15,
                     }}
                   >
@@ -730,7 +690,7 @@ Encrypted`,
                 )}
               </div>
               <div style={{ textAlign: `center`, marginTop: 28 }}>
-                <button
+                <button className="nk-btn nk-btn-ghost"
                   onClick={() => u(`/explore`)}
                   style={{
                     background: `transparent`,
@@ -738,7 +698,7 @@ Encrypted`,
                     color: `var(--emerald-700)`,
                     padding: `12px 42px`,
                     borderRadius: 28,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 15,
                     fontWeight: 700,
                     cursor: `pointer`,
@@ -761,7 +721,7 @@ Encrypted`,
               </div>
             </div>
           </div>
-        </section>
+        </Reveal>
         <section
           ref={c}
           className="cta-section"
@@ -922,7 +882,7 @@ Encrypted`,
               />
               <span
                 style={{
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 12.5,
                   fontWeight: 700,
                   color: `var(--emerald-500)`,
@@ -937,7 +897,7 @@ Encrypted`,
             <h2
               className={`cta-headline ${l ? `cta-visible-2` : `cta-hidden`}`}
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: `clamp(36px, 6vw, 72px)`,
                 fontWeight: 700,
                 color: `#fff`,
@@ -952,7 +912,7 @@ Encrypted`,
             <h2
               className={l ? `cta-visible-3` : `cta-hidden`}
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: `clamp(36px, 6vw, 72px)`,
                 fontWeight: 700,
                 letterSpacing: `-0.03em`,
@@ -976,7 +936,7 @@ Encrypted`,
             <p
               className={`cta-subtext ${l ? `cta-visible-4` : `cta-hidden`}`}
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: `clamp(14px, 2vw, 17px)`,
                 color: `rgba(255,255,255,0.5)`,
                 lineHeight: 1.75,
@@ -999,14 +959,14 @@ Encrypted`,
                 width: `100%`,
               }}
             >
-              <button
+              <button className="nk-btn nk-btn-primary"
                 onClick={() => u(`/signup`)}
                 style={{
                   background: `linear-gradient(135deg, var(--emerald-700) 0%, var(--emerald-500) 100%)`,
                   border: `none`,
                   borderRadius: 16,
                   padding: `17px 42px`,
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 16,
                   fontWeight: 800,
                   color: `#fff`,
@@ -1015,25 +975,17 @@ Encrypted`,
                   boxShadow: `0 8px 32px color-mix(in srgb, var(--emerald-500) 50%, transparent)`,
                   transition: `all 0.22s`,
                 }}
-                onMouseEnter={(e) => {
-                  ((e.currentTarget.style.transform = `translateY(-3px) scale(1.02)`),
-                    (e.currentTarget.style.boxShadow = `0 16px 48px color-mix(in srgb, var(--emerald-500) 60%, transparent)`));
-                }}
-                onMouseLeave={(e) => {
-                  ((e.currentTarget.style.transform = `none`),
-                    (e.currentTarget.style.boxShadow = `0 8px 32px color-mix(in srgb, var(--emerald-500) 50%, transparent)`));
-                }}
               >
                 Sign Up Free
               </button>
-              <button
+              <button className="nk-btn nk-btn-ghost"
                 onClick={() => u(`/explore`)}
                 style={{
                   background: `transparent`,
                   border: `2px solid rgba(255,255,255,0.18)`,
                   borderRadius: 16,
                   padding: `17px 42px`,
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 16,
                   fontWeight: 700,
                   color: `rgba(255,255,255,0.75)`,
@@ -1079,9 +1031,9 @@ Encrypted`,
                 }}
               >
                 {[
-                  { number: `100%`, label: `Free to Browse` },
-                  { number: `40+`, label: `Countries` },
-                  { number: `0`, label: `Judgment` },
+                  { to: 100, suffix: `%`, label: `Free to Browse` },
+                  { to: 40, suffix: `+`, label: `Countries` },
+                  { to: 0, suffix: ``, label: `Judgment` },
                 ].map((e, t) => (
                   <div
                     key={t}
@@ -1097,7 +1049,7 @@ Encrypted`,
                     <div
                       className="cta-stat-number"
                       style={{
-                        fontFamily: `'Playfair Display', serif`,
+                        fontFamily: `var(--font-display)`,
                         fontSize: 28,
                         fontWeight: 700,
                         color: `var(--emerald-500)`,
@@ -1105,11 +1057,11 @@ Encrypted`,
                         marginBottom: 4,
                       }}
                     >
-                      {e.number}
+                      <CountUp to={e.to} suffix={e.suffix} />
                     </div>
                     <div
                       style={{
-                        fontFamily: `'DM Sans', sans-serif`,
+                        fontFamily: `var(--font-ui)`,
                         fontSize: 11,
                         fontWeight: 600,
                         color: `rgba(255,255,255,0.35)`,
@@ -1145,7 +1097,7 @@ Encrypted`,
                 color: `var(--mint)`,
                 fontSize: 13,
                 letterSpacing: `0.18em`,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontWeight: 600,
                 textTransform: `uppercase`,
                 textAlign: `center`,
@@ -1166,7 +1118,7 @@ Encrypted`,
         >
           <div
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontWeight: 700,
               fontSize: 22,
               color: `#fff`,
@@ -1182,7 +1134,7 @@ Encrypted`,
               margin: `0 0 14px`,
               fontSize: 13,
               opacity: 0.5,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
             }}
           >
             © 2026 Nikha2 — The Second Chance. All rights reserved.
@@ -1205,7 +1157,7 @@ Encrypted`,
                   color: `var(--emerald-500)`,
                   opacity: 0.6,
                   textDecoration: `none`,
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   transition: `opacity 0.2s`,
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = `1`)}

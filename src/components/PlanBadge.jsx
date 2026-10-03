@@ -22,7 +22,7 @@ function PlanBadge({ plan: e, size: t = `sm` }) {
         display: `inline-flex`,
         alignItems: `center`,
         gap: 3,
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         fontSize: t === `sm` ? 10.5 : 12,
         fontWeight: 700,
         color: n.color,

@@ -62,10 +62,10 @@ function ProfileModal({ personId: e, onClose: t }) {
             overflowY: `auto`,
             position: `relative`,
             boxShadow: `0 28px 72px color-mix(in srgb, var(--shadow) 32%, transparent)`,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
           }}
         >
-          <button
+          <button className="nk-btn"
             onClick={t}
             aria-label="Close"
             style={{
@@ -146,7 +146,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                 >
                   <span
                     style={{
-                      fontFamily: `'Playfair Display', serif`,
+                      fontFamily: `var(--font-display)`,
                       fontWeight: 700,
                       fontSize: 20,
                       color: `var(--fg)`,
@@ -423,7 +423,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                     </>
                   )}
                 </div>
-                <button
+                <button className="nk-btn nk-btn-primary"
                   onClick={async () => {
                     if (!n) {
                       (t(), r(`/login`, { state: { from: `/explore` } }));

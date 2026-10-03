@@ -32,10 +32,10 @@ function UpgradeModal({
           position: `relative`,
           textAlign: `center`,
           boxShadow: `0 24px 64px color-mix(in srgb, var(--shadow) 28%, transparent)`,
-          fontFamily: `'DM Sans', sans-serif`,
+          fontFamily: `var(--font-ui)`,
         }}
       >
-        <button
+        <button className="nk-btn"
           onClick={n}
           aria-label="Close"
           style={{
@@ -58,7 +58,7 @@ function UpgradeModal({
         <div style={{ fontSize: 42, marginBottom: 12 }}>👑</div>
         <h3
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 20,
             fontWeight: 700,
             color: `var(--fg)`,
@@ -78,7 +78,7 @@ function UpgradeModal({
           {t}
         </p>
         <div style={{ display: `flex`, flexDirection: `column`, gap: 10 }}>
-          <Link
+          <Link className="nk-btn nk-btn-primary"
             to="/how-it-works?tab=membership"
             onClick={n}
             style={{
@@ -96,7 +96,7 @@ function UpgradeModal({
           >
             👑 View Plans & Upgrade
           </Link>
-          <button
+          <button className="nk-btn"
             onClick={n}
             style={{
               padding: `11px 0`,

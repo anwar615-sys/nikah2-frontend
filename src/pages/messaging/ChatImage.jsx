@@ -14,7 +14,7 @@ function ChatImage({ imageUrl: e, sender: t }) {
       />
       {n && (
         <div className="lightbox" onClick={() => r(!1)}>
-          <button className="lightbox-close" onClick={() => r(!1)}>
+          <button className="nk-btn lightbox-close" onClick={() => r(!1)}>
             ✕
           </button>
           <img

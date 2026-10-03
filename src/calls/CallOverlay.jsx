@@ -116,7 +116,7 @@ function CallAvatar({ name: e, size: t = 96 }) {
         display: `flex`,
         alignItems: `center`,
         justifyContent: `center`,
-        fontFamily: `'Playfair Display', serif`,
+        fontFamily: `var(--font-display)`,
         fontSize: t * 0.4,
         fontWeight: 700,
         boxShadow: `0 8px 28px rgba(27,58,75,0.3)`,
@@ -136,7 +136,7 @@ var Qo = {
   display: `flex`,
   flexDirection: `column`,
   alignItems: `stretch`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   color: `#fff`,
   overflowY: `auto`,
   boxSizing: `border-box`,
@@ -266,7 +266,7 @@ function CallScreen({
           <CallAvatar name={e.groupName} />
           <div
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 24,
               fontWeight: 700,
               textShadow: `0 2px 8px rgba(0,0,0,0.4)`,
@@ -314,7 +314,7 @@ function CallScreen({
       >
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 20,
             fontWeight: 700,
             textShadow: `0 2px 8px rgba(0,0,0,0.4)`,
@@ -427,7 +427,7 @@ function CallNotice({ notice: e, onDismiss: t }) {
         </div>
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 26,
             fontWeight: 700,
             textShadow: `0 2px 8px rgba(0,0,0,0.4)`,
@@ -519,7 +519,7 @@ function CallOverlay() {
             color: `#C0392B`,
             padding: `12px 20px`,
             borderRadius: 16,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             fontSize: 13,
             fontWeight: 600,
             boxShadow: `0 8px 24px rgba(27,58,75,0.15)`,
@@ -606,7 +606,7 @@ function CallOverlay() {
         {!(A && e === `connected`) && <CallAvatar name={t.peerName} />}
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 24,
             fontWeight: 700,
             textShadow: `0 2px 8px rgba(0,0,0,0.4)`,

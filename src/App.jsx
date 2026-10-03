@@ -11,6 +11,8 @@ import {
 } from "./components/RouteGuards";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { MotionProvider } from "./context/MotionContext";
+import { PageFade } from "./components/motion/PageFade";
 import { AccountPage } from "./pages/AccountPage";
 import { CompleteProfilePage } from "./pages/CompleteProfilePage";
 import { ExplorePage } from "./pages/ExplorePage";
@@ -27,10 +29,12 @@ import { MessagingPage } from "./pages/messaging/MessagingPage";
 function App() {
   return (
     <ThemeProvider>
+    <MotionProvider>
     <AuthProvider>
       <CallProvider>
         <ScrollToTop />
         <ProfileCompletionGate />
+        <PageFade>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
@@ -78,9 +82,11 @@ function App() {
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        </PageFade>
         <CallOverlay />
       </CallProvider>
     </AuthProvider>
+    </MotionProvider>
     </ThemeProvider>
   );
 }

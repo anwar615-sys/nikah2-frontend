@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import { Aurora, BlurText, Reveal, SpotlightCard } from "../components/motion";
 
 var mn = [
   {
@@ -55,7 +56,7 @@ function WayDifferentSection() {
     >
       <style>
         {
-          "\n        .zebra-container {\n          border-radius: 20px;\n          overflow: hidden;\n          border: 1px solid var(--line);\n          box-shadow: 0 8px 32px color-mix(in srgb, var(--emerald-700) 8%, transparent);\n          width: 100%;\n        }\n        .zebra-row {\n          display: flex;\n          align-items: center;\n          gap: 24px;\n          padding: 22px 36px;\n          transition: background 0.25s ease;\n          cursor: default;\n        }\n        .zebra-row:not(:last-child) { border-bottom: 1px solid var(--line); }\n        .zebra-icon {\n          width: 44px; height: 44px; border-radius: 12px;\n          display: flex; align-items: center; justify-content: center;\n          font-size: 20px; flex-shrink: 0;\n          transition: all 0.25s ease;\n        }\n        .zebra-title { width: 180px; flex-shrink: 0; }\n        .zebra-divider {\n          width: 1.5px; align-self: stretch;\n          flex-shrink: 0; transition: background 0.25s ease;\n        }\n        .zebra-desc {\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px; color: var(--muted);\n          line-height: 1.65; margin: 0; flex: 1;\n        }\n\n        @media (max-width: 900px) {\n          .zebra-section { padding: 32px 24px !important; }\n          .zebra-row { padding: 18px 24px !important; gap: 16px !important; }\n          .zebra-title { width: 140px !important; }\n        }\n\n        @media (max-width: 600px) {\n          .zebra-section { padding: 24px 16px !important; min-height: unset !important; }\n          .zebra-container { border-radius: 14px !important; }\n          .zebra-row {\n            flex-direction: column !important;\n            align-items: flex-start !important;\n            padding: 18px 16px !important;\n            gap: 10px !important;\n          }\n          .zebra-top-row {\n            display: flex !important;\n            align-items: center !important;\n            gap: 12px !important;\n            width: 100% !important;\n          }\n          .zebra-divider { display: none !important; }\n          .zebra-title { width: auto !important; flex: 1 !important; }\n          .zebra-icon { width: 38px !important; height: 38px !important; font-size: 18px !important; }\n          .zebra-desc { font-size: 12.5px !important; width: 100% !important; }\n        }\n      "
+          "\n        .zebra-container {\n          border-radius: 20px;\n          overflow: hidden;\n          border: 1px solid var(--line);\n          box-shadow: 0 8px 32px color-mix(in srgb, var(--emerald-700) 8%, transparent);\n          width: 100%;\n        }\n        .zebra-row {\n          display: flex;\n          align-items: center;\n          gap: 24px;\n          padding: 22px 36px;\n          transition: background 0.25s ease;\n          cursor: default;\n        }\n        .zebra-row:not(:last-child) { border-bottom: 1px solid var(--line); }\n        .zebra-icon {\n          width: 44px; height: 44px; border-radius: 12px;\n          display: flex; align-items: center; justify-content: center;\n          font-size: 20px; flex-shrink: 0;\n          transition: all 0.25s ease;\n        }\n        .zebra-title { width: 180px; flex-shrink: 0; }\n        .zebra-divider {\n          width: 1.5px; align-self: stretch;\n          flex-shrink: 0; transition: background 0.25s ease;\n        }\n        .zebra-desc {\n          font-family: var(--font-ui);\n          font-size: 13px; color: var(--muted);\n          line-height: 1.65; margin: 0; flex: 1;\n        }\n\n        @media (max-width: 900px) {\n          .zebra-section { padding: 32px 24px !important; }\n          .zebra-row { padding: 18px 24px !important; gap: 16px !important; }\n          .zebra-title { width: 140px !important; }\n        }\n\n        @media (max-width: 600px) {\n          .zebra-section { padding: 24px 16px !important; min-height: unset !important; }\n          .zebra-container { border-radius: 14px !important; }\n          .zebra-row {\n            flex-direction: column !important;\n            align-items: flex-start !important;\n            padding: 18px 16px !important;\n            gap: 10px !important;\n          }\n          .zebra-top-row {\n            display: flex !important;\n            align-items: center !important;\n            gap: 12px !important;\n            width: 100% !important;\n          }\n          .zebra-divider { display: none !important; }\n          .zebra-title { width: auto !important; flex: 1 !important; }\n          .zebra-icon { width: 38px !important; height: 38px !important; font-size: 18px !important; }\n          .zebra-desc { font-size: 12.5px !important; width: 100% !important; }\n        }\n      "
         }
       </style>
       <div
@@ -65,7 +66,7 @@ function WayDifferentSection() {
         <div style={{ textAlign: `center`, marginBottom: 32 }}>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 11,
               color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
@@ -78,7 +79,7 @@ function WayDifferentSection() {
           </p>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(20px, 2.5vw, 30px)`,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -86,10 +87,10 @@ function WayDifferentSection() {
             }}
           >
             {"What Makes Us "}
-            <span className="green-text">Different</span>
+            <span className="nk-shiny">Different</span>
           </h2>
         </div>
-        <div className="zebra-container">
+        <Reveal stagger className="zebra-container">
           {mn.map((n, r) => (
             <div
               key={r}
@@ -123,7 +124,7 @@ function WayDifferentSection() {
                 <div className="zebra-title">
                   <span
                     style={{
-                      fontFamily: `'DM Sans', sans-serif`,
+                      fontFamily: `var(--font-ui)`,
                       fontSize: 9,
                       fontWeight: 700,
                       color: e === r ? n.accent : `var(--emerald-500)`,
@@ -138,7 +139,7 @@ function WayDifferentSection() {
                   </span>
                   <h4
                     style={{
-                      fontFamily: `'Playfair Display', serif`,
+                      fontFamily: `var(--font-display)`,
                       fontSize: `clamp(13px, 1.3vw, 16px)`,
                       fontWeight: 700,
                       color: `var(--fg)`,
@@ -159,7 +160,7 @@ function WayDifferentSection() {
               <p className="zebra-desc">{n.desc}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -170,7 +171,7 @@ function FeaturesPage() {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 68,
@@ -179,7 +180,7 @@ function FeaturesPage() {
       <Navbar />
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .hero-btn-outline {\n          background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--emerald-700);\n          border: 2px solid var(--emerald-500); padding: 13px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: var(--surface); transform: translateY(-2px); box-shadow: 0 6px 20px color-mix(in srgb, var(--emerald-700) 20%, transparent); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n      "
+          "\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: var(--font-ui);\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .hero-btn-outline {\n          background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--emerald-700);\n          border: 2px solid var(--emerald-500); padding: 13px 32px;\n          border-radius: 32px; font-family: var(--font-ui);\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: var(--surface); transform: translateY(-2px); box-shadow: 0 6px 20px color-mix(in srgb, var(--emerald-700) 20%, transparent); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n      "
         }
       </style>
       <section
@@ -190,35 +191,7 @@ function FeaturesPage() {
           overflow: `hidden`,
         }}
       >
-        <div
-          style={{
-            position: `absolute`,
-            top: 40,
-            left: `8%`,
-            width: 280,
-            height: 280,
-            borderRadius: `50%`,
-            background: `color-mix(in srgb, var(--mint) 35%, transparent)`,
-            filter: `blur(60px)`,
-            animation: `float 6s ease-in-out infinite`,
-            pointerEvents: `none`,
-          }}
-        />
-        <div
-          style={{
-            position: `absolute`,
-            bottom: 20,
-            right: `6%`,
-            width: 320,
-            height: 320,
-            borderRadius: `50%`,
-            background: `color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
-            filter: `blur(70px)`,
-            animation: `float 6s ease-in-out infinite`,
-            animationDelay: `1s`,
-            pointerEvents: `none`,
-          }}
-        />
+        <Aurora intensity={0.5} />
         <div
           style={{
             position: `relative`,
@@ -229,7 +202,7 @@ function FeaturesPage() {
         >
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 12,
               color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
@@ -242,7 +215,7 @@ function FeaturesPage() {
           </p>
           <h1
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(28px, 5vw, 54px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
@@ -251,12 +224,13 @@ function FeaturesPage() {
               marginBottom: 20,
             }}
           >
-            Built for <span className="green-text">Meaningful</span>
-            {" Connections"}
+            <BlurText text="Built for " />
+            <BlurText text="Meaningful" wordClassName="nk-shiny" startIndex={2} />
+            <BlurText text=" Connections" startIndex={3} />
           </h1>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 16,
               color: `var(--muted)`,
               lineHeight: 1.7,
@@ -276,10 +250,10 @@ function FeaturesPage() {
               flexWrap: `wrap`,
             }}
           >
-            <button className="hero-btn-primary" onClick={() => e(`/explore`)}>
+            <button className="nk-btn nk-btn-primary hero-btn-primary" onClick={() => e(`/explore`)}>
               🔍 Explore People Online
             </button>
-            <button className="hero-btn-outline" onClick={() => e(`/signup`)}>
+            <button className="nk-btn hero-btn-outline" onClick={() => e(`/signup`)}>
               Log In / Sign Up
             </button>
           </div>
@@ -295,7 +269,7 @@ function FeaturesPage() {
       >
         <p
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: `clamp(15px, 2vw, 19px)`,
             color: `var(--muted)`,
             fontStyle: `italic`,
@@ -333,7 +307,7 @@ function FeaturesPage() {
           </div>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(22px, 3.5vw, 38px)`,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -342,11 +316,11 @@ function FeaturesPage() {
             }}
           >
             Every Feature, Designed for{" "}
-            <span className="green-text">Your Journey</span>
+            <span className="nk-shiny">Your Journey</span>
           </h2>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 15,
               color: `var(--muted)`,
               lineHeight: 1.75,
@@ -357,7 +331,8 @@ function FeaturesPage() {
             Whether you're just starting out or ready to take the next step —
             our tools adapt to where you are, not the other way around.
           </p>
-          <div
+          <Reveal
+            stagger
             style={{
               display: `grid`,
               gridTemplateColumns: `repeat(auto-fit, minmax(200px, 1fr))`,
@@ -383,7 +358,7 @@ function FeaturesPage() {
                 sub: `Built on shared values, not swipes.`,
               },
             ].map((e) => (
-              <div
+              <SpotlightCard
                 key={e.label}
                 style={{
                   background: `linear-gradient(160deg, var(--surface-2), var(--surface-2))`,
@@ -396,7 +371,7 @@ function FeaturesPage() {
                 <div style={{ fontSize: 32, marginBottom: 12 }}>{e.icon}</div>
                 <div
                   style={{
-                    fontFamily: `'Playfair Display', serif`,
+                    fontFamily: `var(--font-display)`,
                     fontSize: 15,
                     fontWeight: 700,
                     color: `var(--fg)`,
@@ -407,7 +382,7 @@ function FeaturesPage() {
                 </div>
                 <div
                   style={{
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                     color: `var(--muted)`,
                     lineHeight: 1.6,
@@ -415,9 +390,9 @@ function FeaturesPage() {
                 >
                   {e.sub}
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
       <section
@@ -441,7 +416,7 @@ function FeaturesPage() {
           </div>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(26px, 4vw, 42px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
@@ -449,11 +424,11 @@ function FeaturesPage() {
               color: `var(--fg)`,
             }}
           >
-            Ready to Find <span className="green-text">Your Person?</span>
+            Ready to Find <span className="nk-shiny">Your Person?</span>
           </h2>
           <p
             style={{
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 16,
               color: `var(--muted)`,
               marginBottom: 40,
@@ -497,7 +472,7 @@ function FeaturesPage() {
               />
               <span
                 style={{
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                   fontSize: 13,
                   fontWeight: 700,
                   color: `var(--emerald-700)`,
@@ -516,12 +491,12 @@ function FeaturesPage() {
             }}
           >
             <button
-              className="hero-btn-primary"
+              className="nk-btn nk-btn-primary hero-btn-primary"
               onClick={() => e(`/how-it-works`)}
             >
               Get Started →
             </button>
-            <button className="hero-btn-outline" onClick={() => e(`/explore`)}>
+            <button className="nk-btn hero-btn-outline" onClick={() => e(`/explore`)}>
               🔍 Browse Members
             </button>
           </div>
@@ -542,7 +517,7 @@ function FeaturesPage() {
             color: `var(--mint)`,
             fontSize: 13,
             letterSpacing: `0.18em`,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             fontWeight: 600,
             textTransform: `uppercase`,
           }}
@@ -561,7 +536,7 @@ function FeaturesPage() {
       >
         <div
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontWeight: 700,
             fontSize: 22,
             color: `#fff`,
@@ -577,7 +552,7 @@ function FeaturesPage() {
             margin: `0 0 14px`,
             fontSize: 13,
             opacity: 0.5,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
           }}
         >
           © 2026 Nikha2 — The Second Chance. All rights reserved.
@@ -592,7 +567,7 @@ function FeaturesPage() {
                 color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 transition: `opacity 0.2s`,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = `1`)}
@@ -607,9 +582,11 @@ function FeaturesPage() {
   );
 }
 
-function FeatureCard({ icon: e, title: t, desc: n }) {
+function FeatureCard({ icon: e, title: t, desc: n, ref, className = ``, style }) {
   return (
-    <div
+    <SpotlightCard
+      ref={ref}
+      className={className}
       style={{
         background: `color-mix(in srgb, var(--surface) 65%, transparent)`,
         border: `1px solid var(--line)`,
@@ -617,26 +594,14 @@ function FeatureCard({ icon: e, title: t, desc: n }) {
         padding: `28px 20px`,
         textAlign: `center`,
         backdropFilter: `blur(10px)`,
-        transition: `all 0.3s ease`,
         cursor: `default`,
-      }}
-      onMouseEnter={(e) => {
-        ((e.currentTarget.style.background = `color-mix(in srgb, var(--surface) 95%, transparent)`),
-          (e.currentTarget.style.borderColor = `var(--emerald-500)`),
-          (e.currentTarget.style.transform = `translateY(-4px)`),
-          (e.currentTarget.style.boxShadow = `0 12px 36px color-mix(in srgb, var(--emerald-700) 12%, transparent)`));
-      }}
-      onMouseLeave={(e) => {
-        ((e.currentTarget.style.background = `color-mix(in srgb, var(--surface) 65%, transparent)`),
-          (e.currentTarget.style.borderColor = `var(--line)`),
-          (e.currentTarget.style.transform = `none`),
-          (e.currentTarget.style.boxShadow = `none`));
+        ...style,
       }}
     >
       <div style={{ fontSize: 36, marginBottom: 12 }}>{e}</div>
       <div
         style={{
-          fontFamily: `'Playfair Display', serif`,
+          fontFamily: `var(--font-display)`,
           fontSize: 14,
           fontWeight: 700,
           color: `var(--fg)`,
@@ -647,15 +612,15 @@ function FeatureCard({ icon: e, title: t, desc: n }) {
       </div>
       <div
         style={{
-          fontFamily: `'DM Sans', sans-serif`,
+          fontFamily: `var(--font-ui)`,
           fontSize: 12,
-          color: `var(--emerald-500)`,
+          color: `var(--emerald-700)`,
           lineHeight: 1.55,
         }}
       >
         {n}
       </div>
-    </div>
+    </SpotlightCard>
   );
 }
 

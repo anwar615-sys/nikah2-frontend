@@ -87,7 +87,7 @@ function GroupSettingsModal({
       >
         <h2
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 20,
             fontWeight: 700,
             color: `var(--fg)`,
@@ -95,7 +95,7 @@ function GroupSettingsModal({
         >
           Group Settings
         </h2>
-        <button onClick={n} className="modal-x">
+        <button onClick={n} className="nk-btn modal-x">
           ✕
         </button>
       </div>
@@ -126,7 +126,7 @@ function GroupSettingsModal({
         {y && (
           <button
             onClick={b}
-            className="img-send"
+            className="nk-btn img-send"
             style={{ padding: `0 18px` }}
           >
             Save
@@ -161,7 +161,7 @@ function GroupSettingsModal({
               justifyContent: `space-between`,
               padding: `10px 12px`,
               borderBottom: `1px solid var(--line)`,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 13,
             }}
           >
@@ -180,7 +180,7 @@ function GroupSettingsModal({
               )}
             </span>
             {(y && e.id !== t) || e.id === t ? (
-              <button
+              <button className="nk-btn nk-btn-soft"
                 onClick={() => S(e.id)}
                 style={{
                   border: `none`,
@@ -231,7 +231,7 @@ function GroupSettingsModal({
               }}
             >
               {p.map((e) => (
-                <button
+                <button className="nk-btn"
                   key={e.id}
                   onClick={() => x(e.id)}
                   style={{
@@ -242,7 +242,7 @@ function GroupSettingsModal({
                     background: `var(--surface)`,
                     borderBottom: `1px solid var(--line)`,
                     cursor: `pointer`,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 13,
                     color: `var(--fg)`,
                   }}
@@ -253,7 +253,7 @@ function GroupSettingsModal({
               ))}
             </div>
           )}
-          <button
+          <button className="nk-btn"
             onClick={() => {
               o(
                 `Delete this group for everyone? This can't be undone.`,

@@ -82,7 +82,7 @@ function SupportChatWidget() {
                   color: `#fff`,
                   fontWeight: 700,
                   fontSize: 14,
-                  fontFamily: `'DM Sans', sans-serif`,
+                  fontFamily: `var(--font-ui)`,
                 }}
               >
                 Nikha2 Support
@@ -109,14 +109,14 @@ function SupportChatWidget() {
                   style={{
                     color: `rgba(255,255,255,0.8)`,
                     fontSize: 11.5,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                   }}
                 >
                   Online now
                 </span>
               </div>
             </div>
-            <button
+            <button className="nk-btn"
               onClick={() => t(!1)}
               style={{
                 marginLeft: `auto`,
@@ -189,7 +189,7 @@ function SupportChatWidget() {
                         ? `20px 20px 6px 20px`
                         : `20px 20px 20px 6px`,
                     fontSize: 13,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     lineHeight: 1.55,
                     boxShadow:
                       e.from === `user`
@@ -271,7 +271,7 @@ function SupportChatWidget() {
                 borderRadius: 20,
                 padding: `9px 14px`,
                 fontSize: 13,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 outline: `none`,
                 background: `var(--bg)`,
                 color: `var(--fg)`,
@@ -281,7 +281,7 @@ function SupportChatWidget() {
               onFocus={(e) => (e.target.style.borderColor = `var(--emerald-500)`)}
               onBlur={(e) => (e.target.style.borderColor = `var(--mint)`)}
             />
-            <button
+            <button className="nk-btn nk-btn-primary"
               onClick={d}
               style={{
                 background: `linear-gradient(135deg, var(--deep), var(--emerald-700))`,
@@ -304,7 +304,7 @@ function SupportChatWidget() {
           </div>
         </div>
       )}
-      <button
+      <button className="nk-btn nk-btn-primary"
         onClick={() => t((e) => !e)}
         style={{
           width: 60,
@@ -321,8 +321,6 @@ function SupportChatWidget() {
           transition: `transform 0.2s`,
           position: `relative`,
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = `scale(1.08)`)}
-        onMouseLeave={(e) => (e.currentTarget.style.transform = `scale(1)`)}
       >
         <span>{e ? `✕` : `💬`}</span>
         {!e && o > 0 && (
@@ -359,7 +357,7 @@ function SupportChatWidget() {
             padding: `6px 13px`,
             borderRadius: 20,
             fontSize: 12,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             whiteSpace: `nowrap`,
             boxShadow: `0 4px 14px rgba(0,0,0,0.2)`,
             pointerEvents: `none`,

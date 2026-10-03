@@ -27,6 +27,8 @@
   --on-deep: #EAF7F0;       /* text on --deep */
   --shadow: #1B3A4B;        /* base for box shadows */
   --overlay: #0B2A1F;       /* base for modal backdrops */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-ui: 'Manrope', system-ui, sans-serif;
   color-scheme: light;
 }
 
@@ -91,7 +93,47 @@
 html, body {
   background: var(--bg);
   color: var(--fg);
+  font-family: var(--font-ui);
 }
+h1, h2, h3 { font-family: var(--font-display); }
 body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+/* ---- Buttons: one shared glow (spec 2.3). !important because the decompiled markup sets shadows inline. ---- */
+.nk-btn { transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, filter .25s ease; }
+.nk-btn:not(:disabled):hover, .nk-btn:not(:disabled):focus-visible {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 0 1px var(--emerald-500), 0 0 26px var(--glow), 0 0 60px color-mix(in srgb, var(--glow) 55%, transparent) !important;
+}
+.nk-btn:focus-visible { outline: 2px solid var(--emerald-500); outline-offset: 3px; }
+.nk-btn:not(:disabled):active { transform: translateY(0) scale(.98) !important; }
+
+/* The sweep stays inside the button's own rounded box, so nothing inside (badges, counters) is clipped */
+.nk-btn-primary { position: relative; isolation: isolate; }
+.nk-btn-primary::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+  background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,.42) 50%, transparent 62%) no-repeat;
+  background-size: 250% 100%; background-position: 130% 0; opacity: 0;
+}
+.nk-btn-primary:not(:disabled):hover::after, .nk-btn-primary:not(:disabled):focus-visible::after { animation: nk-sweep .7s ease forwards; }
+@keyframes nk-sweep { 0% { background-position: 130% 0; opacity: 1; } 100% { background-position: -30% 0; opacity: 1; } }
+
+.nk-btn-ghost:not(:disabled):hover, .nk-btn-ghost:not(:disabled):focus-visible {
+  box-shadow: inset 0 0 0 1.5px var(--emerald-500), 0 0 22px var(--glow), 0 0 48px color-mix(in srgb, var(--glow) 45%, transparent) !important;
+}
+
+/* icon buttons, fake inputs, switches and list rows: softer glow, no lift */
+.nk-btn-soft:not(:disabled):hover, .nk-btn-soft:not(:disabled):focus-visible {
+  transform: none !important;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--glow) 70%, transparent) !important;
+}
+.nk-btn-soft:not(:disabled):active { transform: none !important; }
+
+/* Reduced motion (unless the visitor turned motion on) and motion off: keep the glow, drop lift and sweep */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="on"]) .nk-btn:hover, :root:not([data-motion="on"]) .nk-btn:focus-visible, :root:not([data-motion="on"]) .nk-btn:active { transform: none !important; }
+  :root:not([data-motion="on"]) .nk-btn-primary::after { animation: none !important; }
+}
+:root[data-motion="off"] .nk-btn:hover, :root[data-motion="off"] .nk-btn:focus-visible, :root[data-motion="off"] .nk-btn:active { transform: none !important; }
+:root[data-motion="off"] .nk-btn-primary::after { animation: none !important; }

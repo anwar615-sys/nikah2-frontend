@@ -75,7 +75,7 @@ function ConversationListItem({
         {u ? (
           <button
             onClick={d}
-            className="hdr-btn"
+            className="nk-btn hdr-btn"
             style={{ background: `var(--danger)` }}
             title="End call"
           >
@@ -88,7 +88,7 @@ function ConversationListItem({
             <>
               <button
                 onClick={() => s(`voice`)}
-                className="hdr-btn gold"
+                className="nk-btn hdr-btn gold"
                 title="Voice Call"
               >
                 <svg
@@ -102,7 +102,7 @@ function ConversationListItem({
               </button>
               <button
                 onClick={() => s(`video`)}
-                className="hdr-btn gold"
+                className="nk-btn hdr-btn gold"
                 title="Video Call"
               >
                 <svg
@@ -117,7 +117,7 @@ function ConversationListItem({
             </>
           )
         )}
-        <button onClick={c} className="hdr-btn subtle" title="Settings">
+        <button onClick={c} className="nk-btn hdr-btn subtle" title="Settings">
           <svg
             viewBox="0 0 24 24"
             fill="none"

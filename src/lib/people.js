@@ -42,7 +42,7 @@ var menuItemStyle = {
   fontSize: 13,
   color: `var(--fg)`,
   borderBottom: `1px solid var(--line)`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
 };
 
 var COUNTRIES_ISO_URL = `https://countriesnow.space/api/v0.1/countries/iso`;

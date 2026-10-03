@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { TERMS_SECTIONS } from "../lib/legal";
+import { BlurText, Reveal } from "../components/motion";
 
 const PRIVACY_SECTION = TERMS_SECTIONS.find(([title]) => /Privacy/.test(title));
 
@@ -30,7 +31,7 @@ function LegalPage({ page }) {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
         display: `flex`,
@@ -39,7 +40,7 @@ function LegalPage({ page }) {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
+          "\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
         }
       </style>
       <Navbar />
@@ -57,15 +58,15 @@ function LegalPage({ page }) {
         <div style={{ maxWidth: 720, margin: `0 auto` }}>
           <h1
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(28px, 4vw, 44px)`,
               fontWeight: 700,
               color: `var(--fg)`,
               marginBottom: 12,
             }}
           >
-            {p.title[0]}
-            <span className="green-text">{p.title[1]}</span>
+            <BlurText key={page} text={p.title[0]} />
+            <BlurText key={`${page}-2`} text={p.title[1]} wordClassName="nk-shiny" startIndex={p.title[0].trim().split(/\s+/).length} />
           </h1>
           <p style={{ fontSize: 15, color: `var(--muted)` }}>{p.intro}</p>
         </div>
@@ -85,10 +86,10 @@ function LegalPage({ page }) {
           }}
         >
           {p.sections.map(([title, body]) => (
-            <div key={title}>
+            <Reveal key={title} blur={false}>
               <h2
                 style={{
-                  fontFamily: `'Playfair Display', serif`,
+                  fontFamily: `var(--font-display)`,
                   fontSize: 18,
                   fontWeight: 700,
                   color: `var(--fg)`,
@@ -107,7 +108,7 @@ function LegalPage({ page }) {
               >
                 {body}
               </p>
-            </div>
+            </Reveal>
           ))}
           {p.pending && (
             <p
@@ -140,7 +141,7 @@ function NotFoundPage() {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
         display: `flex`,
@@ -149,7 +150,7 @@ function NotFoundPage() {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n      "
+          "\n      "
         }
       </style>
       <Navbar />
@@ -167,14 +168,14 @@ function NotFoundPage() {
           <div style={{ fontSize: 56, marginBottom: 8 }}>🌿</div>
           <h1
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: `clamp(28px, 5vw, 40px)`,
               fontWeight: 700,
               color: `var(--fg)`,
               margin: `0 0 10px`,
             }}
           >
-            Page not found
+            <BlurText text="Page not found" />
           </h1>
           <p style={{ fontSize: 15, color: `var(--muted)`, margin: `0 0 28px` }}>
             The page you're looking for doesn't exist or has moved.
@@ -187,7 +188,7 @@ function NotFoundPage() {
               flexWrap: `wrap`,
             }}
           >
-            <Link
+            <Link className="nk-btn nk-btn-primary"
               to="/"
               style={{
                 padding: `12px 26px`,
@@ -201,7 +202,7 @@ function NotFoundPage() {
             >
               Go Home
             </Link>
-            <Link
+            <Link className="nk-btn"
               to="/explore"
               style={{
                 padding: `11px 24px`,

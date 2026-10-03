@@ -32,7 +32,7 @@ function AdminLayout() {
         minHeight: `100vh`,
         display: `flex`,
         background: ADMIN_THEME.paleBg,
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
       }}
     >
       <style>{`
@@ -62,7 +62,7 @@ function AdminLayout() {
         <div
           style={{
             padding: `0 10px 24px`,
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontWeight: 700,
             fontSize: 19,
             color: `#fff`,
@@ -109,7 +109,7 @@ function AdminLayout() {
           <span style={{ fontSize: 13, color: ADMIN_THEME.textMuted }}>
             {e?.email}
           </span>
-          <button
+          <button className="nk-btn"
             onClick={r}
             style={{
               padding: `7px 16px`,
@@ -120,7 +120,7 @@ function AdminLayout() {
               fontSize: 12.5,
               fontWeight: 700,
               cursor: `pointer`,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
             }}
           >
             Log out

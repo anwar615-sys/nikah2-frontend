@@ -76,7 +76,7 @@ var lr = {
   background: `var(--bg)`,
   color: `var(--fg)`,
   fontSize: 13.5,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   outline: `none`,
 };
 
@@ -90,7 +90,7 @@ var dr = (e) => ({
     ? `var(--mint)`
     : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
   color: `#fff`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   fontSize: 13.5,
   fontWeight: 700,
   cursor: e ? `not-allowed` : `pointer`,
@@ -108,7 +108,7 @@ function AccountField({ label: e, children: t }) {
 
 function AccountPasswordToggle({ shown: e, onClick: t }) {
   return (
-    <button
+    <button className="nk-btn nk-btn-soft"
       type="button"
       onClick={t}
       tabIndex={-1}
@@ -363,7 +363,7 @@ function AccountPage() {
   return (
     <div
       style={{
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 96,
@@ -372,14 +372,14 @@ function AccountPage() {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .acct-input:focus, .acct-select:focus, .acct-textarea:focus { border-color: var(--emerald-500) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent); }\n      "
+          "\n        .acct-input:focus, .acct-select:focus, .acct-textarea:focus { border-color: var(--emerald-500) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent); }\n      "
         }
       </style>
       <Navbar />
       <div style={{ maxWidth: 640, margin: `0 auto`, padding: `0 24px` }}>
         <h1
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 30,
             fontWeight: 700,
             color: `var(--fg)`,
@@ -414,7 +414,7 @@ function AccountPage() {
                 display: `flex`,
                 alignItems: `center`,
                 justifyContent: `center`,
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: 34,
                 fontWeight: 700,
               }}
@@ -448,7 +448,7 @@ function AccountPage() {
                 </Link>
               )}
             </div>
-            <button
+            <button className="nk-btn nk-btn-ghost"
               type="button"
               onClick={() => i.current?.click()}
               disabled={s}
@@ -477,7 +477,7 @@ function AccountPage() {
         <form style={sr} onSubmit={A}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -512,14 +512,14 @@ function AccountPage() {
               placeholder="10-digit number"
             />
           </AccountField>
-          <button type="submit" disabled={O} style={dr(O)}>
+          <button className="nk-btn" type="submit" disabled={O} style={dr(O)}>
             {O ? `Saving…` : `Save`}
           </button>
         </form>
         <form style={sr} onSubmit={oe}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -542,7 +542,7 @@ function AccountPage() {
             label={null}
           />
           {!ae && (
-            <button
+            <button className="nk-btn"
               type="submit"
               disabled={j}
               style={{ ...dr(j), marginTop: 14 }}
@@ -554,7 +554,7 @@ function AccountPage() {
         <div style={sr}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -597,7 +597,7 @@ function AccountPage() {
                   display: `block`,
                 }}
               />
-              <button
+              <button className="nk-btn"
                 type="button"
                 onClick={S}
                 disabled={y || !g.length}
@@ -611,7 +611,7 @@ function AccountPage() {
         <form style={sr} onSubmit={Ce}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -701,7 +701,7 @@ function AccountPage() {
                 ...lr,
                 resize: `vertical`,
                 minHeight: 80,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
               }}
               value={ge}
               onChange={(e) => _e(e.target.value)}
@@ -726,7 +726,7 @@ function AccountPage() {
                 }}
                 placeholder="e.g. hiking, cooking, reading"
               />
-              <button
+              <button className="nk-btn"
                 type="button"
                 onClick={we}
                 style={{
@@ -757,7 +757,7 @@ function AccountPage() {
                     }}
                   >
                     {e}
-                    <button
+                    <button className="nk-btn nk-btn-soft"
                       type="button"
                       onClick={() => Te(e)}
                       style={{
@@ -776,14 +776,14 @@ function AccountPage() {
               </div>
             )}
           </AccountField>
-          <button type="submit" disabled={xe} style={dr(xe)}>
+          <button className="nk-btn" type="submit" disabled={xe} style={dr(xe)}>
             {xe ? `Saving…` : `Save`}
           </button>
         </form>
         <div style={sr}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -850,7 +850,7 @@ function AccountPage() {
         <form style={sr} onSubmit={We}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--fg)`,
@@ -907,7 +907,7 @@ function AccountPage() {
               <AccountPasswordToggle shown={Be} onClick={() => Ve((e) => !e)} />
             </div>
           </AccountField>
-          <button type="submit" disabled={He} style={dr(He)}>
+          <button className="nk-btn" type="submit" disabled={He} style={dr(He)}>
             {He
               ? `Saving…`
               : e?.hasPassword
@@ -918,7 +918,7 @@ function AccountPage() {
         <div style={{ ...sr, border: `1px solid color-mix(in srgb, var(--danger) 25%, transparent)` }}>
           <h2
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontSize: 18,
               fontWeight: 700,
               color: `var(--danger)`,
@@ -938,7 +938,7 @@ function AccountPage() {
             This permanently deletes your profile, matches, conversations, and
             photos. This action cannot be undone.
           </p>
-          <button
+          <button className="nk-btn nk-btn-ghost"
             type="button"
             onClick={Ge}
             disabled={d}
@@ -948,7 +948,7 @@ function AccountPage() {
               border: `1.5px solid var(--danger)`,
               background: `transparent`,
               color: `var(--danger)`,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
               fontSize: 13.5,
               fontWeight: 700,
               cursor: d ? `not-allowed` : `pointer`,

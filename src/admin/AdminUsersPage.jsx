@@ -224,7 +224,7 @@ function AdminUsersTable() {
             [`false`, `Offline`],
           ]}
         />
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           onClick={() => $a(`users.csv`, t, eo)}
         >
@@ -255,35 +255,35 @@ function AdminUsersTable() {
             {l.size}
             {" selected"}
           </span>
-          <button
+          <button className="nk-btn"
             disabled={h}
             style={adminSecondaryButton}
             onClick={() => S(`verify`)}
           >
             Verify
           </button>
-          <button
+          <button className="nk-btn"
             disabled={h}
             style={adminSecondaryButton}
             onClick={() => S(`reject_verification`)}
           >
             Reject verification
           </button>
-          <button
+          <button className="nk-btn"
             disabled={h}
             style={adminSecondaryButton}
             onClick={() => S(`block`)}
           >
             Block
           </button>
-          <button
+          <button className="nk-btn"
             disabled={h}
             style={adminSecondaryButton}
             onClick={() => S(`unblock`)}
           >
             Unblock
           </button>
-          <button
+          <button className="nk-btn"
             disabled={h}
             style={adminDangerButton}
             onClick={() => S(`delete`)}
@@ -400,7 +400,7 @@ function AdminUsersTable() {
                     {new Date(t.createdAt).toLocaleDateString()}
                   </td>
                   <td style={adminTdStyle}>
-                    <button
+                    <button className="nk-btn"
                       onClick={(e) => b(e, t.id, t.blockedGlobal)}
                       style={adminSecondaryButton}
                     >
@@ -421,7 +421,7 @@ function AdminUsersTable() {
           marginTop: 16,
         }}
       >
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           disabled={a <= 1}
           onClick={() => o((e) => e - 1)}
@@ -434,7 +434,7 @@ function AdminUsersTable() {
           {" of "}
           {C}
         </span>
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           disabled={a >= C}
           onClick={() => o((e) => e + 1)}
@@ -591,7 +591,7 @@ function AdminFlaggedUsers() {
                     {new Date(t.createdAt).toLocaleDateString()}
                   </td>
                   <td style={adminTdStyle}>
-                    <button
+                    <button className="nk-btn"
                       style={adminDangerButton}
                       onClick={() => c(t.id, t.name)}
                     >
@@ -620,7 +620,7 @@ function AdminUsersPage() {
           [`all`, `All Users`],
           [`flagged`, `Flagged Accounts`],
         ].map(([n, r]) => (
-          <button
+          <button className="nk-btn"
             key={n}
             onClick={() => t(n)}
             style={{
@@ -632,7 +632,7 @@ function AdminUsersPage() {
               fontSize: 12.5,
               fontWeight: 700,
               cursor: `pointer`,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
             }}
           >
             {r}

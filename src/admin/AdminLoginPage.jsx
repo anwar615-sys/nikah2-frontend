@@ -52,13 +52,14 @@ function AdminLoginPage() {
         alignItems: `center`,
         justifyContent: `center`,
         background: `linear-gradient(160deg, ${ADMIN_THEME.paleBg} 0%, ${ADMIN_THEME.paleBg2} 100%)`,
-        fontFamily: `'DM Sans', sans-serif`,
+        fontFamily: `var(--font-ui)`,
         padding: 20,
       }}
     >
       <ThemeToggle style={{ position: `fixed`, top: 16, right: 16, zIndex: 60 }} />
       <style>{ADMIN_FONT_IMPORT}</style>
       <div
+        className="nk-rise"
         style={{
           width: `100%`,
           maxWidth: 380,
@@ -72,7 +73,7 @@ function AdminLoginPage() {
         <div style={{ textAlign: `center`, marginBottom: 26 }}>
           <div
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontWeight: 700,
               fontSize: 24,
               color: ADMIN_THEME.navy,
@@ -116,7 +117,7 @@ function AdminLoginPage() {
             background: ADMIN_THEME.paleBg,
             color: ADMIN_THEME.navy,
             fontSize: 13.5,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             outline: `none`,
             boxSizing: `border-box`,
             marginBottom: 20,

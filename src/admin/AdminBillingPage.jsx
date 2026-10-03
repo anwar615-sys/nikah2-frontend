@@ -88,7 +88,7 @@ function AdminBillingPage() {
               </div>
               <div
                 style={{
-                  fontFamily: `'Playfair Display', serif`,
+                  fontFamily: `var(--font-display)`,
                   fontSize: 28,
                   fontWeight: 700,
                   color: ADMIN_THEME.navy,

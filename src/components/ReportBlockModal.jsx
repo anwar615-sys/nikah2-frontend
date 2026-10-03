@@ -38,7 +38,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
           maxWidth: 380,
           width: `100%`,
           padding: 24,
-          fontFamily: `'DM Sans', sans-serif`,
+          fontFamily: `var(--font-ui)`,
           boxShadow: `0 24px 64px color-mix(in srgb, var(--shadow) 25%, transparent)`,
         }}
       >
@@ -46,7 +46,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
           <>
             <h3
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: 18,
                 fontWeight: 700,
                 color: `var(--fg)`,
@@ -65,7 +65,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
             )}
             <div style={{ display: `flex`, flexDirection: `column`, gap: 10 }}>
               {e.type === `user` && (
-                <button
+                <button className="nk-btn nk-btn-ghost"
                   onClick={async () => {
                     if (e.type === `user`) {
                       (u(!0), f(``));
@@ -94,7 +94,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                   {l ? `…` : ``}
                 </button>
               )}
-              <button
+              <button className="nk-btn nk-btn-ghost"
                 onClick={() => i(`report`)}
                 style={{
                   padding: `11px 0`,
@@ -109,7 +109,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
               >
                 🚩 Report
               </button>
-              <button
+              <button className="nk-btn"
                 onClick={t}
                 style={{
                   padding: `11px 0`,
@@ -131,7 +131,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
           <>
             <h3
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: 18,
                 fontWeight: 700,
                 color: `var(--fg)`,
@@ -186,7 +186,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                 border: `1.5px solid var(--line)`,
                 padding: 10,
                 fontSize: 12.5,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 resize: `vertical`,
                 marginBottom: 12,
               }}
@@ -197,7 +197,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
               </p>
             )}
             <div style={{ display: `flex`, gap: 10 }}>
-              <button
+              <button className="nk-btn nk-btn-ghost"
                 onClick={() => i(`menu`)}
                 style={{
                   flex: 1,
@@ -213,7 +213,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
               >
                 Back
               </button>
-              <button
+              <button className="nk-btn nk-btn-primary"
                 onClick={async () => {
                   if (!a) {
                     f(`Please choose a reason.`);
@@ -257,7 +257,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
             <div style={{ fontSize: 36, marginBottom: 10 }}>✅</div>
             <h3
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: 17,
                 fontWeight: 700,
                 color: `var(--fg)`,
@@ -271,7 +271,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
             </p>
             <button
               onClick={t}
-              className="btn-primary"
+              className="nk-btn btn-primary"
               style={{ padding: `10px 0` }}
             >
               Close

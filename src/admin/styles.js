@@ -1,6 +1,6 @@
 import { ADMIN_THEME } from "./theme";
 
-var ADMIN_FONT_IMPORT = `@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap');`;
+var ADMIN_FONT_IMPORT = ``;
 
 var adminCardStyle = {
   background: `color-mix(in srgb, var(--surface) 90%, transparent)`,
@@ -11,7 +11,7 @@ var adminCardStyle = {
 };
 
 var adminTitleStyle = {
-  fontFamily: `'Playfair Display', serif`,
+  fontFamily: `var(--font-display)`,
   fontWeight: 700,
   color: ADMIN_THEME.navy,
   margin: 0,
@@ -25,7 +25,7 @@ var adminInputStyle = {
   background: ADMIN_THEME.paleBg,
   color: ADMIN_THEME.navy,
   fontSize: 13.5,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   outline: `none`,
   boxSizing: `border-box`,
 };
@@ -38,7 +38,7 @@ var adminPrimaryButton = (e) => ({
     ? `var(--mint)`
     : `linear-gradient(135deg, ${ADMIN_THEME.deep} 0%, ${ADMIN_THEME.green} 100%)`,
   color: `#fff`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   fontSize: 13,
   fontWeight: 700,
   cursor: e ? `not-allowed` : `pointer`,
@@ -51,7 +51,7 @@ var adminSecondaryButton = {
   border: `1.5px solid ${ADMIN_THEME.border}`,
   background: `var(--surface)`,
   color: ADMIN_THEME.green,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   fontSize: 13,
   fontWeight: 700,
   cursor: `pointer`,
@@ -63,7 +63,7 @@ var adminDangerButton = {
   border: `none`,
   background: ADMIN_THEME.danger,
   color: `#fff`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   fontSize: 13,
   fontWeight: 700,
   cursor: `pointer`,

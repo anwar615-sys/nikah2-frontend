@@ -165,14 +165,14 @@ function AdminVerificationsPage() {
               </div>
             )}
             <div style={{ display: `flex`, gap: 8 }}>
-              <button
+              <button className="nk-btn"
                 disabled={o === e.id}
                 style={adminPrimaryButton(o === e.id)}
                 onClick={() => l(e.id, `approve`)}
               >
                 Approve
               </button>
-              <button
+              <button className="nk-btn"
                 disabled={o === e.id}
                 style={adminDangerButton}
                 onClick={() => l(e.id, `reject`)}

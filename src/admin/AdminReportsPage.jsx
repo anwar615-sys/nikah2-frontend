@@ -93,7 +93,7 @@ function AdminReportContext({ reportId: e, onClose: t }) {
             >
               Reported Content
             </div>
-            <button onClick={t} style={adminSecondaryButton}>
+            <button className="nk-btn" onClick={t} style={adminSecondaryButton}>
               Close
             </button>
           </div>
@@ -267,7 +267,7 @@ function AdminReportsPage() {
             ))}
           </select>
         </div>
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           onClick={() => yo(`reports.csv`, e, bo)}
         >
@@ -349,14 +349,14 @@ function AdminReportsPage() {
                       flexWrap: `wrap`,
                     }}
                   >
-                    <button
+                    <button className="nk-btn"
                       style={adminSecondaryButton}
                       onClick={() => p(e.id)}
                     >
                       View content
                     </button>
                     {e.status !== `reviewed` && (
-                      <button
+                      <button className="nk-btn"
                         style={adminSecondaryButton}
                         onClick={() => h(e.id, `reviewed`)}
                       >
@@ -364,7 +364,7 @@ function AdminReportsPage() {
                       </button>
                     )}
                     {e.status !== `actioned` && (
-                      <button
+                      <button className="nk-btn"
                         style={adminSecondaryButton}
                         onClick={() => h(e.id, `actioned`)}
                       >
@@ -372,7 +372,7 @@ function AdminReportsPage() {
                       </button>
                     )}
                     {e.status !== `dismissed` && (
-                      <button
+                      <button className="nk-btn"
                         style={adminSecondaryButton}
                         onClick={() => h(e.id, `dismissed`)}
                       >
@@ -394,7 +394,7 @@ function AdminReportsPage() {
           marginTop: 16,
         }}
       >
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           disabled={i <= 1}
           onClick={() => a((e) => e - 1)}
@@ -407,7 +407,7 @@ function AdminReportsPage() {
           {" of "}
           {g}
         </span>
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           disabled={i >= g}
           onClick={() => a((e) => e + 1)}

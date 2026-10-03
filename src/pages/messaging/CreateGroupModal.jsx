@@ -42,7 +42,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
       >
         <h2
           style={{
-            fontFamily: `'Playfair Display', serif`,
+            fontFamily: `var(--font-display)`,
             fontSize: 20,
             fontWeight: 700,
             color: `var(--fg)`,
@@ -50,7 +50,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
         >
           Create Group
         </h2>
-        <button onClick={e} className="modal-x">
+        <button onClick={e} className="nk-btn modal-x">
           ✕
         </button>
       </div>
@@ -100,7 +100,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
           }}
         >
           {o.map((e) => (
-            <button
+            <button className="nk-btn"
               key={e.id}
               onClick={() => m(e)}
               style={{
@@ -111,7 +111,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
                 background: `var(--surface)`,
                 borderBottom: `1px solid var(--line)`,
                 cursor: `pointer`,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 13,
                 color: `var(--fg)`,
               }}
@@ -143,12 +143,12 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
                 borderRadius: 20,
                 padding: `5px 6px 5px 12px`,
                 fontSize: 12.5,
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 color: `var(--emerald-700)`,
               }}
             >
               {e.displayName}
-              <button
+              <button className="nk-btn nk-btn-soft"
                 onClick={() => h(e.id)}
                 style={{
                   border: `none`,
@@ -170,7 +170,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
         </p>
       )}
       <div style={{ display: `flex`, gap: 10 }}>
-        <button onClick={e} className="img-cancel" style={{ flex: 1 }}>
+        <button onClick={e} className="nk-btn img-cancel" style={{ flex: 1 }}>
           Cancel
         </button>
         <button
@@ -194,7 +194,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
             }
           }}
           disabled={u}
-          className="img-send"
+          className="nk-btn img-send"
           style={{ flex: 1 }}
         >
           {u ? `Creating…` : `Create Group`}

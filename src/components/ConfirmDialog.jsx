@@ -27,7 +27,7 @@ function ConfirmDialog({
           maxWidth: 340,
           width: `100%`,
           padding: 24,
-          fontFamily: `'DM Sans', sans-serif`,
+          fontFamily: `var(--font-ui)`,
           boxShadow: `0 24px 64px color-mix(in srgb, var(--shadow) 25%, transparent)`,
           textAlign: `center`,
         }}
@@ -43,7 +43,7 @@ function ConfirmDialog({
           {e}
         </p>
         <div style={{ display: `flex`, gap: 10 }}>
-          <button
+          <button className="nk-btn nk-btn-ghost"
             onClick={i}
             style={{
               flex: 1,
@@ -59,7 +59,7 @@ function ConfirmDialog({
           >
             Cancel
           </button>
-          <button
+          <button className="nk-btn nk-btn-primary"
             onClick={r}
             style={{
               flex: 1,

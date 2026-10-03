@@ -117,7 +117,7 @@ function AdminAuditLogPage() {
           marginTop: 16,
         }}
       >
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           disabled={i <= 1}
           onClick={() => a((e) => e - 1)}
@@ -130,7 +130,7 @@ function AdminAuditLogPage() {
           {" of "}
           {d}
         </span>
-        <button
+        <button className="nk-btn"
           style={adminSecondaryButton}
           disabled={i >= d}
           onClick={() => a((e) => e + 1)}

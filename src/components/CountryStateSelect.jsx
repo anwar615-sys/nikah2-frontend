@@ -34,7 +34,7 @@ var In = {
   background: `var(--bg)`,
   color: `var(--fg)`,
   fontSize: 13.5,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   outline: `none`,
 };
 

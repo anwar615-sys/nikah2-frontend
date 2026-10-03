@@ -15,7 +15,7 @@ var zn = {
   background: `var(--bg)`,
   color: `var(--fg)`,
   fontSize: 13.5,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   outline: `none`,
 };
 
@@ -200,13 +200,13 @@ var Vn = {
   background: `color-mix(in srgb, var(--surface) 65%, transparent)`,
   border: `1.5px solid var(--line)`,
   color: `var(--fg)`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   outline: `none`,
 };
 
 var Hn = {
   display: `block`,
-  fontFamily: `'DM Sans', sans-serif`,
+  fontFamily: `var(--font-ui)`,
   fontSize: 9.5,
   fontWeight: 700,
   color: `var(--muted)`,
@@ -274,7 +274,7 @@ var Un = [
 
 function SignupPasswordToggle({ shown: e, onClick: t }) {
   return (
-    <button
+    <button className="nk-btn nk-btn-soft"
       type="button"
       onClick={t}
       tabIndex={-1}
@@ -374,7 +374,7 @@ function SignupPage() {
       <div style={{ height: `100vh`, display: `flex`, overflow: `hidden` }}>
         <style>
           {
-            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: color-mix(in srgb, var(--surface) 65%, transparent);\n          border: 1.5px solid var(--line);\n          color: var(--fg);\n          font-size: 13px;\n          font-family: 'DM Sans', sans-serif;\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: var(--muted); }\n        .signup-input:focus {\n          border-color: var(--emerald-500);\n          box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 10px;\n          font-weight: 700;\n          color: var(--muted);\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 30%, transparent);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 40%, transparent); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid var(--emerald-500);\n          background: transparent;\n          color: var(--emerald-700);\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: color-mix(in srgb, var(--emerald-700) 8%, transparent); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n          box-shadow: 0 4px 14px color-mix(in srgb, var(--shadow) 35%, transparent);\n        }\n        .step-dot.inactive {\n          background: var(--surface-2);\n          color: var(--emerald-500);\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: var(--bg); }\n        .terms-scroll::-webkit-scrollbar-thumb { background: var(--emerald-500); border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
+            "\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: color-mix(in srgb, var(--surface) 65%, transparent);\n          border: 1.5px solid var(--line);\n          color: var(--fg);\n          font-size: 13px;\n          font-family: var(--font-ui);\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: var(--muted); }\n        .signup-input:focus {\n          border-color: var(--emerald-500);\n          box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: var(--font-ui);\n          font-size: 10px;\n          font-weight: 700;\n          color: var(--muted);\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff;\n          font-family: var(--font-ui);\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 30%, transparent);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 40%, transparent); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid var(--emerald-500);\n          background: transparent;\n          color: var(--emerald-700);\n          font-family: var(--font-ui);\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: color-mix(in srgb, var(--emerald-700) 8%, transparent); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: var(--font-ui);\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n          box-shadow: 0 4px 14px color-mix(in srgb, var(--shadow) 35%, transparent);\n        }\n        .step-dot.inactive {\n          background: var(--surface-2);\n          color: var(--emerald-500);\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: var(--bg); }\n        .terms-scroll::-webkit-scrollbar-thumb { background: var(--emerald-500); border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
           }
         </style>
         <ThemeToggle style={{ position: `fixed`, top: 16, right: 16, zIndex: 60 }} />
@@ -393,7 +393,8 @@ function SignupPage() {
           }}
         >
           <img
-            src="/assets/1-BhKNAtC1.png"
+            src="/assets/hero.webp"
+            className="nk-kenburns"
             alt="Couple"
             style={{
               position: `absolute`,
@@ -431,9 +432,9 @@ function SignupPage() {
                 }}
               >
                 <span
-                  className="green-text"
+                  className="nk-shiny"
                   style={{
-                    fontFamily: `'Playfair Display', serif`,
+                    fontFamily: `var(--font-display)`,
                     fontSize: 48,
                     fontWeight: 700,
                     letterSpacing: `-0.02em`,
@@ -443,7 +444,7 @@ function SignupPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 12,
                     padding: `4px 12px`,
                     borderRadius: 20,
@@ -457,7 +458,7 @@ function SignupPage() {
             </div>
             <h2
               style={{
-                fontFamily: `'Playfair Display', serif`,
+                fontFamily: `var(--font-display)`,
                 fontSize: 28,
                 fontWeight: 700,
                 color: `#fff`,
@@ -469,7 +470,7 @@ function SignupPage() {
             </h2>
             <p
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 14,
                 color: `var(--mint)`,
                 marginBottom: 28,
@@ -482,7 +483,7 @@ function SignupPage() {
             </p>
             <p
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 15,
                 color: `rgba(255,255,255,0.75)`,
                 lineHeight: 1.8,
@@ -505,7 +506,7 @@ function SignupPage() {
             overflowY: `auto`,
           }}
         >
-          <div style={{ width: `100%`, maxWidth: 380, padding: `24px 0` }}>
+          <div className="nk-rise" style={{ width: `100%`, maxWidth: 380, padding: `24px 0` }}>
             <div
               style={{
                 background: `color-mix(in srgb, var(--surface) 75%, transparent)`,
@@ -547,7 +548,7 @@ function SignupPage() {
               <div style={{ marginBottom: 18 }}>
                 <h2
                   style={{
-                    fontFamily: `'Playfair Display', serif`,
+                    fontFamily: `var(--font-display)`,
                     fontSize: 18,
                     fontWeight: 700,
                     color: `var(--fg)`,
@@ -557,7 +558,7 @@ function SignupPage() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 11,
                     color: `var(--emerald-500)`,
                     marginTop: 3,
@@ -611,7 +612,7 @@ function SignupPage() {
                         onClick={() => {
                           (se(!oe), le(!1), de(!1), pe(!1));
                         }}
-                        className="signup-input"
+                        className="nk-btn nk-btn-soft signup-input"
                         style={{
                           width: 100,
                           fontSize: 12,
@@ -662,7 +663,7 @@ function SignupPage() {
                             }}
                           >
                             {Un.map(({ code: e, country: t, flag: n }) => (
-                              <button
+                              <button className="nk-btn nk-btn-soft"
                                 key={e}
                                 type="button"
                                 onClick={() => {
@@ -677,7 +678,7 @@ function SignupPage() {
                                     O === e ? `var(--surface-2)` : `transparent`,
                                   color: O === e ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: O === e ? 700 : 400,
-                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontFamily: `var(--font-ui)`,
                                   fontSize: 12.5,
                                   cursor: `pointer`,
                                   borderRadius: 8,
@@ -762,7 +763,7 @@ function SignupPage() {
                   {ve && (
                     <p
                       style={{
-                        fontFamily: `'DM Sans', sans-serif`,
+                        fontFamily: `var(--font-ui)`,
                         fontSize: 12,
                         color: `var(--danger)`,
                         background: `color-mix(in srgb, var(--danger) 8%, transparent)`,
@@ -783,7 +784,7 @@ function SignupPage() {
                             : ye(`Passwords do not match`)
                           : ye(`Please fill in all required fields`));
                     }}
-                    className="btn-submit"
+                    className="nk-btn nk-btn-primary btn-submit"
                     style={{ marginTop: 4 }}
                   >
                     Next →
@@ -805,7 +806,7 @@ function SignupPage() {
                     />
                     <span
                       style={{
-                        fontFamily: `'DM Sans', sans-serif`,
+                        fontFamily: `var(--font-ui)`,
                         fontSize: 10,
                         color: `var(--muted)`,
                         textTransform: `uppercase`,
@@ -855,7 +856,7 @@ function SignupPage() {
                         onClick={() => {
                           (P(!N), se(!1), le(!1), de(!1), pe(!1));
                         }}
-                        className="signup-input"
+                        className="nk-btn nk-btn-soft signup-input"
                         style={{
                           fontSize: 12,
                           padding: `9px 12px`,
@@ -912,7 +913,7 @@ function SignupPage() {
                                 label: `Prefer not to say`,
                               },
                             ].map(({ value: e, label: t }) => (
-                              <button
+                              <button className="nk-btn nk-btn-soft"
                                 key={e}
                                 type="button"
                                 onClick={() => {
@@ -927,7 +928,7 @@ function SignupPage() {
                                     m === e ? `var(--surface-2)` : `transparent`,
                                   color: m === e ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: m === e ? 700 : 400,
-                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontFamily: `var(--font-ui)`,
                                   fontSize: 12.5,
                                   cursor: `pointer`,
                                   borderRadius: 8,
@@ -983,7 +984,7 @@ function SignupPage() {
                         onClick={() => {
                           (le(!F), P(!1), de(!1), pe(!1), se(!1));
                         }}
-                        className="signup-input"
+                        className="nk-btn nk-btn-soft signup-input"
                         style={{
                           fontSize: 12,
                           padding: `9px 12px`,
@@ -1035,7 +1036,7 @@ function SignupPage() {
                               { icon: ``, name: `Other` },
                               { icon: ``, name: `Prefer not to say` },
                             ].map(({ icon: e, name: t }) => (
-                              <button
+                              <button className="nk-btn nk-btn-soft"
                                 key={t}
                                 type="button"
                                 onClick={() => {
@@ -1050,7 +1051,7 @@ function SignupPage() {
                                     T === t ? `var(--surface-2)` : `transparent`,
                                   color: T === t ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: T === t ? 700 : 400,
-                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontFamily: `var(--font-ui)`,
                                   fontSize: 12.5,
                                   cursor: `pointer`,
                                   borderRadius: 8,
@@ -1084,7 +1085,7 @@ function SignupPage() {
                         onClick={() => {
                           (de(!ue), P(!1), le(!1), pe(!1), se(!1));
                         }}
-                        className="signup-input"
+                        className="nk-btn nk-btn-soft signup-input"
                         style={{
                           fontSize: 12,
                           padding: `9px 12px`,
@@ -1133,7 +1134,7 @@ function SignupPage() {
                               { icon: ``, name: `56-65` },
                               { icon: ``, name: `65+` },
                             ].map(({ icon: e, name: t }) => (
-                              <button
+                              <button className="nk-btn nk-btn-soft"
                                 key={t}
                                 type="button"
                                 onClick={() => {
@@ -1148,7 +1149,7 @@ function SignupPage() {
                                     ne === t ? `var(--surface-2)` : `transparent`,
                                   color: ne === t ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: ne === t ? 700 : 400,
-                                  fontFamily: `'DM Sans', sans-serif`,
+                                  fontFamily: `var(--font-ui)`,
                                   fontSize: 12.5,
                                   cursor: `pointer`,
                                   borderRadius: 8,
@@ -1183,7 +1184,7 @@ function SignupPage() {
                       onClick={() => {
                         (pe(!fe), P(!1), le(!1), de(!1), se(!1));
                       }}
-                      className="signup-input"
+                      className="nk-btn nk-btn-soft signup-input"
                       style={{
                         fontSize: 12,
                         padding: `9px 12px`,
@@ -1229,7 +1230,7 @@ function SignupPage() {
                             { icon: ``, name: `No` },
                             { icon: ``, name: `Prefer not to say` },
                           ].map(({ icon: e, name: t }) => (
-                            <button
+                            <button className="nk-btn nk-btn-soft"
                               key={t}
                               type="button"
                               onClick={() => {
@@ -1243,7 +1244,7 @@ function SignupPage() {
                                 background: A === t ? `var(--surface-2)` : `transparent`,
                                 color: A === t ? `var(--emerald-700)` : `var(--fg)`,
                                 fontWeight: A === t ? 700 : 400,
-                                fontFamily: `'DM Sans', sans-serif`,
+                                fontFamily: `var(--font-ui)`,
                                 fontSize: 12.5,
                                 cursor: `pointer`,
                                 borderRadius: 8,
@@ -1293,14 +1294,14 @@ function SignupPage() {
                     <label
                       htmlFor="terms"
                       style={{
-                        fontFamily: `'DM Sans', sans-serif`,
+                        fontFamily: `var(--font-ui)`,
                         fontSize: 11,
                         color: `var(--muted)`,
                         lineHeight: 1.4,
                       }}
                     >
                       I agree to the{" "}
-                      <button
+                      <button className="nk-btn nk-btn-soft"
                         type="button"
                         onClick={() => ae(!0)}
                         style={{
@@ -1308,7 +1309,7 @@ function SignupPage() {
                           border: `none`,
                           color: `var(--emerald-700)`,
                           cursor: `pointer`,
-                          fontFamily: `'DM Sans', sans-serif`,
+                          fontFamily: `var(--font-ui)`,
                           fontSize: 11,
                           textDecoration: `underline`,
                           padding: 0,
@@ -1321,7 +1322,7 @@ function SignupPage() {
                   {ve && (
                     <p
                       style={{
-                        fontFamily: `'DM Sans', sans-serif`,
+                        fontFamily: `var(--font-ui)`,
                         fontSize: 12,
                         color: `var(--danger)`,
                         background: `color-mix(in srgb, var(--danger) 8%, transparent)`,
@@ -1336,7 +1337,7 @@ function SignupPage() {
                     <button
                       type="button"
                       onClick={() => t(1)}
-                      className="btn-back"
+                      className="nk-btn nk-btn-ghost btn-back"
                       style={{ padding: `11px 0`, fontSize: 13 }}
                     >
                       ← Back
@@ -1390,7 +1391,7 @@ function SignupPage() {
                         }
                       }}
                       disabled={!ie || I}
-                      className="btn-submit"
+                      className="nk-btn nk-btn-primary btn-submit"
                       style={{
                         flex: 1,
                         width: `auto`,
@@ -1407,7 +1408,7 @@ function SignupPage() {
             </div>
             <p
               style={{
-                fontFamily: `'DM Sans', sans-serif`,
+                fontFamily: `var(--font-ui)`,
                 fontSize: 13,
                 color: `var(--emerald-500)`,
                 textAlign: `center`,
@@ -1437,7 +1438,7 @@ function SignupPage() {
               ) : (
                 <>
                   By creating an account, you agree to our{" "}
-                  <button
+                  <button className="nk-btn nk-btn-soft"
                     type="button"
                     onClick={() => ae(!0)}
                     style={{
@@ -1446,7 +1447,7 @@ function SignupPage() {
                       color: `var(--emerald-700)`,
                       fontWeight: 700,
                       cursor: `pointer`,
-                      fontFamily: `'DM Sans', sans-serif`,
+                      fontFamily: `var(--font-ui)`,
                       fontSize: 13,
                       padding: 0,
                     }}
@@ -1494,7 +1495,7 @@ function SignupPage() {
               >
                 <h2
                   style={{
-                    fontFamily: `'Playfair Display', serif`,
+                    fontFamily: `var(--font-display)`,
                     fontSize: 22,
                     fontWeight: 700,
                     color: `var(--fg)`,
@@ -1502,7 +1503,7 @@ function SignupPage() {
                 >
                   Terms and Conditions
                 </h2>
-                <button
+                <button className="nk-btn"
                   onClick={() => ae(!1)}
                   style={{
                     background: `var(--surface-2)`,
@@ -1528,7 +1529,7 @@ function SignupPage() {
                   <div key={e}>
                     <h3
                       style={{
-                        fontFamily: `'Playfair Display', serif`,
+                        fontFamily: `var(--font-display)`,
                         fontSize: 14,
                         fontWeight: 700,
                         color: `var(--fg)`,
@@ -1539,7 +1540,7 @@ function SignupPage() {
                     </h3>
                     <p
                       style={{
-                        fontFamily: `'DM Sans', sans-serif`,
+                        fontFamily: `var(--font-ui)`,
                         fontSize: 13,
                         color: `var(--muted)`,
                         lineHeight: 1.65,
@@ -1551,7 +1552,7 @@ function SignupPage() {
                 ))}
               </div>
               <div style={{ display: `flex`, gap: 12, marginTop: 28 }}>
-                <button
+                <button className="nk-btn nk-btn-ghost"
                   onClick={() => ae(!1)}
                   style={{
                     flex: 1,
@@ -1560,7 +1561,7 @@ function SignupPage() {
                     border: `2px solid var(--emerald-500)`,
                     background: `transparent`,
                     color: `var(--emerald-700)`,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 14,
                     fontWeight: 700,
                     cursor: `pointer`,
@@ -1575,7 +1576,7 @@ function SignupPage() {
                 >
                   Close
                 </button>
-                <button
+                <button className="nk-btn nk-btn-primary"
                   onClick={() => {
                     (j(!0), ae(!1));
                   }}
@@ -1586,19 +1587,13 @@ function SignupPage() {
                     border: `none`,
                     background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
                     color: `#fff`,
-                    fontFamily: `'DM Sans', sans-serif`,
+                    fontFamily: `var(--font-ui)`,
                     fontSize: 14,
                     fontWeight: 700,
                     cursor: `pointer`,
                     boxShadow: `0 6px 20px color-mix(in srgb, var(--shadow) 30%, transparent)`,
                     transition: `all 0.2s`,
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = `translateY(-2px)`)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = `none`)
-                  }
                 >
                   I Agree
                 </button>

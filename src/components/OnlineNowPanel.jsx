@@ -1,31 +1,26 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { GENDER_EMOJI } from "../lib/people";
+import { SpotlightCard } from "./motion/SpotlightCard";
 
-function OnlineNowPanel({ member: e }) {
+// `ref`, `className` and `style` let <Reveal stagger> animate the card itself (React 19 passes ref as a prop).
+function OnlineNowPanel({ member: e, ref, className = ``, style }) {
   let [t, n] = (0, React.useState)(!1),
     r = useNavigate();
   return (
-    <div
-      className="card-hover"
+    <SpotlightCard
+      ref={ref}
+      className={`card-hover ${className}`.trim()}
       style={{
         background: `var(--surface)`,
         borderRadius: 18,
         overflow: `hidden`,
         border: `1px solid var(--line)`,
         boxShadow: `0 4px 20px color-mix(in srgb, var(--shadow) 7%, transparent)`,
-        transition: `transform 0.22s, box-shadow 0.22s`,
         cursor: `pointer`,
         display: `flex`,
         flexDirection: `column`,
-      }}
-      onMouseEnter={(e) => {
-        ((e.currentTarget.style.transform = `translateY(-4px)`),
-          (e.currentTarget.style.boxShadow = `0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent)`));
-      }}
-      onMouseLeave={(e) => {
-        ((e.currentTarget.style.transform = `none`),
-          (e.currentTarget.style.boxShadow = `0 4px 20px color-mix(in srgb, var(--shadow) 7%, transparent)`));
+        ...style,
       }}
     >
       <div
@@ -83,7 +78,7 @@ function OnlineNowPanel({ member: e }) {
             boxShadow: `0 0 8px color-mix(in srgb, var(--online) 60%, transparent)`,
           }}
         />
-        <button
+        <button className="nk-btn"
           onClick={(e) => {
             (e.stopPropagation(), n((e) => !e));
           }}
@@ -125,7 +120,7 @@ function OnlineNowPanel({ member: e }) {
         >
           <span
             style={{
-              fontFamily: `'Playfair Display', serif`,
+              fontFamily: `var(--font-display)`,
               fontWeight: 700,
               fontSize: 14.5,
               color: `var(--fg)`,
@@ -161,7 +156,7 @@ function OnlineNowPanel({ member: e }) {
               fontSize: 11.5,
               color: `var(--online)`,
               fontWeight: 500,
-              fontFamily: `'DM Sans', sans-serif`,
+              fontFamily: `var(--font-ui)`,
             }}
           >
             Online now
@@ -198,7 +193,7 @@ function OnlineNowPanel({ member: e }) {
             </div>
           ))}
         </div>
-        <button
+        <button className="nk-btn nk-btn-primary"
           onClick={() => r(`/messaging`, { state: { selectedContact: e } })}
           style={{
             marginTop: `auto`,
@@ -210,7 +205,7 @@ function OnlineNowPanel({ member: e }) {
             padding: `12px 0`,
             fontSize: 13.5,
             fontWeight: 700,
-            fontFamily: `'DM Sans', sans-serif`,
+            fontFamily: `var(--font-ui)`,
             cursor: `pointer`,
             letterSpacing: `0.03em`,
             transition: `all 0.22s`,
@@ -228,7 +223,7 @@ function OnlineNowPanel({ member: e }) {
           💬 Chat Now
         </button>
       </div>
-    </div>
+    </SpotlightCard>
   );
 }
 
