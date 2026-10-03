@@ -60,7 +60,7 @@ function AdminReportContext({ reportId: e, onClose: t }) {
         style={{
           position: `fixed`,
           inset: 0,
-          background: `rgba(27,58,75,0.5)`,
+          background: `color-mix(in srgb, var(--overlay) 50%, transparent)`,
           display: `flex`,
           alignItems: `center`,
           justifyContent: `center`,
@@ -71,7 +71,7 @@ function AdminReportContext({ reportId: e, onClose: t }) {
         <div
           onClick={(e) => e.stopPropagation()}
           style={{
-            background: `#fff`,
+            background: `var(--surface)`,
             borderRadius: 20,
             padding: 24,
             maxWidth: 560,
@@ -123,7 +123,7 @@ function AdminReportContext({ reportId: e, onClose: t }) {
                     padding: `8px 12px`,
                     marginBottom: 6,
                     borderRadius: 10,
-                    background: e.isFlagged ? `#fff5f5` : ADMIN_THEME.paleBg,
+                    background: e.isFlagged ? `var(--danger-bg)` : ADMIN_THEME.paleBg,
                     border: e.isFlagged
                       ? `1.5px solid ${ADMIN_THEME.dangerBorder}`
                       : `1px solid ${ADMIN_THEME.borderSoft}`,

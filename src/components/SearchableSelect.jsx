@@ -39,7 +39,7 @@ function SearchableSelect({
           alignItems: `center`,
           justifyContent: `space-between`,
           gap: 10,
-          color: e ? `#1B3A4B` : `#74C69D`,
+          color: e ? `var(--fg)` : `var(--emerald-500)`,
           opacity: a ? 0.6 : 1,
         }}
       >
@@ -47,7 +47,7 @@ function SearchableSelect({
         <span
           style={{
             fontSize: 10,
-            color: `#40916C`,
+            color: `var(--emerald-700)`,
             transform: c ? `rotate(180deg)` : `rotate(0deg)`,
             transition: `transform 0.2s`,
             flexShrink: 0,
@@ -64,14 +64,14 @@ function SearchableSelect({
             left: 0,
             right: 0,
             zIndex: 60,
-            background: `#fff`,
+            background: `var(--surface)`,
             borderRadius: 14,
-            border: `1.5px solid #D4EDDA`,
-            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+            border: `1.5px solid var(--line)`,
+            boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
             overflow: `hidden`,
           }}
         >
-          <div style={{ padding: 8, borderBottom: `1px solid #E8F5EE` }}>
+          <div style={{ padding: 8, borderBottom: `1px solid var(--line)` }}>
             <input
               type="text"
               autoFocus={!0}
@@ -90,7 +90,7 @@ function SearchableSelect({
                 style={{
                   padding: `10px 8px`,
                   fontSize: 12.5,
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                 }}
               >
                 {s || `No matches`}
@@ -110,8 +110,8 @@ function SearchableSelect({
                     textAlign: `left`,
                     padding: `7px 10px`,
                     border: `none`,
-                    background: r ? `#F0FAF4` : `transparent`,
-                    color: r ? `#2D6A4F` : `#1B3A4B`,
+                    background: r ? `var(--surface-2)` : `transparent`,
+                    color: r ? `var(--emerald-700)` : `var(--fg)`,
                     fontWeight: r ? 700 : 400,
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 12.5,
@@ -120,11 +120,11 @@ function SearchableSelect({
                     transition: `background 0.15s`,
                   }}
                   onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = `#F0FAF4`)
+                    (e.currentTarget.style.background = `var(--surface-2)`)
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.background = r
-                      ? `#F0FAF4`
+                      ? `var(--surface-2)`
                       : `transparent`)
                   }
                 >

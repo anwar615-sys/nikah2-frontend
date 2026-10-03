@@ -9,6 +9,7 @@ import { AdminVerificationsPage } from "./AdminVerificationsPage";
 import { ADMIN_FONT_IMPORT } from "./styles";
 import { ADMIN_THEME } from "./theme";
 import { useAuth } from "../context/AuthContext";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 var Oo = [
   { to: `/admin`, label: `Dashboard`, end: !0 },
@@ -47,8 +48,8 @@ function AdminLayout() {
           margin-bottom: 4px;
           transition: background 0.15s, color 0.15s;
         }
-        .admin-nav-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
-        .admin-nav-link.active { background: rgba(255,255,255,0.14); color: #fff; }
+        .admin-nav-link:hover { background: color-mix(in srgb, var(--surface) 8%, transparent); color: #fff; }
+        .admin-nav-link.active { background: color-mix(in srgb, var(--surface) 14%, transparent); color: #fff; }
       `}</style>
       <aside
         style={{
@@ -100,10 +101,11 @@ function AdminLayout() {
             justifyContent: `flex-end`,
             gap: 14,
             padding: `14px 28px`,
-            background: `#fff`,
+            background: `var(--surface)`,
             borderBottom: `1px solid ${ADMIN_THEME.border}`,
           }}
         >
+          <ThemeToggle size="sm" />
           <span style={{ fontSize: 13, color: ADMIN_THEME.textMuted }}>
             {e?.email}
           </span>
@@ -113,7 +115,7 @@ function AdminLayout() {
               padding: `7px 16px`,
               borderRadius: 32,
               border: `1.5px solid ${ADMIN_THEME.border}`,
-              background: `#fff`,
+              background: `var(--surface)`,
               color: ADMIN_THEME.green,
               fontSize: 12.5,
               fontWeight: 700,

@@ -11,8 +11,8 @@ function Toast({ message: e, tone: t = `info`, onDismiss: n }) {
     return null;
   let r =
     t === `error`
-      ? { bg: `#fff5f5`, border: `#f5c6c6`, text: `#C0392B` }
-      : { bg: `#F0FAF4`, border: `#D4EDDA`, text: `#2D6A4F` };
+      ? { bg: `var(--danger-bg)`, border: `var(--danger-line)`, text: `var(--danger)` }
+      : { bg: `var(--surface-2)`, border: `var(--line)`, text: `var(--emerald-700)` };
   return (
     <div
       style={{
@@ -29,7 +29,7 @@ function Toast({ message: e, tone: t = `info`, onDismiss: n }) {
         fontFamily: `'DM Sans', sans-serif`,
         fontSize: 13,
         fontWeight: 600,
-        boxShadow: `0 8px 24px rgba(27,58,75,0.15)`,
+        boxShadow: `0 8px 24px color-mix(in srgb, var(--shadow) 15%, transparent)`,
         maxWidth: `90vw`,
         textAlign: `center`,
         display: `flex`,

@@ -44,8 +44,8 @@ function AdminVerificationPhoto({ mediaId: e, alt: t, style: n }) {
           display: `flex`,
           alignItems: `center`,
           justifyContent: `center`,
-          background: `#fff5f5`,
-          color: `#C0392B`,
+          background: `var(--danger-bg)`,
+          color: `var(--danger)`,
           fontSize: 12,
         }}
       >
@@ -60,8 +60,8 @@ function AdminVerificationPhoto({ mediaId: e, alt: t, style: n }) {
           display: `flex`,
           alignItems: `center`,
           justifyContent: `center`,
-          background: `#F0FAF4`,
-          color: `#5C7A6D`,
+          background: `var(--surface-2)`,
+          color: `var(--muted)`,
           fontSize: 12,
         }}
       >

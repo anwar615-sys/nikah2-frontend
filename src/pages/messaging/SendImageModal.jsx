@@ -68,8 +68,8 @@ function SendImageModal({
                 className="ss-track"
                 style={{
                   background: u
-                    ? `linear-gradient(135deg,#1B3A4B,#2D6A4F)`
-                    : `#e5e7eb`,
+                    ? `linear-gradient(135deg,var(--deep),var(--emerald-700))`
+                    : `var(--surface-2)`,
                 }}
               >
                 <span className="ss-thumb" style={{ left: u ? 22 : 3 }} />

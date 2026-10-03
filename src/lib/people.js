@@ -40,8 +40,8 @@ var menuItemStyle = {
   background: `transparent`,
   cursor: `pointer`,
   fontSize: 13,
-  color: `#1B3A4B`,
-  borderBottom: `1px solid #F1F5F2`,
+  color: `var(--fg)`,
+  borderBottom: `1px solid var(--line)`,
   fontFamily: `'DM Sans', sans-serif`,
 };
 

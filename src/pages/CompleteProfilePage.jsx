@@ -29,8 +29,8 @@ var _r = [`18-25`, `26-35`, `36-45`, `46-55`, `56-65`, `65+`];
 var vr = [`Yes`, `No`, `Prefer not to say`];
 
 var yr = {
-  background: `rgba(255,255,255,0.85)`,
-  border: `1px solid rgba(64,145,108,0.15)`,
+  background: `color-mix(in srgb, var(--surface) 85%, transparent)`,
+  border: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
   borderRadius: 20,
   padding: 28,
   marginBottom: 24,
@@ -40,7 +40,7 @@ var br = {
   display: `block`,
   fontSize: 10.5,
   fontWeight: 700,
-  color: `#3D6B55`,
+  color: `var(--muted)`,
   letterSpacing: `0.08em`,
   textTransform: `uppercase`,
   marginBottom: 6,
@@ -50,9 +50,9 @@ var xr = {
   width: `100%`,
   padding: `11px 14px`,
   borderRadius: 12,
-  border: `1.5px solid #D4EDDA`,
-  background: `#F8FAF5`,
-  color: `#1B3A4B`,
+  border: `1.5px solid var(--line)`,
+  background: `var(--bg)`,
+  color: `var(--fg)`,
   fontSize: 13.5,
   fontFamily: `'DM Sans', sans-serif`,
   outline: `none`,
@@ -65,8 +65,8 @@ var Cr = (e) => ({
   borderRadius: 32,
   border: `none`,
   background: e
-    ? `#B7E4C7`
-    : `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+    ? `var(--mint)`
+    : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
   color: `#fff`,
   fontFamily: `'DM Sans', sans-serif`,
   fontSize: 14,
@@ -107,7 +107,7 @@ function CompleteProfilePage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 96,
         paddingBottom: 64,
@@ -115,7 +115,7 @@ function CompleteProfilePage() {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .cp-input:focus, .cp-select:focus { border-color: #40916C !important; box-shadow: 0 0 0 3px rgba(64,145,108,0.12); }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .cp-input:focus, .cp-select:focus { border-color: var(--emerald-500) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent); }\n      "
         }
       </style>
       <Navbar />
@@ -125,13 +125,13 @@ function CompleteProfilePage() {
             fontFamily: `'Playfair Display', serif`,
             fontSize: 28,
             fontWeight: 700,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
             marginBottom: 6,
           }}
         >
           Complete Your Profile
         </h1>
-        <p style={{ fontSize: 13, color: `#3D6B55`, marginBottom: 28 }}>
+        <p style={{ fontSize: 13, color: `var(--muted)`, marginBottom: 28 }}>
           You signed in with Google, which only gave us your name and email. We
           need a few more details before you can start matching.
         </p>
@@ -308,7 +308,7 @@ function CompleteProfilePage() {
             margin: `0 auto`,
             background: `none`,
             border: `none`,
-            color: `#74C69D`,
+            color: `var(--emerald-500)`,
             fontSize: 12.5,
             fontWeight: 600,
             cursor: `pointer`,

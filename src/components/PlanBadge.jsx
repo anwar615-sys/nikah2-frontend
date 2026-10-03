@@ -2,14 +2,14 @@ var Jn = {
   premium: {
     icon: `👑`,
     label: `Premium`,
-    color: `#9A6B00`,
-    bg: `rgba(212,160,23,0.15)`,
+    color: `var(--warning)`,
+    bg: `color-mix(in srgb, var(--gold) 15%, transparent)`,
   },
   basic: {
     icon: `⭐`,
     label: `Basic`,
-    color: `#2D6A4F`,
-    bg: `rgba(45,106,79,0.12)`,
+    color: `var(--emerald-700)`,
+    bg: `color-mix(in srgb, var(--emerald-700) 12%, transparent)`,
   },
 };
 

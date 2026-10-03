@@ -90,7 +90,7 @@ function GroupSettingsModal({
             fontFamily: `'Playfair Display', serif`,
             fontSize: 20,
             fontWeight: 700,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
           }}
         >
           Group Settings
@@ -100,7 +100,7 @@ function GroupSettingsModal({
         </button>
       </div>
       {h && (
-        <p style={{ fontSize: 12.5, color: `#C0392B`, marginBottom: 14 }}>
+        <p style={{ fontSize: 12.5, color: `var(--danger)`, marginBottom: 14 }}>
           {h}
         </p>
       )}
@@ -108,7 +108,7 @@ function GroupSettingsModal({
         style={{
           fontSize: 11,
           fontWeight: 700,
-          color: `#2D6A4F`,
+          color: `var(--emerald-700)`,
           textTransform: `uppercase`,
           letterSpacing: `0.06em`,
         }}
@@ -121,7 +121,7 @@ function GroupSettingsModal({
           onChange={(e) => u(e.target.value)}
           disabled={!y}
           className="text-input"
-          style={{ background: `#F8FAF5` }}
+          style={{ background: `var(--bg)` }}
         />
         {y && (
           <button
@@ -137,7 +137,7 @@ function GroupSettingsModal({
         style={{
           fontSize: 11,
           fontWeight: 700,
-          color: `#2D6A4F`,
+          color: `var(--emerald-700)`,
           textTransform: `uppercase`,
           letterSpacing: `0.06em`,
         }}
@@ -146,7 +146,7 @@ function GroupSettingsModal({
       </label>
       <div
         style={{
-          border: `1px solid #E8F5EE`,
+          border: `1px solid var(--line)`,
           borderRadius: 12,
           margin: `6px 0 20px`,
           overflow: `hidden`,
@@ -160,7 +160,7 @@ function GroupSettingsModal({
               alignItems: `center`,
               justifyContent: `space-between`,
               padding: `10px 12px`,
-              borderBottom: `1px solid #F0FAF4`,
+              borderBottom: `1px solid var(--line)`,
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 13,
             }}
@@ -171,7 +171,7 @@ function GroupSettingsModal({
                 <span
                   style={{
                     fontSize: 10,
-                    color: `#40916C`,
+                    color: `var(--emerald-700)`,
                     fontWeight: 700,
                   }}
                 >
@@ -185,7 +185,7 @@ function GroupSettingsModal({
                 style={{
                   border: `none`,
                   background: `none`,
-                  color: e.id === t ? `#2D6A4F` : `#C0392B`,
+                  color: e.id === t ? `var(--emerald-700)` : `var(--danger)`,
                   cursor: `pointer`,
                   fontSize: 12,
                   fontWeight: 600,
@@ -203,7 +203,7 @@ function GroupSettingsModal({
             style={{
               fontSize: 11,
               fontWeight: 700,
-              color: `#2D6A4F`,
+              color: `var(--emerald-700)`,
               textTransform: `uppercase`,
               letterSpacing: `0.06em`,
             }}
@@ -218,13 +218,13 @@ function GroupSettingsModal({
             style={{
               flex: `none`,
               margin: `6px 0 10px`,
-              background: `#F8FAF5`,
+              background: `var(--bg)`,
             }}
           />
           {p.length > 0 && (
             <div
               style={{
-                border: `1px solid #E8F5EE`,
+                border: `1px solid var(--line)`,
                 borderRadius: 12,
                 marginBottom: 20,
                 overflow: `hidden`,
@@ -239,12 +239,12 @@ function GroupSettingsModal({
                     textAlign: `left`,
                     padding: `10px 12px`,
                     border: `none`,
-                    background: `#fff`,
-                    borderBottom: `1px solid #F0FAF4`,
+                    background: `var(--surface)`,
+                    borderBottom: `1px solid var(--line)`,
                     cursor: `pointer`,
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 13,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                   }}
                 >
                   {"+ "}
@@ -271,9 +271,9 @@ function GroupSettingsModal({
               width: `100%`,
               padding: `12px 0`,
               borderRadius: 14,
-              border: `1.5px solid #C0392B`,
-              background: `#fff5f5`,
-              color: `#C0392B`,
+              border: `1.5px solid var(--danger)`,
+              background: `var(--danger-bg)`,
+              color: `var(--danger)`,
               fontWeight: 700,
               fontSize: 13,
               cursor: `pointer`,

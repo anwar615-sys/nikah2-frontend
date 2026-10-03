@@ -51,8 +51,8 @@ var or = [
 ];
 
 var sr = {
-  background: `rgba(255,255,255,0.85)`,
-  border: `1px solid rgba(64,145,108,0.15)`,
+  background: `color-mix(in srgb, var(--surface) 85%, transparent)`,
+  border: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
   borderRadius: 20,
   padding: 28,
   marginBottom: 24,
@@ -62,7 +62,7 @@ var cr = {
   display: `block`,
   fontSize: 10.5,
   fontWeight: 700,
-  color: `#3D6B55`,
+  color: `var(--muted)`,
   letterSpacing: `0.08em`,
   textTransform: `uppercase`,
   marginBottom: 6,
@@ -72,9 +72,9 @@ var lr = {
   width: `100%`,
   padding: `11px 14px`,
   borderRadius: 12,
-  border: `1.5px solid #D4EDDA`,
-  background: `#F8FAF5`,
-  color: `#1B3A4B`,
+  border: `1.5px solid var(--line)`,
+  background: `var(--bg)`,
+  color: `var(--fg)`,
   fontSize: 13.5,
   fontFamily: `'DM Sans', sans-serif`,
   outline: `none`,
@@ -87,8 +87,8 @@ var dr = (e) => ({
   borderRadius: 32,
   border: `none`,
   background: e
-    ? `#B7E4C7`
-    : `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+    ? `var(--mint)`
+    : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
   color: `#fff`,
   fontFamily: `'DM Sans', sans-serif`,
   fontSize: 13.5,
@@ -122,7 +122,7 @@ function AccountPasswordToggle({ shown: e, onClick: t }) {
         border: `none`,
         padding: 4,
         cursor: `pointer`,
-        color: `#74C69D`,
+        color: `var(--emerald-500)`,
         display: `flex`,
         alignItems: `center`,
       }}
@@ -364,7 +364,7 @@ function AccountPage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 96,
         paddingBottom: 64,
@@ -372,7 +372,7 @@ function AccountPage() {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .acct-input:focus, .acct-select:focus, .acct-textarea:focus { border-color: #40916C !important; box-shadow: 0 0 0 3px rgba(64,145,108,0.12); }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .acct-input:focus, .acct-select:focus, .acct-textarea:focus { border-color: var(--emerald-500) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent); }\n      "
         }
       </style>
       <Navbar />
@@ -382,13 +382,13 @@ function AccountPage() {
             fontFamily: `'Playfair Display', serif`,
             fontSize: 30,
             fontWeight: 700,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
             marginBottom: 6,
           }}
         >
           My Account
         </h1>
-        <p style={{ fontSize: 13, color: `#3D6B55`, marginBottom: 32 }}>
+        <p style={{ fontSize: 13, color: `var(--muted)`, marginBottom: 32 }}>
           Manage your profile, contact details, and password.
         </p>
         <div style={{ ...sr, display: `flex`, alignItems: `center`, gap: 20 }}>
@@ -409,7 +409,7 @@ function AccountPage() {
                 width: 84,
                 height: 84,
                 borderRadius: `50%`,
-                background: `linear-gradient(135deg, #2D6A4F, #74C69D)`,
+                background: `linear-gradient(135deg, var(--emerald-700), var(--emerald-500))`,
                 color: `#fff`,
                 display: `flex`,
                 alignItems: `center`,
@@ -431,7 +431,7 @@ function AccountPage() {
                 marginBottom: 4,
               }}
             >
-              <span style={{ fontWeight: 700, color: `#1B3A4B` }}>
+              <span style={{ fontWeight: 700, color: `var(--fg)` }}>
                 {e?.name}
               </span>
               <PlanBadge plan={e?.membership?.plan} size="md" />
@@ -441,7 +441,7 @@ function AccountPage() {
                   style={{
                     fontSize: 11.5,
                     fontWeight: 700,
-                    color: `#40916C`,
+                    color: `var(--emerald-700)`,
                   }}
                 >
                   Upgrade
@@ -453,8 +453,8 @@ function AccountPage() {
               onClick={() => i.current?.click()}
               disabled={s}
               style={{
-                border: `1.5px solid #40916C`,
-                color: `#2D6A4F`,
+                border: `1.5px solid var(--emerald-500)`,
+                color: `var(--emerald-700)`,
                 background: `none`,
                 borderRadius: 20,
                 padding: `7px 16px`,
@@ -480,7 +480,7 @@ function AccountPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 18,
             }}
           >
@@ -522,13 +522,13 @@ function AccountPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 4,
             }}
           >
             Username
           </h2>
-          <p style={{ fontSize: 12, color: `#74C69D`, marginBottom: 16 }}>
+          <p style={{ fontSize: 12, color: `var(--emerald-500)`, marginBottom: 16 }}>
             {ae
               ? `This is your permanent username — other members use it to find and identify you (subject to your privacy setting below).`
               : `Choose a username for your account. Once set, it can't be changed.`}
@@ -557,19 +557,19 @@ function AccountPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 4,
             }}
           >
             Verification
           </h2>
           {e?.verificationStatus === `verified` && (
-            <p style={{ fontSize: 13, color: `#2D6A4F`, fontWeight: 700 }}>
+            <p style={{ fontSize: 13, color: `var(--emerald-700)`, fontWeight: 700 }}>
               ✓ Your account is verified.
             </p>
           )}
           {e?.verificationStatus === `pending` && (
-            <p style={{ fontSize: 13, color: `#9A6B00` }}>
+            <p style={{ fontSize: 13, color: `var(--warning)` }}>
               Your verification request is under review.
             </p>
           )}
@@ -578,7 +578,7 @@ function AccountPage() {
               <p
                 style={{
                   fontSize: 12,
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                   marginBottom: 16,
                 }}
               >
@@ -614,7 +614,7 @@ function AccountPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 18,
             }}
           >
@@ -749,9 +749,9 @@ function AccountPage() {
                       alignItems: `center`,
                       gap: 6,
                       fontSize: 11.5,
-                      background: `#F0FAF4`,
-                      border: `1px solid #D4EDDA`,
-                      color: `#2D6A4F`,
+                      background: `var(--surface-2)`,
+                      border: `1px solid var(--line)`,
+                      color: `var(--emerald-700)`,
                       borderRadius: 20,
                       padding: `4px 6px 4px 10px`,
                     }}
@@ -764,7 +764,7 @@ function AccountPage() {
                         background: `none`,
                         border: `none`,
                         cursor: `pointer`,
-                        color: `#74C69D`,
+                        color: `var(--emerald-500)`,
                         fontSize: 12,
                         lineHeight: 1,
                       }}
@@ -786,13 +786,13 @@ function AccountPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 4,
             }}
           >
             Privacy
           </h2>
-          <p style={{ fontSize: 12, color: `#74C69D`, marginBottom: 16 }}>
+          <p style={{ fontSize: 12, color: `var(--emerald-500)`, marginBottom: 16 }}>
             Control who can see your User ID, phone number, and email on your
             profile card. Premium viewers can always see the baseline of
             ID/phone — this setting narrows or widens that further.
@@ -808,8 +808,8 @@ function AccountPage() {
                   cursor: Oe ? `not-allowed` : `pointer`,
                   padding: 12,
                   borderRadius: 14,
-                  border: `1.5px solid ${Ee === e.value ? `#40916C` : `#D4EDDA`}`,
-                  background: Ee === e.value ? `#F0FAF4` : `transparent`,
+                  border: `1.5px solid ${Ee === e.value ? `var(--emerald-500)` : `var(--line)`}`,
+                  background: Ee === e.value ? `var(--surface-2)` : `transparent`,
                 }}
               >
                 <input
@@ -826,7 +826,7 @@ function AccountPage() {
                       display: `block`,
                       fontSize: 13,
                       fontWeight: 700,
-                      color: `#1B3A4B`,
+                      color: `var(--fg)`,
                     }}
                   >
                     {e.label}
@@ -835,7 +835,7 @@ function AccountPage() {
                     style={{
                       display: `block`,
                       fontSize: 11.5,
-                      color: `#3D6B55`,
+                      color: `var(--muted)`,
                       marginTop: 2,
                       lineHeight: 1.4,
                     }}
@@ -853,13 +853,13 @@ function AccountPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 6,
             }}
           >
             {e?.hasPassword ? `Change Password` : `Set a Password`}
           </h2>
-          <p style={{ fontSize: 12, color: `#74C69D`, marginBottom: 18 }}>
+          <p style={{ fontSize: 12, color: `var(--emerald-500)`, marginBottom: 18 }}>
             {e?.hasPassword
               ? `Update the password you use to sign in.`
               : `This account was created with Google Sign-In. Set a password to also sign in with your email.`}
@@ -915,13 +915,13 @@ function AccountPage() {
                 : `Set Password`}
           </button>
         </form>
-        <div style={{ ...sr, border: `1px solid rgba(192,57,43,0.25)` }}>
+        <div style={{ ...sr, border: `1px solid color-mix(in srgb, var(--danger) 25%, transparent)` }}>
           <h2
             style={{
               fontFamily: `'Playfair Display', serif`,
               fontSize: 18,
               fontWeight: 700,
-              color: `#C0392B`,
+              color: `var(--danger)`,
               marginBottom: 6,
             }}
           >
@@ -930,7 +930,7 @@ function AccountPage() {
           <p
             style={{
               fontSize: 12,
-              color: `#8a4a42`,
+              color: `var(--danger)`,
               marginBottom: 18,
               lineHeight: 1.5,
             }}
@@ -945,9 +945,9 @@ function AccountPage() {
             style={{
               padding: `11px 28px`,
               borderRadius: 32,
-              border: `1.5px solid #C0392B`,
+              border: `1.5px solid var(--danger)`,
               background: `transparent`,
-              color: `#C0392B`,
+              color: `var(--danger)`,
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 13.5,
               fontWeight: 700,

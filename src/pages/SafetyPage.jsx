@@ -38,13 +38,13 @@ function SafetyPage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
       }}
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
         }
       </style>
       <Navbar />
@@ -54,8 +54,8 @@ function SafetyPage() {
           paddingBottom: 48,
           paddingLeft: 40,
           paddingRight: 40,
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
-          borderBottom: `1px solid #D4EDDA`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
+          borderBottom: `1px solid var(--line)`,
           textAlign: `center`,
         }}
       >
@@ -65,14 +65,14 @@ function SafetyPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(28px, 4vw, 44px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 12,
             }}
           >
             {"Safety "}
             <span className="green-text">Center</span>
           </h1>
-          <p style={{ fontSize: 15, color: `#3D6B55` }}>
+          <p style={{ fontSize: 15, color: `var(--muted)` }}>
             Nikha2 connects people who haven't met before. Here's how we — and
             you — keep that safe.
           </p>
@@ -92,11 +92,11 @@ function SafetyPage() {
             <div
               key={e.title}
               style={{
-                background: `#fff`,
+                background: `var(--surface)`,
                 borderRadius: 16,
-                border: `1px solid #E8F5EE`,
+                border: `1px solid var(--line)`,
                 padding: `22px 20px`,
-                boxShadow: `0 4px 20px rgba(27,58,75,0.06)`,
+                boxShadow: `0 4px 20px color-mix(in srgb, var(--shadow) 6%, transparent)`,
               }}
             >
               <div style={{ fontSize: 30, marginBottom: 10 }}>{e.icon}</div>
@@ -105,7 +105,7 @@ function SafetyPage() {
                   fontFamily: `'Playfair Display', serif`,
                   fontWeight: 700,
                   fontSize: 16,
-                  color: `#1B3A4B`,
+                  color: `var(--fg)`,
                   marginBottom: 6,
                 }}
               >
@@ -114,7 +114,7 @@ function SafetyPage() {
               <p
                 style={{
                   fontSize: 13,
-                  color: `#3D6B55`,
+                  color: `var(--muted)`,
                   lineHeight: 1.6,
                 }}
               >
@@ -127,13 +127,13 @@ function SafetyPage() {
           style={{
             marginTop: 32,
             padding: `22px 24px`,
-            background: `#F0FAF4`,
-            border: `1px solid #D4EDDA`,
+            background: `var(--surface-2)`,
+            border: `1px solid var(--line)`,
             borderRadius: 16,
             textAlign: `center`,
           }}
         >
-          <p style={{ fontSize: 13.5, color: `#2D6A4F`, fontWeight: 600 }}>
+          <p style={{ fontSize: 13.5, color: `var(--emerald-700)`, fontWeight: 600 }}>
             If you're in immediate danger, contact your local emergency services
             first — Nikha2's reporting tools are for platform safety, not
             emergency response.
@@ -142,8 +142,8 @@ function SafetyPage() {
       </section>
       <footer
         style={{
-          background: `#1B3A4B`,
-          color: `#74C69D`,
+          background: `var(--deep)`,
+          color: `var(--emerald-500)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -157,8 +157,8 @@ function SafetyPage() {
             letterSpacing: `-0.02em`,
           }}
         >
-          Nikha<span style={{ color: `#74C69D` }}>2</span>{" "}
-          <span style={{ color: `#40916C` }}>♡</span>
+          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
       </footer>
     </div>

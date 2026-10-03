@@ -76,7 +76,7 @@ function ConversationListItem({
           <button
             onClick={d}
             className="hdr-btn"
-            style={{ background: `#C0392B` }}
+            style={{ background: `var(--danger)` }}
             title="End call"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">

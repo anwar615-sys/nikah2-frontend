@@ -1,7 +1,7 @@
 var Footer = () => (
   <div
     style={{
-      background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 50%, #40916C 100%)`,
+      background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
       padding: `14px 40px`,
       display: `flex`,
       alignItems: `center`,
@@ -11,7 +11,7 @@ var Footer = () => (
   >
     <span
       style={{
-        color: `#B7E4C7`,
+        color: `var(--mint)`,
         fontSize: 12,
         letterSpacing: `0.18em`,
         fontFamily: `'DM Sans', sans-serif`,
@@ -22,7 +22,7 @@ var Footer = () => (
     >
       Because everyone deserves a second chance at happiness.
     </span>
-    <span style={{ color: `#74C69D`, fontSize: 15, flexShrink: 0 }}>♥</span>
+    <span style={{ color: `var(--emerald-500)`, fontSize: 15, flexShrink: 0 }}>♥</span>
   </div>
 );
 

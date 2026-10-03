@@ -11,7 +11,7 @@ function ConfirmDialog({
       style={{
         position: `fixed`,
         inset: 0,
-        background: `rgba(27,58,75,0.5)`,
+        background: `color-mix(in srgb, var(--overlay) 50%, transparent)`,
         display: `flex`,
         alignItems: `center`,
         justifyContent: `center`,
@@ -22,20 +22,20 @@ function ConfirmDialog({
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: `#fff`,
+          background: `var(--surface)`,
           borderRadius: 20,
           maxWidth: 340,
           width: `100%`,
           padding: 24,
           fontFamily: `'DM Sans', sans-serif`,
-          boxShadow: `0 24px 64px rgba(27,58,75,0.25)`,
+          boxShadow: `0 24px 64px color-mix(in srgb, var(--shadow) 25%, transparent)`,
           textAlign: `center`,
         }}
       >
         <p
           style={{
             fontSize: 14,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
             marginBottom: 20,
             lineHeight: 1.5,
           }}
@@ -49,9 +49,9 @@ function ConfirmDialog({
               flex: 1,
               padding: `10px 0`,
               borderRadius: 20,
-              border: `1.5px solid #D4EDDA`,
+              border: `1.5px solid var(--line)`,
               background: `transparent`,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               fontWeight: 600,
               fontSize: 13,
               cursor: `pointer`,
@@ -67,8 +67,8 @@ function ConfirmDialog({
               borderRadius: 20,
               border: `none`,
               background: n
-                ? `#C0392B`
-                : `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+                ? `var(--danger)`
+                : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
               color: `#fff`,
               fontWeight: 700,
               fontSize: 13,

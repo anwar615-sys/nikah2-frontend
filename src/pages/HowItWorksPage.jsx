@@ -167,18 +167,18 @@ var un = [
 
 function PlanFeatureCell({ value: e }) {
   return e === !0 ? (
-    <span style={{ color: `#40916C` }} className="text-sm font-bold">
+    <span style={{ color: `var(--emerald-700)` }} className="text-sm font-bold">
       ✓
     </span>
   ) : e === !1 ? (
     <span
-      style={{ color: `#e63946`, opacity: 0.55 }}
+      style={{ color: `var(--danger)`, opacity: 0.55 }}
       className="text-sm font-bold"
     >
       ✕
     </span>
   ) : (
-    <span className="text-xs" style={{ color: `#3D6B55` }}>
+    <span className="text-xs" style={{ color: `var(--muted)` }}>
       {e}
     </span>
   );
@@ -218,13 +218,13 @@ function HowItWorksPage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
-        color: `#1B3A4B`,
+        background: `var(--bg)`,
+        color: `var(--fg)`,
       }}
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');\n        * { scroll-behavior: smooth; box-sizing: border-box; }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px rgba(34,197,94,0.7); }\n          50%       { box-shadow: 0 0 16px rgba(34,197,94,0.35); }\n        }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        .card-hover { transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease; }\n        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(45,106,79,0.13); }\n\n        .btn-primary {\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff; border: none; padding: 12px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.35);\n          transition: all 0.22s;\n          text-decoration: none; display: inline-flex; align-items: center; gap: 8px;\n        }\n        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,58,75,0.45); }\n        .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }\n\n        .btn-outline {\n          background: rgba(255,255,255,0.92); color: #2D6A4F;\n          border: 2px solid #74C69D; padding: 11px 28px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s; backdrop-filter: blur(6px);\n        }\n        .btn-outline:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(45,106,79,0.2); }\n\n        .tab-btn {\n          padding: 10px 24px; border-radius: 32px;\n          font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;\n          border: none; cursor: pointer; transition: all 0.22s;\n          color: #3D6B55; background: transparent;\n        }\n        .tab-btn.active {\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff; box-shadow: 0 4px 16px rgba(27,58,75,0.3);\n        }\n        .tab-btn:not(.active):hover { background: #F0FAF4; color: #1B3A4B; }\n\n        .popular-badge {\n          background: linear-gradient(135deg, #1B3A4B, #2D6A4F, #40916C, #2D6A4F, #1B3A4B);\n          background-size: 200% auto;\n          animation: shimmer-green 3s linear infinite;\n        }\n\n        .step-icon-even {\n          background: linear-gradient(135deg, #F0FAF4, #D4EDDA);\n          border: 2px solid rgba(64,145,108,0.3);\n          box-shadow: 0 8px 28px rgba(45,106,79,0.13);\n        }\n        .step-icon-odd {\n          background: linear-gradient(135deg, #E8F5EE, #F0FAF4);\n          border: 2px solid rgba(116,198,157,0.3);\n          box-shadow: 0 8px 28px rgba(45,106,79,0.08);\n        }\n\n        .comparison-table { width: 100%; border-collapse: collapse; font-family: 'DM Sans', sans-serif; font-size: 13px; }\n        .comparison-table th, .comparison-table td { padding: 14px 20px; text-align: center; }\n        .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; }\n        .comparison-table thead th {\n          background: linear-gradient(135deg, #F0FAF4 0%, #E8F5EE 100%);\n          border-bottom: 2px solid rgba(64,145,108,0.2);\n          color: #1B3A4B; font-weight: 700;\n        }\n        .comparison-table thead th:last-child { color: #40916C; }\n        .comparison-table tbody tr:nth-child(even) { background: rgba(212,237,218,0.25); }\n        .comparison-table tbody tr { transition: background 0.2s ease; }\n        .comparison-table tbody tr:hover { background: rgba(183,228,199,0.3); }\n\n        .trust-grid {\n          display: grid;\n          grid-template-columns: repeat(3, 1fr);\n          gap: 20px;\n        }\n        .trust-card {\n          background: rgba(255,255,255,0.7);\n          border: 1px solid rgba(116,198,157,0.25);\n          backdrop-filter: blur(10px);\n          transition: all 0.3s ease;\n        }\n        .trust-card:hover {\n          background: rgba(255,255,255,0.95);\n          border-color: rgba(45,106,79,0.4);\n        }\n\n        .divider-line {\n          height: 1px;\n          background: linear-gradient(90deg, transparent, rgba(64,145,108,0.35), transparent);\n        }\n\n        .pricing-grid {\n          display: grid;\n          grid-template-columns: repeat(3, 1fr);\n          gap: 20px;\n          align-items: stretch;\n          max-width: 1180px;\n          margin: 0 auto;\n        }\n        .pricing-card {\n          background: #fff;\n          border: 1px solid rgba(116,198,157,0.3);\n          transition: all 0.3s ease;\n          display: flex;\n          flex-direction: column;\n        }\n        .pricing-card:hover {\n          border-color: rgba(45,106,79,0.5);\n          box-shadow: 0 16px 44px rgba(45,106,79,0.15);\n        }\n        .pricing-card.popular {\n          border: 2px solid rgba(45,106,79,0.55);\n          box-shadow: 0 16px 44px rgba(45,106,79,0.18);\n        }\n        .pricing-feature-row { display: flex; align-items: flex-start; gap: 6px; }\n        .pricing-feature-row + .pricing-feature-row { margin-top: 3px; }\n\n        @media (max-width: 1024px) {\n          .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }\n        }\n\n        /* ── HOW section viewport fit ── */\n        .how-section {\n          display: flex;\n          flex-direction: column;\n          height: calc(100vh - 128px);\n        }\n        .how-content {\n          flex: 1;\n          display: flex;\n          flex-direction: column;\n          justify-content: center;\n          padding: 16px 32px;\n          max-width: 1100px;\n          width: 100%;\n          margin: 0 auto;\n          gap: 12px;\n          min-height: 0;\n          overflow: hidden;\n        }\n        .steps-grid {\n          display: grid;\n          grid-template-columns: repeat(5, 1fr);\n          gap: 12px;\n          flex: 1;\n        }\n        .step-col {\n          display: flex;\n          flex-direction: column;\n          align-items: center;\n          min-height: 0;\n        }\n        .step-card {\n          background: rgba(255,255,255,0.8);\n          border-radius: 14px;\n          padding: 14px 12px;\n          border: 1px solid #E8F5EE;\n          box-shadow: 0 4px 18px rgba(45,106,79,0.07);\n          text-align: center;\n          width: 100%;\n          flex: 1;\n          display: flex;\n          flex-direction: column;\n          align-items: center;\n          justify-content: flex-start;\n          min-height: 0;\n          overflow: hidden;\n        }\n\n        @media (max-width: 1024px) {\n            .how-section {\n              height: auto;\n              min-height: unset;\n            }\n          }\n\n        /* ── MOBILE ── */\n        @media (max-width: 768px) {\n          .how-section { min-height: unset; }\n          .how-content { padding: 16px; gap: 14px; justify-content: flex-start; }\n          .steps-grid {\n            grid-template-columns: 1fr 1fr;\n            gap: 10px;\n          }\n          .step-col:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; width: 100%; }\n          .trust-grid { grid-template-columns: 1fr !important; }\n          .comparison-table th, .comparison-table td { padding: 10px 12px; font-size: 12px; }\n          .tab-btn { padding: 9px 16px; font-size: 12px; }\n        }\n\n        @media (max-width: 480px) {\n          .steps-grid { grid-template-columns: 1fr; }\n          .step-col:last-child { grid-column: unset; max-width: 100%; }\n          .how-content { padding: 12px; }\n        }\n\n        @media (min-width: 769px) and (max-width: 1024px) {\n          .steps-grid { grid-template-columns: repeat(3, 1fr); }\n          .step-col:nth-child(4), .step-col:nth-child(5) { grid-column: span 1; }\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');\n        * { scroll-behavior: smooth; box-sizing: border-box; }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        .card-hover { transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease; }\n        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 48px color-mix(in srgb, var(--emerald-700) 13%, transparent); }\n\n        .btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 12px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          text-decoration: none; display: inline-flex; align-items: center; gap: 8px;\n        }\n        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n        .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }\n\n        .btn-outline {\n          background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--emerald-700);\n          border: 2px solid var(--emerald-500); padding: 11px 28px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s; backdrop-filter: blur(6px);\n        }\n        .btn-outline:hover { background: var(--surface); transform: translateY(-2px); box-shadow: 0 6px 20px color-mix(in srgb, var(--emerald-700) 20%, transparent); }\n\n        .tab-btn {\n          padding: 10px 24px; border-radius: 32px;\n          font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;\n          border: none; cursor: pointer; transition: all 0.22s;\n          color: var(--muted); background: transparent;\n        }\n        .tab-btn.active {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; box-shadow: 0 4px 16px color-mix(in srgb, var(--shadow) 30%, transparent);\n        }\n        .tab-btn:not(.active):hover { background: var(--surface-2); color: var(--fg); }\n\n        .popular-badge {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700), var(--emerald-700), var(--emerald-700), var(--deep));\n          background-size: 200% auto;\n          animation: shimmer-green 3s linear infinite;\n        }\n\n        .step-icon-even {\n          background: linear-gradient(135deg, var(--surface-2), var(--surface-2));\n          border: 2px solid color-mix(in srgb, var(--emerald-500) 30%, transparent);\n          box-shadow: 0 8px 28px color-mix(in srgb, var(--emerald-700) 13%, transparent);\n        }\n        .step-icon-odd {\n          background: linear-gradient(135deg, var(--surface-2), var(--surface-2));\n          border: 2px solid color-mix(in srgb, var(--emerald-500) 30%, transparent);\n          box-shadow: 0 8px 28px color-mix(in srgb, var(--emerald-700) 8%, transparent);\n        }\n\n        .comparison-table { width: 100%; border-collapse: collapse; font-family: 'DM Sans', sans-serif; font-size: 13px; }\n        .comparison-table th, .comparison-table td { padding: 14px 20px; text-align: center; }\n        .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; }\n        .comparison-table thead th {\n          background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-2) 100%);\n          border-bottom: 2px solid color-mix(in srgb, var(--emerald-500) 20%, transparent);\n          color: var(--fg); font-weight: 700;\n        }\n        .comparison-table thead th:last-child { color: var(--emerald-700); }\n        .comparison-table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 25%, transparent); }\n        .comparison-table tbody tr { transition: background 0.2s ease; }\n        .comparison-table tbody tr:hover { background: color-mix(in srgb, var(--mint) 30%, transparent); }\n\n        .trust-grid {\n          display: grid;\n          grid-template-columns: repeat(3, 1fr);\n          gap: 20px;\n        }\n        .trust-card {\n          background: color-mix(in srgb, var(--surface) 70%, transparent);\n          border: 1px solid color-mix(in srgb, var(--emerald-500) 25%, transparent);\n          backdrop-filter: blur(10px);\n          transition: all 0.3s ease;\n        }\n        .trust-card:hover {\n          background: color-mix(in srgb, var(--surface) 95%, transparent);\n          border-color: color-mix(in srgb, var(--emerald-700) 40%, transparent);\n        }\n\n        .divider-line {\n          height: 1px;\n          background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--emerald-700) 35%, transparent), transparent);\n        }\n\n        .pricing-grid {\n          display: grid;\n          grid-template-columns: repeat(3, 1fr);\n          gap: 20px;\n          align-items: stretch;\n          max-width: 1180px;\n          margin: 0 auto;\n        }\n        .pricing-card {\n          background: var(--surface);\n          border: 1px solid color-mix(in srgb, var(--emerald-500) 30%, transparent);\n          transition: all 0.3s ease;\n          display: flex;\n          flex-direction: column;\n        }\n        .pricing-card:hover {\n          border-color: color-mix(in srgb, var(--emerald-700) 50%, transparent);\n          box-shadow: 0 16px 44px color-mix(in srgb, var(--emerald-700) 15%, transparent);\n        }\n        .pricing-card.popular {\n          border: 2px solid color-mix(in srgb, var(--emerald-700) 55%, transparent);\n          box-shadow: 0 16px 44px color-mix(in srgb, var(--emerald-700) 18%, transparent);\n        }\n        .pricing-feature-row { display: flex; align-items: flex-start; gap: 6px; }\n        .pricing-feature-row + .pricing-feature-row { margin-top: 3px; }\n\n        @media (max-width: 1024px) {\n          .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }\n        }\n\n        /* ── HOW section viewport fit ── */\n        .how-section {\n          display: flex;\n          flex-direction: column;\n          height: calc(100vh - 128px);\n        }\n        .how-content {\n          flex: 1;\n          display: flex;\n          flex-direction: column;\n          justify-content: center;\n          padding: 16px 32px;\n          max-width: 1100px;\n          width: 100%;\n          margin: 0 auto;\n          gap: 12px;\n          min-height: 0;\n          overflow: hidden;\n        }\n        .steps-grid {\n          display: grid;\n          grid-template-columns: repeat(5, 1fr);\n          gap: 12px;\n          flex: 1;\n        }\n        .step-col {\n          display: flex;\n          flex-direction: column;\n          align-items: center;\n          min-height: 0;\n        }\n        .step-card {\n          background: color-mix(in srgb, var(--surface) 80%, transparent);\n          border-radius: 14px;\n          padding: 14px 12px;\n          border: 1px solid var(--line);\n          box-shadow: 0 4px 18px color-mix(in srgb, var(--emerald-700) 7%, transparent);\n          text-align: center;\n          width: 100%;\n          flex: 1;\n          display: flex;\n          flex-direction: column;\n          align-items: center;\n          justify-content: flex-start;\n          min-height: 0;\n          overflow: hidden;\n        }\n\n        @media (max-width: 1024px) {\n            .how-section {\n              height: auto;\n              min-height: unset;\n            }\n          }\n\n        /* ── MOBILE ── */\n        @media (max-width: 768px) {\n          .how-section { min-height: unset; }\n          .how-content { padding: 16px; gap: 14px; justify-content: flex-start; }\n          .steps-grid {\n            grid-template-columns: 1fr 1fr;\n            gap: 10px;\n          }\n          .step-col:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; width: 100%; }\n          .trust-grid { grid-template-columns: 1fr !important; }\n          .comparison-table th, .comparison-table td { padding: 10px 12px; font-size: 12px; }\n          .tab-btn { padding: 9px 16px; font-size: 12px; }\n        }\n\n        @media (max-width: 480px) {\n          .steps-grid { grid-template-columns: 1fr; }\n          .step-col:last-child { grid-column: unset; max-width: 100%; }\n          .how-content { padding: 12px; }\n        }\n\n        @media (min-width: 769px) and (max-width: 1024px) {\n          .steps-grid { grid-template-columns: repeat(3, 1fr); }\n          .step-col:nth-child(4), .step-col:nth-child(5) { grid-column: span 1; }\n        }\n      "
         }
       </style>
       <Navbar />
@@ -241,8 +241,8 @@ function HowItWorksPage() {
             gap: 6,
             padding: 6,
             borderRadius: 40,
-            background: `rgba(184,228,199,0.25)`,
-            border: `1.5px solid rgba(116,198,157,0.3)`,
+            background: `color-mix(in srgb, var(--mint) 25%, transparent)`,
+            border: `1.5px solid color-mix(in srgb, var(--emerald-500) 30%, transparent)`,
           }}
         >
           <button
@@ -265,7 +265,7 @@ function HowItWorksPage() {
             <div style={{ textAlign: `center` }}>
               <p
                 style={{
-                  color: `#40916C`,
+                  color: `var(--emerald-700)`,
                   fontSize: 11,
                   letterSpacing: `0.3em`,
                   textTransform: `uppercase`,
@@ -281,7 +281,7 @@ function HowItWorksPage() {
                   fontFamily: `'Playfair Display', serif`,
                   fontSize: `clamp(26px, 3.5vw, 42px)`,
                   fontWeight: 700,
-                  color: `#1B3A4B`,
+                  color: `var(--fg)`,
                   letterSpacing: `-0.025em`,
                   marginBottom: 8,
                 }}
@@ -294,7 +294,7 @@ function HowItWorksPage() {
                 style={{
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 13,
-                  color: `#3D6B55`,
+                  color: `var(--muted)`,
                   maxWidth: 560,
                   margin: `0 auto`,
                   lineHeight: 1.6,
@@ -331,7 +331,7 @@ function HowItWorksPage() {
                         width: 24,
                         height: 24,
                         borderRadius: `50%`,
-                        background: `linear-gradient(135deg, #1B3A4B, #2D6A4F)`,
+                        background: `linear-gradient(135deg, var(--deep), var(--emerald-700))`,
                         color: `#fff`,
                         fontSize: 11,
                         fontWeight: 700,
@@ -350,7 +350,7 @@ function HowItWorksPage() {
                         fontFamily: `'Playfair Display', serif`,
                         fontSize: 13,
                         fontWeight: 700,
-                        color: `#1B3A4B`,
+                        color: `var(--fg)`,
                         marginBottom: 6,
                         flexShrink: 0,
                       }}
@@ -361,7 +361,7 @@ function HowItWorksPage() {
                       style={{
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 11.5,
-                        color: `#3D6B55`,
+                        color: `var(--muted)`,
                         lineHeight: 1.5,
                       }}
                     >
@@ -384,7 +384,7 @@ function HowItWorksPage() {
           <section style={{ textAlign: `center`, padding: `24px 24px 8px` }}>
             <p
               style={{
-                color: `#40916C`,
+                color: `var(--emerald-700)`,
                 fontSize: 11,
                 letterSpacing: `0.3em`,
                 textTransform: `uppercase`,
@@ -400,7 +400,7 @@ function HowItWorksPage() {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: `clamp(24px, 3.5vw, 38px)`,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 letterSpacing: `-0.025em`,
                 marginBottom: 8,
               }}
@@ -412,7 +412,7 @@ function HowItWorksPage() {
               style={{
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 13,
-                color: `#3D6B55`,
+                color: `var(--muted)`,
                 maxWidth: 500,
                 margin: `0 auto`,
                 lineHeight: 1.6,
@@ -459,7 +459,7 @@ function HowItWorksPage() {
                       style={{
                         fontSize: 16,
                         fontWeight: 700,
-                        color: `#1B3A4B`,
+                        color: `var(--fg)`,
                         marginBottom: 2,
                         fontFamily: `'Playfair Display', serif`,
                       }}
@@ -471,7 +471,7 @@ function HowItWorksPage() {
                       <p
                         style={{
                           fontSize: 10,
-                          color: `#3D6B55`,
+                          color: `var(--muted)`,
                           marginBottom: 4,
                           lineHeight: 1.4,
                           fontFamily: `'DM Sans', sans-serif`,
@@ -499,7 +499,7 @@ function HowItWorksPage() {
                         <span
                           style={{
                             fontSize: 12,
-                            color: `#3D6B55`,
+                            color: `var(--muted)`,
                             fontFamily: `'DM Sans', sans-serif`,
                           }}
                         >
@@ -511,7 +511,7 @@ function HowItWorksPage() {
                       <p
                         style={{
                           fontSize: 10,
-                          color: `#8AA79C`,
+                          color: `var(--muted)`,
                           fontFamily: `'DM Sans', sans-serif`,
                         }}
                       >
@@ -524,7 +524,7 @@ function HowItWorksPage() {
                       <div key={`f${t}`} className="pricing-feature-row">
                         <span
                           style={{
-                            color: `#40916C`,
+                            color: `var(--emerald-700)`,
                             fontSize: 12,
                             marginTop: 1,
                             flexShrink: 0,
@@ -535,7 +535,7 @@ function HowItWorksPage() {
                         <span
                           style={{
                             fontSize: 11,
-                            color: `#1B3A4B`,
+                            color: `var(--fg)`,
                             lineHeight: 1.4,
                             fontFamily: `'DM Sans', sans-serif`,
                           }}
@@ -548,7 +548,7 @@ function HowItWorksPage() {
                       <div key={`l${t}`} className="pricing-feature-row">
                         <span
                           style={{
-                            color: `#e63946`,
+                            color: `var(--danger)`,
                             opacity: 0.5,
                             fontSize: 12,
                             marginTop: 1,
@@ -560,7 +560,7 @@ function HowItWorksPage() {
                         <span
                           style={{
                             fontSize: 11,
-                            color: `#8AA79C`,
+                            color: `var(--muted)`,
                             lineHeight: 1.4,
                             fontFamily: `'DM Sans', sans-serif`,
                           }}
@@ -595,19 +595,19 @@ function HowItWorksPage() {
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 12,
                         fontWeight: 700,
-                        border: `2px solid #2D6A4F`,
-                        color: `#2D6A4F`,
+                        border: `2px solid var(--emerald-700)`,
+                        color: `var(--emerald-700)`,
                         background: `transparent`,
                         cursor: `pointer`,
                         transition: `all 0.22s`,
                       }}
                       onMouseEnter={(e) => {
-                        ((e.currentTarget.style.background = `#2D6A4F`),
+                        ((e.currentTarget.style.background = `var(--emerald-700)`),
                           (e.currentTarget.style.color = `#fff`));
                       }}
                       onMouseLeave={(e) => {
                         ((e.currentTarget.style.background = `transparent`),
-                          (e.currentTarget.style.color = `#2D6A4F`));
+                          (e.currentTarget.style.color = `var(--emerald-700)`));
                       }}
                     >
                       {o === e.id ? `Processing…` : e.cta}
@@ -623,7 +623,7 @@ function HowItWorksPage() {
               <div style={{ textAlign: `center`, marginBottom: 32 }}>
                 <p
                   style={{
-                    color: `#40916C`,
+                    color: `var(--emerald-700)`,
                     fontSize: 12,
                     letterSpacing: `0.3em`,
                     textTransform: `uppercase`,
@@ -639,7 +639,7 @@ function HowItWorksPage() {
                     fontFamily: `'Playfair Display', serif`,
                     fontSize: `clamp(22px, 3vw, 32px)`,
                     fontWeight: 700,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                   }}
                 >
                   {"Feature "}
@@ -650,8 +650,8 @@ function HowItWorksPage() {
                 style={{
                   overflowX: `auto`,
                   borderRadius: 16,
-                  border: `1px solid rgba(116,198,157,0.3)`,
-                  boxShadow: `0 2px 12px rgba(45,106,79,0.06)`,
+                  border: `1px solid color-mix(in srgb, var(--emerald-500) 30%, transparent)`,
+                  boxShadow: `0 2px 12px color-mix(in srgb, var(--emerald-700) 6%, transparent)`,
                 }}
               >
                 <table className="comparison-table">
@@ -669,7 +669,7 @@ function HowItWorksPage() {
                         <td
                           style={{
                             fontWeight: 600,
-                            color: `#1B3A4B`,
+                            color: `var(--fg)`,
                           }}
                         >
                           {e.feature}
@@ -696,7 +696,7 @@ function HowItWorksPage() {
               <div style={{ textAlign: `center`, marginBottom: 32 }}>
                 <p
                   style={{
-                    color: `#40916C`,
+                    color: `var(--emerald-700)`,
                     fontSize: 12,
                     letterSpacing: `0.3em`,
                     textTransform: `uppercase`,
@@ -712,7 +712,7 @@ function HowItWorksPage() {
                     fontFamily: `'Playfair Display', serif`,
                     fontSize: `clamp(22px, 3vw, 32px)`,
                     fontWeight: 700,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                   }}
                 >
                   {"Your Safety, Our "}
@@ -737,7 +737,7 @@ function HowItWorksPage() {
                       style={{
                         fontSize: 15,
                         fontWeight: 700,
-                        color: `#1B3A4B`,
+                        color: `var(--fg)`,
                         marginBottom: 8,
                         fontFamily: `'Playfair Display', serif`,
                       }}
@@ -747,7 +747,7 @@ function HowItWorksPage() {
                     <p
                       style={{
                         fontSize: 12.5,
-                        color: `#3D6B55`,
+                        color: `var(--muted)`,
                         lineHeight: 1.6,
                         fontFamily: `'DM Sans', sans-serif`,
                       }}
@@ -768,8 +768,8 @@ function HowItWorksPage() {
                 borderRadius: 24,
                 overflow: `hidden`,
                 position: `relative`,
-                background: `linear-gradient(135deg, #F0FAF4 0%, #E8F5EE 50%, #D4EDDA 100%)`,
-                border: `1px solid rgba(64,145,108,0.25)`,
+                background: `linear-gradient(135deg, var(--surface-2) 0%, var(--surface-2) 50%, var(--surface-2) 100%)`,
+                border: `1px solid color-mix(in srgb, var(--emerald-500) 25%, transparent)`,
               }}
             >
               <div
@@ -785,7 +785,7 @@ function HowItWorksPage() {
                     fontFamily: `'Playfair Display', serif`,
                     fontSize: `clamp(22px, 3vw, 32px)`,
                     fontWeight: 700,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                     marginBottom: 12,
                   }}
                 >
@@ -794,7 +794,7 @@ function HowItWorksPage() {
                 </h2>
                 <p
                   style={{
-                    color: `#3D6B55`,
+                    color: `var(--muted)`,
                     marginBottom: 24,
                     maxWidth: 460,
                     margin: `0 auto 24px`,
@@ -825,8 +825,8 @@ function HowItWorksPage() {
                   <button
                     onClick={() => u(`free`)}
                     style={{
-                      border: `2px solid #2D6A4F`,
-                      color: `#2D6A4F`,
+                      border: `2px solid var(--emerald-700)`,
+                      color: `var(--emerald-700)`,
                       background: `transparent`,
                       fontFamily: `'DM Sans', sans-serif`,
                       fontSize: 14,
@@ -837,12 +837,12 @@ function HowItWorksPage() {
                       transition: `all 0.22s`,
                     }}
                     onMouseEnter={(e) => {
-                      ((e.currentTarget.style.background = `#2D6A4F`),
+                      ((e.currentTarget.style.background = `var(--emerald-700)`),
                         (e.currentTarget.style.color = `#fff`));
                     }}
                     onMouseLeave={(e) => {
                       ((e.currentTarget.style.background = `transparent`),
-                        (e.currentTarget.style.color = `#2D6A4F`));
+                        (e.currentTarget.style.color = `var(--emerald-700)`));
                     }}
                   >
                     Get Started Free
@@ -856,8 +856,8 @@ function HowItWorksPage() {
       )}
       <footer
         style={{
-          background: `#1B3A4B`,
-          color: `#74C69D`,
+          background: `var(--deep)`,
+          color: `var(--emerald-500)`,
           padding: `28px 24px`,
           textAlign: `center`,
         }}
@@ -872,8 +872,8 @@ function HowItWorksPage() {
             marginBottom: 8,
           }}
         >
-          Nikha<span style={{ color: `#74C69D` }}>2</span>{" "}
-          <span style={{ color: `#40916C` }}>♡</span>
+          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
         <p
           style={{
@@ -899,7 +899,7 @@ function HowItWorksPage() {
               to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `'DM Sans', sans-serif`,

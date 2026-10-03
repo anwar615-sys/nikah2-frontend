@@ -45,15 +45,15 @@ function SupportChatWidget() {
             right: 0,
             width: `min(340px, calc(100vw - 40px))`,
             borderRadius: 24,
-            background: `#fff`,
-            boxShadow: `0 16px 56px rgba(27,58,75,0.22)`,
+            background: `var(--surface)`,
+            boxShadow: `0 16px 56px color-mix(in srgb, var(--shadow) 22%, transparent)`,
             overflow: `hidden`,
             animation: `slideUpFade 0.25s ease`,
           }}
         >
           <div
             style={{
-              background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 60%, #40916C 100%)`,
+              background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 60%, var(--emerald-700) 100%)`,
               padding: `16px 18px`,
               display: `flex`,
               alignItems: `center`,
@@ -65,7 +65,7 @@ function SupportChatWidget() {
                 width: 40,
                 height: 40,
                 borderRadius: `50%`,
-                background: `rgba(255,255,255,0.15)`,
+                background: `color-mix(in srgb, var(--surface) 15%, transparent)`,
                 display: `flex`,
                 alignItems: `center`,
                 justifyContent: `center`,
@@ -100,9 +100,9 @@ function SupportChatWidget() {
                     width: 7,
                     height: 7,
                     borderRadius: `50%`,
-                    background: `#86efac`,
+                    background: `var(--online-soft)`,
                     display: `inline-block`,
-                    boxShadow: `0 0 6px #86efac`,
+                    boxShadow: `0 0 6px var(--online-soft)`,
                   }}
                 />
                 <span
@@ -120,7 +120,7 @@ function SupportChatWidget() {
               onClick={() => t(!1)}
               style={{
                 marginLeft: `auto`,
-                background: `rgba(255,255,255,0.12)`,
+                background: `color-mix(in srgb, var(--surface) 12%, transparent)`,
                 border: `1px solid rgba(255,255,255,0.2)`,
                 color: `#fff`,
                 width: 30,
@@ -145,7 +145,7 @@ function SupportChatWidget() {
               display: `flex`,
               flexDirection: `column`,
               gap: 10,
-              background: `#F8FAF5`,
+              background: `var(--bg)`,
             }}
           >
             {n.map((e, t) => (
@@ -164,7 +164,7 @@ function SupportChatWidget() {
                       width: 28,
                       height: 28,
                       borderRadius: `50%`,
-                      background: `#D4EDDA`,
+                      background: `var(--surface-2)`,
                       display: `flex`,
                       alignItems: `center`,
                       justifyContent: `center`,
@@ -180,9 +180,9 @@ function SupportChatWidget() {
                     maxWidth: `75%`,
                     background:
                       e.from === `user`
-                        ? `linear-gradient(135deg, #1B3A4B, #2D6A4F)`
-                        : `#fff`,
-                    color: e.from === `user` ? `#fff` : `#1B3A4B`,
+                        ? `linear-gradient(135deg, var(--deep), var(--emerald-700))`
+                        : `var(--surface)`,
+                    color: e.from === `user` ? `#fff` : `var(--fg)`,
                     padding: `10px 16px`,
                     borderRadius:
                       e.from === `user`
@@ -193,7 +193,7 @@ function SupportChatWidget() {
                     lineHeight: 1.55,
                     boxShadow:
                       e.from === `user`
-                        ? `0 3px 12px rgba(27,58,75,0.25)`
+                        ? `0 3px 12px color-mix(in srgb, var(--shadow) 25%, transparent)`
                         : `0 2px 8px rgba(0,0,0,0.07)`,
                   }}
                 >
@@ -208,7 +208,7 @@ function SupportChatWidget() {
                     width: 28,
                     height: 28,
                     borderRadius: `50%`,
-                    background: `#D4EDDA`,
+                    background: `var(--surface-2)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `center`,
@@ -219,7 +219,7 @@ function SupportChatWidget() {
                 </div>
                 <div
                   style={{
-                    background: `#fff`,
+                    background: `var(--surface)`,
                     padding: `10px 16px`,
                     borderRadius: `20px 20px 20px 6px`,
                     boxShadow: `0 2px 8px rgba(0,0,0,0.07)`,
@@ -239,7 +239,7 @@ function SupportChatWidget() {
                           width: 6,
                           height: 6,
                           borderRadius: `50%`,
-                          background: `#74C69D`,
+                          background: `var(--emerald-500)`,
                           display: `inline-block`,
                           animation: `typingDot 1.2s ${e * 0.2}s infinite`,
                         }}
@@ -256,8 +256,8 @@ function SupportChatWidget() {
               display: `flex`,
               gap: 8,
               padding: `10px 12px`,
-              background: `#fff`,
-              borderTop: `1px solid #E8F5EE`,
+              background: `var(--surface)`,
+              borderTop: `1px solid var(--line)`,
             }}
           >
             <input
@@ -267,24 +267,24 @@ function SupportChatWidget() {
               placeholder="Type a message..."
               style={{
                 flex: 1,
-                border: `1.5px solid #B7E4C7`,
+                border: `1.5px solid var(--mint)`,
                 borderRadius: 20,
                 padding: `9px 14px`,
                 fontSize: 13,
                 fontFamily: `'DM Sans', sans-serif`,
                 outline: `none`,
-                background: `#F8FAF5`,
-                color: `#1B3A4B`,
+                background: `var(--bg)`,
+                color: `var(--fg)`,
                 transition: `border-color 0.2s`,
                 minWidth: 0,
               }}
-              onFocus={(e) => (e.target.style.borderColor = `#40916C`)}
-              onBlur={(e) => (e.target.style.borderColor = `#B7E4C7`)}
+              onFocus={(e) => (e.target.style.borderColor = `var(--emerald-500)`)}
+              onBlur={(e) => (e.target.style.borderColor = `var(--mint)`)}
             />
             <button
               onClick={d}
               style={{
-                background: `linear-gradient(135deg, #1B3A4B, #2D6A4F)`,
+                background: `linear-gradient(135deg, var(--deep), var(--emerald-700))`,
                 border: `none`,
                 borderRadius: `50%`,
                 width: 38,
@@ -295,7 +295,7 @@ function SupportChatWidget() {
                 display: `flex`,
                 alignItems: `center`,
                 justifyContent: `center`,
-                boxShadow: `0 3px 10px rgba(45,106,79,0.35)`,
+                boxShadow: `0 3px 10px color-mix(in srgb, var(--emerald-700) 35%, transparent)`,
                 flexShrink: 0,
               }}
             >
@@ -310,10 +310,10 @@ function SupportChatWidget() {
           width: 60,
           height: 60,
           borderRadius: `50%`,
-          background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 50%, #52B788 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-500) 100%)`,
           border: `none`,
           cursor: `pointer`,
-          boxShadow: `0 6px 28px rgba(45,106,79,0.5)`,
+          boxShadow: `0 6px 28px color-mix(in srgb, var(--emerald-700) 50%, transparent)`,
           display: `flex`,
           alignItems: `center`,
           justifyContent: `center`,
@@ -331,7 +331,7 @@ function SupportChatWidget() {
               position: `absolute`,
               top: -3,
               right: -3,
-              background: `#e63946`,
+              background: `var(--danger)`,
               color: `#fff`,
               width: 20,
               height: 20,
@@ -341,7 +341,7 @@ function SupportChatWidget() {
               display: `flex`,
               alignItems: `center`,
               justifyContent: `center`,
-              border: `2px solid #F8FAF5`,
+              border: `2px solid var(--line)`,
             }}
           >
             {o}
@@ -354,7 +354,7 @@ function SupportChatWidget() {
             position: `absolute`,
             bottom: 16,
             right: 70,
-            background: `#1B3A4B`,
+            background: `var(--deep)`,
             color: `#fff`,
             padding: `6px 13px`,
             borderRadius: 20,

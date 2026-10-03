@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
 import * as React from "react";
 import { useAuth } from "../context/AuthContext";
 
@@ -34,7 +35,7 @@ function Navbar() {
     <>
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');\n.Nikha-nav-link {\n          position: relative;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          color: #3D6B55;\n          text-decoration: none;\n          transition: color 0.2s, transform 0.2s;\n          font-weight: 500;\n          padding: 6px 0;\n        }\n        .Nikha-nav-link::after {\n          content: '';\n          position: absolute;\n          left: 0;\n          right: 0;\n          bottom: -2px;\n          height: 2px;\n          border-radius: 2px;\n          background: linear-gradient(90deg, #2D6A4F, #74C69D);\n          transform: scaleX(0);\n          transform-origin: left;\n          transition: transform 0.28s ease;\n          opacity: 0.95;\n        }\n        .Nikha-nav-link:hover {\n          color: #2D6A4F;\n          transform: translateY(-1px);\n          text-shadow: 0 0 18px rgba(116,198,157,0.35);\n        }\n        .Nikha-nav-link:hover::after {\n          transform: scaleX(1);\n          box-shadow: 0 0 14px rgba(116,198,157,0.55);\n        }\n        .Nikha-nav-link.active {\n          color: #2D6A4F;\n          font-weight: 600;\n        }\n        .Nikha-nav-link.active::after {\n          transform: scaleX(1);\n          box-shadow: 0 0 14px rgba(116,198,157,0.55);\n        }\n\n        /* Green shiny glow (logo only) */\n        .Nikha-logo-shiny {\n          position: relative;\n          transition: filter 0.25s ease, transform 0.25s ease;\n        }\n        .Nikha-logo-shiny::after {\n          content: '';\n          position: absolute;\n          inset: -8px -14px;\n          border-radius: 18px;\n          background: radial-gradient(circle at 30% 20%, rgba(116,198,157,0.35), transparent 45%),\n                      radial-gradient(circle at 70% 80%, rgba(45,106,79,0.25), transparent 48%);\n          opacity: 0;\n          transition: opacity 0.22s ease;\n          pointer-events: none;\n        }\n        .Nikha-logo-shiny:hover {\n          transform: translateY(-1px);\n          filter: drop-shadow(0 0 16px rgba(116,198,157,0.35));\n        }\n        .Nikha-logo-shiny:hover::after {\n          opacity: 1;\n        }\n        .join-btn {\n          background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%);\n          color: #fff !important;\n          padding: 9px 22px;\n          border-radius: 24px;\n          font-weight: 600;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          text-decoration: none;\n          transition: all 0.22s;\n          box-shadow: 0 4px 14px rgba(45,106,79,0.28);\n          letter-spacing: 0.02em;\n        }\n        .join-btn:hover {\n          transform: translateY(-1px);\n          box-shadow: 0 6px 20px rgba(45,106,79,0.38);\n        }\n        .signin-link {\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          color: #3D6B55;\n          text-decoration: none;\n          padding: 8px 16px;\n          border-radius: 20px;\n          transition: all 0.2s;\n          font-weight: 500;\n        }\n        .signin-link:hover {\n          background: rgba(116,198,157,0.15);\n          color: #2D6A4F;\n        }\n        .account-trigger {\n          display: flex;\n          align-items: center;\n          gap: 8px;\n          background: none;\n          border: none;\n          cursor: pointer;\n          padding: 6px 10px 6px 6px;\n          border-radius: 24px;\n          transition: background 0.2s;\n          font-family: 'DM Sans', sans-serif;\n        }\n        .account-trigger:hover {\n          background: rgba(116,198,157,0.15);\n        }\n        .account-avatar {\n          width: 30px;\n          height: 30px;\n          border-radius: 50%;\n          object-fit: cover;\n          background: linear-gradient(135deg, #2D6A4F, #74C69D);\n          color: #fff;\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          font-weight: 700;\n          font-size: 13px;\n          flex-shrink: 0;\n        }\n        .account-dropdown {\n          position: absolute;\n          top: calc(100% + 10px);\n          right: 0;\n          background: #fff;\n          border-radius: 16px;\n          border: 1.5px solid #D4EDDA;\n          box-shadow: 0 12px 40px rgba(27,58,75,0.16);\n          min-width: 190px;\n          overflow: hidden;\n          z-index: 110;\n        }\n        .account-dropdown-item {\n          display: flex;\n          align-items: center;\n          gap: 10px;\n          width: 100%;\n          padding: 12px 16px;\n          border: none;\n          background: none;\n          text-align: left;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13.5px;\n          font-weight: 500;\n          color: #1B3A4B;\n          text-decoration: none;\n          cursor: pointer;\n          transition: background 0.15s;\n        }\n        .account-dropdown-item:hover {\n          background: #F0FAF4;\n        }\n        .account-dropdown-item.danger {\n          color: #C0392B;\n        }\n        .ham-line {\n          display: block;\n          width: 22px;\n          height: 2px;\n          background: #2D6A4F;\n          border-radius: 2px;\n          transition: all 0.3s;\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');\n.Nikha-nav-link {\n          position: relative;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          color: var(--muted);\n          text-decoration: none;\n          transition: color 0.2s, transform 0.2s;\n          font-weight: 500;\n          padding: 6px 0;\n        }\n        .Nikha-nav-link::after {\n          content: '';\n          position: absolute;\n          left: 0;\n          right: 0;\n          bottom: -2px;\n          height: 2px;\n          border-radius: 2px;\n          background: linear-gradient(90deg, var(--emerald-700), var(--emerald-500));\n          transform: scaleX(0);\n          transform-origin: left;\n          transition: transform 0.28s ease;\n          opacity: 0.95;\n        }\n        .Nikha-nav-link:hover {\n          color: var(--emerald-700);\n          transform: translateY(-1px);\n          text-shadow: 0 0 18px color-mix(in srgb, var(--emerald-500) 35%, transparent);\n        }\n        .Nikha-nav-link:hover::after {\n          transform: scaleX(1);\n          box-shadow: 0 0 14px color-mix(in srgb, var(--emerald-500) 55%, transparent);\n        }\n        .Nikha-nav-link.active {\n          color: var(--emerald-700);\n          font-weight: 600;\n        }\n        .Nikha-nav-link.active::after {\n          transform: scaleX(1);\n          box-shadow: 0 0 14px color-mix(in srgb, var(--emerald-500) 55%, transparent);\n        }\n\n        /* Green shiny glow (logo only) */\n        .Nikha-logo-shiny {\n          position: relative;\n          transition: filter 0.25s ease, transform 0.25s ease;\n        }\n        .Nikha-logo-shiny::after {\n          content: '';\n          position: absolute;\n          inset: -8px -14px;\n          border-radius: 18px;\n          background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--emerald-500) 35%, transparent), transparent 45%),\n                      radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--emerald-700) 25%, transparent), transparent 48%);\n          opacity: 0;\n          transition: opacity 0.22s ease;\n          pointer-events: none;\n        }\n        .Nikha-logo-shiny:hover {\n          transform: translateY(-1px);\n          filter: drop-shadow(0 0 16px color-mix(in srgb, var(--emerald-500) 35%, transparent));\n        }\n        .Nikha-logo-shiny:hover::after {\n          opacity: 1;\n        }\n        .join-btn {\n          background: linear-gradient(135deg, var(--emerald-700) 0%, var(--emerald-700) 100%);\n          color: #fff !important;\n          padding: 9px 22px;\n          border-radius: 24px;\n          font-weight: 600;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          text-decoration: none;\n          transition: all 0.22s;\n          box-shadow: 0 4px 14px color-mix(in srgb, var(--emerald-700) 28%, transparent);\n          letter-spacing: 0.02em;\n        }\n        .join-btn:hover {\n          transform: translateY(-1px);\n          box-shadow: 0 6px 20px color-mix(in srgb, var(--emerald-700) 38%, transparent);\n        }\n        .signin-link {\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          color: var(--muted);\n          text-decoration: none;\n          padding: 8px 16px;\n          border-radius: 20px;\n          transition: all 0.2s;\n          font-weight: 500;\n        }\n        .signin-link:hover {\n          background: color-mix(in srgb, var(--emerald-500) 15%, transparent);\n          color: var(--emerald-700);\n        }\n        .account-trigger {\n          display: flex;\n          align-items: center;\n          gap: 8px;\n          background: none;\n          border: none;\n          cursor: pointer;\n          padding: 6px 10px 6px 6px;\n          border-radius: 24px;\n          transition: background 0.2s;\n          font-family: 'DM Sans', sans-serif;\n        }\n        .account-trigger:hover {\n          background: color-mix(in srgb, var(--emerald-500) 15%, transparent);\n        }\n        .account-avatar {\n          width: 30px;\n          height: 30px;\n          border-radius: 50%;\n          object-fit: cover;\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500));\n          color: #fff;\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          font-weight: 700;\n          font-size: 13px;\n          flex-shrink: 0;\n        }\n        .account-dropdown {\n          position: absolute;\n          top: calc(100% + 10px);\n          right: 0;\n          background: var(--surface);\n          border-radius: 16px;\n          border: 1.5px solid var(--line);\n          box-shadow: 0 12px 40px color-mix(in srgb, var(--shadow) 16%, transparent);\n          min-width: 190px;\n          overflow: hidden;\n          z-index: 110;\n        }\n        .account-dropdown-item {\n          display: flex;\n          align-items: center;\n          gap: 10px;\n          width: 100%;\n          padding: 12px 16px;\n          border: none;\n          background: none;\n          text-align: left;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13.5px;\n          font-weight: 500;\n          color: var(--fg);\n          text-decoration: none;\n          cursor: pointer;\n          transition: background 0.15s;\n        }\n        .account-dropdown-item:hover {\n          background: var(--surface-2);\n        }\n        .account-dropdown-item.danger {\n          color: var(--danger);\n        }\n        .ham-line {\n          display: block;\n          width: 22px;\n          height: 2px;\n          background: var(--emerald-700);\n          border-radius: 2px;\n          transition: all 0.3s;\n        }\n      "
         }
       </style>
       <nav
@@ -49,11 +50,11 @@ function Navbar() {
           justifyContent: `space-between`,
           padding: `0 40px`,
           height: 68,
-          background: `rgba(248, 252, 248, 0.96)`,
+          background: `color-mix(in srgb, var(--bg) 96%, transparent)`,
           backdropFilter: `blur(20px)`,
           WebkitBackdropFilter: `blur(20px)`,
-          borderBottom: `1px solid rgba(116,198,157,0.2)`,
-          boxShadow: `0 2px 20px rgba(45,106,79,0.06)`,
+          borderBottom: `1px solid color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
+          boxShadow: `0 2px 20px color-mix(in srgb, var(--emerald-700) 6%, transparent)`,
         }}
       >
         <Link
@@ -78,16 +79,16 @@ function Navbar() {
                 fontFamily: `'Playfair Display', serif`,
                 fontWeight: 700,
                 fontSize: 26,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 letterSpacing: `-0.02em`,
                 lineHeight: 1,
               }}
             >
-              Nikha<span style={{ color: `#40916C` }}>2</span>
+              Nikha<span style={{ color: `var(--emerald-700)` }}>2</span>
             </span>
             <span
               style={{
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 fontSize: 20,
                 lineHeight: 1,
                 marginTop: 2,
@@ -99,8 +100,8 @@ function Navbar() {
               style={{
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 10,
-                color: `#40916C`,
-                border: `1px solid #B7E4C7`,
+                color: `var(--emerald-700)`,
+                border: `1px solid var(--mint)`,
                 borderRadius: 10,
                 padding: `1px 6px`,
                 marginLeft: 2,
@@ -115,7 +116,7 @@ function Navbar() {
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 10.5,
               fontWeight: 500,
-              color: `#74C69D`,
+              color: `var(--emerald-500)`,
               letterSpacing: `0.05em`,
               lineHeight: 1,
             }}
@@ -138,6 +139,7 @@ function Navbar() {
           ))}
         </div>
         <div style={{ display: `flex`, alignItems: `center`, gap: 8 }}>
+          <ThemeToggle size="sm" />
           <div
             className="hidden md:flex"
             style={{ alignItems: `center`, gap: 8 }}
@@ -162,7 +164,7 @@ function Navbar() {
                   <span
                     style={{
                       fontSize: 13,
-                      color: `#2D6A4F`,
+                      color: `var(--emerald-700)`,
                       fontWeight: 600,
                     }}
                   >
@@ -172,7 +174,7 @@ function Navbar() {
                   <span
                     style={{
                       fontSize: 10,
-                      color: `#40916C`,
+                      color: `var(--emerald-700)`,
                       transform: i ? `rotate(180deg)` : `none`,
                       transition: `transform 0.2s`,
                     }}
@@ -253,7 +255,7 @@ function Navbar() {
             position: `fixed`,
             inset: 0,
             zIndex: 98,
-            background: `rgba(27,58,75,0.25)`,
+            background: `color-mix(in srgb, var(--overlay) 25%, transparent)`,
           }}
         />
       )}
@@ -264,9 +266,9 @@ function Navbar() {
           left: 0,
           right: 0,
           zIndex: 99,
-          background: `rgba(248,252,248,0.99)`,
+          background: `color-mix(in srgb, var(--bg) 99%, transparent)`,
           backdropFilter: `blur(20px)`,
-          borderBottom: `1px solid rgba(116,198,157,0.2)`,
+          borderBottom: `1px solid color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
           padding: n ? `24px 32px 28px` : `0 32px`,
           maxHeight: n ? 400 : 0,
           overflow: `hidden`,
@@ -288,7 +290,7 @@ function Navbar() {
           ))}
           <div
             style={{
-              borderTop: `1px solid rgba(116,198,157,0.2)`,
+              borderTop: `1px solid color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
               paddingTop: 16,
               display: `flex`,
               flexDirection: `column`,

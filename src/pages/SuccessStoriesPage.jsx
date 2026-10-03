@@ -105,8 +105,8 @@ function StoryCard({ story: e }) {
   return (
     <div
       style={{
-        background: `#fff`,
-        border: `1px solid #E8F5EE`,
+        background: `var(--surface)`,
+        border: `1px solid var(--line)`,
         borderRadius: 24,
         overflow: `hidden`,
         flexShrink: 0,
@@ -116,19 +116,19 @@ function StoryCard({ story: e }) {
         cursor: `default`,
       }}
       onMouseEnter={(e) => {
-        ((e.currentTarget.style.borderColor = `#74C69D`),
-          (e.currentTarget.style.boxShadow = `0 20px 56px rgba(45,106,79,0.14)`),
+        ((e.currentTarget.style.borderColor = `var(--emerald-500)`),
+          (e.currentTarget.style.boxShadow = `0 20px 56px color-mix(in srgb, var(--emerald-700) 14%, transparent)`),
           (e.currentTarget.style.transform = `translateY(-6px)`));
       }}
       onMouseLeave={(e) => {
-        ((e.currentTarget.style.borderColor = `#E8F5EE`),
+        ((e.currentTarget.style.borderColor = `var(--line)`),
           (e.currentTarget.style.boxShadow = `none`),
           (e.currentTarget.style.transform = `none`));
       }}
     >
       <div
         style={{
-          background: `linear-gradient(135deg, #D4EDDA 0%, #B7E4C7 100%)`,
+          background: `linear-gradient(135deg, var(--surface-2) 0%, var(--mint) 100%)`,
           height: 220,
           display: `flex`,
           alignItems: `center`,
@@ -149,7 +149,7 @@ function StoryCard({ story: e }) {
             fontFamily: `'Playfair Display', serif`,
             fontSize: 23,
             fontWeight: 700,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
             marginBottom: 6,
           }}
         >
@@ -159,7 +159,7 @@ function StoryCard({ story: e }) {
           style={{
             fontFamily: `'DM Sans', sans-serif`,
             fontSize: 14,
-            color: `#74C69D`,
+            color: `var(--emerald-500)`,
             fontWeight: 600,
             marginBottom: 16,
           }}
@@ -170,7 +170,7 @@ function StoryCard({ story: e }) {
           style={{
             fontFamily: `'Playfair Display', serif`,
             fontSize: 17,
-            color: `#3D6B55`,
+            color: `var(--muted)`,
             fontStyle: `italic`,
             lineHeight: 1.7,
             margin: 0,
@@ -187,8 +187,8 @@ function TestimonialCard({ testimonial: e }) {
   return (
     <div
       style={{
-        background: `rgba(255,255,255,0.65)`,
-        border: `1px solid #E8F5EE`,
+        background: `color-mix(in srgb, var(--surface) 65%, transparent)`,
+        border: `1px solid var(--line)`,
         borderRadius: 20,
         padding: `28px 22px`,
         textAlign: `center`,
@@ -198,13 +198,13 @@ function TestimonialCard({ testimonial: e }) {
       }}
       onMouseEnter={(e) => {
         ((e.currentTarget.style.transform = `translateY(-6px)`),
-          (e.currentTarget.style.boxShadow = `0 20px 48px rgba(45,106,79,0.12)`),
-          (e.currentTarget.style.borderColor = `#74C69D`));
+          (e.currentTarget.style.boxShadow = `0 20px 48px color-mix(in srgb, var(--emerald-700) 12%, transparent)`),
+          (e.currentTarget.style.borderColor = `var(--emerald-500)`));
       }}
       onMouseLeave={(e) => {
         ((e.currentTarget.style.transform = `none`),
           (e.currentTarget.style.boxShadow = `none`),
-          (e.currentTarget.style.borderColor = `#E8F5EE`));
+          (e.currentTarget.style.borderColor = `var(--line)`));
       }}
     >
       <div
@@ -212,14 +212,14 @@ function TestimonialCard({ testimonial: e }) {
           width: 64,
           height: 64,
           borderRadius: `50%`,
-          background: `linear-gradient(160deg, #D4EDDA, #B7E4C7)`,
+          background: `linear-gradient(160deg, var(--surface-2), var(--mint))`,
           margin: `0 auto 16px`,
           display: `flex`,
           alignItems: `center`,
           justifyContent: `center`,
           fontSize: 24,
-          border: `3px solid #fff`,
-          boxShadow: `0 4px 14px rgba(45,106,79,0.15)`,
+          border: `3px solid var(--surface)`,
+          boxShadow: `0 4px 14px color-mix(in srgb, var(--emerald-700) 15%, transparent)`,
           overflow: `hidden`,
         }}
       >
@@ -229,7 +229,7 @@ function TestimonialCard({ testimonial: e }) {
         style={{
           fontFamily: `'Playfair Display', serif`,
           fontSize: 15,
-          color: `#1B3A4B`,
+          color: `var(--fg)`,
           fontStyle: `italic`,
           lineHeight: 1.65,
           margin: `0 0 12px`,
@@ -251,7 +251,7 @@ function SuccessStoriesPage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 68,
       }}
@@ -259,7 +259,7 @@ function SuccessStoriesPage() {
       <Navbar />
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.35);\n          transition: box-shadow 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n          text-decoration: none; display: inline-block;\n        }\n        .hero-btn-primary:hover { box-shadow: 0 10px 32px rgba(27,58,75,0.45); }\n\n        .story-scroll {\n          display: flex;\n          gap: 20px;\n          overflow-x: auto;\n          padding: 8px 8px 20px;\n          scroll-snap-type: x mandatory;\n        }\n        .story-scroll::-webkit-scrollbar { height: 4px; }\n        .story-scroll::-webkit-scrollbar-track { background: #E8F5EE; border-radius: 10px; }\n        .story-scroll::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #40916C, #74C69D); border-radius: 10px; }\n\n        .features-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 18px;\n        }\n\n        .testimonials-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));\n          gap: 20px;\n        }\n\n        @media (max-width: 768px) {\n          .features-grid    { grid-template-columns: repeat(2, 1fr); }\n          .testimonials-grid { grid-template-columns: repeat(2, 1fr); }\n        }\n        @media (max-width: 480px) {\n          .features-grid    { grid-template-columns: 1fr; }\n          .testimonials-grid { grid-template-columns: 1fr; }\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: box-shadow 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n          text-decoration: none; display: inline-block;\n        }\n        .hero-btn-primary:hover { box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .story-scroll {\n          display: flex;\n          gap: 20px;\n          overflow-x: auto;\n          padding: 8px 8px 20px;\n          scroll-snap-type: x mandatory;\n        }\n        .story-scroll::-webkit-scrollbar { height: 4px; }\n        .story-scroll::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 10px; }\n        .story-scroll::-webkit-scrollbar-thumb { background: linear-gradient(90deg, var(--emerald-700), var(--emerald-500)); border-radius: 10px; }\n\n        .features-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 18px;\n        }\n\n        .testimonials-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));\n          gap: 20px;\n        }\n\n        @media (max-width: 768px) {\n          .features-grid    { grid-template-columns: repeat(2, 1fr); }\n          .testimonials-grid { grid-template-columns: repeat(2, 1fr); }\n        }\n        @media (max-width: 480px) {\n          .features-grid    { grid-template-columns: 1fr; }\n          .testimonials-grid { grid-template-columns: 1fr; }\n        }\n      "
         }
       </style>
       <section
@@ -278,7 +278,7 @@ function SuccessStoriesPage() {
             width: 280,
             height: 280,
             borderRadius: `50%`,
-            background: `rgba(183,228,199,0.35)`,
+            background: `color-mix(in srgb, var(--mint) 35%, transparent)`,
             filter: `blur(60px)`,
             animation: `float 6s ease-in-out infinite`,
             pointerEvents: `none`,
@@ -292,7 +292,7 @@ function SuccessStoriesPage() {
             width: 320,
             height: 320,
             borderRadius: `50%`,
-            background: `rgba(116,198,157,0.2)`,
+            background: `color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
             filter: `blur(70px)`,
             animation: `float 6s ease-in-out infinite`,
             animationDelay: `1s`,
@@ -311,7 +311,7 @@ function SuccessStoriesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 12,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
               textTransform: `uppercase`,
               marginBottom: 16,
@@ -326,7 +326,7 @@ function SuccessStoriesPage() {
               fontSize: `clamp(28px, 5vw, 54px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               lineHeight: 1.15,
               marginBottom: 18,
             }}
@@ -339,7 +339,7 @@ function SuccessStoriesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 16,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               lineHeight: 1.7,
               maxWidth: 520,
               margin: `0 auto 40px`,
@@ -361,7 +361,7 @@ function SuccessStoriesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 17,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
               textTransform: `uppercase`,
               marginBottom: 14,
@@ -376,7 +376,7 @@ function SuccessStoriesPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(30px, 4.5vw, 50px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               letterSpacing: `-0.02em`,
             }}
           >
@@ -397,24 +397,24 @@ function SuccessStoriesPage() {
               width: 44,
               height: 44,
               borderRadius: `50%`,
-              background: `#fff`,
-              border: `1.5px solid #B7E4C7`,
-              color: `#2D6A4F`,
+              background: `var(--surface)`,
+              border: `1.5px solid var(--mint)`,
+              color: `var(--emerald-700)`,
               fontSize: 16,
               cursor: `pointer`,
               display: `flex`,
               alignItems: `center`,
               justifyContent: `center`,
-              boxShadow: `0 4px 16px rgba(45,106,79,0.15)`,
+              boxShadow: `0 4px 16px color-mix(in srgb, var(--emerald-700) 15%, transparent)`,
               transition: `all 0.2s`,
             }}
             onMouseEnter={(e) => {
-              ((e.currentTarget.style.background = `#F0FAF4`),
-                (e.currentTarget.style.borderColor = `#40916C`));
+              ((e.currentTarget.style.background = `var(--surface-2)`),
+                (e.currentTarget.style.borderColor = `var(--emerald-500)`));
             }}
             onMouseLeave={(e) => {
-              ((e.currentTarget.style.background = `#fff`),
-                (e.currentTarget.style.borderColor = `#B7E4C7`));
+              ((e.currentTarget.style.background = `var(--surface)`),
+                (e.currentTarget.style.borderColor = `var(--mint)`));
             }}
           >
             ←
@@ -430,24 +430,24 @@ function SuccessStoriesPage() {
               width: 44,
               height: 44,
               borderRadius: `50%`,
-              background: `#fff`,
-              border: `1.5px solid #B7E4C7`,
-              color: `#2D6A4F`,
+              background: `var(--surface)`,
+              border: `1.5px solid var(--mint)`,
+              color: `var(--emerald-700)`,
               fontSize: 16,
               cursor: `pointer`,
               display: `flex`,
               alignItems: `center`,
               justifyContent: `center`,
-              boxShadow: `0 4px 16px rgba(45,106,79,0.15)`,
+              boxShadow: `0 4px 16px color-mix(in srgb, var(--emerald-700) 15%, transparent)`,
               transition: `all 0.2s`,
             }}
             onMouseEnter={(e) => {
-              ((e.currentTarget.style.background = `#F0FAF4`),
-                (e.currentTarget.style.borderColor = `#40916C`));
+              ((e.currentTarget.style.background = `var(--surface-2)`),
+                (e.currentTarget.style.borderColor = `var(--emerald-500)`));
             }}
             onMouseLeave={(e) => {
-              ((e.currentTarget.style.background = `#fff`),
-                (e.currentTarget.style.borderColor = `#B7E4C7`));
+              ((e.currentTarget.style.background = `var(--surface)`),
+                (e.currentTarget.style.borderColor = `var(--mint)`));
             }}
           >
             →
@@ -461,8 +461,8 @@ function SuccessStoriesPage() {
       </section>
       <section
         style={{
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
-          borderTop: `1px solid #D4EDDA`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
+          borderTop: `1px solid var(--line)`,
           padding: `60px 40px`,
         }}
       >
@@ -472,7 +472,7 @@ function SuccessStoriesPage() {
               style={{
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 12,
-                color: `#40916C`,
+                color: `var(--emerald-700)`,
                 letterSpacing: `0.3em`,
                 textTransform: `uppercase`,
                 marginBottom: 10,
@@ -486,7 +486,7 @@ function SuccessStoriesPage() {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: `clamp(22px, 3vw, 34px)`,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 letterSpacing: `-0.02em`,
               }}
             >
@@ -515,7 +515,7 @@ function SuccessStoriesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 12,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
               textTransform: `uppercase`,
               marginBottom: 10,
@@ -529,7 +529,7 @@ function SuccessStoriesPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(22px, 3vw, 34px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               letterSpacing: `-0.02em`,
             }}
           >
@@ -546,16 +546,16 @@ function SuccessStoriesPage() {
       </section>
       <section
         style={{
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
           padding: `64px 40px 72px`,
-          borderTop: `1px solid #D4EDDA`,
+          borderTop: `1px solid var(--line)`,
         }}
       >
         <div style={{ maxWidth: 720, margin: `0 auto`, textAlign: `center` }}>
           <div
             style={{
               fontSize: 13,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: 4,
               marginBottom: 12,
               opacity: 0.6,
@@ -569,7 +569,7 @@ function SuccessStoriesPage() {
               fontSize: `clamp(26px, 4vw, 42px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 8,
             }}
           >
@@ -579,7 +579,7 @@ function SuccessStoriesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 16,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               marginBottom: 36,
               fontStyle: `italic`,
             }}
@@ -600,9 +600,9 @@ function SuccessStoriesPage() {
             <button
               onClick={() => t(`/explore`)}
               style={{
-                background: `rgba(255,255,255,0.92)`,
-                color: `#2D6A4F`,
-                border: `2px solid #74C69D`,
+                background: `color-mix(in srgb, var(--surface) 92%, transparent)`,
+                color: `var(--emerald-700)`,
+                border: `2px solid var(--emerald-500)`,
                 padding: `13px 32px`,
                 borderRadius: 32,
                 fontFamily: `'DM Sans', sans-serif`,
@@ -614,11 +614,11 @@ function SuccessStoriesPage() {
                 backdropFilter: `blur(6px)`,
               }}
               onMouseEnter={(e) => {
-                ((e.currentTarget.style.background = `#fff`),
-                  (e.currentTarget.style.boxShadow = `0 6px 20px rgba(45,106,79,0.2)`));
+                ((e.currentTarget.style.background = `var(--surface)`),
+                  (e.currentTarget.style.boxShadow = `0 6px 20px color-mix(in srgb, var(--emerald-700) 20%, transparent)`));
               }}
               onMouseLeave={(e) => {
-                ((e.currentTarget.style.background = `rgba(255,255,255,0.92)`),
+                ((e.currentTarget.style.background = `color-mix(in srgb, var(--surface) 92%, transparent)`),
                   (e.currentTarget.style.boxShadow = `none`));
               }}
             >
@@ -629,7 +629,7 @@ function SuccessStoriesPage() {
       </section>
       <div
         style={{
-          background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 50%, #40916C 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
           padding: `18px 40px`,
           display: `flex`,
           alignItems: `center`,
@@ -639,7 +639,7 @@ function SuccessStoriesPage() {
       >
         <span
           style={{
-            color: `#B7E4C7`,
+            color: `var(--mint)`,
             fontSize: 13,
             letterSpacing: `0.18em`,
             fontFamily: `'DM Sans', sans-serif`,
@@ -649,12 +649,12 @@ function SuccessStoriesPage() {
         >
           Because everyone deserves a second chance at happiness.
         </span>
-        <span style={{ color: `#74C69D`, fontSize: 16 }}>♥</span>
+        <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
       </div>
       <footer
         style={{
-          background: `#1B3A4B`,
-          color: `#74C69D`,
+          background: `var(--deep)`,
+          color: `var(--emerald-500)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -669,8 +669,8 @@ function SuccessStoriesPage() {
             marginBottom: 10,
           }}
         >
-          Nikha<span style={{ color: `#74C69D` }}>2</span>{" "}
-          <span style={{ color: `#40916C` }}>♡</span>
+          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
         <p
           style={{
@@ -689,7 +689,7 @@ function SuccessStoriesPage() {
               to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `'DM Sans', sans-serif`,

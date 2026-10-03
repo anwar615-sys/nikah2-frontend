@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleSignInButton } from "../components/GoogleSignInButton";
 import { useAuth } from "../context/AuthContext";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 function LoginPasswordToggle({ shown: e, onClick: t }) {
   return (
@@ -19,7 +20,7 @@ function LoginPasswordToggle({ shown: e, onClick: t }) {
         border: `none`,
         padding: 4,
         cursor: `pointer`,
-        color: `#74C69D`,
+        color: `var(--emerald-500)`,
         display: `flex`,
         alignItems: `center`,
       }}
@@ -71,7 +72,7 @@ function ForgotPasswordHint() {
         style={{
           fontFamily: `'DM Sans', sans-serif`,
           fontSize: 12,
-          color: `#40916C`,
+          color: `var(--emerald-700)`,
           background: `none`,
           border: `none`,
           padding: 0,
@@ -86,9 +87,9 @@ function ForgotPasswordHint() {
             fontFamily: `'DM Sans', sans-serif`,
             fontSize: 12,
             lineHeight: 1.6,
-            color: `#2D6A4F`,
-            background: `#F0FAF4`,
-            border: `1px solid #D4EDDA`,
+            color: `var(--emerald-700)`,
+            background: `var(--surface-2)`,
+            border: `1px solid var(--line)`,
             borderRadius: 10,
             padding: `10px 12px`,
             margin: 0,
@@ -117,9 +118,10 @@ function LoginPage() {
     <div style={{ height: `100vh`, display: `flex`, overflow: `hidden` }}>
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .login-input {\n          width: 100%;\n          padding: 12px 16px;\n          border-radius: 14px;\n          background: rgba(255,255,255,0.65);\n          border: 1.5px solid #D4EDDA;\n          color: #1B3A4B;\n          font-size: 13px;\n          font-family: 'DM Sans', sans-serif;\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n        }\n        .login-input::placeholder { color: #9DC4B0; }\n        .login-input:focus {\n          border-color: #40916C;\n          box-shadow: 0 0 0 3px rgba(64,145,108,0.12);\n        }\n\n        .login-label {\n          display: block;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 10.5px;\n          font-weight: 700;\n          color: #3D6B55;\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 6px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 14px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.3);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover {\n          transform: translateY(-2px);\n          box-shadow: 0 10px 32px rgba(27,58,75,0.4);\n        }\n        .btn-submit:active { transform: scale(0.98); }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .login-input {\n          width: 100%;\n          padding: 12px 16px;\n          border-radius: 14px;\n          background: color-mix(in srgb, var(--surface) 65%, transparent);\n          border: 1.5px solid var(--line);\n          color: var(--fg);\n          font-size: 13px;\n          font-family: 'DM Sans', sans-serif;\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n        }\n        .login-input::placeholder { color: var(--muted); }\n        .login-input:focus {\n          border-color: var(--emerald-500);\n          box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent);\n        }\n\n        .login-label {\n          display: block;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 10.5px;\n          font-weight: 700;\n          color: var(--muted);\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 6px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 14px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 30%, transparent);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover {\n          transform: translateY(-2px);\n          box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 40%, transparent);\n        }\n        .btn-submit:active { transform: scale(0.98); }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
         }
       </style>
+      <ThemeToggle style={{ position: `fixed`, top: 16, right: 16, zIndex: 60 }} />
       <div
         className="left-panel"
         style={{
@@ -129,7 +131,7 @@ function LoginPage() {
           alignItems: `center`,
           justifyContent: `center`,
           overflow: `hidden`,
-          background: `linear-gradient(135deg, #1B3A4B 0%, #0d2418 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, var(--deep) 100%)`,
         }}
       >
         <img
@@ -148,7 +150,7 @@ function LoginPage() {
           style={{
             position: `absolute`,
             inset: 0,
-            background: `linear-gradient(135deg, rgba(45,106,79,0.4) 0%, transparent 50%, rgba(27,58,75,0.3) 100%)`,
+            background: `linear-gradient(135deg, color-mix(in srgb, var(--emerald-700) 40%, transparent) 0%, transparent 50%, color-mix(in srgb, var(--overlay) 30%, transparent) 100%)`,
           }}
         />
         <div
@@ -193,7 +195,7 @@ function LoginPage() {
           alignItems: `center`,
           justifyContent: `center`,
           padding: `0 24px`,
-          background: `#F8FAF5`,
+          background: `var(--bg)`,
           overflowY: `auto`,
         }}
       >
@@ -225,8 +227,8 @@ function LoginPage() {
                   fontSize: 10,
                   padding: `2px 8px`,
                   borderRadius: 20,
-                  color: `#40916C`,
-                  border: `1px solid #74C69D`,
+                  color: `var(--emerald-700)`,
+                  border: `1px solid var(--emerald-500)`,
                 }}
               >
                 ™
@@ -236,7 +238,7 @@ function LoginPage() {
               style={{
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 13,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 marginTop: 6,
               }}
             >
@@ -245,12 +247,12 @@ function LoginPage() {
           </div>
           <div
             style={{
-              background: `rgba(255,255,255,0.75)`,
+              background: `color-mix(in srgb, var(--surface) 75%, transparent)`,
               backdropFilter: `blur(20px)`,
-              border: `1px solid rgba(64,145,108,0.18)`,
+              border: `1px solid color-mix(in srgb, var(--emerald-500) 18%, transparent)`,
               borderRadius: 28,
               padding: 32,
-              boxShadow: `0 12px 48px rgba(27,58,75,0.1)`,
+              boxShadow: `0 12px 48px color-mix(in srgb, var(--shadow) 10%, transparent)`,
             }}
           >
             <div style={{ display: `flex`, flexDirection: `column`, gap: 18 }}>
@@ -286,8 +288,8 @@ function LoginPage() {
                   style={{
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 12.5,
-                    color: `#C0392B`,
-                    background: `rgba(192,57,43,0.08)`,
+                    color: `var(--danger)`,
+                    background: `color-mix(in srgb, var(--danger) 8%, transparent)`,
                     padding: `8px 12px`,
                     borderRadius: 10,
                   }}
@@ -325,14 +327,14 @@ function LoginPage() {
                 style={{
                   flex: 1,
                   height: 1,
-                  background: `linear-gradient(to right, transparent, #D4EDDA)`,
+                  background: `linear-gradient(to right, transparent, var(--surface-2))`,
                 }}
               />
               <span
                 style={{
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 10,
-                  color: `#9DC4B0`,
+                  color: `var(--muted)`,
                   textTransform: `uppercase`,
                   letterSpacing: `0.15em`,
                 }}
@@ -343,7 +345,7 @@ function LoginPage() {
                 style={{
                   flex: 1,
                   height: 1,
-                  background: `linear-gradient(to left, transparent, #D4EDDA)`,
+                  background: `linear-gradient(to left, transparent, var(--surface-2))`,
                 }}
               />
             </div>
@@ -356,7 +358,7 @@ function LoginPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 13,
-              color: `#74C69D`,
+              color: `var(--emerald-500)`,
               textAlign: `center`,
               marginTop: 28,
             }}
@@ -365,13 +367,13 @@ function LoginPage() {
             <Link
               to="/signup"
               style={{
-                color: `#2D6A4F`,
+                color: `var(--emerald-700)`,
                 fontWeight: 700,
                 textDecoration: `none`,
                 transition: `color 0.2s`,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = `#40916C`)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = `#2D6A4F`)}
+              onMouseEnter={(e) => (e.currentTarget.style.color = `var(--emerald-700)`)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = `var(--emerald-700)`)}
             >
               Sign up
             </Link>

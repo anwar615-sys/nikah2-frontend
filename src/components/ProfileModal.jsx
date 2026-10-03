@@ -42,7 +42,7 @@ function ProfileModal({ personId: e, onClose: t }) {
           position: `fixed`,
           inset: 0,
           zIndex: 250,
-          background: `rgba(27,58,75,0.5)`,
+          background: `color-mix(in srgb, var(--overlay) 50%, transparent)`,
           backdropFilter: `blur(8px)`,
           WebkitBackdropFilter: `blur(8px)`,
           display: `flex`,
@@ -54,14 +54,14 @@ function ProfileModal({ personId: e, onClose: t }) {
         <div
           onClick={(e) => e.stopPropagation()}
           style={{
-            background: `#fff`,
+            background: `var(--surface)`,
             borderRadius: 24,
             maxWidth: 420,
             width: `100%`,
             maxHeight: `88vh`,
             overflowY: `auto`,
             position: `relative`,
-            boxShadow: `0 28px 72px rgba(27,58,75,0.32)`,
+            boxShadow: `0 28px 72px color-mix(in srgb, var(--shadow) 32%, transparent)`,
             fontFamily: `'DM Sans', sans-serif`,
           }}
         >
@@ -73,7 +73,7 @@ function ProfileModal({ personId: e, onClose: t }) {
               top: 14,
               right: 14,
               zIndex: 2,
-              background: `rgba(27,58,75,0.35)`,
+              background: `color-mix(in srgb, var(--overlay) 35%, transparent)`,
               border: `none`,
               borderRadius: `50%`,
               width: 30,
@@ -91,7 +91,7 @@ function ProfileModal({ personId: e, onClose: t }) {
               style={{
                 padding: `60px 24px`,
                 textAlign: `center`,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 fontSize: 13.5,
               }}
             >
@@ -102,7 +102,7 @@ function ProfileModal({ personId: e, onClose: t }) {
               style={{
                 padding: `60px 24px`,
                 textAlign: `center`,
-                color: `#C0392B`,
+                color: `var(--danger)`,
                 fontSize: 13.5,
               }}
             >
@@ -112,7 +112,7 @@ function ProfileModal({ personId: e, onClose: t }) {
             <>
               <div
                 style={{
-                  background: `linear-gradient(160deg, #D4EDDA 0%, #B7E4C7 100%)`,
+                  background: `linear-gradient(160deg, var(--surface-2) 0%, var(--mint) 100%)`,
                   padding: `40px 24px 20px`,
                   display: `flex`,
                   flexDirection: `column`,
@@ -129,7 +129,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                       height: 92,
                       borderRadius: `50%`,
                       objectFit: `cover`,
-                      border: `3px solid #fff`,
+                      border: `3px solid var(--surface)`,
                     }}
                   />
                 ) : (
@@ -149,7 +149,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                       fontFamily: `'Playfair Display', serif`,
                       fontWeight: 700,
                       fontSize: 20,
-                      color: `#1B3A4B`,
+                      color: `var(--fg)`,
                     }}
                   >
                     {i.displayName}{" "}
@@ -171,7 +171,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                       height: 8,
                       borderRadius: `50%`,
                       background:
-                        i.onlineStatus === `online` ? `#22C55E` : `#B7E4C7`,
+                        i.onlineStatus === `online` ? `var(--online)` : `var(--mint)`,
                       display: `inline-block`,
                     }}
                   />
@@ -179,7 +179,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                     style={{
                       fontSize: 12,
                       color:
-                        i.onlineStatus === `online` ? `#22C55E` : `#3D6B55`,
+                        i.onlineStatus === `online` ? `var(--online)` : `var(--muted)`,
                       fontWeight: 600,
                     }}
                   >
@@ -192,7 +192,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                   <p
                     style={{
                       fontSize: 13,
-                      color: `#3D6B55`,
+                      color: `var(--muted)`,
                       lineHeight: 1.6,
                       marginBottom: 16,
                       fontStyle: `italic`,
@@ -203,8 +203,8 @@ function ProfileModal({ personId: e, onClose: t }) {
                 )}
                 <div
                   style={{
-                    background: `#F0FAF4`,
-                    border: `1px solid #D4EDDA`,
+                    background: `var(--surface-2)`,
+                    border: `1px solid var(--line)`,
                     borderRadius: 14,
                     padding: `12px 14px`,
                     marginBottom: 16,
@@ -232,7 +232,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                       >
                         <span
                           style={{
-                            color: `#3D6B55`,
+                            color: `var(--muted)`,
                             fontWeight: 600,
                           }}
                         >
@@ -240,7 +240,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                         </span>
                         <span
                           style={{
-                            color: `#2D6A4F`,
+                            color: `var(--emerald-700)`,
                             fontWeight: 500,
                           }}
                         >
@@ -255,7 +255,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                       style={{
                         fontSize: 11,
                         fontWeight: 700,
-                        color: `#2D6A4F`,
+                        color: `var(--emerald-700)`,
                         letterSpacing: `0.06em`,
                         textTransform: `uppercase`,
                         marginBottom: 6,
@@ -275,9 +275,9 @@ function ProfileModal({ personId: e, onClose: t }) {
                           key={e}
                           style={{
                             fontSize: 11.5,
-                            background: `#F0FAF4`,
-                            border: `1px solid #D4EDDA`,
-                            color: `#2D6A4F`,
+                            background: `var(--surface-2)`,
+                            border: `1px solid var(--line)`,
+                            color: `var(--emerald-700)`,
                             borderRadius: 20,
                             padding: `4px 10px`,
                           }}
@@ -290,7 +290,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                 )}
                 <div
                   style={{
-                    borderTop: `1px dashed #D4EDDA`,
+                    borderTop: `1px dashed var(--line)`,
                     paddingTop: 14,
                     marginBottom: 18,
                   }}
@@ -299,7 +299,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                     style={{
                       fontSize: 11,
                       fontWeight: 700,
-                      color: `#2D6A4F`,
+                      color: `var(--emerald-700)`,
                       letterSpacing: `0.06em`,
                       textTransform: `uppercase`,
                       marginBottom: 8,
@@ -318,7 +318,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                     >
                       <span
                         style={{
-                          color: `#3D6B55`,
+                          color: `var(--muted)`,
                           fontWeight: 600,
                         }}
                       >
@@ -326,7 +326,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                       </span>
                       <span
                         style={{
-                          color: `#2D6A4F`,
+                          color: `var(--emerald-700)`,
                           fontWeight: 500,
                           fontFamily: `monospace`,
                           fontSize: 11,
@@ -342,11 +342,11 @@ function ProfileModal({ personId: e, onClose: t }) {
                         display: `flex`,
                         alignItems: `center`,
                         gap: 8,
-                        background: `#FDF6EC`,
-                        border: `1px solid #F0E0BE`,
+                        background: `var(--gold-bg)`,
+                        border: `1px solid var(--gold-line)`,
                         borderRadius: 10,
                         padding: `9px 12px`,
-                        color: `#9A6B00`,
+                        color: `var(--warning)`,
                         fontSize: 12,
                         fontWeight: 600,
                       }}
@@ -366,7 +366,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                         >
                           <span
                             style={{
-                              color: `#3D6B55`,
+                              color: `var(--muted)`,
                               fontWeight: 600,
                             }}
                           >
@@ -374,7 +374,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                           </span>
                           <span
                             style={{
-                              color: `#2D6A4F`,
+                              color: `var(--emerald-700)`,
                               fontWeight: 500,
                             }}
                           >
@@ -392,7 +392,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                         >
                           <span
                             style={{
-                              color: `#3D6B55`,
+                              color: `var(--muted)`,
                               fontWeight: 600,
                             }}
                           >
@@ -400,7 +400,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                           </span>
                           <span
                             style={{
-                              color: `#2D6A4F`,
+                              color: `var(--emerald-700)`,
                               fontWeight: 500,
                             }}
                           >
@@ -414,7 +414,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                           <div
                             style={{
                               fontSize: 12,
-                              color: `#9DC4B0`,
+                              color: `var(--muted)`,
                             }}
                           >
                             Not visible on your current plan.
@@ -447,7 +447,7 @@ function ProfileModal({ personId: e, onClose: t }) {
                     padding: `12px 0`,
                     borderRadius: 28,
                     border: `none`,
-                    background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+                    background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
                     color: `#fff`,
                     fontWeight: 700,
                     fontSize: 13.5,

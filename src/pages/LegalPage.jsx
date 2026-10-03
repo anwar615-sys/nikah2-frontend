@@ -31,7 +31,7 @@ function LegalPage({ page }) {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
         display: `flex`,
         flexDirection: `column`,
@@ -39,7 +39,7 @@ function LegalPage({ page }) {
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\n        }\n      "
         }
       </style>
       <Navbar />
@@ -49,8 +49,8 @@ function LegalPage({ page }) {
           paddingBottom: 48,
           paddingLeft: 24,
           paddingRight: 24,
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
-          borderBottom: `1px solid #D4EDDA`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
+          borderBottom: `1px solid var(--line)`,
           textAlign: `center`,
         }}
       >
@@ -60,14 +60,14 @@ function LegalPage({ page }) {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(28px, 4vw, 44px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               marginBottom: 12,
             }}
           >
             {p.title[0]}
             <span className="green-text">{p.title[1]}</span>
           </h1>
-          <p style={{ fontSize: 15, color: `#3D6B55` }}>{p.intro}</p>
+          <p style={{ fontSize: 15, color: `var(--muted)` }}>{p.intro}</p>
         </div>
       </section>
       <section style={{ flex: 1, padding: `48px 24px 72px` }}>
@@ -75,8 +75,8 @@ function LegalPage({ page }) {
           style={{
             maxWidth: 760,
             margin: `0 auto`,
-            background: `#fff`,
-            border: `1px solid #E8F5EE`,
+            background: `var(--surface)`,
+            border: `1px solid var(--line)`,
             borderRadius: 20,
             padding: `clamp(22px, 4vw, 40px)`,
             display: `flex`,
@@ -91,7 +91,7 @@ function LegalPage({ page }) {
                   fontFamily: `'Playfair Display', serif`,
                   fontSize: 18,
                   fontWeight: 700,
-                  color: `#1B3A4B`,
+                  color: `var(--fg)`,
                   margin: `0 0 8px`,
                 }}
               >
@@ -101,7 +101,7 @@ function LegalPage({ page }) {
                 style={{
                   fontSize: 14,
                   lineHeight: 1.75,
-                  color: `#3D6B55`,
+                  color: `var(--muted)`,
                   margin: 0,
                 }}
               >
@@ -114,16 +114,16 @@ function LegalPage({ page }) {
               style={{
                 fontSize: 14,
                 lineHeight: 1.7,
-                color: `#2D6A4F`,
-                background: `#F0FAF4`,
-                border: `1px solid #D4EDDA`,
+                color: `var(--emerald-700)`,
+                background: `var(--surface-2)`,
+                border: `1px solid var(--line)`,
                 borderRadius: 12,
                 padding: `14px 18px`,
                 margin: 0,
               }}
             >
               {p.pending} In the meantime, see our{" "}
-              <Link to="/terms" style={{ color: `#2D6A4F`, fontWeight: 700 }}>
+              <Link to="/terms" style={{ color: `var(--emerald-700)`, fontWeight: 700 }}>
                 Terms &amp; Conditions
               </Link>{" "}
               or reach us through the chat on the home page.
@@ -141,7 +141,7 @@ function NotFoundPage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
         display: `flex`,
         flexDirection: `column`,
@@ -170,13 +170,13 @@ function NotFoundPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(28px, 5vw, 40px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               margin: `0 0 10px`,
             }}
           >
             Page not found
           </h1>
-          <p style={{ fontSize: 15, color: `#3D6B55`, margin: `0 0 28px` }}>
+          <p style={{ fontSize: 15, color: `var(--muted)`, margin: `0 0 28px` }}>
             The page you're looking for doesn't exist or has moved.
           </p>
           <div
@@ -192,7 +192,7 @@ function NotFoundPage() {
               style={{
                 padding: `12px 26px`,
                 borderRadius: 32,
-                background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+                background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
                 color: `#fff`,
                 fontWeight: 700,
                 fontSize: 14,
@@ -206,9 +206,9 @@ function NotFoundPage() {
               style={{
                 padding: `11px 24px`,
                 borderRadius: 32,
-                border: `1.5px solid #D4EDDA`,
-                background: `#fff`,
-                color: `#2D6A4F`,
+                border: `1.5px solid var(--line)`,
+                background: `var(--surface)`,
+                color: `var(--emerald-700)`,
                 fontWeight: 700,
                 fontSize: 14,
                 textDecoration: `none`,

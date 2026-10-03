@@ -22,7 +22,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
       style={{
         position: `fixed`,
         inset: 0,
-        background: `rgba(27,58,75,0.5)`,
+        background: `color-mix(in srgb, var(--overlay) 50%, transparent)`,
         display: `flex`,
         alignItems: `center`,
         justifyContent: `center`,
@@ -33,13 +33,13 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: `#fff`,
+          background: `var(--surface)`,
           borderRadius: 20,
           maxWidth: 380,
           width: `100%`,
           padding: 24,
           fontFamily: `'DM Sans', sans-serif`,
-          boxShadow: `0 24px 64px rgba(27,58,75,0.25)`,
+          boxShadow: `0 24px 64px color-mix(in srgb, var(--shadow) 25%, transparent)`,
         }}
       >
         {r === `menu` && (
@@ -49,17 +49,17 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: 18,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 marginBottom: 4,
               }}
             >
               {e.name || `This user`}
             </h3>
-            <p style={{ fontSize: 12.5, color: `#74C69D`, marginBottom: 18 }}>
+            <p style={{ fontSize: 12.5, color: `var(--emerald-500)`, marginBottom: 18 }}>
               Choose an action
             </p>
             {d && (
-              <p style={{ fontSize: 12, color: `#C0392B`, marginBottom: 12 }}>
+              <p style={{ fontSize: 12, color: `var(--danger)`, marginBottom: 12 }}>
                 {d}
               </p>
             )}
@@ -82,9 +82,9 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                   style={{
                     padding: `11px 0`,
                     borderRadius: 24,
-                    border: `1.5px solid #C0392B`,
+                    border: `1.5px solid var(--danger)`,
                     background: `transparent`,
-                    color: `#C0392B`,
+                    color: `var(--danger)`,
                     fontWeight: 700,
                     fontSize: 13,
                     cursor: `pointer`,
@@ -99,9 +99,9 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                 style={{
                   padding: `11px 0`,
                   borderRadius: 24,
-                  border: `1.5px solid #40916C`,
+                  border: `1.5px solid var(--emerald-500)`,
                   background: `transparent`,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                   fontWeight: 700,
                   fontSize: 13,
                   cursor: `pointer`,
@@ -115,8 +115,8 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                   padding: `11px 0`,
                   borderRadius: 24,
                   border: `none`,
-                  background: `#F0FAF4`,
-                  color: `#3D6B55`,
+                  background: `var(--surface-2)`,
+                  color: `var(--muted)`,
                   fontWeight: 600,
                   fontSize: 13,
                   cursor: `pointer`,
@@ -134,14 +134,14 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: 18,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 marginBottom: 4,
               }}
             >
               {"Report "}
               {e.name || `this`}
             </h3>
-            <p style={{ fontSize: 12.5, color: `#74C69D`, marginBottom: 16 }}>
+            <p style={{ fontSize: 12.5, color: `var(--emerald-500)`, marginBottom: 16 }}>
               Our team reviews every report — nothing is ignored.
             </p>
             <div
@@ -160,7 +160,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                     alignItems: `center`,
                     gap: 8,
                     fontSize: 13,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                     cursor: `pointer`,
                   }}
                 >
@@ -183,7 +183,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
               style={{
                 width: `100%`,
                 borderRadius: 12,
-                border: `1.5px solid #D4EDDA`,
+                border: `1.5px solid var(--line)`,
                 padding: 10,
                 fontSize: 12.5,
                 fontFamily: `'DM Sans', sans-serif`,
@@ -192,7 +192,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
               }}
             />
             {d && (
-              <p style={{ fontSize: 12, color: `#C0392B`, marginBottom: 12 }}>
+              <p style={{ fontSize: 12, color: `var(--danger)`, marginBottom: 12 }}>
                 {d}
               </p>
             )}
@@ -203,9 +203,9 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                   flex: 1,
                   padding: `11px 0`,
                   borderRadius: 24,
-                  border: `1.5px solid #D4EDDA`,
+                  border: `1.5px solid var(--line)`,
                   background: `transparent`,
-                  color: `#3D6B55`,
+                  color: `var(--muted)`,
                   fontWeight: 600,
                   fontSize: 13,
                   cursor: `pointer`,
@@ -240,7 +240,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                   padding: `11px 0`,
                   borderRadius: 24,
                   border: `none`,
-                  background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+                  background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
                   color: `#fff`,
                   fontWeight: 700,
                   fontSize: 13,
@@ -260,13 +260,13 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: 17,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 marginBottom: 6,
               }}
             >
               Report submitted
             </h3>
-            <p style={{ fontSize: 12.5, color: `#3D6B55`, marginBottom: 18 }}>
+            <p style={{ fontSize: 12.5, color: `var(--muted)`, marginBottom: 18 }}>
               Thank you — our team will review this.
             </p>
             <button

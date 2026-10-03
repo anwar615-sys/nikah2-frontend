@@ -183,13 +183,13 @@ function ExplorePage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
       }}
     >
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .card-hover { transition: transform 0.22s, box-shadow 0.22s; cursor: pointer; }\n        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(45,106,79,0.16); }\n\n        .btn-primary {\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff; border: none;\n          padding: 12px 0; border-radius: 28px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13.5px; font-weight: 700;\n          cursor: pointer; letter-spacing: 0.03em;\n          box-shadow: 0 4px 16px rgba(27,58,75,0.28);\n          transition: all 0.22s; width: 100%;\n        }\n        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }\n        .btn-primary:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; transform: none; opacity: 1; }\n\n        .btn-outline {\n          background: transparent;\n          border: 1.5px solid #40916C;\n          color: #2D6A4F;\n          padding: 9px 0; border-radius: 28px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px; font-weight: 600;\n          cursor: pointer; width: 100%;\n          transition: all 0.2s; display: block; text-align: center;\n          text-decoration: none;\n        }\n        .btn-outline:hover { background: #1B3A4B; color: #fff; border-color: #1B3A4B; }\n\n        .filter-input {\n          background: #F8FAF5;\n          border: 1.5px solid #B7E4C7;\n          color: #1B3A4B;\n          border-radius: 12px;\n          padding: 10px 16px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px;\n          width: 100%;\n          outline: none;\n          transition: border-color 0.2s;\n          appearance: none;\n        }\n        .filter-input:focus { border-color: #40916C; background: #fff; }\n\n        .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }\n        .status-dot.online  { background: #22C55E; box-shadow: 0 0 8px rgba(34,197,94,0.6); }\n        .status-dot.offline { background: #B7E4C7; }\n\n        @keyframes pulse { 0%, 100% { box-shadow: 0 0 8px rgba(34,197,94,0.7); } 50% { box-shadow: 0 0 16px rgba(34,197,94,0.3); } }\n        .pulse { animation: pulse 2s infinite; }\n\n        ::-webkit-scrollbar { width: 4px; }\n        ::-webkit-scrollbar-track { background: transparent; }\n        ::-webkit-scrollbar-thumb { background: #B7E4C7; border-radius: 4px; }\n        ::-webkit-scrollbar-thumb:hover { background: #74C69D; }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .card-hover { transition: transform 0.22s, box-shadow 0.22s; cursor: pointer; }\n        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent); }\n\n        .btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none;\n          padding: 12px 0; border-radius: 28px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13.5px; font-weight: 700;\n          cursor: pointer; letter-spacing: 0.03em;\n          box-shadow: 0 4px 16px color-mix(in srgb, var(--shadow) 28%, transparent);\n          transition: all 0.22s; width: 100%;\n        }\n        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }\n        .btn-primary:disabled { background: var(--line); box-shadow: none; cursor: not-allowed; transform: none; opacity: 1; }\n\n        .btn-outline {\n          background: transparent;\n          border: 1.5px solid var(--emerald-500);\n          color: var(--emerald-700);\n          padding: 9px 0; border-radius: 28px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px; font-weight: 600;\n          cursor: pointer; width: 100%;\n          transition: all 0.2s; display: block; text-align: center;\n          text-decoration: none;\n        }\n        .btn-outline:hover { background: var(--deep); color: #fff; border-color: var(--fg); }\n\n        .filter-input {\n          background: var(--bg);\n          border: 1.5px solid var(--mint);\n          color: var(--fg);\n          border-radius: 12px;\n          padding: 10px 16px;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px;\n          width: 100%;\n          outline: none;\n          transition: border-color 0.2s;\n          appearance: none;\n        }\n        .filter-input:focus { border-color: var(--emerald-500); background: var(--surface); }\n\n        .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }\n        .status-dot.online  { background: var(--online); box-shadow: 0 0 8px color-mix(in srgb, var(--online) 60%, transparent); }\n        .status-dot.offline { background: var(--mint); }\n\n        @keyframes pulse { 0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); } 50% { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 30%, transparent); } }\n        .pulse { animation: pulse 2s infinite; }\n\n        ::-webkit-scrollbar { width: 4px; }\n        ::-webkit-scrollbar-track { background: transparent; }\n        ::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }\n        ::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }\n      "
         }
       </style>
       <Navbar />
@@ -199,8 +199,8 @@ function ExplorePage() {
           paddingBottom: 48,
           paddingLeft: 40,
           paddingRight: 40,
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
-          borderBottom: `1px solid #D4EDDA`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
+          borderBottom: `1px solid var(--line)`,
         }}
       >
         <div style={{ maxWidth: 1060, margin: `0 auto` }}>
@@ -210,7 +210,7 @@ function ExplorePage() {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: `clamp(28px, 4vw, 46px)`,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 letterSpacing: `-0.025em`,
                 marginBottom: 10,
               }}
@@ -221,7 +221,7 @@ function ExplorePage() {
             <p
               style={{
                 fontSize: 15,
-                color: `#3D6B55`,
+                color: `var(--muted)`,
                 maxWidth: 520,
                 margin: `0 auto`,
               }}
@@ -234,7 +234,7 @@ function ExplorePage() {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: `clamp(20px, 2.6vw, 28px)`,
                 fontWeight: 700,
-                color: `#2D6A4F`,
+                color: `var(--emerald-700)`,
                 margin: `16px auto 0`,
                 display: `flex`,
                 alignItems: `center`,
@@ -299,15 +299,15 @@ function ExplorePage() {
                 padding: `12px 18px`,
                 borderRadius: 32,
                 background: ne
-                  ? `#F0FAF4`
-                  : `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
-                color: ne ? `#2D6A4F` : `#fff`,
+                  ? `var(--surface-2)`
+                  : `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
+                color: ne ? `var(--emerald-700)` : `#fff`,
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 13,
                 fontWeight: 700,
                 cursor: ie ? `not-allowed` : `pointer`,
-                boxShadow: ne ? `none` : `0 4px 16px rgba(27,58,75,0.28)`,
-                border: ne ? `1.5px solid #40916C` : `none`,
+                boxShadow: ne ? `none` : `0 4px 16px color-mix(in srgb, var(--shadow) 28%, transparent)`,
+                border: ne ? `1.5px solid var(--emerald-500)` : `none`,
               }}
             >
               {ie
@@ -332,7 +332,7 @@ function ExplorePage() {
                   display: `block`,
                   fontSize: 11,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                   marginBottom: 6,
                   letterSpacing: `0.07em`,
                   textTransform: `uppercase`,
@@ -349,12 +349,12 @@ function ExplorePage() {
                   style={{
                     width: `100%`,
                     textAlign: `left`,
-                    background: `#F8FAF5`,
-                    border: `1.5px solid #B7E4C7`,
+                    background: `var(--bg)`,
+                    border: `1.5px solid var(--mint)`,
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: s ? `#1B3A4B` : `#74C69D`,
+                    color: s ? `var(--fg)` : `var(--emerald-500)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -367,7 +367,7 @@ function ExplorePage() {
                   <span
                     style={{
                       fontSize: 10,
-                      color: `#40916C`,
+                      color: `var(--emerald-700)`,
                       transform: oe ? `rotate(180deg)` : `rotate(0deg)`,
                       transition: `transform 0.2s`,
                       flexShrink: 0,
@@ -384,10 +384,10 @@ function ExplorePage() {
                       left: 0,
                       right: 0,
                       zIndex: 50,
-                      background: `#fff`,
+                      background: `var(--surface)`,
                       borderRadius: 14,
-                      border: `1.5px solid #D4EDDA`,
-                      boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                      border: `1.5px solid var(--line)`,
+                      boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                       overflow: `hidden`,
                     }}
                   >
@@ -413,8 +413,8 @@ function ExplorePage() {
                               textAlign: `left`,
                               padding: `7px 10px`,
                               border: `none`,
-                              background: n ? `#F0FAF4` : `transparent`,
-                              color: n ? `#2D6A4F` : `#1B3A4B`,
+                              background: n ? `var(--surface-2)` : `transparent`,
+                              color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
                               fontFamily: `'DM Sans', sans-serif`,
                               fontSize: 12.5,
@@ -423,11 +423,11 @@ function ExplorePage() {
                               transition: `background 0.15s`,
                             }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.background = `#F0FAF4`)
+                              (e.currentTarget.style.background = `var(--surface-2)`)
                             }
                             onMouseLeave={(e) =>
                               (e.currentTarget.style.background = n
-                                ? `#F0FAF4`
+                                ? `var(--surface-2)`
                                 : `transparent`)
                             }
                           >
@@ -446,7 +446,7 @@ function ExplorePage() {
                   display: `block`,
                   fontSize: 11,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                   marginBottom: 6,
                   letterSpacing: `0.07em`,
                   textTransform: `uppercase`,
@@ -463,12 +463,12 @@ function ExplorePage() {
                   style={{
                     width: `100%`,
                     textAlign: `left`,
-                    background: `#F8FAF5`,
-                    border: `1.5px solid #B7E4C7`,
+                    background: `var(--bg)`,
+                    border: `1.5px solid var(--mint)`,
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: h ? `#1B3A4B` : `#74C69D`,
+                    color: h ? `var(--fg)` : `var(--emerald-500)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -483,7 +483,7 @@ function ExplorePage() {
                   <span
                     style={{
                       fontSize: 10,
-                      color: `#40916C`,
+                      color: `var(--emerald-700)`,
                       transform: le ? `rotate(180deg)` : `rotate(0deg)`,
                       transition: `transform 0.2s`,
                       flexShrink: 0,
@@ -500,10 +500,10 @@ function ExplorePage() {
                       left: 0,
                       right: 0,
                       zIndex: 50,
-                      background: `#fff`,
+                      background: `var(--surface)`,
                       borderRadius: 14,
-                      border: `1.5px solid #D4EDDA`,
-                      boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                      border: `1.5px solid var(--line)`,
+                      boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                       overflow: `hidden`,
                     }}
                   >
@@ -523,8 +523,8 @@ function ExplorePage() {
                               textAlign: `left`,
                               padding: `7px 10px`,
                               border: `none`,
-                              background: n ? `#F0FAF4` : `transparent`,
-                              color: n ? `#2D6A4F` : `#1B3A4B`,
+                              background: n ? `var(--surface-2)` : `transparent`,
+                              color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
                               fontFamily: `'DM Sans', sans-serif`,
                               fontSize: 12.5,
@@ -533,11 +533,11 @@ function ExplorePage() {
                               transition: `background 0.15s`,
                             }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.background = `#F0FAF4`)
+                              (e.currentTarget.style.background = `var(--surface-2)`)
                             }
                             onMouseLeave={(e) =>
                               (e.currentTarget.style.background = n
-                                ? `#F0FAF4`
+                                ? `var(--surface-2)`
                                 : `transparent`)
                             }
                           >
@@ -556,7 +556,7 @@ function ExplorePage() {
                   display: `block`,
                   fontSize: 11,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                   marginBottom: 6,
                   letterSpacing: `0.07em`,
                   textTransform: `uppercase`,
@@ -573,12 +573,12 @@ function ExplorePage() {
                   style={{
                     width: `100%`,
                     textAlign: `left`,
-                    background: `#F8FAF5`,
-                    border: `1.5px solid #B7E4C7`,
+                    background: `var(--bg)`,
+                    border: `1.5px solid var(--mint)`,
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: l ? `#1B3A4B` : `#74C69D`,
+                    color: l ? `var(--fg)` : `var(--emerald-500)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -591,7 +591,7 @@ function ExplorePage() {
                   <span
                     style={{
                       fontSize: 10,
-                      color: `#40916C`,
+                      color: `var(--emerald-700)`,
                       transform: ce ? `rotate(180deg)` : `rotate(0deg)`,
                       transition: `transform 0.2s`,
                       flexShrink: 0,
@@ -608,17 +608,17 @@ function ExplorePage() {
                       left: 0,
                       right: 0,
                       zIndex: 50,
-                      background: `#fff`,
+                      background: `var(--surface)`,
                       borderRadius: 14,
-                      border: `1.5px solid #D4EDDA`,
-                      boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                      border: `1.5px solid var(--line)`,
+                      boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                       overflow: `hidden`,
                     }}
                   >
                     <div
                       style={{
                         padding: 8,
-                        borderBottom: `1px solid #E8F5EE`,
+                        borderBottom: `1px solid var(--line)`,
                       }}
                     >
                       <input
@@ -647,7 +647,7 @@ function ExplorePage() {
                           style={{
                             padding: `10px 8px`,
                             fontSize: 12.5,
-                            color: `#74C69D`,
+                            color: `var(--emerald-500)`,
                           }}
                         >
                           No matches
@@ -668,8 +668,8 @@ function ExplorePage() {
                               textAlign: `left`,
                               padding: `7px 10px`,
                               border: `none`,
-                              background: n ? `#F0FAF4` : `transparent`,
-                              color: n ? `#2D6A4F` : `#1B3A4B`,
+                              background: n ? `var(--surface-2)` : `transparent`,
+                              color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
                               fontFamily: `'DM Sans', sans-serif`,
                               fontSize: 12.5,
@@ -681,11 +681,11 @@ function ExplorePage() {
                               gap: 8,
                             }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.background = `#F0FAF4`)
+                              (e.currentTarget.style.background = `var(--surface-2)`)
                             }
                             onMouseLeave={(e) =>
                               (e.currentTarget.style.background = n
-                                ? `#F0FAF4`
+                                ? `var(--surface-2)`
                                 : `transparent`)
                             }
                           >
@@ -704,7 +704,7 @@ function ExplorePage() {
                   display: `block`,
                   fontSize: 11,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                   marginBottom: 6,
                   letterSpacing: `0.07em`,
                   textTransform: `uppercase`,
@@ -721,12 +721,12 @@ function ExplorePage() {
                   style={{
                     width: `100%`,
                     textAlign: `left`,
-                    background: `#F8FAF5`,
-                    border: `1.5px solid #B7E4C7`,
+                    background: `var(--bg)`,
+                    border: `1.5px solid var(--mint)`,
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: d ? `#1B3A4B` : `#74C69D`,
+                    color: d ? `var(--fg)` : `var(--emerald-500)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -739,7 +739,7 @@ function ExplorePage() {
                   <span
                     style={{
                       fontSize: 10,
-                      color: `#40916C`,
+                      color: `var(--emerald-700)`,
                       transform: P ? `rotate(180deg)` : `rotate(0deg)`,
                       transition: `transform 0.2s`,
                       flexShrink: 0,
@@ -756,17 +756,17 @@ function ExplorePage() {
                       left: 0,
                       right: 0,
                       zIndex: 50,
-                      background: `#fff`,
+                      background: `var(--surface)`,
                       borderRadius: 14,
-                      border: `1.5px solid #D4EDDA`,
-                      boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                      border: `1.5px solid var(--line)`,
+                      boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                       overflow: `hidden`,
                     }}
                   >
                     <div
                       style={{
                         padding: 8,
-                        borderBottom: `1px solid #E8F5EE`,
+                        borderBottom: `1px solid var(--line)`,
                       }}
                     >
                       <input
@@ -795,7 +795,7 @@ function ExplorePage() {
                           style={{
                             padding: `10px 8px`,
                             fontSize: 12.5,
-                            color: `#74C69D`,
+                            color: `var(--emerald-500)`,
                           }}
                         >
                           No matches
@@ -816,8 +816,8 @@ function ExplorePage() {
                               textAlign: `left`,
                               padding: `7px 10px`,
                               border: `none`,
-                              background: n ? `#F0FAF4` : `transparent`,
-                              color: n ? `#2D6A4F` : `#1B3A4B`,
+                              background: n ? `var(--surface-2)` : `transparent`,
+                              color: n ? `var(--emerald-700)` : `var(--fg)`,
                               fontWeight: n ? 700 : 400,
                               fontFamily: `'DM Sans', sans-serif`,
                               fontSize: 12.5,
@@ -826,11 +826,11 @@ function ExplorePage() {
                               transition: `background 0.15s`,
                             }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.background = `#F0FAF4`)
+                              (e.currentTarget.style.background = `var(--surface-2)`)
                             }
                             onMouseLeave={(e) =>
                               (e.currentTarget.style.background = n
-                                ? `#F0FAF4`
+                                ? `var(--surface-2)`
                                 : `transparent`)
                             }
                           >
@@ -849,7 +849,7 @@ function ExplorePage() {
                   display: `block`,
                   fontSize: 11,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                   marginBottom: 6,
                   letterSpacing: `0.07em`,
                   textTransform: `uppercase`,
@@ -870,13 +870,13 @@ function ExplorePage() {
       </section>
       <div
         style={{
-          background: `#F0FAF4`,
-          borderBottom: `1px solid #D4EDDA`,
+          background: `var(--surface-2)`,
+          borderBottom: `1px solid var(--line)`,
           padding: `10px 40px`,
         }}
       >
         <div style={{ maxWidth: 1060, margin: `0 auto` }}>
-          <p style={{ fontSize: 13, color: `#3D6B55` }}>
+          <p style={{ fontSize: 13, color: `var(--muted)` }}>
             {r ? (
               n?.membership?.plan === `free` ? (
                 <>
@@ -887,7 +887,7 @@ function ExplorePage() {
                   <Link
                     to="/how-it-works?tab=membership"
                     style={{
-                      color: `#2D6A4F`,
+                      color: `var(--emerald-700)`,
                       fontWeight: 700,
                       textDecoration: `none`,
                     }}
@@ -912,7 +912,7 @@ function ExplorePage() {
                   to="/login"
                   state={{ from: `/explore` }}
                   style={{
-                    color: `#2D6A4F`,
+                    color: `var(--emerald-700)`,
                     fontWeight: 700,
                     textDecoration: `none`,
                   }}
@@ -933,7 +933,7 @@ function ExplorePage() {
             style={{
               textAlign: `center`,
               padding: `72px 24px`,
-              color: `#C0392B`,
+              color: `var(--danger)`,
             }}
           >
             <p style={{ fontSize: 14 }}>{x}</p>
@@ -943,7 +943,7 @@ function ExplorePage() {
             style={{
               textAlign: `center`,
               padding: `72px 24px`,
-              color: `#74C69D`,
+              color: `var(--emerald-500)`,
             }}
           >
             <p style={{ fontSize: 14 }}>Loading profiles…</p>
@@ -953,7 +953,7 @@ function ExplorePage() {
             style={{
               textAlign: `center`,
               padding: `72px 24px`,
-              color: `#74C69D`,
+              color: `var(--emerald-500)`,
             }}
           >
             <div style={{ fontSize: 44, marginBottom: 14 }}>🌿</div>
@@ -962,13 +962,13 @@ function ExplorePage() {
                 fontFamily: `'Playfair Display', serif`,
                 fontSize: 22,
                 fontWeight: 700,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
                 marginBottom: 6,
               }}
             >
               No matches found
             </h3>
-            <p style={{ fontSize: 14, color: `#3D6B55` }}>
+            <p style={{ fontSize: 14, color: `var(--muted)` }}>
               Try adjusting your filters to see more people.
             </p>
           </div>
@@ -986,17 +986,17 @@ function ExplorePage() {
                 className="card-hover"
                 onClick={() => we(e)}
                 style={{
-                  background: `#fff`,
+                  background: `var(--surface)`,
                   borderRadius: 18,
                   overflow: `hidden`,
-                  border: `1px solid #E8F5EE`,
-                  boxShadow: `0 4px 20px rgba(27,58,75,0.07)`,
+                  border: `1px solid var(--line)`,
+                  boxShadow: `0 4px 20px color-mix(in srgb, var(--shadow) 7%, transparent)`,
                   position: `relative`,
                 }}
               >
                 <div
                   style={{
-                    background: `linear-gradient(160deg, #D4EDDA 0%, #B7E4C7 100%)`,
+                    background: `linear-gradient(160deg, var(--surface-2) 0%, var(--mint) 100%)`,
                     padding: `22px 0 14px`,
                     display: `flex`,
                     flexDirection: `column`,
@@ -1027,7 +1027,7 @@ function ExplorePage() {
                       position: `absolute`,
                       bottom: 16,
                       right: `calc(50% - 26px)`,
-                      border: `2px solid #fff`,
+                      border: `2px solid var(--surface)`,
                     }}
                   />
                   <button
@@ -1044,7 +1044,7 @@ function ExplorePage() {
                       position: `absolute`,
                       top: 8,
                       right: 8,
-                      background: `rgba(27,58,75,0.35)`,
+                      background: `color-mix(in srgb, var(--overlay) 35%, transparent)`,
                       border: `none`,
                       borderRadius: `50%`,
                       width: 26,
@@ -1081,7 +1081,7 @@ function ExplorePage() {
                           fontFamily: `'Playfair Display', serif`,
                           fontWeight: 700,
                           fontSize: 14.5,
-                          color: `#1B3A4B`,
+                          color: `var(--fg)`,
                           overflow: `hidden`,
                           textOverflow: `ellipsis`,
                           whiteSpace: `nowrap`,
@@ -1095,7 +1095,7 @@ function ExplorePage() {
                     <span
                       style={{
                         fontSize: 11.5,
-                        color: `#3D6B55`,
+                        color: `var(--muted)`,
                         fontWeight: 600,
                         flexShrink: 0,
                       }}
@@ -1119,7 +1119,7 @@ function ExplorePage() {
                       style={{
                         fontSize: 11.5,
                         color:
-                          e.onlineStatus === `online` ? `#22C55E` : `#74C69D`,
+                          e.onlineStatus === `online` ? `var(--online)` : `var(--emerald-500)`,
                         fontWeight: 500,
                       }}
                     >
@@ -1128,8 +1128,8 @@ function ExplorePage() {
                   </div>
                   <div
                     style={{
-                      background: `#F0FAF4`,
-                      border: `1px solid #D4EDDA`,
+                      background: `var(--surface-2)`,
+                      border: `1px solid var(--line)`,
                       borderRadius: 10,
                       padding: `8px 10px`,
                       marginBottom: 12,
@@ -1159,7 +1159,7 @@ function ExplorePage() {
                       >
                         <span
                           style={{
-                            color: `#3D6B55`,
+                            color: `var(--muted)`,
                             fontWeight: 600,
                           }}
                         >
@@ -1167,7 +1167,7 @@ function ExplorePage() {
                         </span>
                         <span
                           style={{
-                            color: `#2D6A4F`,
+                            color: `var(--emerald-700)`,
                             fontWeight: 500,
                           }}
                         >
@@ -1207,8 +1207,8 @@ function ExplorePage() {
       {A && <UpgradeModal message={A} onClose={() => te(null)} />}
       <section
         style={{
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
-          borderTop: `1px solid #D4EDDA`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
+          borderTop: `1px solid var(--line)`,
           padding: `64px 40px 72px`,
           textAlign: `center`,
         }}
@@ -1217,7 +1217,7 @@ function ExplorePage() {
           <div
             style={{
               fontSize: 13,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: 4,
               marginBottom: 12,
               opacity: 0.6,
@@ -1230,7 +1230,7 @@ function ExplorePage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(26px, 4vw, 40px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               letterSpacing: `-0.025em`,
               marginBottom: 10,
             }}
@@ -1241,7 +1241,7 @@ function ExplorePage() {
           <p
             style={{
               fontSize: 15,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               marginBottom: 34,
               fontStyle: `italic`,
             }}
@@ -1253,7 +1253,7 @@ function ExplorePage() {
             to="/signup"
             style={{
               display: `inline-block`,
-              background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+              background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
               color: `#fff`,
               textDecoration: `none`,
               padding: `14px 44px`,
@@ -1262,7 +1262,7 @@ function ExplorePage() {
               fontSize: 15,
               fontWeight: 700,
               letterSpacing: `0.04em`,
-              boxShadow: `0 6px 24px rgba(27,58,75,0.35)`,
+              boxShadow: `0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent)`,
             }}
           >
             Create Free Profile
@@ -1271,7 +1271,7 @@ function ExplorePage() {
       </section>
       <div
         style={{
-          background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 50%, #40916C 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
           padding: `16px 40px`,
           display: `flex`,
           alignItems: `center`,
@@ -1281,7 +1281,7 @@ function ExplorePage() {
       >
         <span
           style={{
-            color: `#B7E4C7`,
+            color: `var(--mint)`,
             fontSize: 13,
             letterSpacing: `0.18em`,
             fontWeight: 600,
@@ -1290,12 +1290,12 @@ function ExplorePage() {
         >
           Because everyone deserves a second chance at happiness.
         </span>
-        <span style={{ color: `#74C69D`, fontSize: 16 }}>♥</span>
+        <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
       </div>
       <footer
         style={{
-          background: `#1B3A4B`,
-          color: `#74C69D`,
+          background: `var(--deep)`,
+          color: `var(--emerald-500)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -1310,8 +1310,8 @@ function ExplorePage() {
             marginBottom: 10,
           }}
         >
-          Nikha<span style={{ color: `#74C69D` }}>2</span>{" "}
-          <span style={{ color: `#40916C` }}>♡</span>
+          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
         <p
           style={{
@@ -1333,7 +1333,7 @@ function ExplorePage() {
               to={t}
               style={{
                 fontSize: 12,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `'DM Sans', sans-serif`,

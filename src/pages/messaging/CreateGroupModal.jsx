@@ -45,7 +45,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
             fontFamily: `'Playfair Display', serif`,
             fontSize: 20,
             fontWeight: 700,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
           }}
         >
           Create Group
@@ -58,7 +58,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
         style={{
           fontSize: 11,
           fontWeight: 700,
-          color: `#2D6A4F`,
+          color: `var(--emerald-700)`,
           textTransform: `uppercase`,
           letterSpacing: `0.06em`,
         }}
@@ -70,13 +70,13 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
         onChange={(e) => r(e.target.value)}
         placeholder="e.g. Second Chances Support"
         className="text-input"
-        style={{ flex: `none`, margin: `6px 0 18px`, background: `#F8FAF5` }}
+        style={{ flex: `none`, margin: `6px 0 18px`, background: `var(--bg)` }}
       />
       <label
         style={{
           fontSize: 11,
           fontWeight: 700,
-          color: `#2D6A4F`,
+          color: `var(--emerald-700)`,
           textTransform: `uppercase`,
           letterSpacing: `0.06em`,
         }}
@@ -88,12 +88,12 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
         onChange={(e) => a(e.target.value)}
         placeholder="Search by name..."
         className="text-input"
-        style={{ flex: `none`, margin: `6px 0 10px`, background: `#F8FAF5` }}
+        style={{ flex: `none`, margin: `6px 0 10px`, background: `var(--bg)` }}
       />
       {o.length > 0 && (
         <div
           style={{
-            border: `1px solid #E8F5EE`,
+            border: `1px solid var(--line)`,
             borderRadius: 12,
             marginBottom: 14,
             overflow: `hidden`,
@@ -108,12 +108,12 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
                 textAlign: `left`,
                 padding: `10px 12px`,
                 border: `none`,
-                background: `#fff`,
-                borderBottom: `1px solid #F0FAF4`,
+                background: `var(--surface)`,
+                borderBottom: `1px solid var(--line)`,
                 cursor: `pointer`,
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 13,
-                color: `#1B3A4B`,
+                color: `var(--fg)`,
               }}
             >
               {"+ "}
@@ -138,13 +138,13 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
                 display: `inline-flex`,
                 alignItems: `center`,
                 gap: 6,
-                background: `#F0FAF4`,
-                border: `1px solid #D4EDDA`,
+                background: `var(--surface-2)`,
+                border: `1px solid var(--line)`,
                 borderRadius: 20,
                 padding: `5px 6px 5px 12px`,
                 fontSize: 12.5,
                 fontFamily: `'DM Sans', sans-serif`,
-                color: `#2D6A4F`,
+                color: `var(--emerald-700)`,
               }}
             >
               {e.displayName}
@@ -154,7 +154,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
                   border: `none`,
                   background: `none`,
                   cursor: `pointer`,
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                   fontSize: 14,
                 }}
               >
@@ -165,7 +165,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
         </div>
       )}
       {f && (
-        <p style={{ fontSize: 12.5, color: `#C0392B`, marginBottom: 14 }}>
+        <p style={{ fontSize: 12.5, color: `var(--danger)`, marginBottom: 14 }}>
           {f}
         </p>
       )}

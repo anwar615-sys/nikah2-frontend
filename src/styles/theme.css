@@ -1,0 +1,97 @@
+/* Nikha2 theme tokens. Light values on :root; dark values for the system preference
+   (unless the visitor chose light) and again for an explicit dark choice. */
+:root {
+  --bg: #F3F6F1;
+  --surface: #FFFFFF;
+  --surface-2: #F0FAF4;
+  --fg: #0E2A1F;
+  --muted: #4C6A5D;
+  --line: #D7E6DD;
+  --emerald-900: #043524;
+  --emerald-700: #06573B;
+  --emerald-500: #10B981;
+  --emerald-hi: #B8FFE0;
+  --gold: #C9A55C;
+  --gold-bg: #FBF5E8;
+  --gold-line: #E8D3A6;
+  --glow: rgba(16, 200, 140, 0.5);
+  --mint: #B7E4C7;
+  --danger: #C0392B;
+  --danger-bg: #FFF5F5;
+  --danger-line: #F5C6C6;
+  --success: #2D6A4F;
+  --warning: #9A6B00;
+  --online: #22C55E;
+  --online-soft: #86EFAC;
+  --deep: #0B2A1F;          /* sections that stay dark in both themes */
+  --on-deep: #EAF7F0;       /* text on --deep */
+  --shadow: #1B3A4B;        /* base for box shadows */
+  --overlay: #0B2A1F;       /* base for modal backdrops */
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #020B08;
+    --surface: #07160F;
+    --surface-2: #0B2018;
+    --fg: #E8FFF5;
+    --muted: #8DB8A6;
+    --line: #10291F;
+    --emerald-900: #059669;
+    --emerald-700: #10B981;
+    --emerald-500: #34F5A8;
+    --emerald-hi: #F0FFF8;
+    --gold: #D9B86C;
+    --gold-bg: #1E1A0E;
+    --gold-line: #5C4A22;
+    --glow: rgba(52, 245, 168, 0.5);
+    --mint: #1F5A43;
+    --danger: #F07167;
+    --danger-bg: #2A0E0C;
+    --danger-line: #5A2420;
+    --success: #34D399;
+    --warning: #E0B85A;
+    --deep: #03130D;
+    --on-deep: #EAF7F0;
+    --shadow: #000000;
+    --overlay: #000000;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #020B08;
+  --surface: #07160F;
+  --surface-2: #0B2018;
+  --fg: #E8FFF5;
+  --muted: #8DB8A6;
+  --line: #10291F;
+  --emerald-900: #059669;
+  --emerald-700: #10B981;
+  --emerald-500: #34F5A8;
+  --emerald-hi: #F0FFF8;
+  --gold: #D9B86C;
+  --gold-bg: #1E1A0E;
+  --gold-line: #5C4A22;
+  --glow: rgba(52, 245, 168, 0.5);
+  --mint: #1F5A43;
+  --danger: #F07167;
+  --danger-bg: #2A0E0C;
+  --danger-line: #5A2420;
+  --success: #34D399;
+  --warning: #E0B85A;
+  --deep: #03130D;
+  --on-deep: #EAF7F0;
+  --shadow: #000000;
+  --overlay: #000000;
+  color-scheme: dark;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+}
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}

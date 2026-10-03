@@ -7,35 +7,35 @@ var mn = [
     icon: `🛡️`,
     title: `Trusted Profiles`,
     desc: `Every member is verified, helping you connect with greater confidence. Trust Badges make it easier to identify genuine people with sincere intentions.`,
-    accent: `#40916C`,
+    accent: `var(--emerald-700)`,
     tag: `Trusted`,
   },
   {
     icon: `💚`,
     title: `Compatible Matches`,
     desc: `Find meaningful matches based on your values, traditions, and relationship goals. We focus on true compatibility not just proximity.`,
-    accent: `#52B788`,
+    accent: `var(--emerald-500)`,
     tag: `Compatible`,
   },
   {
     icon: `🔒`,
     title: `Privacy Assured`,
     desc: `Your privacy comes first. Your conversations and profile details are protected by design, so you can connect with confidence knowing your information stays yours.`,
-    accent: `#74C69D`,
+    accent: `var(--emerald-500)`,
     tag: `Privacy`,
   },
   {
     icon: `🤝`,
     title: `Respect & Support`,
     desc: `A respectful, supportive community where your boundaries are valued. Connect comfortably with mindful interactions and thoughtful moderation designed to create a safe, welcoming experience.`,
-    accent: `#2D6A4F`,
+    accent: `var(--emerald-700)`,
     tag: `Support`,
   },
   {
     icon: `✨`,
     title: `Quality Connections`,
     desc: `Spend less time searching and more time building meaningful connections. Find people who align with your values and intentions, and let conversations develop naturally at a pace that feels right.`,
-    accent: `#52B788`,
+    accent: `var(--emerald-500)`,
     tag: `Quality`,
   },
 ];
@@ -45,8 +45,8 @@ function WayDifferentSection() {
   return (
     <section
       style={{
-        background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
-        borderTop: `1px solid #D4EDDA`,
+        background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
+        borderTop: `1px solid var(--line)`,
         padding: `40px 40px`,
         minHeight: `100vh`,
         display: `flex`,
@@ -55,7 +55,7 @@ function WayDifferentSection() {
     >
       <style>
         {
-          "\n        .zebra-container {\n          border-radius: 20px;\n          overflow: hidden;\n          border: 1px solid #D4EDDA;\n          box-shadow: 0 8px 32px rgba(45,106,79,0.08);\n          width: 100%;\n        }\n        .zebra-row {\n          display: flex;\n          align-items: center;\n          gap: 24px;\n          padding: 22px 36px;\n          transition: background 0.25s ease;\n          cursor: default;\n        }\n        .zebra-row:not(:last-child) { border-bottom: 1px solid #E8F5EE; }\n        .zebra-icon {\n          width: 44px; height: 44px; border-radius: 12px;\n          display: flex; align-items: center; justify-content: center;\n          font-size: 20px; flex-shrink: 0;\n          transition: all 0.25s ease;\n        }\n        .zebra-title { width: 180px; flex-shrink: 0; }\n        .zebra-divider {\n          width: 1.5px; align-self: stretch;\n          flex-shrink: 0; transition: background 0.25s ease;\n        }\n        .zebra-desc {\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px; color: #3D6B55;\n          line-height: 1.65; margin: 0; flex: 1;\n        }\n\n        @media (max-width: 900px) {\n          .zebra-section { padding: 32px 24px !important; }\n          .zebra-row { padding: 18px 24px !important; gap: 16px !important; }\n          .zebra-title { width: 140px !important; }\n        }\n\n        @media (max-width: 600px) {\n          .zebra-section { padding: 24px 16px !important; min-height: unset !important; }\n          .zebra-container { border-radius: 14px !important; }\n          .zebra-row {\n            flex-direction: column !important;\n            align-items: flex-start !important;\n            padding: 18px 16px !important;\n            gap: 10px !important;\n          }\n          .zebra-top-row {\n            display: flex !important;\n            align-items: center !important;\n            gap: 12px !important;\n            width: 100% !important;\n          }\n          .zebra-divider { display: none !important; }\n          .zebra-title { width: auto !important; flex: 1 !important; }\n          .zebra-icon { width: 38px !important; height: 38px !important; font-size: 18px !important; }\n          .zebra-desc { font-size: 12.5px !important; width: 100% !important; }\n        }\n      "
+          "\n        .zebra-container {\n          border-radius: 20px;\n          overflow: hidden;\n          border: 1px solid var(--line);\n          box-shadow: 0 8px 32px color-mix(in srgb, var(--emerald-700) 8%, transparent);\n          width: 100%;\n        }\n        .zebra-row {\n          display: flex;\n          align-items: center;\n          gap: 24px;\n          padding: 22px 36px;\n          transition: background 0.25s ease;\n          cursor: default;\n        }\n        .zebra-row:not(:last-child) { border-bottom: 1px solid var(--line); }\n        .zebra-icon {\n          width: 44px; height: 44px; border-radius: 12px;\n          display: flex; align-items: center; justify-content: center;\n          font-size: 20px; flex-shrink: 0;\n          transition: all 0.25s ease;\n        }\n        .zebra-title { width: 180px; flex-shrink: 0; }\n        .zebra-divider {\n          width: 1.5px; align-self: stretch;\n          flex-shrink: 0; transition: background 0.25s ease;\n        }\n        .zebra-desc {\n          font-family: 'DM Sans', sans-serif;\n          font-size: 13px; color: var(--muted);\n          line-height: 1.65; margin: 0; flex: 1;\n        }\n\n        @media (max-width: 900px) {\n          .zebra-section { padding: 32px 24px !important; }\n          .zebra-row { padding: 18px 24px !important; gap: 16px !important; }\n          .zebra-title { width: 140px !important; }\n        }\n\n        @media (max-width: 600px) {\n          .zebra-section { padding: 24px 16px !important; min-height: unset !important; }\n          .zebra-container { border-radius: 14px !important; }\n          .zebra-row {\n            flex-direction: column !important;\n            align-items: flex-start !important;\n            padding: 18px 16px !important;\n            gap: 10px !important;\n          }\n          .zebra-top-row {\n            display: flex !important;\n            align-items: center !important;\n            gap: 12px !important;\n            width: 100% !important;\n          }\n          .zebra-divider { display: none !important; }\n          .zebra-title { width: auto !important; flex: 1 !important; }\n          .zebra-icon { width: 38px !important; height: 38px !important; font-size: 18px !important; }\n          .zebra-desc { font-size: 12.5px !important; width: 100% !important; }\n        }\n      "
         }
       </style>
       <div
@@ -67,7 +67,7 @@ function WayDifferentSection() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 11,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
               textTransform: `uppercase`,
               marginBottom: 8,
@@ -81,7 +81,7 @@ function WayDifferentSection() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(20px, 2.5vw, 30px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               letterSpacing: `-0.02em`,
             }}
           >
@@ -101,8 +101,8 @@ function WayDifferentSection() {
                   e === r
                     ? `linear-gradient(90deg, ${n.accent}14, ${n.accent}06)`
                     : r % 2 == 0
-                      ? `#fff`
-                      : `#F8FAF5`,
+                      ? `var(--surface)`
+                      : `var(--bg)`,
               }}
             >
               <div className="zebra-top-row" style={{ display: `contents` }}>
@@ -113,9 +113,9 @@ function WayDifferentSection() {
                       e === r
                         ? `linear-gradient(135deg, ${n.accent}28, ${n.accent}48)`
                         : r % 2 == 0
-                          ? `#F0FAF4`
-                          : `#fff`,
-                    border: `1.5px solid ${e === r ? n.accent + `60` : `#D4EDDA`}`,
+                          ? `var(--surface-2)`
+                          : `var(--surface)`,
+                    border: `1.5px solid ${e === r ? n.accent + `60` : `var(--line)`}`,
                   }}
                 >
                   {n.icon}
@@ -126,7 +126,7 @@ function WayDifferentSection() {
                       fontFamily: `'DM Sans', sans-serif`,
                       fontSize: 9,
                       fontWeight: 700,
-                      color: e === r ? n.accent : `#74C69D`,
+                      color: e === r ? n.accent : `var(--emerald-500)`,
                       letterSpacing: `0.18em`,
                       textTransform: `uppercase`,
                       display: `block`,
@@ -141,7 +141,7 @@ function WayDifferentSection() {
                       fontFamily: `'Playfair Display', serif`,
                       fontSize: `clamp(13px, 1.3vw, 16px)`,
                       fontWeight: 700,
-                      color: `#1B3A4B`,
+                      color: `var(--fg)`,
                       lineHeight: 1.3,
                       margin: 0,
                     }}
@@ -153,7 +153,7 @@ function WayDifferentSection() {
               <div
                 className="zebra-divider"
                 style={{
-                  background: e === r ? n.accent + `50` : `#E8F5EE`,
+                  background: e === r ? n.accent + `50` : `var(--surface-2)`,
                 }}
               />
               <p className="zebra-desc">{n.desc}</p>
@@ -171,7 +171,7 @@ function FeaturesPage() {
     <div
       style={{
         fontFamily: `'DM Sans', sans-serif`,
-        background: `#F8FAF5`,
+        background: `var(--bg)`,
         minHeight: `100vh`,
         paddingTop: 68,
       }}
@@ -179,7 +179,7 @@ function FeaturesPage() {
       <Navbar />
       <style>
         {
-          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px rgba(34,197,94,0.7); }\n          50%       { box-shadow: 0 0 16px rgba(34,197,94,0.35); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.35);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,58,75,0.45); }\n\n        .hero-btn-outline {\n          background: rgba(255,255,255,0.92); color: #2D6A4F;\n          border: 2px solid #74C69D; padding: 13px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(45,106,79,0.2); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n      "
+          "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        @keyframes float {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-14px); }\n        }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .hero-btn-outline {\n          background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--emerald-700);\n          border: 2px solid var(--emerald-500); padding: 13px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: var(--surface); transform: translateY(-2px); box-shadow: 0 6px 20px color-mix(in srgb, var(--emerald-700) 20%, transparent); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n      "
         }
       </style>
       <section
@@ -198,7 +198,7 @@ function FeaturesPage() {
             width: 280,
             height: 280,
             borderRadius: `50%`,
-            background: `rgba(183,228,199,0.35)`,
+            background: `color-mix(in srgb, var(--mint) 35%, transparent)`,
             filter: `blur(60px)`,
             animation: `float 6s ease-in-out infinite`,
             pointerEvents: `none`,
@@ -212,7 +212,7 @@ function FeaturesPage() {
             width: 320,
             height: 320,
             borderRadius: `50%`,
-            background: `rgba(116,198,157,0.2)`,
+            background: `color-mix(in srgb, var(--emerald-500) 20%, transparent)`,
             filter: `blur(70px)`,
             animation: `float 6s ease-in-out infinite`,
             animationDelay: `1s`,
@@ -231,7 +231,7 @@ function FeaturesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 12,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: `0.3em`,
               textTransform: `uppercase`,
               marginBottom: 16,
@@ -246,7 +246,7 @@ function FeaturesPage() {
               fontSize: `clamp(28px, 5vw, 54px)`,
               fontWeight: 700,
               letterSpacing: `-0.025em`,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               lineHeight: 1.15,
               marginBottom: 20,
             }}
@@ -258,7 +258,7 @@ function FeaturesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 16,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               lineHeight: 1.7,
               maxWidth: 520,
               margin: `0 auto 40px`,
@@ -287,9 +287,9 @@ function FeaturesPage() {
       </section>
       <div
         style={{
-          background: `#fff`,
-          borderTop: `1px solid #E8F5EE`,
-          borderBottom: `1px solid #E8F5EE`,
+          background: `var(--surface)`,
+          borderTop: `1px solid var(--line)`,
+          borderBottom: `1px solid var(--line)`,
           padding: `36px 40px`,
         }}
       >
@@ -297,7 +297,7 @@ function FeaturesPage() {
           style={{
             fontFamily: `'Playfair Display', serif`,
             fontSize: `clamp(15px, 2vw, 19px)`,
-            color: `#3D6B55`,
+            color: `var(--muted)`,
             fontStyle: `italic`,
             textAlign: `center`,
             maxWidth: 860,
@@ -316,14 +316,14 @@ function FeaturesPage() {
         style={{
           padding: `80px 40px`,
           textAlign: `center`,
-          background: `#fff`,
+          background: `var(--surface)`,
         }}
       >
         <div style={{ maxWidth: 780, margin: `0 auto` }}>
           <div
             style={{
               fontSize: 13,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: 4,
               marginBottom: 14,
               opacity: 0.6,
@@ -336,7 +336,7 @@ function FeaturesPage() {
               fontFamily: `'Playfair Display', serif`,
               fontSize: `clamp(22px, 3.5vw, 38px)`,
               fontWeight: 700,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
               letterSpacing: `-0.02em`,
               marginBottom: 16,
             }}
@@ -348,7 +348,7 @@ function FeaturesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 15,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               lineHeight: 1.75,
               maxWidth: 560,
               margin: `0 auto 52px`,
@@ -386,8 +386,8 @@ function FeaturesPage() {
               <div
                 key={e.label}
                 style={{
-                  background: `linear-gradient(160deg, #F0FAF4, #E8F5EE)`,
-                  border: `1px solid #D4EDDA`,
+                  background: `linear-gradient(160deg, var(--surface-2), var(--surface-2))`,
+                  border: `1px solid var(--line)`,
                   borderRadius: 20,
                   padding: `28px 24px`,
                   textAlign: `center`,
@@ -399,7 +399,7 @@ function FeaturesPage() {
                     fontFamily: `'Playfair Display', serif`,
                     fontSize: 15,
                     fontWeight: 700,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                     marginBottom: 6,
                   }}
                 >
@@ -409,7 +409,7 @@ function FeaturesPage() {
                   style={{
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 13,
-                    color: `#3D6B55`,
+                    color: `var(--muted)`,
                     lineHeight: 1.6,
                   }}
                 >
@@ -422,16 +422,16 @@ function FeaturesPage() {
       </section>
       <section
         style={{
-          background: `linear-gradient(160deg, #F0FAF4 0%, #E8F5EE 100%)`,
+          background: `linear-gradient(160deg, var(--surface-2) 0%, var(--surface-2) 100%)`,
           padding: `80px 40px 88px`,
-          borderTop: `1px solid #D4EDDA`,
+          borderTop: `1px solid var(--line)`,
         }}
       >
         <div style={{ maxWidth: 720, margin: `0 auto`, textAlign: `center` }}>
           <div
             style={{
               fontSize: 13,
-              color: `#40916C`,
+              color: `var(--emerald-700)`,
               letterSpacing: 4,
               marginBottom: 12,
               opacity: 0.6,
@@ -446,7 +446,7 @@ function FeaturesPage() {
               fontWeight: 700,
               letterSpacing: `-0.025em`,
               marginBottom: 12,
-              color: `#1B3A4B`,
+              color: `var(--fg)`,
             }}
           >
             Ready to Find <span className="green-text">Your Person?</span>
@@ -455,7 +455,7 @@ function FeaturesPage() {
             style={{
               fontFamily: `'DM Sans', sans-serif`,
               fontSize: 16,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               marginBottom: 40,
               lineHeight: 1.7,
               maxWidth: 480,
@@ -477,11 +477,11 @@ function FeaturesPage() {
                 display: `inline-flex`,
                 alignItems: `center`,
                 gap: 8,
-                background: `#fff`,
-                border: `1px solid #B7E4C7`,
+                background: `var(--surface)`,
+                border: `1px solid var(--mint)`,
                 borderRadius: 24,
                 padding: `9px 22px`,
-                boxShadow: `0 3px 12px rgba(45,106,79,0.1)`,
+                boxShadow: `0 3px 12px color-mix(in srgb, var(--emerald-700) 10%, transparent)`,
               }}
             >
               <span
@@ -489,9 +489,9 @@ function FeaturesPage() {
                   width: 9,
                   height: 9,
                   borderRadius: `50%`,
-                  background: `#22C55E`,
+                  background: `var(--online)`,
                   display: `inline-block`,
-                  boxShadow: `0 0 7px rgba(34,197,94,0.65)`,
+                  boxShadow: `0 0 7px color-mix(in srgb, var(--online) 65%, transparent)`,
                   animation: `pulse 2s infinite`,
                 }}
               />
@@ -500,7 +500,7 @@ function FeaturesPage() {
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 13,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                 }}
               >
                 12 Online Members Right Now
@@ -529,7 +529,7 @@ function FeaturesPage() {
       </section>
       <div
         style={{
-          background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 50%, #40916C 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
           padding: `18px 40px`,
           display: `flex`,
           alignItems: `center`,
@@ -539,7 +539,7 @@ function FeaturesPage() {
       >
         <span
           style={{
-            color: `#B7E4C7`,
+            color: `var(--mint)`,
             fontSize: 13,
             letterSpacing: `0.18em`,
             fontFamily: `'DM Sans', sans-serif`,
@@ -549,12 +549,12 @@ function FeaturesPage() {
         >
           Because everyone deserves a second chance at happiness.
         </span>
-        <span style={{ color: `#74C69D`, fontSize: 16 }}>♥</span>
+        <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
       </div>
       <footer
         style={{
-          background: `#1B3A4B`,
-          color: `#74C69D`,
+          background: `var(--deep)`,
+          color: `var(--emerald-500)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -569,8 +569,8 @@ function FeaturesPage() {
             marginBottom: 10,
           }}
         >
-          Nikha<span style={{ color: `#74C69D` }}>2</span>{" "}
-          <span style={{ color: `#40916C` }}>♥</span>
+          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          <span style={{ color: `var(--emerald-700)` }}>♥</span>
         </div>
         <p
           style={{
@@ -589,7 +589,7 @@ function FeaturesPage() {
               to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `'DM Sans', sans-serif`,
@@ -611,8 +611,8 @@ function FeatureCard({ icon: e, title: t, desc: n }) {
   return (
     <div
       style={{
-        background: `rgba(255,255,255,0.65)`,
-        border: `1px solid #E8F5EE`,
+        background: `color-mix(in srgb, var(--surface) 65%, transparent)`,
+        border: `1px solid var(--line)`,
         borderRadius: 20,
         padding: `28px 20px`,
         textAlign: `center`,
@@ -621,14 +621,14 @@ function FeatureCard({ icon: e, title: t, desc: n }) {
         cursor: `default`,
       }}
       onMouseEnter={(e) => {
-        ((e.currentTarget.style.background = `rgba(255,255,255,0.95)`),
-          (e.currentTarget.style.borderColor = `#74C69D`),
+        ((e.currentTarget.style.background = `color-mix(in srgb, var(--surface) 95%, transparent)`),
+          (e.currentTarget.style.borderColor = `var(--emerald-500)`),
           (e.currentTarget.style.transform = `translateY(-4px)`),
-          (e.currentTarget.style.boxShadow = `0 12px 36px rgba(45,106,79,0.12)`));
+          (e.currentTarget.style.boxShadow = `0 12px 36px color-mix(in srgb, var(--emerald-700) 12%, transparent)`));
       }}
       onMouseLeave={(e) => {
-        ((e.currentTarget.style.background = `rgba(255,255,255,0.65)`),
-          (e.currentTarget.style.borderColor = `#E8F5EE`),
+        ((e.currentTarget.style.background = `color-mix(in srgb, var(--surface) 65%, transparent)`),
+          (e.currentTarget.style.borderColor = `var(--line)`),
           (e.currentTarget.style.transform = `none`),
           (e.currentTarget.style.boxShadow = `none`));
       }}
@@ -639,7 +639,7 @@ function FeatureCard({ icon: e, title: t, desc: n }) {
           fontFamily: `'Playfair Display', serif`,
           fontSize: 14,
           fontWeight: 700,
-          color: `#1B3A4B`,
+          color: `var(--fg)`,
           marginBottom: 6,
         }}
       >
@@ -649,7 +649,7 @@ function FeatureCard({ icon: e, title: t, desc: n }) {
         style={{
           fontFamily: `'DM Sans', sans-serif`,
           fontSize: 12,
-          color: `#74C69D`,
+          color: `var(--emerald-500)`,
           lineHeight: 1.55,
         }}
       >

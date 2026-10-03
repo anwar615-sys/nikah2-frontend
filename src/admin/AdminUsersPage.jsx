@@ -627,7 +627,7 @@ function AdminUsersPage() {
               padding: `8px 18px`,
               borderRadius: 20,
               border: `1.5px solid ${e === n ? ADMIN_THEME.green : ADMIN_THEME.border}`,
-              background: e === n ? ADMIN_THEME.green : `#fff`,
+              background: e === n ? ADMIN_THEME.green : `var(--surface)`,
               color: e === n ? `#fff` : ADMIN_THEME.green,
               fontSize: 12.5,
               fontWeight: 700,

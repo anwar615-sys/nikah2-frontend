@@ -58,7 +58,7 @@ function HomePage() {
       <div
         style={{
           fontFamily: `'DM Sans', sans-serif`,
-          background: `#F8FAF5`,
+          background: `var(--bg)`,
           minHeight: `100vh`,
           paddingTop: 68,
         }}
@@ -66,7 +66,7 @@ function HomePage() {
         <Navbar />
         <style>
           {
-            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.35);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,58,75,0.45); }\n\n        .hero-btn-outline {\n          background: rgba(255,255,255,0.08); color: #74C69D;\n          border: 2px solid #74C69D; padding: 13px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n        @keyframes stripRiseIn {\n          from { opacity: 0; transform: translateY(40px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n\n        .seek-btn {\n          flex: 1; padding: 15px 0;\n          background: rgba(255,255,255,0.08);\n          color: rgba(255,255,255,0.75);\n          border: none; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 600;\n          cursor: pointer; transition: all 0.2s;\n        }\n        .seek-btn.active {\n          background: linear-gradient(135deg, #1B3A4B, #2D6A4F);\n          color: #fff;\n        }\n        .seek-btn:first-child { border-radius: 10px 0 0 10px; }\n        .seek-btn:last-child  { border-radius: 0 10px 10px 0; }\n\n        .country-chip {\n          padding: 7px 16px; border-radius: 12px;\n          border: 1.5px solid #B7E4C7; background: #fff;\n          color: #2D6A4F; font-family: 'DM Sans', sans-serif;\n          font-size: 12.5px; font-weight: 600; cursor: pointer;\n          transition: all 0.18s; white-space: nowrap;\n          width: 100%; text-align: left;\n        }\n        .country-chip:hover { background: #F0FAF4; border-color: #40916C; }\n        .country-chip.active {\n          background: linear-gradient(135deg, #1B3A4B, #2D6A4F);\n          color: #fff; border-color: transparent;\n          box-shadow: 0 3px 12px rgba(45,106,79,0.3);\n        }\n\n        /* card hover */\n        .card-hover {\n          transition: transform 0.22s, box-shadow 0.22s;\n          cursor: pointer;\n        }\n        .card-hover:hover {\n          transform: translateY(-4px);\n          box-shadow: 0 12px 36px rgba(45,106,79,0.16) !important;\n        }\n\n        /* member grid — fluid, no fixed columns */\n        .member-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 20px;\n          width: 100%;\n        }\n\n        /* scroll area — desktop only */\n        .members-scroll-area {\n          overflow-y: auto;\n          padding-right: 4px;\n        }\n        .members-scroll-area::-webkit-scrollbar { width: 4px; }\n        .members-scroll-area::-webkit-scrollbar-track { background: transparent; }\n        .members-scroll-area::-webkit-scrollbar-thumb { background: #B7E4C7; border-radius: 4px; }\n        .members-scroll-area::-webkit-scrollbar-thumb:hover { background: #74C69D; }\n\n        .filter-scroll { overflow-y: auto; }\n        .filter-scroll::-webkit-scrollbar { width: 3px; }\n        .filter-scroll::-webkit-scrollbar-track { background: transparent; }\n        .filter-scroll::-webkit-scrollbar-thumb { background: #B7E4C7; border-radius: 3px; }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px rgba(34,197,94,0.7); }\n          50%       { box-shadow: 0 0 16px rgba(34,197,94,0.35); }\n        }\n        @keyframes orbFloat {\n          0%, 100% { transform: translateY(0) scale(1); }\n          50% { transform: translateY(-30px) scale(1.05); }\n        }\n        @keyframes fadeSlideUp {\n          from { opacity: 0; transform: translateY(32px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n        @keyframes avatarPop {\n          from { opacity: 0; transform: scale(0.7); }\n          to   { opacity: 1; transform: scale(1); }\n        }\n\n        .cta-hidden { opacity: 0; transform: translateY(32px); }\n        .cta-hidden-avatar { opacity: 0; transform: scale(0.7); }\n        .cta-visible-1 { animation: fadeSlideUp 0.6s 0.1s both ease-out; }\n        .cta-visible-2 { animation: fadeSlideUp 0.6s 0.2s both ease-out; }\n        .cta-visible-3 { animation: fadeSlideUp 0.6s 0.3s both ease-out; }\n        .cta-visible-4 { animation: fadeSlideUp 0.6s 0.4s both ease-out; }\n        .cta-visible-5 { animation: fadeSlideUp 0.6s 0.5s both ease-out; }\n        .cta-visible-6 { animation: fadeSlideUp 0.6s 0.6s both ease-out; }\n        .cta-avatar-0 { animation: avatarPop 0.5s 0.4s both ease-out; }\n        .cta-avatar-1 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-2 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-3 { animation: avatarPop 0.5s 0s both ease-out; }\n        .cta-avatar-4 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-5 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-6 { animation: avatarPop 0.5s 0.4s both ease-out; }\n\n        /* ── TABLET: 600–900px ── */\n        @media (max-width: 900px) {\n          .hero-section {\n            flex-direction: column !important;\n            height: auto !important;\n            min-height: calc(100vh - 68px) !important;\n          }\n          .hero-left {\n            flex: none !important;\n            width: 100% !important;\n            padding: 48px 32px 24px !important;\n            align-items: center !important;\n            text-align: center !important;\n          }\n          .hero-left .live-pill { align-self: center !important; }\n          .seek-toggle { max-width: 100% !important; }\n          .hero-buttons { justify-content: center !important; }\n\n          .features-strip-inner { flex-direction: column !important; gap: 0 !important; }\n          .features-strip-divider { display: none !important; }\n          .features-badges-row { justify-content: center !important; padding: 12px 0 !important; }\n\n          .members-layout { flex-direction: column !important; gap: 24px !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; }\n          .priority-chips { flex-direction: row !important; flex-wrap: wrap !important; gap: 8px !important; }\n          .country-chip { width: auto !important; }\n\n          /* grid: 2 cols on tablet */\n          .member-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; }\n          .cta-buttons button { width: 100% !important; max-width: 360px; }\n        }\n\n        /* ── MOBILE: ≤600px ── */\n        @media (max-width: 600px) {\n          .hero-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .hero-left { padding: 36px 20px 20px !important; gap: 12px !important; }\n          .hero-buttons { flex-direction: column !important; width: 100% !important; }\n          .hero-btn-primary, .hero-btn-outline { width: 100% !important; text-align: center !important; }\n          .seek-btn { font-size: 13px !important; padding: 12px 6px !important; }\n\n          .online-section { padding: 28px 16px !important; }\n          .online-header { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }\n\n          .members-layout { display: flex !important; flex-direction: column !important; gap: 24px !important; width: 100% !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; top: auto !important; }\n\n          /* grid: 1 full-width col on mobile — NO gaps, NO white space */\n          .member-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; padding-right: 0 !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-section > div:first-of-type { padding: 24px 20px 0 !important; }\n          .cta-headline { font-size: 36px !important; line-height: 1.1 !important; }\n          .cta-subtext { font-size: 14px !important; margin-bottom: 20px !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; margin-bottom: 16px !important; }\n          .cta-buttons button { width: 100% !important; max-width: 340px !important; padding: 14px 24px !important; }\n          .cta-stat-number { font-size: 22px !important; }\n          .tagline-bar { padding: 14px 20px !important; }\n          .tagline-bar span:first-child { font-size: 11px !important; letter-spacing: 0.08em !important; }\n          .features-strip { padding: 0 !important; }\n          .features-strip-inner { padding: 8px 0 !important; }\n          footer { padding: 28px 20px !important; }\n        }\n\n        /* ── VERY SMALL: ≤380px ── */\n        @media (max-width: 380px) {\n          .member-grid { grid-template-columns: 1fr !important; gap: 12px !important; }\n          .seek-btn { font-size: 12px !important; }\n          .cta-headline { font-size: 28px !important; }\n          .cta-stat-number { font-size: 18px !important; }\n          .cta-buttons button { padding: 12px 16px !important; font-size: 14px !important; }\n        }\n      "
+            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .hero-btn-primary {\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff; border: none; padding: 14px 36px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 35%, transparent);\n          transition: all 0.22s;\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 45%, transparent); }\n\n        .hero-btn-outline {\n          background: color-mix(in srgb, var(--surface) 8%, transparent); color: var(--emerald-500);\n          border: 2px solid var(--emerald-500); padding: 13px 32px;\n          border-radius: 32px; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 700; cursor: pointer;\n          letter-spacing: 0.04em; transition: all 0.22s;\n          backdrop-filter: blur(6px);\n          animation: heroBtnFloat 2.8s ease-in-out infinite;\n        }\n        .hero-btn-outline:hover { background: color-mix(in srgb, var(--surface) 15%, transparent); transform: translateY(-2px); }\n\n        @keyframes heroBtnFloat {\n          0%, 100% { transform: translateY(0); }\n          50%       { transform: translateY(-6px); }\n        }\n        @keyframes stripRiseIn {\n          from { opacity: 0; transform: translateY(40px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n\n        .seek-btn {\n          flex: 1; padding: 15px 0;\n          background: color-mix(in srgb, var(--surface) 8%, transparent);\n          color: rgba(255,255,255,0.75);\n          border: none; font-family: 'DM Sans', sans-serif;\n          font-size: 15px; font-weight: 600;\n          cursor: pointer; transition: all 0.2s;\n        }\n        .seek-btn.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n        }\n        .seek-btn:first-child { border-radius: 10px 0 0 10px; }\n        .seek-btn:last-child  { border-radius: 0 10px 10px 0; }\n\n        .country-chip {\n          padding: 7px 16px; border-radius: 12px;\n          border: 1.5px solid var(--mint); background: var(--surface);\n          color: var(--emerald-700); font-family: 'DM Sans', sans-serif;\n          font-size: 12.5px; font-weight: 600; cursor: pointer;\n          transition: all 0.18s; white-space: nowrap;\n          width: 100%; text-align: left;\n        }\n        .country-chip:hover { background: var(--surface-2); border-color: var(--emerald-500); }\n        .country-chip.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff; border-color: transparent;\n          box-shadow: 0 3px 12px color-mix(in srgb, var(--emerald-700) 30%, transparent);\n        }\n\n        /* card hover */\n        .card-hover {\n          transition: transform 0.22s, box-shadow 0.22s;\n          cursor: pointer;\n        }\n        .card-hover:hover {\n          transform: translateY(-4px);\n          box-shadow: 0 12px 36px color-mix(in srgb, var(--emerald-700) 16%, transparent) !important;\n        }\n\n        /* member grid — fluid, no fixed columns */\n        .member-grid {\n          display: grid;\n          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n          gap: 20px;\n          width: 100%;\n        }\n\n        /* scroll area — desktop only */\n        .members-scroll-area {\n          overflow-y: auto;\n          padding-right: 4px;\n        }\n        .members-scroll-area::-webkit-scrollbar { width: 4px; }\n        .members-scroll-area::-webkit-scrollbar-track { background: transparent; }\n        .members-scroll-area::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }\n        .members-scroll-area::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }\n\n        .filter-scroll { overflow-y: auto; }\n        .filter-scroll::-webkit-scrollbar { width: 3px; }\n        .filter-scroll::-webkit-scrollbar-track { background: transparent; }\n        .filter-scroll::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 3px; }\n\n        @keyframes pulse {\n          0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--online) 70%, transparent); }\n          50%       { box-shadow: 0 0 16px color-mix(in srgb, var(--online) 35%, transparent); }\n        }\n        @keyframes orbFloat {\n          0%, 100% { transform: translateY(0) scale(1); }\n          50% { transform: translateY(-30px) scale(1.05); }\n        }\n        @keyframes fadeSlideUp {\n          from { opacity: 0; transform: translateY(32px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n        @keyframes avatarPop {\n          from { opacity: 0; transform: scale(0.7); }\n          to   { opacity: 1; transform: scale(1); }\n        }\n\n        .cta-hidden { opacity: 0; transform: translateY(32px); }\n        .cta-hidden-avatar { opacity: 0; transform: scale(0.7); }\n        .cta-visible-1 { animation: fadeSlideUp 0.6s 0.1s both ease-out; }\n        .cta-visible-2 { animation: fadeSlideUp 0.6s 0.2s both ease-out; }\n        .cta-visible-3 { animation: fadeSlideUp 0.6s 0.3s both ease-out; }\n        .cta-visible-4 { animation: fadeSlideUp 0.6s 0.4s both ease-out; }\n        .cta-visible-5 { animation: fadeSlideUp 0.6s 0.5s both ease-out; }\n        .cta-visible-6 { animation: fadeSlideUp 0.6s 0.6s both ease-out; }\n        .cta-avatar-0 { animation: avatarPop 0.5s 0.4s both ease-out; }\n        .cta-avatar-1 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-2 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-3 { animation: avatarPop 0.5s 0s both ease-out; }\n        .cta-avatar-4 { animation: avatarPop 0.5s 0.15s both ease-out; }\n        .cta-avatar-5 { animation: avatarPop 0.5s 0.25s both ease-out; }\n        .cta-avatar-6 { animation: avatarPop 0.5s 0.4s both ease-out; }\n\n        /* ── TABLET: 600–900px ── */\n        @media (max-width: 900px) {\n          .hero-section {\n            flex-direction: column !important;\n            height: auto !important;\n            min-height: calc(100vh - 68px) !important;\n          }\n          .hero-left {\n            flex: none !important;\n            width: 100% !important;\n            padding: 48px 32px 24px !important;\n            align-items: center !important;\n            text-align: center !important;\n          }\n          .hero-left .live-pill { align-self: center !important; }\n          .seek-toggle { max-width: 100% !important; }\n          .hero-buttons { justify-content: center !important; }\n\n          .features-strip-inner { flex-direction: column !important; gap: 0 !important; }\n          .features-strip-divider { display: none !important; }\n          .features-badges-row { justify-content: center !important; padding: 12px 0 !important; }\n\n          .members-layout { flex-direction: column !important; gap: 24px !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; }\n          .priority-chips { flex-direction: row !important; flex-wrap: wrap !important; gap: 8px !important; }\n          .country-chip { width: auto !important; }\n\n          /* grid: 2 cols on tablet */\n          .member-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; }\n          .cta-buttons button { width: 100% !important; max-width: 360px; }\n        }\n\n        /* ── MOBILE: ≤600px ── */\n        @media (max-width: 600px) {\n          .hero-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .hero-left { padding: 36px 20px 20px !important; gap: 12px !important; }\n          .hero-buttons { flex-direction: column !important; width: 100% !important; }\n          .hero-btn-primary, .hero-btn-outline { width: 100% !important; text-align: center !important; }\n          .seek-btn { font-size: 13px !important; padding: 12px 6px !important; }\n\n          .online-section { padding: 28px 16px !important; }\n          .online-header { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }\n\n          .members-layout { display: flex !important; flex-direction: column !important; gap: 24px !important; width: 100% !important; }\n          .members-sidebar { width: 100% !important; flex: none !important; position: static !important; height: auto !important; top: auto !important; }\n\n          /* grid: 1 full-width col on mobile — NO gaps, NO white space */\n          .member-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 16px !important; width: 100% !important; }\n          .members-scroll-area { height: auto !important; max-height: none !important; overflow-y: visible !important; width: 100% !important; padding-right: 0 !important; }\n\n          .cta-section { height: auto !important; min-height: calc(100vh - 68px) !important; }\n          .cta-section > div:first-of-type { padding: 24px 20px 0 !important; }\n          .cta-headline { font-size: 36px !important; line-height: 1.1 !important; }\n          .cta-subtext { font-size: 14px !important; margin-bottom: 20px !important; }\n          .cta-buttons { flex-direction: column !important; align-items: center !important; margin-bottom: 16px !important; }\n          .cta-buttons button { width: 100% !important; max-width: 340px !important; padding: 14px 24px !important; }\n          .cta-stat-number { font-size: 22px !important; }\n          .tagline-bar { padding: 14px 20px !important; }\n          .tagline-bar span:first-child { font-size: 11px !important; letter-spacing: 0.08em !important; }\n          .features-strip { padding: 0 !important; }\n          .features-strip-inner { padding: 8px 0 !important; }\n          footer { padding: 28px 20px !important; }\n        }\n\n        /* ── VERY SMALL: ≤380px ── */\n        @media (max-width: 380px) {\n          .member-grid { grid-template-columns: 1fr !important; gap: 12px !important; }\n          .seek-btn { font-size: 12px !important; }\n          .cta-headline { font-size: 28px !important; }\n          .cta-stat-number { font-size: 18px !important; }\n          .cta-buttons button { padding: 12px 16px !important; font-size: 14px !important; }\n        }\n      "
           }
         </style>
         <section
@@ -80,7 +80,7 @@ function HomePage() {
             flexDirection: `column`,
             alignItems: `center`,
             justifyContent: `center`,
-            background: `#0D1F2D`,
+            background: `var(--deep)`,
           }}
         >
           <img
@@ -100,7 +100,7 @@ function HomePage() {
             style={{
               position: `absolute`,
               inset: 0,
-              background: `linear-gradient(to bottom, rgba(13,31,45,0.55) 0%, rgba(13,31,45,0.80) 70%, rgba(13,31,45,0.97) 100%)`,
+              background: `linear-gradient(to bottom, color-mix(in srgb, var(--overlay) 55%, transparent) 0%, color-mix(in srgb, var(--overlay) 80%, transparent) 70%, color-mix(in srgb, var(--overlay) 97%, transparent) 100%)`,
               zIndex: 1,
             }}
           />
@@ -108,7 +108,7 @@ function HomePage() {
             style={{
               position: `absolute`,
               inset: 0,
-              background: `radial-gradient(ellipse at center, transparent 40%, rgba(13,31,45,0.5) 100%)`,
+              background: `radial-gradient(ellipse at center, transparent 40%, color-mix(in srgb, var(--overlay) 50%, transparent) 100%)`,
               zIndex: 1,
             }}
           />
@@ -175,12 +175,12 @@ function HomePage() {
                 display: `inline-flex`,
                 alignItems: `center`,
                 gap: 8,
-                background: `rgba(255,255,255,0.08)`,
-                border: `1px solid rgba(116,198,157,0.45)`,
+                background: `color-mix(in srgb, var(--surface) 8%, transparent)`,
+                border: `1px solid color-mix(in srgb, var(--emerald-500) 45%, transparent)`,
                 borderRadius: 24,
                 padding: `9px 22px`,
                 backdropFilter: `blur(10px)`,
-                boxShadow: `0 3px 12px rgba(45,106,79,0.15)`,
+                boxShadow: `0 3px 12px color-mix(in srgb, var(--emerald-700) 15%, transparent)`,
               }}
             >
               <span
@@ -188,9 +188,9 @@ function HomePage() {
                   width: 9,
                   height: 9,
                   borderRadius: `50%`,
-                  background: `#22C55E`,
+                  background: `var(--online)`,
                   display: `inline-block`,
-                  boxShadow: `0 0 7px rgba(34,197,94,0.65)`,
+                  boxShadow: `0 0 7px color-mix(in srgb, var(--online) 65%, transparent)`,
                   animation: `pulse 2s infinite`,
                 }}
               />
@@ -199,7 +199,7 @@ function HomePage() {
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 13,
                   fontWeight: 700,
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                 }}
               >
                 {d.length}
@@ -210,12 +210,12 @@ function HomePage() {
               className="seek-toggle"
               style={{
                 display: `flex`,
-                border: `2px solid #40916C`,
+                border: `2px solid var(--emerald-500)`,
                 borderRadius: 12,
                 overflow: `hidden`,
                 maxWidth: 460,
                 width: `100%`,
-                boxShadow: `0 4px 20px rgba(45,106,79,0.25)`,
+                boxShadow: `0 4px 20px color-mix(in srgb, var(--emerald-700) 25%, transparent)`,
               }}
             >
               <button
@@ -226,7 +226,7 @@ function HomePage() {
               >
                 {e === `Woman` ? `✓ ` : ``}Looking for my Woman
               </button>
-              <div style={{ width: 1, background: `#40916C`, flexShrink: 0 }} />
+              <div style={{ width: 1, background: `var(--emerald-700)`, flexShrink: 0 }} />
               <button
                 className={`seek-btn${e === `Man` ? ` active` : ``}`}
                 onClick={() => {
@@ -275,15 +275,15 @@ function HomePage() {
               style={{
                 width: `100%`,
                 height: 1,
-                background: `linear-gradient(to right, transparent, rgba(116,198,157,0.25), transparent)`,
+                background: `linear-gradient(to right, transparent, color-mix(in srgb, var(--emerald-500) 25%, transparent), transparent)`,
               }}
             />
             <div
               style={{
-                background: `rgba(13,31,45,0.72)`,
+                background: `color-mix(in srgb, var(--overlay) 72%, transparent)`,
                 backdropFilter: `blur(20px)`,
                 WebkitBackdropFilter: `blur(20px)`,
-                borderTop: `1px solid rgba(116,198,157,0.12)`,
+                borderTop: `1px solid color-mix(in srgb, var(--emerald-500) 12%, transparent)`,
               }}
             >
               <div
@@ -304,7 +304,7 @@ function HomePage() {
                     alignItems: `center`,
                     gap: 12,
                     padding: `12px 28px 12px 0`,
-                    borderRight: `1px solid rgba(116,198,157,0.15)`,
+                    borderRight: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
                     marginRight: 28,
                     flex: `0 0 auto`,
                   }}
@@ -312,7 +312,7 @@ function HomePage() {
                   <span
                     style={{
                       fontSize: 26,
-                      filter: `drop-shadow(0 0 8px rgba(116,198,157,0.4))`,
+                      filter: `drop-shadow(0 0 8px color-mix(in srgb, var(--emerald-500) 40%, transparent))`,
                     }}
                   >
                     🌐
@@ -328,7 +328,7 @@ function HomePage() {
                   >
                     <strong
                       style={{
-                        color: `#74C69D`,
+                        color: `var(--emerald-500)`,
                         fontFamily: `'DM Sans', sans-serif`,
                         fontWeight: 700,
                       }}
@@ -391,7 +391,7 @@ Encrypted`,
                       <span
                         style={{
                           fontSize: 20,
-                          filter: `drop-shadow(0 0 6px rgba(116,198,157,0.35))`,
+                          filter: `drop-shadow(0 0 6px color-mix(in srgb, var(--emerald-500) 35%, transparent))`,
                         }}
                       >
                         {e}
@@ -440,7 +440,7 @@ Encrypted`,
                   fontFamily: `'Playfair Display', serif`,
                   fontSize: `clamp(22px, 3vw, 32px)`,
                   fontWeight: 700,
-                  color: `#1B3A4B`,
+                  color: `var(--fg)`,
                   letterSpacing: `-0.02em`,
                   marginBottom: 4,
                 }}
@@ -450,7 +450,7 @@ Encrypted`,
               </h2>
               <p
                 style={{
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 14,
                 }}
@@ -463,8 +463,8 @@ Encrypted`,
                 display: `inline-flex`,
                 alignItems: `center`,
                 gap: 8,
-                background: `#F0FAF4`,
-                border: `1px solid #B7E4C7`,
+                background: `var(--surface-2)`,
+                border: `1px solid var(--mint)`,
                 borderRadius: 24,
                 padding: `8px 18px`,
                 flexShrink: 0,
@@ -475,9 +475,9 @@ Encrypted`,
                   width: 9,
                   height: 9,
                   borderRadius: `50%`,
-                  background: `#22C55E`,
+                  background: `var(--online)`,
                   display: `inline-block`,
-                  boxShadow: `0 0 8px rgba(34,197,94,0.7)`,
+                  boxShadow: `0 0 8px color-mix(in srgb, var(--online) 70%, transparent)`,
                   animation: `pulse 2s infinite`,
                 }}
               />
@@ -486,7 +486,7 @@ Encrypted`,
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 13,
                   fontWeight: 700,
-                  color: `#2D6A4F`,
+                  color: `var(--emerald-700)`,
                 }}
               >
                 {d.length}
@@ -508,11 +508,11 @@ Encrypted`,
               style={{
                 width: 220,
                 flex: `0 0 220px`,
-                background: `rgba(255,255,255,0.85)`,
-                border: `1px solid #E8F5EE`,
+                background: `color-mix(in srgb, var(--surface) 85%, transparent)`,
+                border: `1px solid var(--line)`,
                 borderRadius: 20,
                 padding: 18,
-                boxShadow: `0 6px 24px rgba(45,106,79,0.06)`,
+                boxShadow: `0 6px 24px color-mix(in srgb, var(--emerald-700) 6%, transparent)`,
                 position: `sticky`,
                 top: 88,
                 height: `fit-content`,
@@ -523,10 +523,10 @@ Encrypted`,
                   fontFamily: `'Playfair Display', serif`,
                   fontSize: 16,
                   fontWeight: 700,
-                  color: `#1B3A4B`,
+                  color: `var(--fg)`,
                   marginBottom: 14,
                   paddingBottom: 10,
-                  borderBottom: `1px solid #E8F5EE`,
+                  borderBottom: `1px solid var(--line)`,
                 }}
               >
                 🌍 Filter by Country
@@ -574,16 +574,16 @@ Encrypted`,
                     (a(e.target.value), s(!0));
                   }}
                   onFocus={(e) => {
-                    ((e.target.style.borderColor = `#40916C`), s(!0));
+                    ((e.target.style.borderColor = `var(--emerald-500)`), s(!0));
                   }}
-                  onBlur={(e) => (e.target.style.borderColor = `#B7E4C7`)}
+                  onBlur={(e) => (e.target.style.borderColor = `var(--mint)`)}
                   style={{
                     width: `100%`,
                     padding: `10px 14px`,
                     borderRadius: 12,
-                    border: `1.5px solid #B7E4C7`,
-                    background: `#F8FAF5`,
-                    color: `#1B3A4B`,
+                    border: `1.5px solid var(--mint)`,
+                    background: `var(--bg)`,
+                    color: `var(--fg)`,
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 13,
                     outline: `none`,
@@ -597,8 +597,8 @@ Encrypted`,
                       top: `110%`,
                       left: 0,
                       right: 0,
-                      background: `#fff`,
-                      border: `1px solid #D4EDDA`,
+                      background: `var(--surface)`,
+                      border: `1px solid var(--line)`,
                       borderRadius: 14,
                       maxHeight: 240,
                       overflowY: `auto`,
@@ -614,8 +614,8 @@ Encrypted`,
                         }}
                         style={{
                           ...menuItemStyle,
-                          background: n === e ? `#F0FAF4` : `transparent`,
-                          color: n === e ? `#2D6A4F` : `#1B3A4B`,
+                          background: n === e ? `var(--surface-2)` : `transparent`,
+                          color: n === e ? `var(--emerald-700)` : `var(--fg)`,
                           fontWeight: n === e ? 700 : 400,
                         }}
                       >
@@ -628,7 +628,7 @@ Encrypted`,
                         style={{
                           padding: `14px`,
                           fontSize: 13,
-                          color: `#74C69D`,
+                          color: `var(--emerald-500)`,
                           fontFamily: `'DM Sans', sans-serif`,
                         }}
                       >
@@ -645,8 +645,8 @@ Encrypted`,
                     display: `flex`,
                     alignItems: `center`,
                     gap: 6,
-                    background: `#F0FAF4`,
-                    border: `1px solid #B7E4C7`,
+                    background: `var(--surface-2)`,
+                    border: `1px solid var(--mint)`,
                     borderRadius: 10,
                     padding: `6px 10px`,
                   }}
@@ -654,7 +654,7 @@ Encrypted`,
                   <span
                     style={{
                       fontSize: 12,
-                      color: `#2D6A4F`,
+                      color: `var(--emerald-700)`,
                       fontWeight: 600,
                       fontFamily: `'DM Sans', sans-serif`,
                       flex: 1,
@@ -670,7 +670,7 @@ Encrypted`,
                       border: `none`,
                       cursor: `pointer`,
                       fontSize: 13,
-                      color: `#74C69D`,
+                      color: `var(--emerald-500)`,
                       padding: 0,
                       lineHeight: 1,
                     }}
@@ -687,7 +687,7 @@ Encrypted`,
                     style={{
                       textAlign: `center`,
                       padding: `60px 24px`,
-                      color: `#74C69D`,
+                      color: `var(--emerald-500)`,
                       fontFamily: `'DM Sans', sans-serif`,
                       fontSize: 15,
                     }}
@@ -699,7 +699,7 @@ Encrypted`,
                     style={{
                       textAlign: `center`,
                       padding: `60px 24px`,
-                      color: `#C0392B`,
+                      color: `var(--danger)`,
                       fontFamily: `'DM Sans', sans-serif`,
                       fontSize: 15,
                     }}
@@ -717,7 +717,7 @@ Encrypted`,
                     style={{
                       textAlign: `center`,
                       padding: `60px 24px`,
-                      color: `#74C69D`,
+                      color: `var(--emerald-500)`,
                       fontFamily: `'DM Sans', sans-serif`,
                       fontSize: 15,
                     }}
@@ -734,8 +734,8 @@ Encrypted`,
                   onClick={() => u(`/explore`)}
                   style={{
                     background: `transparent`,
-                    border: `2px solid #40916C`,
-                    color: `#2D6A4F`,
+                    border: `2px solid var(--emerald-500)`,
+                    color: `var(--emerald-700)`,
                     padding: `12px 42px`,
                     borderRadius: 28,
                     fontFamily: `'DM Sans', sans-serif`,
@@ -746,14 +746,14 @@ Encrypted`,
                     transition: `all 0.2s`,
                   }}
                   onMouseEnter={(e) => {
-                    ((e.currentTarget.style.background = `#1B3A4B`),
+                    ((e.currentTarget.style.background = `var(--deep)`),
                       (e.currentTarget.style.color = `#fff`),
-                      (e.currentTarget.style.borderColor = `#1B3A4B`));
+                      (e.currentTarget.style.borderColor = `var(--fg)`));
                   }}
                   onMouseLeave={(e) => {
                     ((e.currentTarget.style.background = `transparent`),
-                      (e.currentTarget.style.color = `#2D6A4F`),
-                      (e.currentTarget.style.borderColor = `#40916C`));
+                      (e.currentTarget.style.color = `var(--emerald-700)`),
+                      (e.currentTarget.style.borderColor = `var(--emerald-500)`));
                   }}
                 >
                   View All Members →
@@ -768,7 +768,7 @@ Encrypted`,
           style={{
             position: `relative`,
             overflow: `hidden`,
-            background: `#0D1F2D`,
+            background: `var(--deep)`,
             height: `calc(100vh - 68px)`,
             display: `flex`,
             flexDirection: `column`,
@@ -784,7 +784,7 @@ Encrypted`,
               width: 500,
               height: 500,
               borderRadius: `50%`,
-              background: `radial-gradient(circle, rgba(64,145,108,0.25) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, color-mix(in srgb, var(--emerald-700) 25%, transparent) 0%, transparent 70%)`,
               pointerEvents: `none`,
               animation: `orbFloat 8s ease-in-out infinite`,
             }}
@@ -797,7 +797,7 @@ Encrypted`,
               width: 400,
               height: 400,
               borderRadius: `50%`,
-              background: `radial-gradient(circle, rgba(116,198,157,0.18) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, color-mix(in srgb, var(--emerald-500) 18%, transparent) 0%, transparent 70%)`,
               pointerEvents: `none`,
               animation: `orbFloat 6s ease-in-out infinite reverse`,
             }}
@@ -810,7 +810,7 @@ Encrypted`,
               width: 200,
               height: 200,
               borderRadius: `50%`,
-              background: `radial-gradient(circle, rgba(45,106,79,0.3) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, color-mix(in srgb, var(--emerald-700) 30%, transparent) 0%, transparent 70%)`,
               pointerEvents: `none`,
               animation: `orbFloat 10s ease-in-out infinite`,
             }}
@@ -862,10 +862,10 @@ Encrypted`,
                           width: r[t],
                           height: r[t],
                           borderRadius: `50%`,
-                          border: `${t === 3 ? 3 : 2}px solid ${t === 3 ? `#74C69D` : `rgba(255,255,255,0.2)`}`,
+                          border: `${t === 3 ? 3 : 2}px solid ${t === 3 ? `var(--emerald-500)` : `rgba(255,255,255,0.2)`}`,
                           boxShadow:
                             t === 3
-                              ? `0 0 0 6px rgba(116,198,157,0.2), 0 8px 24px rgba(0,0,0,0.4)`
+                              ? `0 0 0 6px color-mix(in srgb, var(--emerald-500) 20%, transparent), 0 8px 24px rgba(0,0,0,0.4)`
                               : `0 4px 14px rgba(0,0,0,0.35)`,
                           display: `block`,
                           objectFit: `cover`,
@@ -877,12 +877,12 @@ Encrypted`,
                           width: r[t],
                           height: r[t],
                           borderRadius: `50%`,
-                          border: `${t === 3 ? 3 : 2}px solid ${t === 3 ? `#74C69D` : `rgba(255,255,255,0.2)`}`,
+                          border: `${t === 3 ? 3 : 2}px solid ${t === 3 ? `var(--emerald-500)` : `rgba(255,255,255,0.2)`}`,
                           boxShadow:
                             t === 3
-                              ? `0 0 0 6px rgba(116,198,157,0.2), 0 8px 24px rgba(0,0,0,0.4)`
+                              ? `0 0 0 6px color-mix(in srgb, var(--emerald-500) 20%, transparent), 0 8px 24px rgba(0,0,0,0.4)`
                               : `0 4px 14px rgba(0,0,0,0.35)`,
-                          background: `#1B3A4B`,
+                          background: `var(--deep)`,
                           display: `flex`,
                           alignItems: `center`,
                           justifyContent: `center`,
@@ -902,8 +902,8 @@ Encrypted`,
                 display: `inline-flex`,
                 alignItems: `center`,
                 gap: 8,
-                background: `rgba(116,198,157,0.12)`,
-                border: `1px solid rgba(116,198,157,0.3)`,
+                background: `color-mix(in srgb, var(--emerald-500) 12%, transparent)`,
+                border: `1px solid color-mix(in srgb, var(--emerald-500) 30%, transparent)`,
                 borderRadius: 24,
                 padding: `6px 18px`,
                 marginBottom: 20,
@@ -914,9 +914,9 @@ Encrypted`,
                   width: 7,
                   height: 7,
                   borderRadius: `50%`,
-                  background: `#22C55E`,
+                  background: `var(--online)`,
                   display: `inline-block`,
-                  boxShadow: `0 0 8px #22C55E`,
+                  boxShadow: `0 0 8px var(--online)`,
                   animation: `pulse 2s infinite`,
                 }}
               />
@@ -925,7 +925,7 @@ Encrypted`,
                   fontFamily: `'DM Sans', sans-serif`,
                   fontSize: 12.5,
                   fontWeight: 700,
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                   letterSpacing: `0.1em`,
                   textTransform: `uppercase`,
                 }}
@@ -961,7 +961,7 @@ Encrypted`,
                 display: `inline-block`,
                 textAlign: `center`,
                 marginBottom: 16,
-                background: `linear-gradient(135deg, #52B788, #74C69D, #B7E4C7)`,
+                background: `linear-gradient(135deg, var(--emerald-500), var(--emerald-500), var(--mint))`,
                 backgroundSize: `200% auto`,
                 WebkitBackgroundClip: `text`,
                 WebkitTextFillColor: `transparent`,
@@ -1002,7 +1002,7 @@ Encrypted`,
               <button
                 onClick={() => u(`/signup`)}
                 style={{
-                  background: `linear-gradient(135deg, #40916C 0%, #74C69D 100%)`,
+                  background: `linear-gradient(135deg, var(--emerald-700) 0%, var(--emerald-500) 100%)`,
                   border: `none`,
                   borderRadius: 16,
                   padding: `17px 42px`,
@@ -1012,16 +1012,16 @@ Encrypted`,
                   color: `#fff`,
                   cursor: `pointer`,
                   letterSpacing: `0.02em`,
-                  boxShadow: `0 8px 32px rgba(64,145,108,0.5)`,
+                  boxShadow: `0 8px 32px color-mix(in srgb, var(--emerald-500) 50%, transparent)`,
                   transition: `all 0.22s`,
                 }}
                 onMouseEnter={(e) => {
                   ((e.currentTarget.style.transform = `translateY(-3px) scale(1.02)`),
-                    (e.currentTarget.style.boxShadow = `0 16px 48px rgba(64,145,108,0.6)`));
+                    (e.currentTarget.style.boxShadow = `0 16px 48px color-mix(in srgb, var(--emerald-500) 60%, transparent)`));
                 }}
                 onMouseLeave={(e) => {
                   ((e.currentTarget.style.transform = `none`),
-                    (e.currentTarget.style.boxShadow = `0 8px 32px rgba(64,145,108,0.5)`));
+                    (e.currentTarget.style.boxShadow = `0 8px 32px color-mix(in srgb, var(--emerald-500) 50%, transparent)`));
                 }}
               >
                 Sign Up Free
@@ -1043,8 +1043,8 @@ Encrypted`,
                   backdropFilter: `blur(8px)`,
                 }}
                 onMouseEnter={(e) => {
-                  ((e.currentTarget.style.borderColor = `#74C69D`),
-                    (e.currentTarget.style.color = `#74C69D`));
+                  ((e.currentTarget.style.borderColor = `var(--emerald-500)`),
+                    (e.currentTarget.style.color = `var(--emerald-500)`));
                 }}
                 onMouseLeave={(e) => {
                   ((e.currentTarget.style.borderColor = `rgba(255,255,255,0.18)`),
@@ -1069,8 +1069,8 @@ Encrypted`,
                 style={{
                   display: `flex`,
                   gap: 0,
-                  background: `rgba(116,198,157,0.07)`,
-                  border: `1px solid rgba(116,198,157,0.15)`,
+                  background: `color-mix(in srgb, var(--emerald-500) 7%, transparent)`,
+                  border: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
                   borderRadius: 16,
                   backdropFilter: `blur(12px)`,
                   WebkitBackdropFilter: `blur(12px)`,
@@ -1091,7 +1091,7 @@ Encrypted`,
                       flex: `1 1 0`,
                       minWidth: 0,
                       borderRight:
-                        t < 2 ? `1px solid rgba(116,198,157,0.12)` : `none`,
+                        t < 2 ? `1px solid color-mix(in srgb, var(--emerald-500) 12%, transparent)` : `none`,
                     }}
                   >
                     <div
@@ -1100,7 +1100,7 @@ Encrypted`,
                         fontFamily: `'Playfair Display', serif`,
                         fontSize: 28,
                         fontWeight: 700,
-                        color: `#74C69D`,
+                        color: `var(--emerald-500)`,
                         lineHeight: 1,
                         marginBottom: 4,
                       }}
@@ -1131,7 +1131,7 @@ Encrypted`,
               zIndex: 2,
               width: `100%`,
               flexShrink: 0,
-              background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 50%, #40916C 100%)`,
+              background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
               padding: `18px 40px`,
               display: `flex`,
               alignItems: `center`,
@@ -1142,7 +1142,7 @@ Encrypted`,
           >
             <span
               style={{
-                color: `#B7E4C7`,
+                color: `var(--mint)`,
                 fontSize: 13,
                 letterSpacing: `0.18em`,
                 fontFamily: `'DM Sans', sans-serif`,
@@ -1153,13 +1153,13 @@ Encrypted`,
             >
               Because everyone deserves a second chance at happiness.
             </span>
-            <span style={{ color: `#74C69D`, fontSize: 16 }}>♥</span>
+            <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
           </div>
         </section>
         <footer
           style={{
-            background: `#1B3A4B`,
-            color: `#74C69D`,
+            background: `var(--deep)`,
+            color: `var(--emerald-500)`,
             padding: `32px 40px`,
             textAlign: `center`,
           }}
@@ -1174,8 +1174,8 @@ Encrypted`,
               marginBottom: 10,
             }}
           >
-            Nikha<span style={{ color: `#74C69D` }}>2</span>{" "}
-            <span style={{ color: `#40916C` }}>♡</span>
+            Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+            <span style={{ color: `var(--emerald-700)` }}>♡</span>
           </div>
           <p
             style={{
@@ -1202,7 +1202,7 @@ Encrypted`,
                 to={`/${e.toLowerCase()}`}
                 style={{
                   fontSize: 12,
-                  color: `#74C69D`,
+                  color: `var(--emerald-500)`,
                   opacity: 0.6,
                   textDecoration: `none`,
                   fontFamily: `'DM Sans', sans-serif`,

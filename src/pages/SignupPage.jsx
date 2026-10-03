@@ -5,14 +5,15 @@ import { CountryStateSelect } from "../components/CountryStateSelect";
 import { GoogleSignInButton } from "../components/GoogleSignInButton";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 var zn = {
   width: `100%`,
   padding: `11px 14px`,
   borderRadius: 12,
-  border: `1.5px solid #D4EDDA`,
-  background: `#F8FAF5`,
-  color: `#1B3A4B`,
+  border: `1.5px solid var(--line)`,
+  background: `var(--bg)`,
+  color: `var(--fg)`,
   fontSize: 13.5,
   fontFamily: `'DM Sans', sans-serif`,
   outline: `none`,
@@ -78,7 +79,7 @@ function UsernameField({
               display: `block`,
               fontSize: 10.5,
               fontWeight: 700,
-              color: `#3D6B55`,
+              color: `var(--muted)`,
               letterSpacing: `0.08em`,
               textTransform: `uppercase`,
               marginBottom: 6,
@@ -92,28 +93,28 @@ function UsernameField({
             display: `inline-flex`,
             alignItems: `center`,
             gap: 8,
-            background: `#F0FAF4`,
-            border: `1.5px solid #D4EDDA`,
+            background: `var(--surface-2)`,
+            border: `1.5px solid var(--line)`,
             borderRadius: 20,
             padding: `8px 16px`,
             fontFamily: `monospace`,
             fontSize: 13,
-            color: `#2D6A4F`,
+            color: `var(--emerald-700)`,
             fontWeight: 700,
           }}
         >
           @{e}
         </div>
-        <p style={{ fontSize: 11, color: `#9DC4B0`, marginTop: 6 }}>
+        <p style={{ fontSize: 11, color: `var(--muted)`, marginTop: 6 }}>
           This is permanent and can't be changed.
         </p>
       </div>
     );
   let f =
     s === `taken` || s === `invalid`
-      ? `#C0392B`
+      ? `var(--danger)`
       : s === `available`
-        ? `#2D6A4F`
+        ? `var(--emerald-700)`
         : null;
   return (
     <div>
@@ -123,7 +124,7 @@ function UsernameField({
             display: `block`,
             fontSize: 10.5,
             fontWeight: 700,
-            color: `#3D6B55`,
+            color: `var(--muted)`,
             letterSpacing: `0.08em`,
             textTransform: `uppercase`,
             marginBottom: 6,
@@ -142,7 +143,7 @@ function UsernameField({
         style={f ? { ...r, border: `1.5px solid ${f}` } : r}
       />
       {s === `checking` && (
-        <p style={{ fontSize: 11.5, color: `#9DC4B0`, marginTop: 5 }}>
+        <p style={{ fontSize: 11.5, color: `var(--muted)`, marginTop: 5 }}>
           Checking availability…
         </p>
       )}
@@ -150,7 +151,7 @@ function UsernameField({
         <p
           style={{
             fontSize: 11.5,
-            color: `#2D6A4F`,
+            color: `var(--emerald-700)`,
             fontWeight: 600,
             marginTop: 5,
           }}
@@ -162,7 +163,7 @@ function UsernameField({
         <p
           style={{
             fontSize: 11.5,
-            color: `#C0392B`,
+            color: `var(--danger)`,
             fontWeight: 600,
             marginTop: 5,
           }}
@@ -174,7 +175,7 @@ function UsernameField({
         <p
           style={{
             fontSize: 11.5,
-            color: `#C0392B`,
+            color: `var(--danger)`,
             fontWeight: 600,
             marginTop: 5,
           }}
@@ -185,7 +186,7 @@ function UsernameField({
         </p>
       )}
       {s === `idle` && a && (
-        <p style={{ fontSize: 11, color: `#9DC4B0`, marginTop: 5 }}>{a}</p>
+        <p style={{ fontSize: 11, color: `var(--muted)`, marginTop: 5 }}>{a}</p>
       )}
     </div>
   );
@@ -196,9 +197,9 @@ var Vn = {
   fontSize: 12,
   padding: `9px 12px`,
   borderRadius: 14,
-  background: `rgba(255,255,255,0.65)`,
-  border: `1.5px solid #D4EDDA`,
-  color: `#1B3A4B`,
+  background: `color-mix(in srgb, var(--surface) 65%, transparent)`,
+  border: `1.5px solid var(--line)`,
+  color: `var(--fg)`,
   fontFamily: `'DM Sans', sans-serif`,
   outline: `none`,
 };
@@ -208,7 +209,7 @@ var Hn = {
   fontFamily: `'DM Sans', sans-serif`,
   fontSize: 9.5,
   fontWeight: 700,
-  color: `#3D6B55`,
+  color: `var(--muted)`,
   letterSpacing: `0.1em`,
   textTransform: `uppercase`,
   marginBottom: 5,
@@ -287,7 +288,7 @@ function SignupPasswordToggle({ shown: e, onClick: t }) {
         border: `none`,
         padding: 4,
         cursor: `pointer`,
-        color: `#74C69D`,
+        color: `var(--emerald-500)`,
         display: `flex`,
         alignItems: `center`,
       }}
@@ -373,9 +374,10 @@ function SignupPage() {
       <div style={{ height: `100vh`, display: `flex`, overflow: `hidden` }}>
         <style>
           {
-            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, #40916C, #74C69D, #52B788, #B7E4C7, #40916C);\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: rgba(255,255,255,0.65);\n          border: 1.5px solid #D4EDDA;\n          color: #1B3A4B;\n          font-size: 13px;\n          font-family: 'DM Sans', sans-serif;\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: #9DC4B0; }\n        .signup-input:focus {\n          border-color: #40916C;\n          box-shadow: 0 0 0 3px rgba(64,145,108,0.12);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 10px;\n          font-weight: 700;\n          color: #3D6B55;\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%);\n          color: #fff;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px rgba(27,58,75,0.3);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,58,75,0.4); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid #40916C;\n          background: transparent;\n          color: #2D6A4F;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: rgba(64,145,108,0.08); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, #1B3A4B, #2D6A4F);\n          color: #fff;\n          box-shadow: 0 4px 14px rgba(27,58,75,0.35);\n        }\n        .step-dot.inactive {\n          background: #D4EDDA;\n          color: #74C69D;\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: #F8FAF5; }\n        .terms-scroll::-webkit-scrollbar-thumb { background: #74C69D; border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
+            "\n        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: color-mix(in srgb, var(--surface) 65%, transparent);\n          border: 1.5px solid var(--line);\n          color: var(--fg);\n          font-size: 13px;\n          font-family: 'DM Sans', sans-serif;\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: var(--muted); }\n        .signup-input:focus {\n          border-color: var(--emerald-500);\n          box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 10px;\n          font-weight: 700;\n          color: var(--muted);\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 30%, transparent);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 40%, transparent); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid var(--emerald-500);\n          background: transparent;\n          color: var(--emerald-700);\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: color-mix(in srgb, var(--emerald-700) 8%, transparent); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: 'DM Sans', sans-serif;\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n          box-shadow: 0 4px 14px color-mix(in srgb, var(--shadow) 35%, transparent);\n        }\n        .step-dot.inactive {\n          background: var(--surface-2);\n          color: var(--emerald-500);\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: var(--bg); }\n        .terms-scroll::-webkit-scrollbar-thumb { background: var(--emerald-500); border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
           }
         </style>
+        <ThemeToggle style={{ position: `fixed`, top: 16, right: 16, zIndex: 60 }} />
         <div
           className="left-panel"
           style={{
@@ -385,7 +387,7 @@ function SignupPage() {
             alignItems: `center`,
             justifyContent: `center`,
             overflow: `hidden`,
-            background: `linear-gradient(135deg, #1B3A4B 0%, #0d2418 100%)`,
+            background: `linear-gradient(135deg, var(--deep) 0%, var(--deep) 100%)`,
             flexDirection: `column`,
             padding: `40px`,
           }}
@@ -406,7 +408,7 @@ function SignupPage() {
             style={{
               position: `absolute`,
               inset: 0,
-              background: `linear-gradient(135deg, rgba(45,106,79,0.5) 0%, transparent 50%, rgba(27,58,75,0.4) 100%)`,
+              background: `linear-gradient(135deg, color-mix(in srgb, var(--emerald-700) 50%, transparent) 0%, transparent 50%, color-mix(in srgb, var(--overlay) 40%, transparent) 100%)`,
             }}
           />
           <div
@@ -445,8 +447,8 @@ function SignupPage() {
                     fontSize: 12,
                     padding: `4px 12px`,
                     borderRadius: 20,
-                    color: `#40916C`,
-                    border: `1.5px solid #74C69D`,
+                    color: `var(--emerald-700)`,
+                    border: `1.5px solid var(--emerald-500)`,
                   }}
                 >
                   ™
@@ -469,7 +471,7 @@ function SignupPage() {
               style={{
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 14,
-                color: `#B7E4C7`,
+                color: `var(--mint)`,
                 marginBottom: 28,
                 letterSpacing: `0.05em`,
                 textTransform: `uppercase`,
@@ -499,19 +501,19 @@ function SignupPage() {
             alignItems: `center`,
             justifyContent: `center`,
             padding: `0 24px`,
-            background: `#F8FAF5`,
+            background: `var(--bg)`,
             overflowY: `auto`,
           }}
         >
           <div style={{ width: `100%`, maxWidth: 380, padding: `24px 0` }}>
             <div
               style={{
-                background: `rgba(255,255,255,0.75)`,
+                background: `color-mix(in srgb, var(--surface) 75%, transparent)`,
                 backdropFilter: `blur(20px)`,
-                border: `1px solid rgba(64,145,108,0.18)`,
+                border: `1px solid color-mix(in srgb, var(--emerald-500) 18%, transparent)`,
                 borderRadius: 24,
                 padding: `24px 22px 28px`,
-                boxShadow: `0 12px 48px rgba(27,58,75,0.1)`,
+                boxShadow: `0 12px 48px color-mix(in srgb, var(--shadow) 10%, transparent)`,
               }}
             >
               <div
@@ -533,8 +535,8 @@ function SignupPage() {
                     borderRadius: 4,
                     background:
                       e === 2
-                        ? `linear-gradient(90deg, #1B3A4B, #2D6A4F)`
-                        : `#D4EDDA`,
+                        ? `linear-gradient(90deg, var(--deep), var(--emerald-700))`
+                        : `var(--surface-2)`,
                     transition: `background 0.3s`,
                   }}
                 />
@@ -548,7 +550,7 @@ function SignupPage() {
                     fontFamily: `'Playfair Display', serif`,
                     fontSize: 18,
                     fontWeight: 700,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                   }}
                 >
                   {e === 1 ? `Create Your Account` : `Complete Your Profile`}
@@ -557,7 +559,7 @@ function SignupPage() {
                   style={{
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 11,
-                    color: `#74C69D`,
+                    color: `var(--emerald-500)`,
                     marginTop: 3,
                   }}
                 >
@@ -619,7 +621,7 @@ function SignupPage() {
                           justifyContent: `space-between`,
                           cursor: `pointer`,
                           textAlign: `left`,
-                          color: `#1B3A4B`,
+                          color: `var(--fg)`,
                         }}
                       >
                         <span>
@@ -628,7 +630,7 @@ function SignupPage() {
                         <span
                           style={{
                             fontSize: 10,
-                            color: `#74C69D`,
+                            color: `var(--emerald-500)`,
                             transform: oe ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -644,10 +646,10 @@ function SignupPage() {
                             top: `110%`,
                             left: 0,
                             zIndex: 50,
-                            background: `#fff`,
+                            background: `var(--surface)`,
                             borderRadius: 14,
-                            border: `1.5px solid #D4EDDA`,
-                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            border: `1.5px solid var(--line)`,
+                            boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                             overflow: `hidden`,
                             width: 200,
                           }}
@@ -672,8 +674,8 @@ function SignupPage() {
                                   padding: `7px 10px`,
                                   border: `none`,
                                   background:
-                                    O === e ? `#F0FAF4` : `transparent`,
-                                  color: O === e ? `#2D6A4F` : `#1B3A4B`,
+                                    O === e ? `var(--surface-2)` : `transparent`,
+                                  color: O === e ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: O === e ? 700 : 400,
                                   fontFamily: `'DM Sans', sans-serif`,
                                   fontSize: 12.5,
@@ -685,11 +687,11 @@ function SignupPage() {
                                   gap: 8,
                                 }}
                                 onMouseEnter={(e) =>
-                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                  (e.currentTarget.style.background = `var(--surface-2)`)
                                 }
                                 onMouseLeave={(t) =>
                                   (t.currentTarget.style.background =
-                                    O === e ? `#F0FAF4` : `transparent`)
+                                    O === e ? `var(--surface-2)` : `transparent`)
                                 }
                               >
                                 <span style={{ fontSize: 15 }}>{n}</span>
@@ -762,8 +764,8 @@ function SignupPage() {
                       style={{
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 12,
-                        color: `#C0392B`,
-                        background: `rgba(192,57,43,0.08)`,
+                        color: `var(--danger)`,
+                        background: `color-mix(in srgb, var(--danger) 8%, transparent)`,
                         padding: `8px 12px`,
                         borderRadius: 10,
                       }}
@@ -798,14 +800,14 @@ function SignupPage() {
                       style={{
                         flex: 1,
                         height: 1,
-                        background: `linear-gradient(to right, transparent, #D4EDDA)`,
+                        background: `linear-gradient(to right, transparent, var(--surface-2))`,
                       }}
                     />
                     <span
                       style={{
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 10,
-                        color: `#9DC4B0`,
+                        color: `var(--muted)`,
                         textTransform: `uppercase`,
                         letterSpacing: `0.15em`,
                       }}
@@ -816,7 +818,7 @@ function SignupPage() {
                       style={{
                         flex: 1,
                         height: 1,
-                        background: `linear-gradient(to left, transparent, #D4EDDA)`,
+                        background: `linear-gradient(to left, transparent, var(--surface-2))`,
                       }}
                     />
                   </div>
@@ -862,7 +864,7 @@ function SignupPage() {
                           justifyContent: `space-between`,
                           cursor: `pointer`,
                           textAlign: `left`,
-                          color: m ? `#1B3A4B` : `#9DC4B0`,
+                          color: m ? `var(--fg)` : `var(--muted)`,
                         }}
                       >
                         <span>
@@ -876,7 +878,7 @@ function SignupPage() {
                         <span
                           style={{
                             fontSize: 10,
-                            color: `#74C69D`,
+                            color: `var(--emerald-500)`,
                             transform: N ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -893,10 +895,10 @@ function SignupPage() {
                             left: 0,
                             right: 0,
                             zIndex: 50,
-                            background: `#fff`,
+                            background: `var(--surface)`,
                             borderRadius: 14,
-                            border: `1.5px solid #D4EDDA`,
-                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            border: `1.5px solid var(--line)`,
+                            boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                             overflow: `hidden`,
                           }}
                         >
@@ -922,8 +924,8 @@ function SignupPage() {
                                   padding: `7px 10px`,
                                   border: `none`,
                                   background:
-                                    m === e ? `#F0FAF4` : `transparent`,
-                                  color: m === e ? `#2D6A4F` : `#1B3A4B`,
+                                    m === e ? `var(--surface-2)` : `transparent`,
+                                  color: m === e ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: m === e ? 700 : 400,
                                   fontFamily: `'DM Sans', sans-serif`,
                                   fontSize: 12.5,
@@ -932,11 +934,11 @@ function SignupPage() {
                                   transition: `background 0.15s`,
                                 }}
                                 onMouseEnter={(e) =>
-                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                  (e.currentTarget.style.background = `var(--surface-2)`)
                                 }
                                 onMouseLeave={(t) =>
                                   (t.currentTarget.style.background =
-                                    m === e ? `#F0FAF4` : `transparent`)
+                                    m === e ? `var(--surface-2)` : `transparent`)
                                 }
                               >
                                 {t}
@@ -990,14 +992,14 @@ function SignupPage() {
                           justifyContent: `space-between`,
                           cursor: `pointer`,
                           textAlign: `left`,
-                          color: T ? `#1B3A4B` : `#9DC4B0`,
+                          color: T ? `var(--fg)` : `var(--muted)`,
                         }}
                       >
                         <span>{T || `Select religion`}</span>
                         <span
                           style={{
                             fontSize: 10,
-                            color: `#74C69D`,
+                            color: `var(--emerald-500)`,
                             transform: F ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -1014,10 +1016,10 @@ function SignupPage() {
                             left: 0,
                             right: 0,
                             zIndex: 50,
-                            background: `#fff`,
+                            background: `var(--surface)`,
                             borderRadius: 14,
-                            border: `1.5px solid #D4EDDA`,
-                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            border: `1.5px solid var(--line)`,
+                            boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                             overflow: `hidden`,
                           }}
                         >
@@ -1045,8 +1047,8 @@ function SignupPage() {
                                   padding: `7px 10px`,
                                   border: `none`,
                                   background:
-                                    T === t ? `#F0FAF4` : `transparent`,
-                                  color: T === t ? `#2D6A4F` : `#1B3A4B`,
+                                    T === t ? `var(--surface-2)` : `transparent`,
+                                  color: T === t ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: T === t ? 700 : 400,
                                   fontFamily: `'DM Sans', sans-serif`,
                                   fontSize: 12.5,
@@ -1058,11 +1060,11 @@ function SignupPage() {
                                   gap: 8,
                                 }}
                                 onMouseEnter={(e) =>
-                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                  (e.currentTarget.style.background = `var(--surface-2)`)
                                 }
                                 onMouseLeave={(e) =>
                                   (e.currentTarget.style.background =
-                                    T === t ? `#F0FAF4` : `transparent`)
+                                    T === t ? `var(--surface-2)` : `transparent`)
                                 }
                               >
                                 <span style={{ fontSize: 15 }}>{e}</span>
@@ -1091,14 +1093,14 @@ function SignupPage() {
                           justifyContent: `space-between`,
                           cursor: `pointer`,
                           textAlign: `left`,
-                          color: ne ? `#1B3A4B` : `#9DC4B0`,
+                          color: ne ? `var(--fg)` : `var(--muted)`,
                         }}
                       >
                         <span>{ne || `Select age range`}</span>
                         <span
                           style={{
                             fontSize: 10,
-                            color: `#74C69D`,
+                            color: `var(--emerald-500)`,
                             transform: ue ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -1115,10 +1117,10 @@ function SignupPage() {
                             left: 0,
                             right: 0,
                             zIndex: 50,
-                            background: `#fff`,
+                            background: `var(--surface)`,
                             borderRadius: 14,
-                            border: `1.5px solid #D4EDDA`,
-                            boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                            border: `1.5px solid var(--line)`,
+                            boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                             overflow: `hidden`,
                           }}
                         >
@@ -1143,8 +1145,8 @@ function SignupPage() {
                                   padding: `7px 10px`,
                                   border: `none`,
                                   background:
-                                    ne === t ? `#F0FAF4` : `transparent`,
-                                  color: ne === t ? `#2D6A4F` : `#1B3A4B`,
+                                    ne === t ? `var(--surface-2)` : `transparent`,
+                                  color: ne === t ? `var(--emerald-700)` : `var(--fg)`,
                                   fontWeight: ne === t ? 700 : 400,
                                   fontFamily: `'DM Sans', sans-serif`,
                                   fontSize: 12.5,
@@ -1156,11 +1158,11 @@ function SignupPage() {
                                   gap: 8,
                                 }}
                                 onMouseEnter={(e) =>
-                                  (e.currentTarget.style.background = `#F0FAF4`)
+                                  (e.currentTarget.style.background = `var(--surface-2)`)
                                 }
                                 onMouseLeave={(e) =>
                                   (e.currentTarget.style.background =
-                                    ne === t ? `#F0FAF4` : `transparent`)
+                                    ne === t ? `var(--surface-2)` : `transparent`)
                                 }
                               >
                                 <span style={{ fontSize: 15 }}>{e}</span>
@@ -1190,14 +1192,14 @@ function SignupPage() {
                         justifyContent: `space-between`,
                         cursor: `pointer`,
                         textAlign: `left`,
-                        color: A ? `#1B3A4B` : `#9DC4B0`,
+                        color: A ? `var(--fg)` : `var(--muted)`,
                       }}
                     >
                       <span>{A || `Select your option`}</span>
                       <span
                         style={{
                           fontSize: 10,
-                          color: `#74C69D`,
+                          color: `var(--emerald-500)`,
                           transform: fe ? `rotate(180deg)` : `rotate(0deg)`,
                           transition: `transform 0.2s`,
                           flexShrink: 0,
@@ -1214,10 +1216,10 @@ function SignupPage() {
                           left: 0,
                           right: 0,
                           zIndex: 50,
-                          background: `#fff`,
+                          background: `var(--surface)`,
                           borderRadius: 14,
-                          border: `1.5px solid #D4EDDA`,
-                          boxShadow: `0 12px 40px rgba(27,58,75,0.14)`,
+                          border: `1.5px solid var(--line)`,
+                          boxShadow: `0 12px 40px color-mix(in srgb, var(--shadow) 14%, transparent)`,
                           overflow: `hidden`,
                         }}
                       >
@@ -1238,8 +1240,8 @@ function SignupPage() {
                                 textAlign: `left`,
                                 padding: `7px 10px`,
                                 border: `none`,
-                                background: A === t ? `#F0FAF4` : `transparent`,
-                                color: A === t ? `#2D6A4F` : `#1B3A4B`,
+                                background: A === t ? `var(--surface-2)` : `transparent`,
+                                color: A === t ? `var(--emerald-700)` : `var(--fg)`,
                                 fontWeight: A === t ? 700 : 400,
                                 fontFamily: `'DM Sans', sans-serif`,
                                 fontSize: 12.5,
@@ -1251,11 +1253,11 @@ function SignupPage() {
                                 gap: 8,
                               }}
                               onMouseEnter={(e) =>
-                                (e.currentTarget.style.background = `#F0FAF4`)
+                                (e.currentTarget.style.background = `var(--surface-2)`)
                               }
                               onMouseLeave={(e) =>
                                 (e.currentTarget.style.background =
-                                  A === t ? `#F0FAF4` : `transparent`)
+                                  A === t ? `var(--surface-2)` : `transparent`)
                               }
                             >
                               <span style={{ fontSize: 15 }}>{e}</span>
@@ -1283,7 +1285,7 @@ function SignupPage() {
                         width: 14,
                         height: 14,
                         marginTop: 2,
-                        accentColor: `#40916C`,
+                        accentColor: `var(--emerald-700)`,
                         cursor: `pointer`,
                         flexShrink: 0,
                       }}
@@ -1293,7 +1295,7 @@ function SignupPage() {
                       style={{
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 11,
-                        color: `#3D6B55`,
+                        color: `var(--muted)`,
                         lineHeight: 1.4,
                       }}
                     >
@@ -1304,7 +1306,7 @@ function SignupPage() {
                         style={{
                           background: `none`,
                           border: `none`,
-                          color: `#40916C`,
+                          color: `var(--emerald-700)`,
                           cursor: `pointer`,
                           fontFamily: `'DM Sans', sans-serif`,
                           fontSize: 11,
@@ -1321,8 +1323,8 @@ function SignupPage() {
                       style={{
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 12,
-                        color: `#C0392B`,
-                        background: `rgba(192,57,43,0.08)`,
+                        color: `var(--danger)`,
+                        background: `color-mix(in srgb, var(--danger) 8%, transparent)`,
                         padding: `8px 12px`,
                         borderRadius: 10,
                       }}
@@ -1407,7 +1409,7 @@ function SignupPage() {
               style={{
                 fontFamily: `'DM Sans', sans-serif`,
                 fontSize: 13,
-                color: `#74C69D`,
+                color: `var(--emerald-500)`,
                 textAlign: `center`,
                 marginTop: 24,
               }}
@@ -1418,15 +1420,15 @@ function SignupPage() {
                   <Link
                     to="/login"
                     style={{
-                      color: `#2D6A4F`,
+                      color: `var(--emerald-700)`,
                       fontWeight: 700,
                       textDecoration: `none`,
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.color = `#40916C`)
+                      (e.currentTarget.style.color = `var(--emerald-700)`)
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.color = `#2D6A4F`)
+                      (e.currentTarget.style.color = `var(--emerald-700)`)
                     }
                   >
                     Log in
@@ -1441,7 +1443,7 @@ function SignupPage() {
                     style={{
                       background: `none`,
                       border: `none`,
-                      color: `#2D6A4F`,
+                      color: `var(--emerald-700)`,
                       fontWeight: 700,
                       cursor: `pointer`,
                       fontFamily: `'DM Sans', sans-serif`,
@@ -1461,7 +1463,7 @@ function SignupPage() {
             style={{
               position: `fixed`,
               inset: 0,
-              background: `rgba(27,58,75,0.55)`,
+              background: `color-mix(in srgb, var(--overlay) 55%, transparent)`,
               display: `flex`,
               alignItems: `center`,
               justifyContent: `center`,
@@ -1472,14 +1474,14 @@ function SignupPage() {
             <div
               className="terms-scroll"
               style={{
-                background: `#fff`,
+                background: `var(--surface)`,
                 borderRadius: 24,
                 maxWidth: 620,
                 width: `100%`,
                 maxHeight: `82vh`,
                 overflowY: `auto`,
                 padding: `36px 32px`,
-                boxShadow: `0 24px 80px rgba(27,58,75,0.25)`,
+                boxShadow: `0 24px 80px color-mix(in srgb, var(--shadow) 25%, transparent)`,
               }}
             >
               <div
@@ -1495,7 +1497,7 @@ function SignupPage() {
                     fontFamily: `'Playfair Display', serif`,
                     fontSize: 22,
                     fontWeight: 700,
-                    color: `#1B3A4B`,
+                    color: `var(--fg)`,
                   }}
                 >
                   Terms and Conditions
@@ -1503,14 +1505,14 @@ function SignupPage() {
                 <button
                   onClick={() => ae(!1)}
                   style={{
-                    background: `#F0FAF4`,
+                    background: `var(--surface-2)`,
                     border: `none`,
                     width: 34,
                     height: 34,
                     borderRadius: `50%`,
                     cursor: `pointer`,
                     fontSize: 14,
-                    color: `#2D6A4F`,
+                    color: `var(--emerald-700)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `center`,
@@ -1529,7 +1531,7 @@ function SignupPage() {
                         fontFamily: `'Playfair Display', serif`,
                         fontSize: 14,
                         fontWeight: 700,
-                        color: `#1B3A4B`,
+                        color: `var(--fg)`,
                         marginBottom: 6,
                       }}
                     >
@@ -1539,7 +1541,7 @@ function SignupPage() {
                       style={{
                         fontFamily: `'DM Sans', sans-serif`,
                         fontSize: 13,
-                        color: `#3D6B55`,
+                        color: `var(--muted)`,
                         lineHeight: 1.65,
                       }}
                     >
@@ -1555,9 +1557,9 @@ function SignupPage() {
                     flex: 1,
                     padding: `13px 0`,
                     borderRadius: 32,
-                    border: `2px solid #40916C`,
+                    border: `2px solid var(--emerald-500)`,
                     background: `transparent`,
-                    color: `#2D6A4F`,
+                    color: `var(--emerald-700)`,
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 14,
                     fontWeight: 700,
@@ -1565,7 +1567,7 @@ function SignupPage() {
                     transition: `all 0.2s`,
                   }}
                   onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = `rgba(64,145,108,0.07)`)
+                    (e.currentTarget.style.background = `color-mix(in srgb, var(--emerald-700) 7%, transparent)`)
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.background = `transparent`)
@@ -1582,13 +1584,13 @@ function SignupPage() {
                     padding: `13px 0`,
                     borderRadius: 32,
                     border: `none`,
-                    background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+                    background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
                     color: `#fff`,
                     fontFamily: `'DM Sans', sans-serif`,
                     fontSize: 14,
                     fontWeight: 700,
                     cursor: `pointer`,
-                    boxShadow: `0 6px 20px rgba(27,58,75,0.3)`,
+                    boxShadow: `0 6px 20px color-mix(in srgb, var(--shadow) 30%, transparent)`,
                     transition: `all 0.2s`,
                   }}
                   onMouseEnter={(e) =>

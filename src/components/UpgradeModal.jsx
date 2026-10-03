@@ -12,7 +12,7 @@ function UpgradeModal({
         position: `fixed`,
         inset: 0,
         zIndex: 300,
-        background: `rgba(27,58,75,0.45)`,
+        background: `color-mix(in srgb, var(--overlay) 45%, transparent)`,
         backdropFilter: `blur(6px)`,
         WebkitBackdropFilter: `blur(6px)`,
         display: `flex`,
@@ -24,14 +24,14 @@ function UpgradeModal({
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: `#fff`,
+          background: `var(--surface)`,
           borderRadius: 22,
           maxWidth: 380,
           width: `100%`,
           padding: `32px 28px 28px`,
           position: `relative`,
           textAlign: `center`,
-          boxShadow: `0 24px 64px rgba(27,58,75,0.28)`,
+          boxShadow: `0 24px 64px color-mix(in srgb, var(--shadow) 28%, transparent)`,
           fontFamily: `'DM Sans', sans-serif`,
         }}
       >
@@ -42,13 +42,13 @@ function UpgradeModal({
             position: `absolute`,
             top: 14,
             right: 14,
-            background: `#F0FAF4`,
+            background: `var(--surface-2)`,
             border: `none`,
             borderRadius: `50%`,
             width: 30,
             height: 30,
             cursor: `pointer`,
-            color: `#3D6B55`,
+            color: `var(--muted)`,
             fontSize: 14,
             lineHeight: 1,
           }}
@@ -61,7 +61,7 @@ function UpgradeModal({
             fontFamily: `'Playfair Display', serif`,
             fontSize: 20,
             fontWeight: 700,
-            color: `#1B3A4B`,
+            color: `var(--fg)`,
             marginBottom: 8,
           }}
         >
@@ -70,7 +70,7 @@ function UpgradeModal({
         <p
           style={{
             fontSize: 13.5,
-            color: `#3D6B55`,
+            color: `var(--muted)`,
             marginBottom: 24,
             lineHeight: 1.5,
           }}
@@ -86,7 +86,7 @@ function UpgradeModal({
               padding: `12px 0`,
               borderRadius: 28,
               border: `none`,
-              background: `linear-gradient(135deg, #1B3A4B 0%, #2D6A4F 100%)`,
+              background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%)`,
               color: `#fff`,
               fontWeight: 700,
               fontSize: 13.5,
@@ -102,8 +102,8 @@ function UpgradeModal({
               padding: `11px 0`,
               borderRadius: 28,
               border: `none`,
-              background: `#F0FAF4`,
-              color: `#3D6B55`,
+              background: `var(--surface-2)`,
+              color: `var(--muted)`,
               fontWeight: 600,
               fontSize: 13,
               cursor: `pointer`,

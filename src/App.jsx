@@ -10,6 +10,7 @@ import {
   ScrollToTop,
 } from "./components/RouteGuards";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { AccountPage } from "./pages/AccountPage";
 import { CompleteProfilePage } from "./pages/CompleteProfilePage";
 import { ExplorePage } from "./pages/ExplorePage";
@@ -25,6 +26,7 @@ import { MessagingPage } from "./pages/messaging/MessagingPage";
 
 function App() {
   return (
+    <ThemeProvider>
     <AuthProvider>
       <CallProvider>
         <ScrollToTop />
@@ -79,6 +81,7 @@ function App() {
         <CallOverlay />
       </CallProvider>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 

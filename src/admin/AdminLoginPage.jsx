@@ -5,6 +5,7 @@ import { ADMIN_THEME } from "./theme";
 import { GoogleButton } from "../components/GoogleButton";
 import { useAuth } from "../context/AuthContext";
 import { ApiError } from "../lib/api";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 var Ga = {
   INVALID_CREDENTIALS: `Incorrect admin password.`,
@@ -55,15 +56,16 @@ function AdminLoginPage() {
         padding: 20,
       }}
     >
+      <ThemeToggle style={{ position: `fixed`, top: 16, right: 16, zIndex: 60 }} />
       <style>{ADMIN_FONT_IMPORT}</style>
       <div
         style={{
           width: `100%`,
           maxWidth: 380,
-          background: `#fff`,
+          background: `var(--surface)`,
           borderRadius: 24,
-          border: `1px solid rgba(64,145,108,0.15)`,
-          boxShadow: `0 20px 60px rgba(27,58,75,0.12)`,
+          border: `1px solid color-mix(in srgb, var(--emerald-500) 15%, transparent)`,
+          boxShadow: `0 20px 60px color-mix(in srgb, var(--shadow) 12%, transparent)`,
           padding: `36px 32px`,
         }}
       >
@@ -89,7 +91,7 @@ function AdminLoginPage() {
             display: `block`,
             fontSize: 10.5,
             fontWeight: 700,
-            color: `#3D6B55`,
+            color: `var(--muted)`,
             letterSpacing: `0.08em`,
             textTransform: `uppercase`,
             marginBottom: 6,
@@ -141,8 +143,8 @@ function AdminLoginPage() {
               marginTop: 18,
               padding: `10px 14px`,
               borderRadius: 12,
-              background: `#fff5f5`,
-              border: `1px solid #f5c6c6`,
+              background: `var(--danger-bg)`,
+              border: `1px solid var(--danger-line)`,
               color: ADMIN_THEME.danger,
               fontSize: 12.5,
               textAlign: `center`,
