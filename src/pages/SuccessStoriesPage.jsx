@@ -80,6 +80,27 @@ var yn = [
   },
 ];
 
+// Shows the photo when the file exists in public/; otherwise shows the placeholder.
+function PhotoOrPlaceholder({ src, alt, placeholder, style }) {
+  let [failed, setFailed] = React.useState(false);
+  if (failed || !src) return placeholder;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      onError={() => setFailed(true)}
+      style={{
+        width: `100%`,
+        height: `100%`,
+        objectFit: `cover`,
+        display: `block`,
+        ...style,
+      }}
+    />
+  );
+}
+
 function StoryCard({ story: e }) {
   return (
     <div
@@ -89,7 +110,7 @@ function StoryCard({ story: e }) {
         borderRadius: 24,
         overflow: `hidden`,
         flexShrink: 0,
-        width: 384,
+        width: `min(384px, calc(100vw - 56px))`,
         scrollSnapAlign: `start`,
         transition: `all 0.4s ease`,
         cursor: `default`,
@@ -116,16 +137,11 @@ function StoryCard({ story: e }) {
           gap: 6,
         }}
       >
-        <div style={{ fontSize: 48 }}>📸</div>
-        <p
-          style={{
-            fontFamily: `'DM Sans', sans-serif`,
-            fontSize: 11,
-            color: `#52B788`,
-          }}
-        >
-          {e.image}
-        </p>
+        <PhotoOrPlaceholder
+          src={e.image}
+          alt={e.names}
+          placeholder={<div style={{ fontSize: 48 }}>📸</div>}
+        />
       </div>
       <div style={{ padding: `20px 22px 24px` }}>
         <div
@@ -204,9 +220,10 @@ function TestimonialCard({ testimonial: e }) {
           fontSize: 24,
           border: `3px solid #fff`,
           boxShadow: `0 4px 14px rgba(45,106,79,0.15)`,
+          overflow: `hidden`,
         }}
       >
-        👤
+        <PhotoOrPlaceholder src={e.avatar} alt="" placeholder="👤" />
       </div>
       <p
         style={{
@@ -219,16 +236,6 @@ function TestimonialCard({ testimonial: e }) {
         }}
       >
         "{e.quote}"
-      </p>
-      <p
-        style={{
-          fontFamily: `'DM Sans', sans-serif`,
-          fontSize: 10,
-          color: `#74C69D`,
-          opacity: 0.7,
-        }}
-      >
-        {e.avatar}
       </p>
     </div>
   );
@@ -677,9 +684,9 @@ function SuccessStoriesPage() {
         </p>
         <div style={{ display: `flex`, justifyContent: `center`, gap: 24 }}>
           {[`Terms`, `Privacy`, `Cookies`].map((e) => (
-            <a
+            <Link
               key={e}
-              href="#"
+              to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
                 color: `#74C69D`,
@@ -692,7 +699,7 @@ function SuccessStoriesPage() {
               onMouseLeave={(e) => (e.currentTarget.style.opacity = `0.6`)}
             >
               {e}
-            </a>
+            </Link>
           ))}
         </div>
       </footer>

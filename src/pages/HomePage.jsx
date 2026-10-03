@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { OnlineNowPanel } from "../components/OnlineNowPanel";
 import { SupportChatWidget } from "../components/SupportChatWidget";
@@ -1075,6 +1075,7 @@ Encrypted`,
                   backdropFilter: `blur(12px)`,
                   WebkitBackdropFilter: `blur(12px)`,
                   overflow: `hidden`,
+                  maxWidth: `100%`,
                 }}
               >
                 {[
@@ -1086,7 +1087,9 @@ Encrypted`,
                     key={t}
                     style={{
                       textAlign: `center`,
-                      padding: `14px 28px`,
+                      padding: `14px clamp(10px, 4vw, 28px)`,
+                      flex: `1 1 0`,
+                      minWidth: 0,
                       borderRight:
                         t < 2 ? `1px solid rgba(116,198,157,0.12)` : `none`,
                     }}
@@ -1194,9 +1197,9 @@ Encrypted`,
             }}
           >
             {[`Terms`, `Privacy`, `Cookies`].map((e) => (
-              <a
+              <Link
                 key={e}
-                href="#"
+                to={`/${e.toLowerCase()}`}
                 style={{
                   fontSize: 12,
                   color: `#74C69D`,
@@ -1209,7 +1212,7 @@ Encrypted`,
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = `0.6`)}
               >
                 {e}
-              </a>
+              </Link>
             ))}
           </div>
         </footer>

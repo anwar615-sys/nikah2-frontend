@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import * as React from "react";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
@@ -894,9 +894,9 @@ function HowItWorksPage() {
           }}
         >
           {[`Terms`, `Privacy`, `Cookies`].map((e) => (
-            <a
+            <Link
               key={e}
-              href="#"
+              to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
                 color: `#74C69D`,
@@ -909,7 +909,7 @@ function HowItWorksPage() {
               onMouseLeave={(e) => (e.currentTarget.style.opacity = `0.6`)}
             >
               {e}
-            </a>
+            </Link>
           ))}
         </div>
       </footer>

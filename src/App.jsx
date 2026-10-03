@@ -16,6 +16,7 @@ import { ExplorePage } from "./pages/ExplorePage";
 import { FeaturesPage } from "./pages/FeaturesPage";
 import { HomePage } from "./pages/HomePage";
 import { HowItWorksPage } from "./pages/HowItWorksPage";
+import { LegalPage, NotFoundPage } from "./pages/LegalPage";
 import { LoginPage } from "./pages/LoginPage";
 import { SafetyPage } from "./pages/SafetyPage";
 import { SignupPage } from "./pages/SignupPage";
@@ -61,6 +62,9 @@ function App() {
             }
           />
           <Route path="/safety" element={<SafetyPage />} />
+          <Route path="/terms" element={<LegalPage page="terms" />} />
+          <Route path="/privacy" element={<LegalPage page="privacy" />} />
+          <Route path="/cookies" element={<LegalPage page="cookies" />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route
             path="/admin/*"
@@ -70,6 +74,7 @@ function App() {
               </RequireAdmin>
             }
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <CallOverlay />
       </CallProvider>

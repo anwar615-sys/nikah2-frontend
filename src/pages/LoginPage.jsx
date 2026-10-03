@@ -53,6 +53,57 @@ function LoginPasswordToggle({ shown: e, onClick: t }) {
   );
 }
 
+// Password reset is not available on the current backend yet; explain the options.
+function ForgotPasswordHint() {
+  let [open, setOpen] = React.useState(false);
+  return (
+    <div
+      style={{
+        display: `flex`,
+        flexDirection: `column`,
+        alignItems: `flex-end`,
+        gap: 8,
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        style={{
+          fontFamily: `'DM Sans', sans-serif`,
+          fontSize: 12,
+          color: `#40916C`,
+          background: `none`,
+          border: `none`,
+          padding: 0,
+          cursor: `pointer`,
+        }}
+      >
+        Forgot Password?
+      </button>
+      {open && (
+        <p
+          style={{
+            fontFamily: `'DM Sans', sans-serif`,
+            fontSize: 12,
+            lineHeight: 1.6,
+            color: `#2D6A4F`,
+            background: `#F0FAF4`,
+            border: `1px solid #D4EDDA`,
+            borderRadius: 10,
+            padding: `10px 12px`,
+            margin: 0,
+            alignSelf: `stretch`,
+          }}
+        >
+          Password reset by email is coming soon. If your account uses Google,
+          use "Continue with Google" below. Otherwise, message our support team
+          using the chat on the home page and we'll help you get back in.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function LoginPage() {
   let [e, t] = (0, React.useState)(``),
     [n, r] = (0, React.useState)(``),
@@ -82,7 +133,7 @@ function LoginPage() {
         }}
       >
         <img
-          src="/src/assets/hero.png"
+          src="/assets/1-BhKNAtC1.png"
           alt="Couple"
           style={{
             position: `absolute`,
@@ -229,26 +280,7 @@ function LoginPage() {
                   <LoginPasswordToggle shown={i} onClick={() => a((e) => !e)} />
                 </div>
               </div>
-              <div style={{ display: `flex`, justifyContent: `flex-end` }}>
-                <Link
-                  to="#"
-                  style={{
-                    fontFamily: `'DM Sans', sans-serif`,
-                    fontSize: 12,
-                    color: `#40916C`,
-                    textDecoration: `none`,
-                    transition: `color 0.2s`,
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = `#74C69D`)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = `#40916C`)
-                  }
-                >
-                  Forgot Password?
-                </Link>
-              </div>
+              <ForgotPasswordHint />
               {o && (
                 <p
                   style={{

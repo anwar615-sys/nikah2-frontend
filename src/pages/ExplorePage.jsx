@@ -1325,8 +1325,8 @@ function ExplorePage() {
         </p>
         <div style={{ display: `flex`, justifyContent: `center`, gap: 24 }}>
           {[
-            [`Privacy Policy`, `#`],
-            [`Terms & Conditions`, `#`],
+            [`Privacy Policy`, `/privacy`],
+            [`Terms & Conditions`, `/terms`],
           ].map(([e, t]) => (
             <Link
               key={e}

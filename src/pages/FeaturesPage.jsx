@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
 var mn = [
@@ -584,9 +584,9 @@ function FeaturesPage() {
         </p>
         <div style={{ display: `flex`, justifyContent: `center`, gap: 24 }}>
           {[`Terms`, `Privacy`, `Cookies`].map((e) => (
-            <a
+            <Link
               key={e}
-              href="#"
+              to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
                 color: `#74C69D`,
@@ -599,7 +599,7 @@ function FeaturesPage() {
               onMouseLeave={(e) => (e.currentTarget.style.opacity = `0.6`)}
             >
               {e}
-            </a>
+            </Link>
           ))}
         </div>
       </footer>
