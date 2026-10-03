@@ -55,7 +55,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
             >
               {e.name || `This user`}
             </h3>
-            <p style={{ fontSize: 12.5, color: `var(--emerald-500)`, marginBottom: 18 }}>
+            <p style={{ fontSize: 12.5, color: `var(--accent-text)`, marginBottom: 18 }}>
               Choose an action
             </p>
             {d && (
@@ -141,7 +141,7 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
               {"Report "}
               {e.name || `this`}
             </h3>
-            <p style={{ fontSize: 12.5, color: `var(--emerald-500)`, marginBottom: 16 }}>
+            <p style={{ fontSize: 12.5, color: `var(--accent-text)`, marginBottom: 16 }}>
               Our team reviews every report — nothing is ignored.
             </p>
             <div

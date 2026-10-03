@@ -91,7 +91,7 @@ function ProfileModal({ personId: e, onClose: t }) {
               style={{
                 padding: `60px 24px`,
                 textAlign: `center`,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 fontSize: 13.5,
               }}
             >

@@ -160,7 +160,7 @@ function StoryCard({ story: e }) {
           style={{
             fontFamily: `var(--font-ui)`,
             fontSize: 14,
-            color: `var(--emerald-500)`,
+            color: `var(--accent-text)`,
             fontWeight: 600,
             marginBottom: 16,
           }}
@@ -524,7 +524,7 @@ function SuccessStoriesPage() {
       </section>
       <div
         style={{
-          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, #0D3F2D 55%, #11563D 100%)`,
           padding: `18px 40px`,
           display: `flex`,
           alignItems: `center`,
@@ -534,7 +534,7 @@ function SuccessStoriesPage() {
       >
         <span
           style={{
-            color: `var(--mint)`,
+            color: `#B7E4C7`,
             fontSize: 13,
             letterSpacing: `0.18em`,
             fontFamily: `var(--font-ui)`,
@@ -544,12 +544,12 @@ function SuccessStoriesPage() {
         >
           Because everyone deserves a second chance at happiness.
         </span>
-        <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
+        <span style={{ color: `var(--accent-text)`, fontSize: 16 }}>♥</span>
       </div>
       <footer
         style={{
           background: `var(--deep)`,
-          color: `var(--emerald-500)`,
+          color: `var(--accent-text)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -564,7 +564,7 @@ function SuccessStoriesPage() {
             marginBottom: 10,
           }}
         >
-          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          Nikha<span style={{ color: `var(--accent-text)` }}>2</span>{" "}
           <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
         <p
@@ -584,7 +584,7 @@ function SuccessStoriesPage() {
               to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `var(--font-ui)`,

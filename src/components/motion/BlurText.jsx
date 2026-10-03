@@ -16,7 +16,8 @@ export function BlurText({ text, as: Tag = "span", className = "", style, wordCl
   const words = String(text).split(/(\s+)/);
   let n = startIndex;
   return (
-    <Tag className={`nk-blurtext ${className}`.trim()} style={style} aria-label={text}>
+    <Tag className={`nk-blurtext ${className}`.trim()} style={style}>
+      <span className="nk-sr-only">{text}</span>
       {words.map((w, i) =>
         w === "" ? null : /^\s+$/.test(w) ? (
           w

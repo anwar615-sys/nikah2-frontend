@@ -9,17 +9,18 @@ const PAUSE_KEY = "nikha2-hero-paused";
 const PLAYED_KEY = "nikha2-sunrise-played";
 const HERO_SRC = "/assets/hero.webp";
 
+// `name` is "localStorage" or "sessionStorage"; reading window[name] itself can throw when storage is blocked.
 const store = {
-  get(s, k) {
+  get(name, k) {
     try {
-      return s.getItem(k);
+      return window[name].getItem(k);
     } catch (e) {
       return null;
     }
   },
-  set(s, k, v) {
+  set(name, k, v) {
     try {
-      s.setItem(k, v);
+      window[name].setItem(k, v);
     } catch (e) {
       /* storage blocked */
     }
@@ -34,7 +35,7 @@ const store = {
  */
 export function LivingHero({ headline, children, after, className = "", style, contentClassName = "", contentStyle, alt = "" }) {
   const { motionEnabled, setSetting } = useMotion();
-  const [paused, setPaused] = useState(() => store.get(localStorage, PAUSE_KEY) === "1");
+  const [paused, setPaused] = useState(() => store.get("localStorage", PAUSE_KEY) === "1");
   const [glOk, setGlOk] = useState(true);
   const [fallback, setFallback] = useState(false);
   const [split, setSplit] = useState(false);
@@ -48,7 +49,8 @@ export function LivingHero({ headline, children, after, className = "", style, c
   const hRef = useRef(null);
   const eng = useRef({
     running: false,
-    intro: { t: 0, on: false, emitted: false, fromDay: false, played: store.get(sessionStorage, PLAYED_KEY) === "1" },
+    ready: false,
+    intro: { t: 0, on: false, emitted: false, fromDay: false, played: store.get("sessionStorage", PLAYED_KEY) === "1" },
     timers: [],
     imgAspect: 1376 / 768,
   });
@@ -73,14 +75,25 @@ export function LivingHero({ headline, children, after, className = "", style, c
     Object.assign(eng.current.intro, { t: 0, on: true, emitted: false, fromDay: !!fromDay });
     setSplit(true);
     setWaiting(true);
-  }, []);
+    // If the photo has not loaded shortly after the sunrise starts (slow network, blocked image),
+    // skip the sunrise and show the headline rather than leaving it hidden.
+    eng.current.timers.push(
+      setTimeout(() => {
+        const e = eng.current;
+        if (!e.ready && !e.intro.emitted) {
+          e.intro.on = false;
+          showTextNow();
+        }
+      }, 2500),
+    );
+  }, [showTextNow]);
 
   // Letters fly out of the sun, gold, and land in their headline colours.
   const emitLetters = useCallback(() => {
     const e = eng.current;
     e.intro.emitted = true;
     e.intro.played = true;
-    store.set(sessionStorage, PLAYED_KEY, "1");
+    store.set("sessionStorage", PLAYED_KEY, "1");
     const hero = heroRef.current;
     const h = hRef.current;
     if (!hero || !h) return;
@@ -228,7 +241,13 @@ export function LivingHero({ headline, children, after, className = "", style, c
       resize();
       birds.resize();
       ready = true;
+      e.ready = true;
       raf = requestAnimationFrame(frame);
+    };
+    const onImgError = () => setFallback(true);
+    const onLost = (ev) => {
+      ev.preventDefault();
+      setGlOk(false);
     };
     const onResize = () => {
       if (!ready) return;
@@ -236,15 +255,23 @@ export function LivingHero({ headline, children, after, className = "", style, c
       birds.resize();
     };
     window.addEventListener("resize", onResize);
+    cv.addEventListener("webglcontextlost", onLost);
     if (img.complete && img.naturalWidth) start();
-    else img.addEventListener("load", start, { once: true });
+    else if (img.complete) onImgError();
+    else {
+      img.addEventListener("load", start, { once: true });
+      img.addEventListener("error", onImgError, { once: true });
+    }
 
     return () => {
       cancelAnimationFrame(raf);
       io?.disconnect();
       window.removeEventListener("resize", onResize);
       img.removeEventListener("load", start);
+      img.removeEventListener("error", onImgError);
+      cv.removeEventListener("webglcontextlost", onLost);
       clearTimers();
+      e.ready = false;
       gl.deleteTexture(tex);
       gl.deleteBuffer(buf);
       gl.deleteProgram(prog);
@@ -271,20 +298,20 @@ export function LivingHero({ headline, children, after, className = "", style, c
   const togglePause = () => {
     if (running) {
       setPaused(true);
-      store.set(localStorage, PAUSE_KEY, "1");
+      store.set("localStorage", PAUSE_KEY, "1");
       return;
     }
     optIn();
     setPaused(false);
     setFallback(false);
-    store.set(localStorage, PAUSE_KEY, "0");
+    store.set("localStorage", PAUSE_KEY, "0");
   };
   const replay = () => {
     const fromDay = running && eng.current.intro.played;
     optIn();
     if (paused) {
       setPaused(false);
-      store.set(localStorage, PAUSE_KEY, "0");
+      store.set("localStorage", PAUSE_KEY, "0");
     }
     setFallback(false);
     startIntro(fromDay);

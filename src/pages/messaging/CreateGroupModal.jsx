@@ -154,7 +154,7 @@ function CreateGroupModal({ onClose: e, onCreated: t }) {
                   border: `none`,
                   background: `none`,
                   cursor: `pointer`,
-                  color: `var(--emerald-500)`,
+                  color: `var(--accent-text)`,
                   fontSize: 14,
                 }}
               >

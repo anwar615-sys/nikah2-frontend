@@ -7,6 +7,7 @@ import { ReportBlockModal } from "../components/ReportBlockModal";
 import { Toast } from "../components/Toast";
 import { UpgradeModal } from "../components/UpgradeModal";
 import { useAuth } from "../context/AuthContext";
+import { Reveal, SpotlightCard } from "../components/motion";
 import { api } from "../lib/api";
 import { loadCountries } from "../lib/countries";
 
@@ -282,7 +283,7 @@ function ExplorePage() {
                 🔍
               </span>
             </div>
-            <button className="nk-btn nk-btn-primary"
+            <button className={`nk-btn nk-btn-primary${ne ? "" : " nk-btn-shimmer"}`}
               type="button"
               onClick={ne ? Ee : Te}
               disabled={ie}
@@ -354,7 +355,7 @@ function ExplorePage() {
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: s ? `var(--fg)` : `var(--emerald-500)`,
+                    color: s ? `var(--fg)` : `var(--accent-text)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -468,7 +469,7 @@ function ExplorePage() {
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: h ? `var(--fg)` : `var(--emerald-500)`,
+                    color: h ? `var(--fg)` : `var(--accent-text)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -578,7 +579,7 @@ function ExplorePage() {
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: l ? `var(--fg)` : `var(--emerald-500)`,
+                    color: l ? `var(--fg)` : `var(--accent-text)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -647,7 +648,7 @@ function ExplorePage() {
                           style={{
                             padding: `10px 8px`,
                             fontSize: 12.5,
-                            color: `var(--emerald-500)`,
+                            color: `var(--accent-text)`,
                           }}
                         >
                           No matches
@@ -726,7 +727,7 @@ function ExplorePage() {
                     borderRadius: 12,
                     padding: `10px 12px`,
                     cursor: `pointer`,
-                    color: d ? `var(--fg)` : `var(--emerald-500)`,
+                    color: d ? `var(--fg)` : `var(--accent-text)`,
                     display: `flex`,
                     alignItems: `center`,
                     justifyContent: `space-between`,
@@ -795,7 +796,7 @@ function ExplorePage() {
                           style={{
                             padding: `10px 8px`,
                             fontSize: 12.5,
-                            color: `var(--emerald-500)`,
+                            color: `var(--accent-text)`,
                           }}
                         >
                           No matches
@@ -943,7 +944,7 @@ function ExplorePage() {
             style={{
               textAlign: `center`,
               padding: `72px 24px`,
-              color: `var(--emerald-500)`,
+              color: `var(--accent-text)`,
             }}
           >
             <p style={{ fontSize: 14 }}>Loading profiles…</p>
@@ -953,7 +954,7 @@ function ExplorePage() {
             style={{
               textAlign: `center`,
               padding: `72px 24px`,
-              color: `var(--emerald-500)`,
+              color: `var(--accent-text)`,
             }}
           >
             <div style={{ fontSize: 44, marginBottom: 14 }}>🌿</div>
@@ -973,7 +974,7 @@ function ExplorePage() {
             </p>
           </div>
         ) : (
-          <div
+          <Reveal stagger
             style={{
               display: `grid`,
               gridTemplateColumns: `repeat(auto-fill, minmax(210px, 1fr))`,
@@ -981,7 +982,7 @@ function ExplorePage() {
             }}
           >
             {Se.map((e) => (
-              <div
+              <SpotlightCard
                 key={e.id}
                 className="card-hover"
                 onClick={() => we(e)}
@@ -1186,9 +1187,9 @@ function ExplorePage() {
                     {C === e.id ? `Starting…` : `💬 Chat Now`}
                   </button>
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
-          </div>
+          </Reveal>
         )}
       </section>
       {T && (
@@ -1271,7 +1272,7 @@ function ExplorePage() {
       </section>
       <div
         style={{
-          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, #0D3F2D 55%, #11563D 100%)`,
           padding: `16px 40px`,
           display: `flex`,
           alignItems: `center`,
@@ -1281,7 +1282,7 @@ function ExplorePage() {
       >
         <span
           style={{
-            color: `var(--mint)`,
+            color: `#B7E4C7`,
             fontSize: 13,
             letterSpacing: `0.18em`,
             fontWeight: 600,
@@ -1290,12 +1291,12 @@ function ExplorePage() {
         >
           Because everyone deserves a second chance at happiness.
         </span>
-        <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
+        <span style={{ color: `var(--accent-text)`, fontSize: 16 }}>♥</span>
       </div>
       <footer
         style={{
           background: `var(--deep)`,
-          color: `var(--emerald-500)`,
+          color: `var(--accent-text)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -1310,7 +1311,7 @@ function ExplorePage() {
             marginBottom: 10,
           }}
         >
-          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          Nikha<span style={{ color: `var(--accent-text)` }}>2</span>{" "}
           <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
         <p
@@ -1333,7 +1334,7 @@ function ExplorePage() {
               to={t}
               style={{
                 fontSize: 12,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `var(--font-ui)`,

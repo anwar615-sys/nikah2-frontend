@@ -308,7 +308,7 @@ function CompleteProfilePage() {
             margin: `0 auto`,
             background: `none`,
             border: `none`,
-            color: `var(--emerald-500)`,
+            color: `var(--accent-text)`,
             fontSize: 12.5,
             fontWeight: 600,
             cursor: `pointer`,

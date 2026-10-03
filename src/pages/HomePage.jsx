@@ -167,7 +167,7 @@ function HomePage() {
                     >
                       <strong
                         style={{
-                          color: `var(--emerald-500)`,
+                          color: `var(--accent-text)`,
                           fontFamily: `var(--font-ui)`,
                           fontWeight: 700,
                         }}
@@ -410,7 +410,7 @@ function HomePage() {
               </h2>
               <p
                 style={{
-                  color: `var(--emerald-500)`,
+                  color: `var(--accent-text)`,
                   fontFamily: `var(--font-ui)`,
                   fontSize: 14,
                 }}
@@ -588,7 +588,7 @@ function HomePage() {
                         style={{
                           padding: `14px`,
                           fontSize: 13,
-                          color: `var(--emerald-500)`,
+                          color: `var(--accent-text)`,
                           fontFamily: `var(--font-ui)`,
                         }}
                       >
@@ -630,7 +630,7 @@ function HomePage() {
                       border: `none`,
                       cursor: `pointer`,
                       fontSize: 13,
-                      color: `var(--emerald-500)`,
+                      color: `var(--accent-text)`,
                       padding: 0,
                       lineHeight: 1,
                     }}
@@ -647,7 +647,7 @@ function HomePage() {
                     style={{
                       textAlign: `center`,
                       padding: `60px 24px`,
-                      color: `var(--emerald-500)`,
+                      color: `var(--accent-text)`,
                       fontFamily: `var(--font-ui)`,
                       fontSize: 15,
                     }}
@@ -677,7 +677,7 @@ function HomePage() {
                     style={{
                       textAlign: `center`,
                       padding: `60px 24px`,
-                      color: `var(--emerald-500)`,
+                      color: `var(--accent-text)`,
                       fontFamily: `var(--font-ui)`,
                       fontSize: 15,
                     }}
@@ -885,7 +885,7 @@ function HomePage() {
                   fontFamily: `var(--font-ui)`,
                   fontSize: 12.5,
                   fontWeight: 700,
-                  color: `var(--emerald-500)`,
+                  color: `var(--accent-text)`,
                   letterSpacing: `0.1em`,
                   textTransform: `uppercase`,
                 }}
@@ -1052,7 +1052,7 @@ function HomePage() {
                         fontFamily: `var(--font-display)`,
                         fontSize: 28,
                         fontWeight: 700,
-                        color: `var(--emerald-500)`,
+                        color: `var(--accent-text)`,
                         lineHeight: 1,
                         marginBottom: 4,
                       }}
@@ -1064,7 +1064,7 @@ function HomePage() {
                         fontFamily: `var(--font-ui)`,
                         fontSize: 11,
                         fontWeight: 600,
-                        color: `rgba(255,255,255,0.35)`,
+                        color: `rgba(255,255,255,0.68)`,
                         textTransform: `uppercase`,
                         letterSpacing: `0.1em`,
                       }}
@@ -1083,7 +1083,7 @@ function HomePage() {
               zIndex: 2,
               width: `100%`,
               flexShrink: 0,
-              background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
+              background: `linear-gradient(135deg, var(--deep) 0%, #0D3F2D 55%, #11563D 100%)`,
               padding: `18px 40px`,
               display: `flex`,
               alignItems: `center`,
@@ -1094,7 +1094,7 @@ function HomePage() {
           >
             <span
               style={{
-                color: `var(--mint)`,
+                color: `#B7E4C7`,
                 fontSize: 13,
                 letterSpacing: `0.18em`,
                 fontFamily: `var(--font-ui)`,
@@ -1105,13 +1105,13 @@ function HomePage() {
             >
               Because everyone deserves a second chance at happiness.
             </span>
-            <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
+            <span style={{ color: `var(--accent-text)`, fontSize: 16 }}>♥</span>
           </div>
         </section>
         <footer
           style={{
             background: `var(--deep)`,
-            color: `var(--emerald-500)`,
+            color: `var(--accent-text)`,
             padding: `32px 40px`,
             textAlign: `center`,
           }}
@@ -1126,7 +1126,7 @@ function HomePage() {
               marginBottom: 10,
             }}
           >
-            Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+            Nikha<span style={{ color: `var(--accent-text)` }}>2</span>{" "}
             <span style={{ color: `var(--emerald-700)` }}>♡</span>
           </div>
           <p
@@ -1154,7 +1154,7 @@ function HomePage() {
                 to={`/${e.toLowerCase()}`}
                 style={{
                   fontSize: 12,
-                  color: `var(--emerald-500)`,
+                  color: `var(--accent-text)`,
                   opacity: 0.6,
                   textDecoration: `none`,
                   fontFamily: `var(--font-ui)`,

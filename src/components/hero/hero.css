@@ -1,7 +1,7 @@
 /* Living hero. Tokens follow the theme structure: light on :root, dark for the system preference and an explicit choice. */
 :root {
   --hero-veil: linear-gradient(180deg, rgba(243,248,244,.55) 0%, rgba(232,244,236,.35) 45%, rgba(243,246,241,.15) 100%);
-  --hero-h1: #0B3B2A; --hero-h2a: #06573B; --hero-h2b: #10B981; --hero-h2hi: #E9FFF4;
+  --hero-h1: #0B3B2A; --hero-h2a: #06573B; --hero-h2b: #0B7A55; --hero-h2hi: #2FBF8A;
   --hero-sub: #1D4A38; --hero-lead: #24493B; --hero-accent: #06573B; --hero-chip: rgba(255,255,255,.55);
 }
 @media (prefers-color-scheme: dark) {
@@ -32,7 +32,7 @@
 .nk-hero-h .l1, .nk-hero-h .l2 { display: block; padding-bottom: .06em; }
 .nk-hero-h .l1 { color: var(--hero-h1); text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .nk-hero-h .l2 {
-  background: linear-gradient(100deg, var(--hero-h2a) 0%, var(--hero-h2b) 30%, var(--hero-h2hi) 44%, var(--gold) 50%, var(--hero-h2b) 60%, var(--hero-h2a) 100%);
+  background: linear-gradient(100deg, var(--hero-h2a) 0%, var(--hero-h2b) 30%, var(--hero-h2hi) 44%, var(--shine-gold) 50%, var(--hero-h2b) 60%, var(--hero-h2a) 100%);
   background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   animation: nk-hero-sheen 7s ease-in-out infinite alternate; filter: drop-shadow(0 4px 24px rgba(16,185,129,.25)); }
 @keyframes nk-hero-sheen { 0% { background-position: 100% 0; } 100% { background-position: 0% 0; } }

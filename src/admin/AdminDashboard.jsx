@@ -2,6 +2,7 @@ import * as React from "react";
 import { adminCardStyle, adminTitleStyle } from "./styles";
 import { ADMIN_THEME } from "./theme";
 import { api } from "../lib/api";
+import { CountUp } from "../components/motion";
 
 var qa = [
   { key: `totalUsers`, label: `Total Users` },
@@ -61,7 +62,7 @@ function AdminDashboard() {
                   color: ADMIN_THEME.navy,
                 }}
               >
-                {e ? (e[t.key] ?? 0).toLocaleString() : `—`}
+                {e ? <CountUp to={e[t.key] ?? 0} /> : `—`}
               </div>
             </div>
           ))}

@@ -145,7 +145,7 @@ function SafetyPage() {
       <footer
         style={{
           background: `var(--deep)`,
-          color: `var(--emerald-500)`,
+          color: `var(--accent-text)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -159,7 +159,7 @@ function SafetyPage() {
             letterSpacing: `-0.02em`,
           }}
         >
-          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          Nikha<span style={{ color: `var(--accent-text)` }}>2</span>{" "}
           <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
       </footer>

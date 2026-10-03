@@ -20,7 +20,7 @@ function LoginPasswordToggle({ shown: e, onClick: t }) {
         border: `none`,
         padding: 4,
         cursor: `pointer`,
-        color: `var(--emerald-500)`,
+        color: `var(--accent-text)`,
         display: `flex`,
         alignItems: `center`,
       }}
@@ -239,7 +239,7 @@ function LoginPage() {
               style={{
                 fontFamily: `var(--font-ui)`,
                 fontSize: 13,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 marginTop: 6,
               }}
             >
@@ -359,7 +359,7 @@ function LoginPage() {
             style={{
               fontFamily: `var(--font-ui)`,
               fontSize: 13,
-              color: `var(--emerald-500)`,
+              color: `var(--accent-text)`,
               textAlign: `center`,
               marginTop: 28,
             }}

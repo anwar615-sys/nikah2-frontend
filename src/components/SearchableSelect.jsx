@@ -39,7 +39,7 @@ function SearchableSelect({
           alignItems: `center`,
           justifyContent: `space-between`,
           gap: 10,
-          color: e ? `var(--fg)` : `var(--emerald-500)`,
+          color: e ? `var(--fg)` : `var(--accent-text)`,
           opacity: a ? 0.6 : 1,
         }}
       >
@@ -90,7 +90,7 @@ function SearchableSelect({
                 style={{
                   padding: `10px 8px`,
                   fontSize: 12.5,
-                  color: `var(--emerald-500)`,
+                  color: `var(--accent-text)`,
                 }}
               >
                 {s || `No matches`}

@@ -13,7 +13,7 @@
 
 /* ShinyText: metallic emerald with a moving highlight; padding keeps clipped glyphs whole (spec 2.1) */
 .nk-shiny {
-  background: linear-gradient(110deg, var(--emerald-900) 0%, var(--emerald-700) 24%, var(--emerald-500) 40%, var(--emerald-hi) 49%, var(--gold) 53%, var(--emerald-500) 60%, var(--emerald-700) 76%, var(--emerald-900) 100%);
+  background: linear-gradient(110deg, var(--emerald-900) 0%, var(--emerald-700) 24%, var(--emerald-500) 40%, var(--shine-hi) 49%, var(--shine-gold) 53%, var(--emerald-500) 60%, var(--emerald-700) 76%, var(--emerald-900) 100%);
   background-size: 260% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   animation: nk-shine 5s linear infinite; padding: 0 .12em .14em; margin: 0 -.12em -.14em; display: inline-block;
 }
@@ -65,3 +65,12 @@
 .nk-kenburns { animation: nk-kenburns 24s ease-in-out infinite alternate; transform-origin: 60% 50%; }
 @keyframes nk-kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
 :root[data-motion="off"] .nk-rise, :root[data-motion="off"] .nk-kenburns { animation: none !important; }
+
+/* Idle shimmer: a slow light sweep every few seconds on a featured button (e.g. AI Match) */
+.nk-btn-primary.nk-btn-shimmer:not(:disabled):not(:hover)::after { animation: nk-sweep-idle 4.5s ease-in-out 1.2s infinite; }
+@keyframes nk-sweep-idle { 0%, 70% { background-position: 130% 0; opacity: 0; } 72% { opacity: 1; } 100% { background-position: -30% 0; opacity: 1; } }
+:root[data-motion="off"] .nk-btn-shimmer::after { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { :root:not([data-motion="on"]) .nk-btn-shimmer::after { animation: none !important; } }
+
+/* Text for screen readers only (BlurText keeps its words aria-hidden while they animate) */
+.nk-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

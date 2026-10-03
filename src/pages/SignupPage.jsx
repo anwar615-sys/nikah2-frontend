@@ -288,7 +288,7 @@ function SignupPasswordToggle({ shown: e, onClick: t }) {
         border: `none`,
         padding: 4,
         cursor: `pointer`,
-        color: `var(--emerald-500)`,
+        color: `var(--accent-text)`,
         display: `flex`,
         alignItems: `center`,
       }}
@@ -374,7 +374,7 @@ function SignupPage() {
       <div style={{ height: `100vh`, display: `flex`, overflow: `hidden` }}>
         <style>
           {
-            "\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: color-mix(in srgb, var(--surface) 65%, transparent);\n          border: 1.5px solid var(--line);\n          color: var(--fg);\n          font-size: 13px;\n          font-family: var(--font-ui);\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: var(--muted); }\n        .signup-input:focus {\n          border-color: var(--emerald-500);\n          box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: var(--font-ui);\n          font-size: 10px;\n          font-weight: 700;\n          color: var(--muted);\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff;\n          font-family: var(--font-ui);\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 30%, transparent);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 40%, transparent); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid var(--emerald-500);\n          background: transparent;\n          color: var(--emerald-700);\n          font-family: var(--font-ui);\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: color-mix(in srgb, var(--emerald-700) 8%, transparent); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: var(--font-ui);\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n          box-shadow: 0 4px 14px color-mix(in srgb, var(--shadow) 35%, transparent);\n        }\n        .step-dot.inactive {\n          background: var(--surface-2);\n          color: var(--emerald-500);\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: var(--bg); }\n        .terms-scroll::-webkit-scrollbar-thumb { background: var(--emerald-500); border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
+            "\n        * { box-sizing: border-box; margin: 0; padding: 0; }\n\n        .green-text {\n          background: linear-gradient(135deg, var(--emerald-700), var(--emerald-500), var(--emerald-500), var(--mint), var(--emerald-700));\n          background-size: 200% auto;\n          -webkit-background-clip: text;\n          -webkit-text-fill-color: transparent;\n          background-clip: text;\n          animation: shimmer-green 4s linear infinite;\n        }\n        @keyframes shimmer-green {\n          0%   { background-position: 200% center; }\n          100% { background-position: -200% center; }\n        }\n\n        .signup-input {\n          width: 100%;\n          padding: 11px 16px;\n          border-radius: 14px;\n          background: color-mix(in srgb, var(--surface) 65%, transparent);\n          border: 1.5px solid var(--line);\n          color: var(--fg);\n          font-size: 13px;\n          font-family: var(--font-ui);\n          outline: none;\n          transition: border-color 0.2s, box-shadow 0.2s;\n          appearance: none;\n        }\n        .signup-input::placeholder { color: var(--muted); }\n        .signup-input:focus {\n          border-color: var(--emerald-500);\n          box-shadow: 0 0 0 3px color-mix(in srgb, var(--emerald-500) 12%, transparent);\n        }\n\n        .signup-label {\n          display: block;\n          font-family: var(--font-ui);\n          font-size: 10px;\n          font-weight: 700;\n          color: var(--muted);\n          letter-spacing: 0.1em;\n          text-transform: uppercase;\n          margin-bottom: 5px;\n        }\n\n        .btn-submit {\n          width: 100%;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: none;\n          background: linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 100%);\n          color: #fff;\n          font-family: var(--font-ui);\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          letter-spacing: 0.04em;\n          box-shadow: 0 6px 24px color-mix(in srgb, var(--shadow) 30%, transparent);\n          transition: all 0.22s;\n        }\n        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px color-mix(in srgb, var(--shadow) 40%, transparent); }\n        .btn-submit:active { transform: scale(0.98); }\n        .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }\n\n        .btn-back {\n          flex: 1;\n          padding: 13px 0;\n          border-radius: 32px;\n          border: 2px solid var(--emerald-500);\n          background: transparent;\n          color: var(--emerald-700);\n          font-family: var(--font-ui);\n          font-size: 14px;\n          font-weight: 700;\n          cursor: pointer;\n          transition: all 0.22s;\n        }\n        .btn-back:hover { background: color-mix(in srgb, var(--emerald-700) 8%, transparent); }\n\n        /* Step indicator dot */\n        .step-dot {\n          width: 38px; height: 38px; border-radius: 50%;\n          display: flex; align-items: center; justify-content: center;\n          font-family: var(--font-ui);\n          font-size: 14px; font-weight: 700;\n          transition: all 0.3s;\n        }\n        .step-dot.active {\n          background: linear-gradient(135deg, var(--deep), var(--emerald-700));\n          color: #fff;\n          box-shadow: 0 4px 14px color-mix(in srgb, var(--shadow) 35%, transparent);\n        }\n        .step-dot.inactive {\n          background: var(--surface-2);\n          color: var(--accent-text);\n        }\n\n        /* Modal scrollbar */\n        .terms-scroll::-webkit-scrollbar { width: 4px; }\n        .terms-scroll::-webkit-scrollbar-track { background: var(--bg); }\n        .terms-scroll::-webkit-scrollbar-thumb { background: var(--emerald-500); border-radius: 4px; }\n\n        @media (max-width: 1024px) {\n          .left-panel { display: none !important; }\n          .right-panel { width: 100% !important; }\n        }\n      "
           }
         </style>
         <ThemeToggle style={{ position: `fixed`, top: 16, right: 16, zIndex: 60 }} />
@@ -472,7 +472,7 @@ function SignupPage() {
               style={{
                 fontFamily: `var(--font-ui)`,
                 fontSize: 14,
-                color: `var(--mint)`,
+                color: `#B7E4C7`,
                 marginBottom: 28,
                 letterSpacing: `0.05em`,
                 textTransform: `uppercase`,
@@ -560,7 +560,7 @@ function SignupPage() {
                   style={{
                     fontFamily: `var(--font-ui)`,
                     fontSize: 11,
-                    color: `var(--emerald-500)`,
+                    color: `var(--accent-text)`,
                     marginTop: 3,
                   }}
                 >
@@ -631,7 +631,7 @@ function SignupPage() {
                         <span
                           style={{
                             fontSize: 10,
-                            color: `var(--emerald-500)`,
+                            color: `var(--accent-text)`,
                             transform: oe ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -879,7 +879,7 @@ function SignupPage() {
                         <span
                           style={{
                             fontSize: 10,
-                            color: `var(--emerald-500)`,
+                            color: `var(--accent-text)`,
                             transform: N ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -1000,7 +1000,7 @@ function SignupPage() {
                         <span
                           style={{
                             fontSize: 10,
-                            color: `var(--emerald-500)`,
+                            color: `var(--accent-text)`,
                             transform: F ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -1101,7 +1101,7 @@ function SignupPage() {
                         <span
                           style={{
                             fontSize: 10,
-                            color: `var(--emerald-500)`,
+                            color: `var(--accent-text)`,
                             transform: ue ? `rotate(180deg)` : `rotate(0deg)`,
                             transition: `transform 0.2s`,
                             flexShrink: 0,
@@ -1200,7 +1200,7 @@ function SignupPage() {
                       <span
                         style={{
                           fontSize: 10,
-                          color: `var(--emerald-500)`,
+                          color: `var(--accent-text)`,
                           transform: fe ? `rotate(180deg)` : `rotate(0deg)`,
                           transition: `transform 0.2s`,
                           flexShrink: 0,
@@ -1410,7 +1410,7 @@ function SignupPage() {
               style={{
                 fontFamily: `var(--font-ui)`,
                 fontSize: 13,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 textAlign: `center`,
                 marginTop: 24,
               }}

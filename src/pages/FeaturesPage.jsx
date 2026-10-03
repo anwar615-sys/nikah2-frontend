@@ -100,7 +100,7 @@ function WayDifferentSection() {
               style={{
                 background:
                   e === r
-                    ? `linear-gradient(90deg, ${n.accent}14, ${n.accent}06)`
+                    ? `linear-gradient(90deg, color-mix(in srgb, ${n.accent} 8%, transparent), color-mix(in srgb, ${n.accent} 2%, transparent))`
                     : r % 2 == 0
                       ? `var(--surface)`
                       : `var(--bg)`,
@@ -112,11 +112,11 @@ function WayDifferentSection() {
                   style={{
                     background:
                       e === r
-                        ? `linear-gradient(135deg, ${n.accent}28, ${n.accent}48)`
+                        ? `linear-gradient(135deg, color-mix(in srgb, ${n.accent} 16%, transparent), color-mix(in srgb, ${n.accent} 28%, transparent))`
                         : r % 2 == 0
                           ? `var(--surface-2)`
                           : `var(--surface)`,
-                    border: `1.5px solid ${e === r ? n.accent + `60` : `var(--line)`}`,
+                    border: `1.5px solid ${e === r ? `color-mix(in srgb, ${n.accent} 38%, transparent)` : `var(--line)`}`,
                   }}
                 >
                   {n.icon}
@@ -127,7 +127,7 @@ function WayDifferentSection() {
                       fontFamily: `var(--font-ui)`,
                       fontSize: 9,
                       fontWeight: 700,
-                      color: e === r ? n.accent : `var(--emerald-500)`,
+                      color: e === r ? n.accent : `var(--accent-text)`,
                       letterSpacing: `0.18em`,
                       textTransform: `uppercase`,
                       display: `block`,
@@ -154,7 +154,7 @@ function WayDifferentSection() {
               <div
                 className="zebra-divider"
                 style={{
-                  background: e === r ? n.accent + `50` : `var(--surface-2)`,
+                  background: e === r ? `color-mix(in srgb, ${n.accent} 31%, transparent)` : `var(--surface-2)`,
                 }}
               />
               <p className="zebra-desc">{n.desc}</p>
@@ -504,7 +504,7 @@ function FeaturesPage() {
       </section>
       <div
         style={{
-          background: `linear-gradient(135deg, var(--deep) 0%, var(--emerald-700) 50%, var(--emerald-700) 100%)`,
+          background: `linear-gradient(135deg, var(--deep) 0%, #0D3F2D 55%, #11563D 100%)`,
           padding: `18px 40px`,
           display: `flex`,
           alignItems: `center`,
@@ -514,7 +514,7 @@ function FeaturesPage() {
       >
         <span
           style={{
-            color: `var(--mint)`,
+            color: `#B7E4C7`,
             fontSize: 13,
             letterSpacing: `0.18em`,
             fontFamily: `var(--font-ui)`,
@@ -524,12 +524,12 @@ function FeaturesPage() {
         >
           Because everyone deserves a second chance at happiness.
         </span>
-        <span style={{ color: `var(--emerald-500)`, fontSize: 16 }}>♥</span>
+        <span style={{ color: `var(--accent-text)`, fontSize: 16 }}>♥</span>
       </div>
       <footer
         style={{
           background: `var(--deep)`,
-          color: `var(--emerald-500)`,
+          color: `var(--accent-text)`,
           padding: `32px 40px`,
           textAlign: `center`,
         }}
@@ -544,7 +544,7 @@ function FeaturesPage() {
             marginBottom: 10,
           }}
         >
-          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          Nikha<span style={{ color: `var(--accent-text)` }}>2</span>{" "}
           <span style={{ color: `var(--emerald-700)` }}>♥</span>
         </div>
         <p
@@ -564,7 +564,7 @@ function FeaturesPage() {
               to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `var(--font-ui)`,

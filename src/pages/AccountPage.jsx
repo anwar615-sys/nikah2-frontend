@@ -122,7 +122,7 @@ function AccountPasswordToggle({ shown: e, onClick: t }) {
         border: `none`,
         padding: 4,
         cursor: `pointer`,
-        color: `var(--emerald-500)`,
+        color: `var(--accent-text)`,
         display: `flex`,
         alignItems: `center`,
       }}
@@ -528,7 +528,7 @@ function AccountPage() {
           >
             Username
           </h2>
-          <p style={{ fontSize: 12, color: `var(--emerald-500)`, marginBottom: 16 }}>
+          <p style={{ fontSize: 12, color: `var(--accent-text)`, marginBottom: 16 }}>
             {ae
               ? `This is your permanent username — other members use it to find and identify you (subject to your privacy setting below).`
               : `Choose a username for your account. Once set, it can't be changed.`}
@@ -578,7 +578,7 @@ function AccountPage() {
               <p
                 style={{
                   fontSize: 12,
-                  color: `var(--emerald-500)`,
+                  color: `var(--accent-text)`,
                   marginBottom: 16,
                 }}
               >
@@ -764,7 +764,7 @@ function AccountPage() {
                         background: `none`,
                         border: `none`,
                         cursor: `pointer`,
-                        color: `var(--emerald-500)`,
+                        color: `var(--accent-text)`,
                         fontSize: 12,
                         lineHeight: 1,
                       }}
@@ -792,7 +792,7 @@ function AccountPage() {
           >
             Privacy
           </h2>
-          <p style={{ fontSize: 12, color: `var(--emerald-500)`, marginBottom: 16 }}>
+          <p style={{ fontSize: 12, color: `var(--accent-text)`, marginBottom: 16 }}>
             Control who can see your User ID, phone number, and email on your
             profile card. Premium viewers can always see the baseline of
             ID/phone — this setting narrows or widens that further.
@@ -859,7 +859,7 @@ function AccountPage() {
           >
             {e?.hasPassword ? `Change Password` : `Set a Password`}
           </h2>
-          <p style={{ fontSize: 12, color: `var(--emerald-500)`, marginBottom: 18 }}>
+          <p style={{ fontSize: 12, color: `var(--accent-text)`, marginBottom: 18 }}>
             {e?.hasPassword
               ? `Update the password you use to sign in.`
               : `This account was created with Google Sign-In. Set a password to also sign in with your email.`}

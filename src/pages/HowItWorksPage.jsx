@@ -873,7 +873,7 @@ function HowItWorksPage() {
       <footer
         style={{
           background: `var(--deep)`,
-          color: `var(--emerald-500)`,
+          color: `var(--accent-text)`,
           padding: `28px 24px`,
           textAlign: `center`,
         }}
@@ -888,7 +888,7 @@ function HowItWorksPage() {
             marginBottom: 8,
           }}
         >
-          Nikha<span style={{ color: `var(--emerald-500)` }}>2</span>{" "}
+          Nikha<span style={{ color: `var(--accent-text)` }}>2</span>{" "}
           <span style={{ color: `var(--emerald-700)` }}>♡</span>
         </div>
         <p
@@ -915,7 +915,7 @@ function HowItWorksPage() {
               to={`/${e.toLowerCase()}`}
               style={{
                 fontSize: 12,
-                color: `var(--emerald-500)`,
+                color: `var(--accent-text)`,
                 opacity: 0.6,
                 textDecoration: `none`,
                 fontFamily: `var(--font-ui)`,

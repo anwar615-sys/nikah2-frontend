@@ -35,8 +35,16 @@ function RevealOne({ as: Tag = "div", delay, blur, className = "", style, displa
 
   useLayoutEffect(() => {
     const el = ref.current;
-    if (!el || !motionEnabled || typeof IntersectionObserver === "undefined") return undefined;
-    if (!shouldStartHidden(el.getBoundingClientRect(), window.innerHeight, motionEnabled)) return undefined;
+    // Anything still pending from an earlier run (e.g. motion was toggled) must become visible.
+    const settle = () => setState((s) => (s === "pending" ? "shown" : s));
+    if (!el || !motionEnabled || typeof IntersectionObserver === "undefined") {
+      settle();
+      return undefined;
+    }
+    if (!shouldStartHidden(el.getBoundingClientRect(), window.innerHeight, motionEnabled)) {
+      settle();
+      return undefined;
+    }
     setState("pending");
     const io = new IntersectionObserver(
       (entries) => {
@@ -49,7 +57,7 @@ function RevealOne({ as: Tag = "div", delay, blur, className = "", style, displa
     );
     io.observe(el);
     // Safety net: never leave content hidden (e.g. printing, odd scroll containers)
-    const t = setTimeout(() => setState((s) => (s === "pending" ? "shown" : s)), 6000);
+    const t = setTimeout(settle, 6000);
     return () => {
       io.disconnect();
       clearTimeout(t);
