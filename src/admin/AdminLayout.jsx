@@ -141,9 +141,8 @@ function AdminLayout() {
                 fontWeight: 600,
               }}
             >
-              Preview mode – sample data, no login, not connected to any
-              backend. Changes reset when you reload. Only works with npm run
-              dev.
+              Preview mode – sample data only. No login, not connected to any
+              backend, no real member data. Changes reset when you reload.
             </div>
           )}
           <Routes>
