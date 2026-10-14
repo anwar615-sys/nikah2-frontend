@@ -58,7 +58,7 @@ function GoogleSignInButton({ redirectTo: e = `/explore`, onError: t }) {
     (
       <div
         ref={n}
-        style={{ display: `flex`, justifyContent: `center`, width: `100%` }}
+        style={{ display: `flex`, justifyContent: `center`, width: `100%`, colorScheme: `light` }}
       />
     )
   );

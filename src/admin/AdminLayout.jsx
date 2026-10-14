@@ -8,7 +8,7 @@ import { AdminUsersPage } from "./pages/AdminUsersPage";
 import { AdminVerificationsPage } from "./pages/AdminVerificationsPage";
 import { ADMIN_FONT_IMPORT } from "./styles";
 import { ADMIN_THEME } from "./theme";
-import { useAuth } from "../context/AuthContext";
+import { ADMIN_PREVIEW, useAdminSession } from "./data";
 import { ThemeToggle } from "../components/ThemeToggle";
 
 var Oo = [
@@ -21,10 +21,10 @@ var Oo = [
 ];
 
 function AdminLayout() {
-  let { user: e, logout: t } = useAuth(),
+  let { user: e, logout: t } = useAdminSession(),
     n = useNavigate();
   async function r() {
-    (await t(), n(`/admin/login`, { replace: !0 }));
+    (await t(), n(ADMIN_PREVIEW ? `/` : `/admin/login`, { replace: !0 }));
   }
   return (
     <div
@@ -127,6 +127,25 @@ function AdminLayout() {
           </button>
         </header>
         <main style={{ flex: 1, padding: `28px 32px`, overflow: `auto` }}>
+          {ADMIN_PREVIEW && (
+            <div
+              role="status"
+              style={{
+                background: `#FFF4C2`,
+                color: `#5C4500`,
+                border: `1px solid #E8C95A`,
+                borderRadius: 12,
+                padding: `10px 16px`,
+                marginBottom: 20,
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Preview mode – sample data, no login, not connected to any
+              backend. Changes reset when you reload. Only works with npm run
+              dev.
+            </div>
+          )}
           <Routes>
             <Route index={!0} element={<AdminDashboard />} />
             <Route path="users" element={<AdminUsersPage />} />

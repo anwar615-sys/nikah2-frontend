@@ -31,4 +31,24 @@ Everything for the Nikha2 admin panel lives in this folder. The main app mounts 
 
 The full list of admin API endpoints is in `BLUEPRINT.md`, section 6, under "Admin".
 
-Admin pages share the site's API client (`src/lib/api.js`), sign-in state (`src/context/AuthContext.jsx`) and theme. Everything else they need is in this folder.
+## Data and sign-in: `data/`
+
+Admin pages never call a backend directly. They use `adminApi` and `useAdminSession` from `data/index.js`, which picks an adapter:
+
+| File | What it is |
+|---|---|
+| `data/index.js` | The single doorway: chooses the adapter and the sign-in source |
+| `data/httpAdminApi.js` | Real backend over HTTP (the REST contract in `BLUEPRINT.md`) |
+| `data/mockAdminApi.js` | Sample data in memory, for preview mode. No network requests |
+| `data/preview.js` | Decides whether preview mode is on |
+
+To connect a different backend later (Supabase, a new server, AWS), add an adapter with the same methods (`get`, `post`, `patch`, `delete`, `upload`, `loadPhoto`, `releasePhoto`) and select it in `data/index.js`. The pages stay the same.
+
+## Preview mode (no login, sample data)
+
+1. Create `.env.local` in the project root with `VITE_ADMIN_PREVIEW=true`.
+2. Run `npm run dev` and open http://localhost:5173/admin.
+
+A yellow banner shows on every admin page while preview mode is on. Changes reset on reload. To turn it off, delete that line and restart `npm run dev`.
+
+Preview mode only works with `npm run dev`. Any production build (`npm run build`, as used by Render or AWS) removes it completely, even if `VITE_ADMIN_PREVIEW` is set on the host. `npm run check:admin-preview` proves this by building with the flag on and searching the output.

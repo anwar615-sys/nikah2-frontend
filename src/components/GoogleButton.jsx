@@ -49,6 +49,8 @@ function GoogleButton({ onCredential: e, disabled: t }) {
           display: `flex`,
           justifyContent: `center`,
           width: `100%`,
+          // Google's button is a light iframe; without this a dark page paints a white box behind it.
+          colorScheme: `light`,
           opacity: t ? 0.5 : 1,
           pointerEvents: t ? `none` : `auto`,
         }}

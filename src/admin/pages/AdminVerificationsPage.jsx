@@ -6,7 +6,7 @@ import {
   adminTitleStyle,
 } from "../styles";
 import { ADMIN_THEME } from "../theme";
-import { API_BASE, api, getTokens } from "../../lib/api";
+import { adminApi as api } from "../data";
 
 function AdminVerificationPhoto({ mediaId: e, alt: t, style: n }) {
   let [r, i] = (0, React.useState)(null),
@@ -17,23 +17,16 @@ function AdminVerificationPhoto({ mediaId: e, alt: t, style: n }) {
         n = !1;
       return (
         (async () => {
-          let r = getTokens();
           try {
-            let a = await fetch(`${API_BASE}/admin/verifications/${e}/photo`, {
-              headers: r?.accessToken
-                ? { Authorization: `Bearer ${r.accessToken}` }
-                : {},
-            });
-            if (!a.ok) throw Error(`fetch failed`);
-            let o = await a.blob();
-            if (n) return;
-            ((t = URL.createObjectURL(o)), i(t));
+            let a = await api.loadPhoto(e);
+            if (n) return api.releasePhoto(a);
+            ((t = a), i(a));
           } catch {
             n || o(!0);
           }
         })(),
         () => {
-          ((n = !0), t && URL.revokeObjectURL(t));
+          ((n = !0), api.releasePhoto(t));
         }
       );
     }, [e]),

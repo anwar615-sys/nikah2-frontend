@@ -6,3 +6,6 @@ dist/
 .DS_Store
 *.log
 .superpowers/
+
+# confidential owner documents - never commit
+_private/

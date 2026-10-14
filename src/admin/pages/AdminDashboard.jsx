@@ -1,7 +1,7 @@
 import * as React from "react";
 import { adminCardStyle, adminTitleStyle } from "../styles";
 import { ADMIN_THEME } from "../theme";
-import { api } from "../../lib/api";
+import { adminApi as api } from "../data";
 import { CountUp } from "../../components/motion";
 
 var qa = [

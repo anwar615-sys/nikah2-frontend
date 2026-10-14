@@ -12,7 +12,7 @@ import {
   adminTitleStyle,
 } from "../styles";
 import { ADMIN_THEME } from "../theme";
-import { api } from "../../lib/api";
+import { adminApi as api } from "../data";
 
 var Ya = 20;
 
