@@ -249,6 +249,10 @@ function MessagingPage() {
       );
     },
     ke = (r) => {
+      if (import.meta.env.VITE_BETA === "true") {
+        me(`Voice and video calls arrive after the beta.`);
+        return;
+      }
       if (I) {
         if (e?.membership?.plan === `free`) {
           he(`Voice and video calling require a Basic or Premium plan.`);
