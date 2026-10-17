@@ -5,8 +5,13 @@ import { Navbar } from "../components/Navbar";
 import { Toast } from "../components/Toast";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
-import { BetaCheckoutModal } from "../components/BetaCheckoutModal";
 import { Aurora, GoldBorder, Reveal, ShinyText, SpotlightCard } from "../components/motion";
+
+// Beta-only: loaded only in public-beta builds, absent from normal builds.
+var BetaCheckoutModal =
+  import.meta.env.VITE_BETA === "true"
+    ? React.lazy(() => import("../components/BetaCheckoutModal").then((m) => ({ default: m.BetaCheckoutModal })))
+    : null;
 
 var sn = [
   {
@@ -247,7 +252,11 @@ function HowItWorksPage() {
         }
       </style>
       <Navbar />
-      {betaPlan && <BetaCheckoutModal plan={betaPlan} onClose={() => setBetaPlan(null)} />}
+      {BetaCheckoutModal && betaPlan && (
+        <React.Suspense fallback={null}>
+          <BetaCheckoutModal plan={betaPlan} onClose={() => setBetaPlan(null)} />
+        </React.Suspense>
+      )}
       <div
         style={{
           display: `flex`,

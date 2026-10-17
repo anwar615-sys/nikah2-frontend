@@ -8,7 +8,7 @@ Everything for the Nikha2 admin panel lives in this folder. The main app mounts 
 | `RequireAdmin.jsx` | Sends anyone who is not a signed-in admin (`user.role === "admin"`) to `/admin/login` |
 | `AdminLayout.jsx` | Sidebar, theme toggle and the nested admin routes |
 | `theme.js`, `styles.js` | Admin colours (theme variables, so dark mode works) and shared card, table and button styles |
-| `pages/AdminLoginPage.jsx` | Google sign-in plus the shared admin password (`POST /admin/auth/login`) |
+| `pages/AdminLoginPage.jsx` | Beta: email + password of an admin account. Full backend: Google sign-in plus the shared admin password (`POST /admin/auth/login`) |
 | `pages/AdminDashboard.jsx` | Totals from `GET /admin/analytics` |
 | `pages/AdminUsersPage.jsx` | All users and flagged accounts: filters, bulk actions, CSV export |
 | `pages/AdminUserDetail.jsx` | One user: overview, profile corrections, block, suspend, verify, delete, call history |
@@ -33,22 +33,23 @@ The full list of admin API endpoints is in `BLUEPRINT.md`, section 6, under "Adm
 
 ## Data and sign-in: `data/`
 
-Admin pages never call a backend directly. They use `adminApi` and `useAdminSession` from `data/index.js`, which picks an adapter:
+Admin pages never call a backend directly. They use `adminApi` and `useAdminSession` from `data/index.js`.
 
 | File | What it is |
 |---|---|
-| `data/index.js` | The single doorway: chooses the adapter and the sign-in source |
-| `data/httpAdminApi.js` | Real backend over HTTP (the REST contract in `BLUEPRINT.md`) |
-| `data/mockAdminApi.js` | Sample data in memory, for preview mode. No network requests |
-| `data/preview.js` | Decides whether preview mode is on |
+| `data/index.js` | The single doorway: the data adapter and the sign-in source |
+| `data/httpAdminApi.js` | Requests through the shared API client, plus private verification photos |
 
-To connect a different backend later (Supabase, a new server, AWS), add an adapter with the same methods (`get`, `post`, `patch`, `delete`, `upload`, `loadPhoto`, `releasePhoto`) and select it in `data/index.js`. The pages stay the same.
+Where the data comes from depends on the build:
 
-## Preview mode (no login, sample data)
+- **Public beta** (`VITE_BETA=true`, used on Vercel): the Supabase connector in `src/beta/` answers every `/admin/*` path with database functions that check `is_admin()` and write the audit log. The admin signs in with the email and password of a beta account that the developer has added to the `admins` table. Verification photos are 5-minute signed links.
+- **Full backend** (any other build): the REST contract in `BLUEPRINT.md`, with Google sign-in plus the shared admin password.
 
-1. Create `.env.local` in the project root with `VITE_ADMIN_PREVIEW=true`.
-2. Run `npm run dev` and open http://localhost:5173/admin.
+There is no sample-data mode any more: the dashboard always shows real data.
 
-A yellow banner shows on every admin page while preview mode is on. Changes reset on reload. To turn it off, delete that line and restart `npm run dev`.
+### Making someone an admin (beta)
 
-Preview mode only works with `npm run dev`. Any production build (`npm run build`, as used by Render or AWS) removes it completely, even if `VITE_ADMIN_PREVIEW` is set on the host. `npm run check:admin-preview` proves this by building with the flag on and searching the output.
+1. They sign up on the site like any member.
+2. The developer runs, in the Supabase SQL editor:
+   `insert into public.admins (user_id) select id from auth.users where email = 'their@email';`
+3. They sign in at `/admin/login`.

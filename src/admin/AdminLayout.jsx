@@ -8,7 +8,7 @@ import { AdminUsersPage } from "./pages/AdminUsersPage";
 import { AdminVerificationsPage } from "./pages/AdminVerificationsPage";
 import { ADMIN_FONT_IMPORT } from "./styles";
 import { ADMIN_THEME } from "./theme";
-import { ADMIN_PREVIEW, useAdminSession } from "./data";
+import { useAdminSession } from "./data";
 import { ThemeToggle } from "../components/ThemeToggle";
 
 var Oo = [
@@ -24,7 +24,7 @@ function AdminLayout() {
   let { user: e, logout: t } = useAdminSession(),
     n = useNavigate();
   async function r() {
-    (await t(), n(ADMIN_PREVIEW ? `/` : `/admin/login`, { replace: !0 }));
+    (await t(), n(`/admin/login`, { replace: !0 }));
   }
   return (
     <div
@@ -127,7 +127,7 @@ function AdminLayout() {
           </button>
         </header>
         <main style={{ flex: 1, padding: `28px 32px`, overflow: `auto` }}>
-          {ADMIN_PREVIEW && (
+          {import.meta.env.VITE_BETA === "true" && (
             <div
               role="status"
               style={{
@@ -141,8 +141,8 @@ function AdminLayout() {
                 fontWeight: 600,
               }}
             >
-              Preview mode – sample data only. No login, not connected to any
-              backend, no real member data. Changes reset when you reload.
+              Early access beta – features may change. No real payments. This
+              dashboard shows real beta members: handle their data with care.
             </div>
           )}
           <Routes>

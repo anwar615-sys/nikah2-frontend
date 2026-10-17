@@ -61,6 +61,15 @@ function AuthProvider({ children: e }) {
       },
       [a],
     ),
+    loginAdmin = (0, React.useCallback)(
+      async (e, t) => {
+        let n = await api.post(`/admin/auth/login`, { email: e, password: t });
+        setTokens(n.auth);
+        let r = await a();
+        return { ...n, me: r };
+      },
+      [a],
+    ),
     u = (0, React.useCallback)(async () => {
       let e = getTokens();
       try {
@@ -83,6 +92,7 @@ function AuthProvider({ children: e }) {
         login: s,
         loginWithGoogle: c,
         loginAdminWithGoogle: l,
+        loginAdmin,
         logout: u,
         deleteAccount: d,
         refreshUser: f,
