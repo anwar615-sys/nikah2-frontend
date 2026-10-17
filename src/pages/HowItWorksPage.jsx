@@ -5,6 +5,7 @@ import { Navbar } from "../components/Navbar";
 import { Toast } from "../components/Toast";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
+import { BetaCheckoutModal } from "../components/BetaCheckoutModal";
 import { Aurora, GoldBorder, Reveal, ShinyText, SpotlightCard } from "../components/motion";
 
 var sn = [
@@ -205,9 +206,15 @@ function HowItWorksPage() {
     { isAuthenticated: i, refreshUser: a } = useAuth(),
     [o, s] = (0, React.useState)(null),
     [c, l] = (0, React.useState)(null),
+    [betaPlan, setBetaPlan] = (0, React.useState)(null),
     u = async (t) => {
       if (!i) {
         e(`/signup`);
+        return;
+      }
+      // Public beta: paid plans go through the no-charge beta checkout.
+      if (import.meta.env.VITE_BETA === "true" && t !== `free`) {
+        setBetaPlan(cn.find((p) => p.id === t) || null);
         return;
       }
       s(t);
@@ -240,6 +247,7 @@ function HowItWorksPage() {
         }
       </style>
       <Navbar />
+      {betaPlan && <BetaCheckoutModal plan={betaPlan} onClose={() => setBetaPlan(null)} />}
       <div
         style={{
           display: `flex`,
@@ -632,6 +640,24 @@ function HowItWorksPage() {
                 </GoldIf>
               ))}
             </div>
+            <p
+              style={{
+                textAlign: `center`,
+                fontSize: 12.5,
+                color: `var(--muted)`,
+                margin: `22px auto 0`,
+                maxWidth: 640,
+                lineHeight: 1.6,
+              }}
+            >
+              {import.meta.env.VITE_BETA === "true"
+                ? `Early access beta: payments are simulated and no money is taken. `
+                : ``}
+              By choosing a plan you agree to our{" "}
+              <Link to="/terms" style={{ color: `var(--emerald-700)`, fontWeight: 600 }}>Terms</Link>,{" "}
+              <Link to="/privacy" style={{ color: `var(--emerald-700)`, fontWeight: 600 }}>Privacy Policy</Link> and{" "}
+              <Link to="/terms#refunds" style={{ color: `var(--emerald-700)`, fontWeight: 600 }}>Refund policy</Link>.
+            </p>
           </section>
           <div className="divider-line" style={{ margin: `0 32px` }} />
           <section style={{ padding: `48px 24px` }}>

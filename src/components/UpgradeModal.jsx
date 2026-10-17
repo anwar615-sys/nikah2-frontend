@@ -112,6 +112,15 @@ function UpgradeModal({
             Maybe Later
           </button>
         </div>
+        <p style={{ fontSize: 11.5, color: `var(--muted)`, margin: `16px 0 0` }}>
+          <Link to="/privacy" onClick={n} style={{ color: `var(--emerald-700)`, fontWeight: 600, textDecoration: `none` }}>
+            Privacy Policy
+          </Link>
+          {` · `}
+          <Link to="/terms" onClick={n} style={{ color: `var(--emerald-700)`, fontWeight: 600, textDecoration: `none` }}>
+            Terms
+          </Link>
+        </p>
       </div>
     </div>
   );

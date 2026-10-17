@@ -120,3 +120,25 @@ test("calls are unavailable in the beta", async () => {
   __setClient(fakeClient());
   await assert.rejects(betaRequest("/calls/ice-servers", {}), (e) => e.message === "Voice and video calls arrive after the beta.");
 });
+
+test("beta checkout calls beta_checkout with the plan and outcome", async () => {
+  const c = fakeClient({ rpc: { beta_checkout: { status: "failed", plan: "free" } } });
+  __setClient(c);
+  const r = await betaRequest("/subscriptions/checkout", { method: "POST", body: { plan: "premium", outcome: "failed" } });
+  assert.equal(r.status, "failed");
+  assert.deepEqual(c.calls[0], ["rpc", "beta_checkout", { plan: "premium", outcome: "failed" }]);
+});
+
+test("admin user list passes its filters to admin_users", async () => {
+  const c = fakeClient({ rpc: { admin_users: { items: [], total: 0 } } });
+  __setClient(c);
+  await betaRequest("/admin/users?verificationStatus=pending&page=2&limit=25", {});
+  assert.deepEqual(c.calls[0], ["rpc", "admin_users", { f: { verificationStatus: "pending", page: "2", limit: "25" } }]);
+});
+
+test("admin flagged list is not mistaken for a user id", async () => {
+  const c = fakeClient({ rpc: { admin_users_flagged: { items: [] } } });
+  __setClient(c);
+  await betaRequest("/admin/users/flagged", {});
+  assert.equal(c.calls[0][1], "admin_users_flagged");
+});
