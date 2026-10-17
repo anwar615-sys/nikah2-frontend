@@ -1,10 +1,11 @@
 import * as React from "react";
+import { loadGsi, GOOGLE_SIGNIN_ENABLED } from "../lib/gsi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 var wn = import.meta.env.VITE_GOOGLE_CLIENT_ID || `420155966557-ku317ls22tq2cgnh28uidj4q1gcsgqe5.apps.googleusercontent.com`;
 
-function GoogleSignInButton({ redirectTo: e = `/explore`, onError: t }) {
+function GoogleSignInButtonInner({ redirectTo: e = `/explore`, onError: t }) {
   let n = (0, React.useRef)(null),
     [r, i] = (0, React.useState)(!1),
     { loginWithGoogle: a } = useAuth(),
@@ -37,6 +38,7 @@ function GoogleSignInButton({ redirectTo: e = `/explore`, onError: t }) {
           }
         };
       return (
+        loadGsi().catch(() => {}),
         r(),
         () => {
           n = !0;
@@ -62,6 +64,11 @@ function GoogleSignInButton({ redirectTo: e = `/explore`, onError: t }) {
       />
     )
   );
+}
+
+// Not offered during the public beta.
+function GoogleSignInButton(props) {
+  return GOOGLE_SIGNIN_ENABLED ? <GoogleSignInButtonInner {...props} /> : null;
 }
 
 export { GoogleSignInButton };

@@ -1,8 +1,9 @@
 import * as React from "react";
+import { loadGsi, GOOGLE_SIGNIN_ENABLED } from "../lib/gsi";
 
 var Pa = import.meta.env.VITE_GOOGLE_CLIENT_ID || `420155966557-ku317ls22tq2cgnh28uidj4q1gcsgqe5.apps.googleusercontent.com`;
 
-function GoogleButton({ onCredential: e, disabled: t }) {
+function GoogleButtonInner({ onCredential: e, disabled: t }) {
   let n = (0, React.useRef)(null),
     [r, i] = (0, React.useState)(!1),
     a = (0, React.useRef)(e);
@@ -24,6 +25,7 @@ function GoogleButton({ onCredential: e, disabled: t }) {
           }
         };
       return (
+        loadGsi().catch(() => {}),
         t(),
         () => {
           e = !0;
@@ -57,6 +59,11 @@ function GoogleButton({ onCredential: e, disabled: t }) {
       />
     )
   );
+}
+
+// Not offered during the public beta.
+function GoogleButton(props) {
+  return GOOGLE_SIGNIN_ENABLED ? <GoogleButtonInner {...props} /> : null;
 }
 
 export { GoogleButton };

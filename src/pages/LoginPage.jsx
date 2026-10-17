@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleSignInButton } from "../components/GoogleSignInButton";
+import { GOOGLE_SIGNIN_ENABLED } from "../lib/gsi";
 import { useAuth } from "../context/AuthContext";
 import { ThemeToggle } from "../components/ThemeToggle";
 
@@ -316,6 +317,7 @@ function LoginPage() {
                 {c ? `Signing In…` : `Sign In`}
               </button>
             </div>
+            {GOOGLE_SIGNIN_ENABLED && (<>
             <div
               style={{
                 display: `flex`,
@@ -354,6 +356,7 @@ function LoginPage() {
               redirectTo={f.state?.from || `/explore`}
               onError={s}
             />
+            </>)}
           </div>
           <p
             style={{

@@ -3,6 +3,7 @@ import { TERMS_SECTIONS } from "../lib/legal";
 import { Link, useNavigate } from "react-router-dom";
 import { CountryStateSelect } from "../components/CountryStateSelect";
 import { GoogleSignInButton } from "../components/GoogleSignInButton";
+import { GOOGLE_SIGNIN_ENABLED } from "../lib/gsi";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
 import { ThemeToggle } from "../components/ThemeToggle";
@@ -789,6 +790,7 @@ function SignupPage() {
                   >
                     Next →
                   </button>
+                  {GOOGLE_SIGNIN_ENABLED && (<>
                   <div
                     style={{
                       display: `flex`,
@@ -824,6 +826,7 @@ function SignupPage() {
                     />
                   </div>
                   <GoogleSignInButton redirectTo="/explore" onError={ye} />
+                  </>)}
                 </div>
               )}
               {e === 2 && (

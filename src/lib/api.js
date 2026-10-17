@@ -1,3 +1,5 @@
+import { ApiError } from "./apiError.js";
+
 var API_BASE =
   import.meta.env.VITE_API_URL ||
   (import.meta.env.DEV ? `/api` : `https://nikah2-backend.onrender.com/api`);
@@ -18,11 +20,9 @@ function setTokens(e) {
     : localStorage.removeItem(TOKENS_KEY);
 }
 
-var ApiError = class extends Error {
-  constructor(e, t, n, r) {
-    (super(n), (this.status = e), (this.code = t), (this.details = r));
-  }
-};
+// Public beta: every request goes to the Supabase connector in src/beta/.
+// Vite replaces the flag at build time, so normal builds contain none of it.
+var IS_BETA = import.meta.env.VITE_BETA === "true";
 
 var refreshPromise = null;
 
@@ -53,6 +53,10 @@ async function apiRequest(
   e,
   { method: t = `GET`, body: n, isForm: r = !1, retry: i = !0 } = {},
 ) {
+  if (IS_BETA) {
+    let { betaRequest } = await import("../beta/index.js");
+    return betaRequest(e, { method: t, body: n, isForm: r });
+  }
   let a = getTokens(),
     o = {};
   (r || (o[`Content-Type`] = `application/json`),

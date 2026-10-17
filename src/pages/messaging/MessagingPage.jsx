@@ -200,7 +200,8 @@ function MessagingPage() {
         try {
           let r = new FormData();
           (r.append(`file`, k.file),
-            r.append(`purpose`, e === `timed` ? `timed_image` : `chat_image`));
+            r.append(`purpose`, e === `timed` ? `timed_image` : `chat_image`),
+            r.append(`conversationId`, d));
           let i = await api.upload(`/media/upload`, r),
             a =
               e === `timed`
