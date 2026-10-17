@@ -116,6 +116,11 @@ do $$ declare a jsonb; begin
   if (public.admin_reports('{"status":"open"}')->>'total')::int < 1 then raise exception 'T11 admin cannot see report'; end if;
   perform public.admin_user_block('00000000-0000-4000-a000-00000000000a', true);
   if (public.admin_audit_log(1, 50)->'items'->0->>'action') <> 'user.block' then raise exception 'T11 audit not written'; end if;
+  -- T13: admins read message content only through a report, never the table itself
+  if (select count(*) from public.messages) <> 0 then raise exception 'T13 admin can read messages directly'; end if;
+  if (public.admin_report_context((select id from public.reports limit 1))->>'found')::boolean is not true then
+    raise exception 'T13 admin cannot see reported context';
+  end if;
 end $$;
 
 select 'ALL BETA SECURITY TESTS PASSED' as result;

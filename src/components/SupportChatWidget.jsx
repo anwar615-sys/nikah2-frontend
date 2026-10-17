@@ -1,4 +1,5 @@
 import * as React from "react";
+import { PrivacyNote } from "./PrivacyNote";
 
 function SupportChatWidget() {
   let [e, t] = (0, React.useState)(!1),
@@ -251,6 +252,10 @@ function SupportChatWidget() {
             )}
             <div ref={u} />
           </div>
+          <PrivacyNote
+            text="Please don't share passwords or payment details here. See our"
+            style={{ margin: 0, padding: `6px 12px 0`, background: `var(--surface)`, fontSize: 10.5 }}
+          />
           <div
             style={{
               display: `flex`,

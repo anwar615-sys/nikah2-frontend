@@ -101,10 +101,50 @@ route("GET", "/me", async () => {
 route("PATCH", "/me", async ({ body = {} }) => rpc("me_update", { patch: body }));
 route("PATCH", "/me/profile", async ({ body = {} }) => rpc("me_profile_update", { patch: body }));
 
+// Removes everything stored under the member's own folder in a bucket.
+async function removeOwnFiles(bucket, uid) {
+  const store = getSupabase().storage.from(bucket);
+  const { data } = await store.list(uid, { limit: 1000 });
+  const paths = (data || []).filter((f) => f.name).map((f) => `${uid}/${f.name}`);
+  if (paths.length) await store.remove(paths);
+}
+
 route("DELETE", "/me", async () => {
+  const uid = await currentUserId();
+  if (!uid) throw apiError("AUTH_REQUIRED", "Please log in again.");
+  // Profile and verification photos go first; failures here must not block closing the account.
+  await Promise.all([removeOwnFiles("avatars", uid), removeOwnFiles("verification", uid)]).catch(() => {});
   await rpc("me_delete");
   await signOutLocal();
   return null;
+});
+
+// "Download my data": the member's account, profile, consents, plan payments,
+// reports they made and messages they sent, as one JSON document.
+route("GET", "/me/export", async () => {
+  const uid = await currentUserId();
+  if (!uid) throw apiError("AUTH_REQUIRED", "Please log in again.");
+  const sb = getSupabase();
+  const pick = async (q) => {
+    const { data, error } = await q;
+    if (error) throw error;
+    return data || [];
+  };
+  const [account, consents, payments, reports, messages] = await Promise.all([
+    rpc("me_get"),
+    pick(sb.from("consents").select("kind, version, created_at").eq("user_id", uid).order("created_at")),
+    pick(sb.from("payments").select("plan, amount_cents, currency, status, provider, created_at").eq("user_id", uid).order("created_at")),
+    pick(sb.from("reports").select("target_type, target_id, reason, details, status, created_at").eq("reporter_id", uid).order("created_at")),
+    pick(
+      sb
+        .from("messages")
+        .select("conversation_id, type, text, created_at")
+        .eq("sender_id", uid)
+        .order("created_at")
+        .limit(10000),
+    ),
+  ]);
+  return { exportedAt: new Date().toISOString(), account, consents, payments, reports, messagesSent: messages };
 });
 
 route("POST", "/me/password", async ({ body = {} }) => {

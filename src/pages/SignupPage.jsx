@@ -342,6 +342,7 @@ function SignupPage() {
     [A, te] = (0, React.useState)(``),
     [ne, re] = (0, React.useState)(``),
     [ie, j] = (0, React.useState)(!1),
+    [sens, setSens] = (0, React.useState)(!1),
     [M, ae] = (0, React.useState)(!1),
     [oe, se] = (0, React.useState)(!1),
     ce = (0, React.useRef)(null),
@@ -1303,7 +1304,7 @@ function SignupPage() {
                         lineHeight: 1.4,
                       }}
                     >
-                      I agree to the{" "}
+                      I am 18 or over and agree to the{" "}
                       <button className="nk-btn nk-btn-soft"
                         type="button"
                         onClick={() => ae(!0)}
@@ -1319,7 +1320,48 @@ function SignupPage() {
                         }}
                       >
                         Terms and Conditions
-                      </button>
+                      </button>{" "}
+                      and the{" "}
+                      <Link
+                        to="/privacy"
+                        target="_blank"
+                        rel="noopener"
+                        style={{ color: `var(--emerald-700)`, textDecoration: `underline` }}
+                      >
+                        Privacy Policy
+                      </Link>
+                    </label>
+                  </div>
+                  <div style={{ display: `flex`, alignItems: `flex-start`, gap: 8, marginTop: 3 }}>
+                    <input
+                      type="checkbox"
+                      id="sensitive-consent"
+                      checked={sens}
+                      onChange={(e) => setSens(e.target.checked)}
+                      style={{
+                        width: 14,
+                        height: 14,
+                        marginTop: 2,
+                        accentColor: `var(--emerald-700)`,
+                        cursor: `pointer`,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <label
+                      htmlFor="sensitive-consent"
+                      style={{ fontFamily: `var(--font-ui)`, fontSize: 11, color: `var(--muted)`, lineHeight: 1.4 }}
+                    >
+                      I agree that Nikha2 may use my religion and family details to show me compatible members, and show
+                      them on my profile, as explained in the{" "}
+                      <Link
+                        to="/privacy#sensitive-details-religion-and-family"
+                        target="_blank"
+                        rel="noopener"
+                        style={{ color: `var(--emerald-700)`, textDecoration: `underline` }}
+                      >
+                        Privacy Policy
+                      </Link>
+                      .
                     </label>
                   </div>
                   {ve && (
@@ -1354,6 +1396,10 @@ function SignupPage() {
                           );
                           return;
                         }
+                        if (!sens) {
+                          ye(`Please agree to how we use your religion and family details to continue`);
+                          return;
+                        }
                         if (!m || !g || !T || !ne || !A) {
                           ye(`Please complete all fields`);
                           return;
@@ -1382,6 +1428,7 @@ function SignupPage() {
                             hasKids: A,
                             ageRange: ne,
                             acceptTerms: ie,
+                            sensitiveConsent: sens,
                           }),
                             Se(`/explore`));
                         } catch (e) {
@@ -1393,7 +1440,7 @@ function SignupPage() {
                           be(!1);
                         }
                       }}
-                      disabled={!ie || I}
+                      disabled={!ie || !sens || I}
                       className="nk-btn nk-btn-primary btn-submit"
                       style={{
                         flex: 1,

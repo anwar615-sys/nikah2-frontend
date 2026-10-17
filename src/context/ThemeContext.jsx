@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { THEME_KEY, nextTheme, resolveTheme } from "../lib/theme";
+import { canStore } from "../lib/consent";
 
 const ThemeContext = createContext(null);
 
@@ -49,7 +50,8 @@ export function ThemeProvider({ children }) {
 
   const setTheme = useCallback((t) => {
     try {
-      localStorage.setItem(THEME_KEY, t);
+      // Remembered only if the visitor allowed preference storage; otherwise it applies for this visit.
+      if (canStore("preferences")) localStorage.setItem(THEME_KEY, t);
     } catch (e) {
       /* storage blocked: theme still applies for this visit */
     }

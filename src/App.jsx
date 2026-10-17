@@ -23,6 +23,10 @@ import { SafetyPage } from "./pages/SafetyPage";
 import { SignupPage } from "./pages/SignupPage";
 import { SuccessStoriesPage } from "./pages/SuccessStoriesPage";
 import { MessagingPage } from "./pages/messaging/MessagingPage";
+import { CookieBanner } from "./components/CookieBanner";
+import { BetaBanner } from "./components/BetaBanner";
+
+const IS_BETA = import.meta.env.VITE_BETA === "true";
 
 // The admin dashboard lives in src/admin and is loaded only when someone opens /admin.
 const AdminApp = lazy(() => import("./admin/AdminApp"));
@@ -72,6 +76,7 @@ function App() {
           <Route path="/terms" element={<LegalPage page="terms" />} />
           <Route path="/privacy" element={<LegalPage page="privacy" />} />
           <Route path="/cookies" element={<LegalPage page="cookies" />} />
+          <Route path="/beta" element={<LegalPage page="beta" />} />
           <Route
             path="/admin/*"
             element={
@@ -84,6 +89,8 @@ function App() {
         </Routes>
         </PageFade>
         <CallOverlay />
+        {IS_BETA && <BetaBanner />}
+        <CookieBanner />
       </CallProvider>
     </AuthProvider>
     </MotionProvider>

@@ -8,6 +8,7 @@ import { Toast } from "../components/Toast";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
 import { UsernameField } from "./SignupPage";
+import { openCookieSettings } from "../lib/consent";
 
 var nr = [
   { value: `man`, label: `Male` },
@@ -346,9 +347,31 @@ function AccountPage() {
         Ue(!1);
       }
     },
+    [exporting, setExporting] = (0, React.useState)(!1),
+    downloadMyData = async () => {
+      setExporting(!0);
+      try {
+        let data = await api.get(`/me/export`),
+          url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: `application/json` })),
+          a = document.createElement(`a`);
+        ((a.href = url),
+          (a.download = `nikha2-my-data-${new Date().toISOString().slice(0, 10)}.json`),
+          document.body.appendChild(a),
+          a.click(),
+          a.remove(),
+          setTimeout(() => URL.revokeObjectURL(url), 1e3),
+          p(`Your data has been downloaded.`));
+      } catch (e) {
+        p(e.message || `Could not prepare your data.`, `error`);
+      } finally {
+        setExporting(!1);
+      }
+    },
     Ge = () => {
       m(
-        `Delete your account? This permanently erases your profile, matches, messages, and photos — there's no way to undo this.`,
+        import.meta.env.VITE_BETA === "true"
+          ? `Delete your account? This permanently deletes your account, profile and photos. Messages you sent stay in the other person's chat without your name. There's no way to undo this.`
+          : `Delete your account? This permanently erases your profile, matches, messages, and photos — there's no way to undo this.`,
         async () => {
           f(!0);
           try {
@@ -915,6 +938,47 @@ function AccountPage() {
                 : `Set Password`}
           </button>
         </form>
+        <div style={sr}>
+          <h2
+            style={{
+              fontFamily: `var(--font-display)`,
+              fontSize: 18,
+              fontWeight: 700,
+              color: `var(--fg)`,
+              marginBottom: 6,
+            }}
+          >
+            Privacy &amp; your data
+          </h2>
+          <p style={{ fontSize: 12.5, color: `var(--muted)`, marginBottom: 16, lineHeight: 1.6 }}>
+            See what we collect and why in our{" "}
+            <Link to="/privacy" style={{ color: `var(--emerald-700)`, fontWeight: 700 }}>
+              Privacy Policy
+            </Link>
+            . You can download a copy of your data, change your cookie choices, or delete your account below.
+          </p>
+          <div style={{ display: `flex`, flexWrap: `wrap`, gap: 10 }}>
+            {import.meta.env.VITE_BETA === "true" && (
+              <button
+                className="nk-btn nk-btn-primary"
+                type="button"
+                onClick={downloadMyData}
+                disabled={exporting}
+                style={{ padding: `10px 22px`, borderRadius: 28, fontSize: 13, fontWeight: 700 }}
+              >
+                {exporting ? `Preparing…` : `Download my data`}
+              </button>
+            )}
+            <button
+              className="nk-btn nk-btn-ghost"
+              type="button"
+              onClick={openCookieSettings}
+              style={{ padding: `10px 22px`, borderRadius: 28, fontSize: 13, fontWeight: 700 }}
+            >
+              Cookie settings
+            </button>
+          </div>
+        </div>
         <div style={{ ...sr, border: `1px solid color-mix(in srgb, var(--danger) 25%, transparent)` }}>
           <h2
             style={{
@@ -935,8 +999,9 @@ function AccountPage() {
               lineHeight: 1.5,
             }}
           >
-            This permanently deletes your profile, matches, conversations, and
-            photos. This action cannot be undone.
+            {import.meta.env.VITE_BETA === "true"
+              ? `This permanently deletes your account, profile and photos. Messages you sent stay in the other person's chat without your name. This action cannot be undone.`
+              : `This permanently deletes your profile, matches, conversations, and photos. This action cannot be undone.`}
           </p>
           <button className="nk-btn nk-btn-ghost"
             type="button"

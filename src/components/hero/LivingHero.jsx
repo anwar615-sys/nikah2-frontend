@@ -4,6 +4,7 @@ import { createBirds } from "./birds";
 import { FRAGMENT_SHADER, VERTEX_SHADER } from "./heroShader";
 import { introValues, qualityStep, uvToHero } from "./heroMath";
 import "./hero.css";
+import { canStore } from "../../lib/consent";
 
 const PAUSE_KEY = "nikha2-hero-paused";
 // The sunrise plays once per page load (a full reload plays it again; client-side navigation does not).
@@ -20,6 +21,8 @@ const store = {
     }
   },
   set(name, k, v) {
+    // The paused-animation choice is a preference: kept only if the visitor allowed it.
+    if (name === "localStorage" && !canStore("preferences")) return;
     try {
       window[name].setItem(k, v);
     } catch (e) {

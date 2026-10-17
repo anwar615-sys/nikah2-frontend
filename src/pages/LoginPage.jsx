@@ -4,6 +4,7 @@ import { GoogleSignInButton } from "../components/GoogleSignInButton";
 import { GOOGLE_SIGNIN_ENABLED } from "../lib/gsi";
 import { useAuth } from "../context/AuthContext";
 import { ThemeToggle } from "../components/ThemeToggle";
+import { PrivacyNote } from "../components/PrivacyNote";
 
 function LoginPasswordToggle({ shown: e, onClick: t }) {
   return (
@@ -382,6 +383,7 @@ function LoginPage() {
               Sign up
             </Link>
           </p>
+          <PrivacyNote text="By logging in you agree to our" style={{ textAlign: `center`, marginTop: 14 }} />
         </div>
       </div>
     </div>

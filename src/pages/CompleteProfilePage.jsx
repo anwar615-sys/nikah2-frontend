@@ -6,6 +6,7 @@ import { Toast } from "../components/Toast";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
 import { UsernameField } from "./SignupPage";
+import { PrivacyNote } from "../components/PrivacyNote";
 
 var hr = [
   { value: `man`, label: `Man` },
@@ -299,6 +300,7 @@ function CompleteProfilePage() {
           <button className="nk-btn" type="submit" disabled={s} style={Cr(s)}>
             {s ? `Saving…` : `Continue`}
           </button>
+          <PrivacyNote text="Your profile details are shown to other members as described in our" style={{ textAlign: `center` }} />
         </form>
         <button className="nk-btn nk-btn-soft"
           type="button"

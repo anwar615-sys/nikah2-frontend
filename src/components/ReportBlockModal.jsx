@@ -1,5 +1,6 @@
 import * as React from "react";
 import { api } from "../lib/api";
+import { PrivacyNote } from "./PrivacyNote";
 
 var Kn = [
   { value: `harassment`, label: `Harassment or abuse` },
@@ -250,6 +251,10 @@ function ReportBlockModal({ target: e, onClose: t, onBlocked: n }) {
                 {l ? `Submitting…` : `Submit Report`}
               </button>
             </div>
+            <PrivacyNote
+              text="Our moderators review reports and may read the reported messages, as described in our"
+              style={{ textAlign: `center` }}
+            />
           </>
         )}
         {r === `done` && (

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { MOTION_KEY, resolveMotion } from "../lib/motion";
+import { canStore } from "../lib/consent";
 
 const MotionContext = createContext({ motionEnabled: false, setting: "auto", setSetting: () => {} });
 
@@ -36,7 +37,7 @@ export function MotionProvider({ children }) {
   const setSetting = useCallback((s) => {
     try {
       if (s === "auto") localStorage.removeItem(MOTION_KEY);
-      else localStorage.setItem(MOTION_KEY, s);
+      else if (canStore("preferences")) localStorage.setItem(MOTION_KEY, s);
     } catch (e) {
       /* storage blocked: setting applies for this visit */
     }
