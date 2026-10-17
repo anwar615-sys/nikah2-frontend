@@ -1,24 +1,16 @@
--- Nikha2 public beta: core schema, security rules and trusted functions.
--- Spec: docs/superpowers/specs/2026-10-18-public-beta-design.md
--- Every table has row-level security ON. Members can only do what a policy
--- or a trusted (security definer) function below allows.
-
 create extension if not exists pgcrypto;
 
--- ---------------------------------------------------------------- admins
 create table public.admins (
   user_id uuid primary key references auth.users(id) on delete cascade,
   created_at timestamptz not null default now()
 );
 alter table public.admins enable row level security;
--- no policies: invisible through the API; managed by the developer in SQL.
 
 create or replace function public.is_admin() returns boolean
 language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.admins where user_id = auth.uid());
 $$;
 
--- ---------------------------------------------------------------- plans
 create table public.plans (
   id text primary key check (id in ('free','basic','premium')),
   name text not null,
@@ -26,8 +18,8 @@ create table public.plans (
   currency text not null default 'USD',
   period text,
   features text[] not null default '{}',
-  monthly_new_contacts int,          -- null = unlimited
-  calls_per_contact int,             -- 0 = none, null = unlimited
+  monthly_new_contacts int,
+  calls_per_contact int,
   ai_match boolean not null default false,
   view_once boolean not null default false,
   sort int not null
@@ -40,7 +32,6 @@ insert into public.plans values
  ('basic','Basic',3000,'USD','month',array['Unlimited messaging','Voice & video: 2 calls per contact each month','Basic badge'],null,2,false,false,2),
  ('premium','Premium',10000,'USD','month',array['Unlimited messaging and calls','AI-Based Match','Send view-once photos','See member ID and phone (subject to their privacy)','Premium badge'],null,null,true,true,3);
 
--- ---------------------------------------------------------------- profiles
 create table public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   account_number bigint generated always as identity (start with 10001) unique,
@@ -76,10 +67,8 @@ create index profiles_explore_idx on public.profiles (gender, religion, age_rang
 create policy profiles_read_own on public.profiles for select using (id = auth.uid() or public.is_admin());
 create policy profiles_update_own on public.profiles for update using (id = auth.uid()) with check (id = auth.uid());
 
--- Members may not change protected columns. Trusted functions set
--- nikha2.trusted = 'on' for the duration of their transaction.
 create or replace function public.guard_profile_columns() returns trigger
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 begin
   if coalesce(current_setting('nikha2.trusted', true), '') = 'on' or public.is_admin() then
     new.updated_at := now();
@@ -103,7 +92,18 @@ end $$;
 create trigger profiles_guard before update on public.profiles
   for each row execute function public.guard_profile_columns();
 
--- New auth user -> profile + consent record (fields come from signup metadata).
+create table public.consents (
+  id bigint generated always as identity primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  kind text not null check (kind in ('terms','privacy','sensitive_data','cookies')),
+  version text not null,
+  detail jsonb,
+  created_at timestamptz not null default now()
+);
+alter table public.consents enable row level security;
+create policy consents_read on public.consents for select using (user_id = auth.uid() or public.is_admin());
+create policy consents_insert_own on public.consents for insert with check (user_id = auth.uid());
+
 create or replace function public.handle_new_user() returns trigger
 language plpgsql security definer set search_path = public as $$
 declare m jsonb := coalesce(new.raw_user_meta_data, '{}'::jsonb);
@@ -123,24 +123,9 @@ begin
   end if;
   return new;
 end $$;
-
--- ---------------------------------------------------------------- consents
-create table public.consents (
-  id bigint generated always as identity primary key,
-  user_id uuid not null references auth.users(id) on delete cascade,
-  kind text not null check (kind in ('terms','privacy','sensitive_data','cookies')),
-  version text not null,
-  detail jsonb,
-  created_at timestamptz not null default now()
-);
-alter table public.consents enable row level security;
-create policy consents_read on public.consents for select using (user_id = auth.uid() or public.is_admin());
-create policy consents_insert_own on public.consents for insert with check (user_id = auth.uid());
-
 create trigger on_auth_user_created after insert on auth.users
   for each row execute function public.handle_new_user();
 
--- ---------------------------------------------------------------- blocks
 create table public.blocks (
   blocker_id uuid not null references public.profiles(id) on delete cascade,
   blocked_id uuid not null references public.profiles(id) on delete cascade,
@@ -156,7 +141,6 @@ language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.blocks where (blocker_id = a and blocked_id = b) or (blocker_id = b and blocked_id = a));
 $$;
 
--- ---------------------------------------------------------------- conversations
 create table public.conversations (
   id uuid primary key default gen_random_uuid(),
   is_group boolean not null default false,
@@ -188,7 +172,6 @@ create policy conversations_read on public.conversations for select using (publi
 create policy members_read on public.conversation_members for select using (public.is_member(conversation_id) or public.is_admin());
 create policy members_update_own on public.conversation_members for update using (user_id = auth.uid()) with check (user_id = auth.uid());
 
--- ---------------------------------------------------------------- messages
 create table public.messages (
   id uuid primary key default gen_random_uuid(),
   conversation_id uuid not null references public.conversations(id) on delete cascade,
@@ -204,7 +187,6 @@ create table public.messages (
 create index messages_conv_idx on public.messages (conversation_id, created_at desc);
 alter table public.messages enable row level security;
 create policy messages_read on public.messages for select using (public.is_member(conversation_id) or public.is_admin());
--- Members insert directly only through send_message() (below), which checks limits/blocks.
 
 create table public.message_reads (
   message_id uuid not null references public.messages(id) on delete cascade,
@@ -227,7 +209,6 @@ create table public.timed_image_views (
 alter table public.timed_image_views enable row level security;
 create policy tiv_read_own on public.timed_image_views for select using (viewer_id = auth.uid());
 
--- ---------------------------------------------------------------- reports, verification
 create table public.reports (
   id uuid primary key default gen_random_uuid(),
   reporter_id uuid references public.profiles(id) on delete set null,
@@ -254,7 +235,6 @@ create table public.verification_requests (
 alter table public.verification_requests enable row level security;
 create policy vr_read on public.verification_requests for select using (user_id = auth.uid() or public.is_admin());
 
--- ---------------------------------------------------------------- payments, audit
 create table public.payments (
   id uuid primary key default gen_random_uuid(),
   user_id uuid references public.profiles(id) on delete set null,
@@ -280,10 +260,9 @@ create table public.audit_log (
 );
 alter table public.audit_log enable row level security;
 create policy audit_admin_read on public.audit_log for select using (public.is_admin());
-create or replace function public.audit_log_immutable() returns trigger language plpgsql as $$
+create or replace function public.audit_log_immutable() returns trigger language plpgsql set search_path = public as $$
 begin raise exception 'audit log is append-only'; end $$;
 create trigger audit_log_no_change before update or delete on public.audit_log
   for each row execute function public.audit_log_immutable();
 
--- ---------------------------------------------------------------- realtime
 alter publication supabase_realtime add table public.messages, public.message_reads, public.conversation_members;
